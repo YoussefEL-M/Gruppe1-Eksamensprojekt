@@ -1,4 +1,4 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
-public class UserController {
+public class BusinessController {
 }
