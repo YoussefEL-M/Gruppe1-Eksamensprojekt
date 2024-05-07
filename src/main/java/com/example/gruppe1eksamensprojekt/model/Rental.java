@@ -1,4 +1,4 @@
 package com.example.gruppe1eksamensprojekt.model;
 
-public class UserModel {
+public class Rental {
 }
