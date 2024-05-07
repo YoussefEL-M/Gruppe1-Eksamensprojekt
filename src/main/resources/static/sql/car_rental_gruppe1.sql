@@ -1,0 +1,44 @@
+CREATE DATABASE IF NOT EXISTS car_rental_gruppe1;
+
+USE car_rental_gruppe1;
+
+CREATE TABLE IF NOT EXISTS customer
+(id 	INT	PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
+ name	VARCHAR(250)	NOT NULL,
+    telnr	VARCHAR(250)	NOT NULL,
+    email	VARCHAR(250),
+    address	VARCHAR(250)	NOT NULL,
+    birthDate	DATE	NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS rental
+(id	INT	PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
+ pickUpLocation	VARCHAR(250)	NOT NULL,
+    returnLocation	VARCHAR(250)	NOT NULL,
+    type	VARCHAR(250)	NOT NULL,
+    startDate	DATE	NOT NULL,
+    endDate	DATE	NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS car
+(id	INT	PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
+ brand	VARCHAR(250)	NOT NULL,
+    serialNumber	VARCHAR(250)	NOT NULL,
+    model	VARCHAR(250)	NOT NULL,
+    color	VARCHAR(250)	NOT NULL,
+    trimLevel	VARCHAR(250)	NOT NULL,
+    steelPrice	DOUBLE,
+    registrationTax	DOUBLE	NOT NULL,
+    emission	DOUBLE,
+    damaged	BOOLEAN	NOT NULL,
+    ds	BOOLEAN	NOT NULL,
+    licensePlate	VARCHAR(250)	NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS user
+(id	INT	PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
+ name	VARCHAR(250)	NOT NULL,
+    username	VARCHAR(250)	NOT NULL,
+    password	VARCHAR(250)	NOT NULL,
+    email	VARCHAR(250)	NOT NULL
+    );
