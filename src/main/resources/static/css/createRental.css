@@ -28,3 +28,26 @@ h1, h2, p, a, li {
 
 
 }
+
+
+.rentalForm input[type="submit"] {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+}
+
+.createButton{
+    margin: 50px auto 30px auto;
+    width: 10%;
+    font-size: 1.1rem;
+    transition: background-color 0.1s;
+    text-align: center;
+    padding: 12px 5px 12px 5px;
+    border-radius: 30px;
+    background-color: #12b0e0;
+    border-width: 0;
+}
+.createButton:hover{
+    background-color: #0280ad;
+    cursor: pointer;
+}

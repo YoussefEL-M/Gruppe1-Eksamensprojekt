@@ -1,20 +1,20 @@
 .loginForm form {
+    width: 26%;
     justify-items: center;
     justify-content: space-around;
     height:60vh;
     border: 2px solid black;
     padding:30px;
     margin:30px auto;
-    width: 30vw;
     flex-direction: column;
     display:flex;
     overflow:auto;
 
+
 }
 
 .loginForm input[type="text"],
-input[type="password"],
-input[type="submit"]{
+input[type="password"]{
 
     width:100%;
     border:none;
@@ -23,14 +23,33 @@ input[type="submit"]{
     cursor:pointer;
 }
 
-.loginForm input[type="submit"] {
 
-    border: 2px solid black;
-    margin: 5px 0;
+
+.loginForm input[type="submit"] {
     font-size: 1.1rem;
-    transition: background-color 1.0s;
-    font-family: sans-serif;
-    width: calc(100% - 16px);
+    font-weight: bold;
+    color: white;
+}
+
+.buttonDiv{
+    text-align: center;
+}
+.loginButton{
+    margin: 10px auto 0 auto;
+    width: 25%;
+    font-size: 1.1rem;
+    transition: background-color 0.1s;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 30px;
+    background-color: #12b0e0;
+    border-width: 0;
+
+}
+.loginButton:hover{
+    background-color: #0280ad;
+    cursor: pointer;
 }
 
 h1 {
