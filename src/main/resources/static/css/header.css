@@ -1,0 +1,32 @@
+header {
+
+    border-bottom:2px solid black;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+
+.logout-button {
+    margin: 10px 30px 20px 0;
+    cursor: pointer;
+    text-align: right;
+}
+
+
+/*hide the inputs/checkmarks and submenu*/
+input, ul.dropdown {
+    display: none;
+}
+
+/*position the label*/
+label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+
+/*show the submenu when input is checked*/
+input:checked~ul.dropdown {
+    display: block;
+}

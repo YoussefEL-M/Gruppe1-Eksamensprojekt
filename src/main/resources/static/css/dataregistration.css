@@ -1,0 +1,36 @@
+.main {
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+}
+
+.split {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 30px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.halves{
+    width: 40%;
+    height: 100%;
+    display: inline;
+    overflow:auto;
+    vertical-align: bottom;
+    align-content: center;
+
+}
+
+.splitHead{
+    text-align: center;
+}
+
+.taskList{
+    line-height: 180%;
+    text-align: center;
+
+}
+

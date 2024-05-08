@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>dataregistration</title>
+  <link rel="stylesheet" href="../static/CSS/dataregistration.css" th:href="@{/CSS/dataregistration.css}">
+  <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
+</head>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="logo">
+      <a th:href="@{/}"> <img src="" th:src="@{}" alt="Logo"> </a>
+    </div>
+
+    <input id="check01" type="checkbox" name="menu" />
+    <label for="check01">Menu</label>
+    <ul class="dropdown">
+      <li><a href="#">Item 1</a></li>
+      <li><a href="#">Item 2</a></li>
+    </ul>
+
+    <div class="logout-button">
+      <a th:href="@{/logout}"> <button>Logout </button></a>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+  <h1>Velkommen til Dataregistrering</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</div>
+
+
+
+<div class="split">
+
+
+  <div class="halves">
+
+    <h2 class="splitHead">
+      Opgaver
+    </h2>
+
+    <ul class="tasklist">
+      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+      <li>Sed vitae nisi vel leo efficitur convallis.</li>
+      <li>Nulla facilisi. Maecenas euismod ultrices purus, id congue risus tempor nec.</li>
+      <li>Proin vitae sapien at leo placerat commodo nec et justo.</li>
+      <li>Phasellus nec lacinia urna, vitae interdum magna.</li>
+      <li>Integer ultrices fringilla eros, nec rutrum odio dignissim quis. Vestibulum at varius mauris.</li>
+      <li>Duis id quam eget arcu fermentum euismod. Quisque non vestibulum lorem. Fusce nec scelerisque magna.</li>
+
+
+    </ul>
+  </div>
+
+
+
+  <div class="halves">
+
+    <h2 class="splitHead"> Bookinger </h2>
+
+  </div>
+
+
+</div>
+
+</body>
+</html>
