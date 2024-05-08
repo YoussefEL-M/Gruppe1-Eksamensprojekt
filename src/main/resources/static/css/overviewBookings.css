@@ -1,0 +1,10 @@
+h1, h2, p, a, li, tr,th,td {
+    font-family: "Arial", sans-serif;
+}
+
+.main{
+    margin: auto;
+    width: 80%;
+    text-align: center;
+
+}

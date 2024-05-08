@@ -2,9 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>overviewBookings</title>
+    <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
+    <link rel="stylesheet" href="../static/CSS/overviewBookings.css" th:href="@{/CSS/overviewBookings.css}">
 </head>
 <body>
+<header>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/}"> <img src="" th:src="@{}" alt="Logo"> </a>
+        </div>
+
+        <div class="dropdown" tabindex="1">
+            <i class="db2" tabindex="1"></i>
+            <a class="dropbtn">Vælg handling</a>
+            <div class="dropdown-content">
+                <a href="#">Se oversigt over lejeaftaler</a>
+                <a href="#">Se oversigt over bookinger</a>
+                <a href="#">Opret lejeaftale</a>
+
+            </div>
+        </div>
+
+        <div class="logout-button">
+            <a th:href="@{/logout}"> <button>Logout </button></a>
+        </div>
+    </div>
+</header>
+
+<div class="main">
+    <h1> Oversigt over bookinger</h1>
+</div>
 
 </body>
 </html>

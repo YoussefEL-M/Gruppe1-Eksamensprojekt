@@ -2,9 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>createRental</title>
+    <link rel="stylesheet" href="../static/CSS/createRental.css" th:href="@{/CSS/createRental.css}">
 </head>
 <body>
+
+<div class="rentalForm">
+    <form action="/submitRental" method="post">
+
+        <h1>Opret lejeaftale</h1>
+
+        <div class="split">
+            <div class="thirds">
+                <h2 class="splitHead"> Søg efter kunde </h2>
+            </div>
+
+            <div class="thirds">
+                <h2 class="splitHead"> Vælg start dato</h2>
+            </div>
+            <div class="thirds">
+
+                <h2 class="splitHead"> Vælg udleveringssted </h2>
+            </div>
+
+        </div>
+
+        <div class="split">
+            <div class="thirds">
+                <h2 class="splitHead"> Søg efter bil </h2>
+            </div>
+
+            <div class="thirds">
+                <h2 class="splitHead"> Vælg aftale type</h2>
+            </div>
+            <div class="thirds">
+
+                <h2 class="splitHead"> Vælg indleveringssted </h2>
+            </div>
+
+        </div>
+
+        <div class="createButton">
+            <input type="submit" value="Opret">
+        </div>
+
+    </form>
+</div>
 
 </body>
 </html>
