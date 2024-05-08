@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS rental
 
 CREATE TABLE IF NOT EXISTS car
 (id	INT	PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
- color	VARCHAR(250)	NOT NULL,
+ serialNumber	VARCHAR(250),	FOREIGN KEY(serialNumber)	REFERENCES caridentification(serialNumber),
+    color	VARCHAR(250)	NOT NULL,
     trimLevel	VARCHAR(250)	NOT NULL,
     steelPrice	DOUBLE,
     registrationTax	DOUBLE	NOT NULL,
@@ -34,7 +35,6 @@ CREATE TABLE IF NOT EXISTS car
 
 CREATE TABLE IF NOT EXISTS caridentification
 (serialNumber VARCHAR(250) PRIMARY KEY	NOT NULL,
-    car_id	INT, FOREIGN KEY(car_id)	REFERENCES car(id),
     brand	VARCHAR(250)	NOT NULL,
     model	VARCHAR(250)	NOT NULL
     );
