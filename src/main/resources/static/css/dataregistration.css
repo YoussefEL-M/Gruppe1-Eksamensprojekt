@@ -1,3 +1,9 @@
+h1, h2, p, a, li {
+    font-family: "Arial", sans-serif;
+}
+
+
+
 .main {
     padding-left: 10%;
     padding-right: 10%;
@@ -32,4 +38,9 @@
 .taskList{
     text-align: center;
 }
+
+li {
+    margin: 18px 0;
+}
+
 
