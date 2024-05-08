@@ -14,12 +14,16 @@
       <a th:href="@{/}"> <img src="" th:src="@{}" alt="Logo"> </a>
     </div>
 
-    <input id="check01" type="checkbox" name="menu" />
-    <label for="check01">Menu</label>
-    <ul class="dropdown">
-      <li><a href="#">Item 1</a></li>
-      <li><a href="#">Item 2</a></li>
-    </ul>
+    <div class="dropdown" tabindex="1">
+      <i class="db2" tabindex="1"></i>
+      <a class="dropbtn">Vælg handling</a>
+      <div class="dropdown-content">
+        <a href="#">Se oversigt over lejeaftaler</a>
+        <a href="#">Se oversigt over bookinger</a>
+        <a href="#">Opret lejeaftale</a>
+
+      </div>
+    </div>
 
     <div class="logout-button">
       <a th:href="@{/logout}"> <button>Logout </button></a>

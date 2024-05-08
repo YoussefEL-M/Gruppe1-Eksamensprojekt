@@ -19,8 +19,9 @@
     height: 100%;
     display: inline;
     overflow:auto;
-    vertical-align: bottom;
-    align-content: center;
+    margin-top: 0;
+    margin-bottom: auto;
+
 
 }
 
@@ -29,8 +30,6 @@
 }
 
 .taskList{
-    line-height: 180%;
     text-align: center;
-
 }
 
