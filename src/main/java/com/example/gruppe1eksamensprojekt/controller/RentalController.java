@@ -2,7 +2,7 @@ package com.example.gruppe1eksamensprojekt.controller;
 
 import com.example.gruppe1eksamensprojekt.model.User;
 import com.example.gruppe1eksamensprojekt.service.CarService;
-import com.example.gruppe1eksamensprojekt.service.CostumerSevice;
+import com.example.gruppe1eksamensprojekt.service.CustomerSevice;
 import com.example.gruppe1eksamensprojekt.service.RentalService;
 import com.example.gruppe1eksamensprojekt.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -24,7 +24,7 @@ public class RentalController { // Severin
     RentalService rentalService;
 
     @Autowired
-    CostumerSevice costumerSevice;
+    CustomerSevice customerSevice;
 
     @Autowired
     CarService carService;
