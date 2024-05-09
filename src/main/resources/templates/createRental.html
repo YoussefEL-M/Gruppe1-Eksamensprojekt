@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>createRental</title>
+    <link rel="stylesheet" href="../static/CSS/createRental.css" th:href="@{/CSS/createRental.css}">
+</head>
+<body>
+
+<div class="rentalForm">
+    <form action="/submitRental" method="post">
+
+        <h1>Opret lejeaftale</h1>
+
+        <div class="split">
+            <div class="thirds">
+                <h2 class="splitHead"> Søg efter kunde </h2>
+                <div class="loginFields">
+                    <div>
+                        <input type="text" name="customer" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thirds">
+                <h2 class="splitHead"> Vælg start dato</h2>
+            </div>
+            <div class="thirds">
+
+                <h2 class="splitHead"> Vælg udleveringssted </h2>
+                <div class="loginFields">
+                    <div>
+                        <input type="text" name="pickuppoint" required>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="split">
+            <div class="thirds">
+                <h2 class="splitHead"> Søg efter bil </h2>
+                <div class="loginFields">
+                    <div>
+                        <input type="text" name="car" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thirds">
+                <h2 class="splitHead"> Vælg aftale type</h2>
+                <div class="loginFields">
+
+                    <div>
+                        <input type="text" name="type" required>
+                    </div>
+                </div>
+            </div>
+            <div class="thirds">
+
+                <h2 class="splitHead"> Vælg indleveringssted </h2>
+                <div class="loginFields">
+                    <div>
+                        <input type="text" name="dropoffpoint"  required>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <input  class="createButton" type="submit" value="Opret">
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
