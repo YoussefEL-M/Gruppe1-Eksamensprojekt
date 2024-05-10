@@ -33,11 +33,11 @@ public class RentalRepo {
         jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate(), rental.getId());
     }
 
-    public void deleteRental(int id) {
+    public void delete(int id) {
         String sql = "DELETE FROM rentals WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
-    public List<Rental> getAllRentals() {
+    public List<Rental> getAll() {
         String sql = "SELECT * FROM rentals";
         RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
         return jdbcTemplate.query(sql, rowMapper);

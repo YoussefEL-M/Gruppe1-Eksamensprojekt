@@ -29,10 +29,10 @@ public class CustomerSevice { // Severin
         return customerRepo.getCustomerById(id);
     }
 
-    public void updateCustomer(int id){
+    public void updateCustomer(Customer customer){
         // Skal den ikke have et 'Customer' objekt som parameter?
         // Indtil videre gør jeg, som der står i klassediagrammet - Severin.
-        customerRepo.update(id);
+        customerRepo.update(customer);
     }
 
     public void deleteCustomer(int id){

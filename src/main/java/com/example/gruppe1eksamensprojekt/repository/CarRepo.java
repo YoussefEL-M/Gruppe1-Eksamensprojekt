@@ -20,7 +20,7 @@ public class CarRepo {
         jdbcTemplate.update(sql, car.getId(), car.getBrand(), car.getSerialNumber(), car.getModel(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.isDamaged(), car.isDs(), car.getLicensePlate());
     }
 
-    public Car getCareByID(int id){
+    public Car getCarById(int id){
         String sql = "SELECT * FROM cars WHERE id = ?";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, id);

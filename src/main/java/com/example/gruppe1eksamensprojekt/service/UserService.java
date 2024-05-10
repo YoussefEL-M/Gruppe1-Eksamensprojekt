@@ -29,13 +29,12 @@ public class UserService { // Severin
         return userRepo.getUserById(id);
     }
 
-    public updateUser(int id){
-        // Skal den ikke have et User objekt som parameter?
-        // Indtil videre gør jeg, som der står i klassediagrammet - Severin.
-        userRepo.update(id);
+    public void updateUser(User user){
+
+        userRepo.update(user);
     }
 
-    public deleteUser(int id){
+    public void deleteUser(int id){
         userRepo.delete(id);
     }
 

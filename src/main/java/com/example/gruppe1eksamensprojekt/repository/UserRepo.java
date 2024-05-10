@@ -37,9 +37,15 @@ public class UserRepo {
         jdbcTemplate.update(sql, id);
     }
 
-    public List<User> getAllUsers() {
+    public List<User> getAll() {
         String sql = "SELECT * FROM users";
         RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
         return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public User getUserByUsername(String username) {
+        String sql = "SELECT * FROM users WHERE username = ?";
+        RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
+        return jdbcTemplate.queryForObject(sql, rowMapper, username);
     }
 }
