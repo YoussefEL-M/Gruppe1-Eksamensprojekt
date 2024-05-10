@@ -14,22 +14,6 @@ CREATE TABLE IF NOT EXISTS customer
     birthDate	DATE	NOT NULL
     );
 
-CREATE TABLE IF NOT EXISTS rental
-(id	INT	PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
- pickUpLocation	VARCHAR(150)	NOT NULL,
-    returnLocation	VARCHAR(150)	NOT NULL,
-    type	VARCHAR(100)	NOT NULL,
-    startDate	DATE	NOT NULL,
-    endDate	DATE	NOT NULL
-    );
-
-CREATE TABLE IF NOT EXISTS report
-(id	INT PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
- rentalId	INT,	FOREIGN KEY(rentalId)	REFERENCES rental(id),
-    title	VARCHAR(50)	NOT NULL,
-    date	DATE	NOT NULL
-    );
-
 
 CREATE TABLE IF NOT EXISTS carIdentification
 (serialNumber VARCHAR(50) PRIMARY KEY	NOT NULL,
@@ -58,4 +42,23 @@ CREATE TABLE IF NOT EXISTS user
     username	VARCHAR(50)	NOT NULL,
     password	VARCHAR(50)	NOT NULL,
     email	VARCHAR(50)	NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS rental
+(id	INT	PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
+ customer_id	INT, FOREIGN KEY(customer_id)	REFERENCES customer(id),
+    car_id	INT, FOREIGN KEY(car_id)	REFERENCES car(id),
+    user_id	INT, FOREIGN KEY(user_id)	REFERENCES	user(id),
+    pickUpLocation	VARCHAR(150)	NOT NULL,
+    returnLocation	VARCHAR(150)	NOT NULL,
+    type	VARCHAR(100)	NOT NULL,
+    startDate	DATE	NOT NULL,
+    endDate	DATE	NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS report
+(id	INT PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
+ rentalId	INT,	FOREIGN KEY(rentalId)	REFERENCES rental(id),
+    title	VARCHAR(50)	NOT NULL,
+    date	DATE	NOT NULL
     );
