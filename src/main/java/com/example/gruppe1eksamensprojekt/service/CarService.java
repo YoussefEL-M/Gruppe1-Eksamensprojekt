@@ -27,10 +27,10 @@ public class CarService { // Severin
         return carRepo.getCarById(id);
     }
 
-    public void updateCar(int id){
+    public void updateCar(Car car){
         // Skal den ikke have et Car objekt som parameter?
         // Indtil videre gør jeg, som der står i klassediagrammet - Severin.
-        carRepo.update(id);
+        carRepo.update(car);
     }
 
     public void deleteCar(int id){

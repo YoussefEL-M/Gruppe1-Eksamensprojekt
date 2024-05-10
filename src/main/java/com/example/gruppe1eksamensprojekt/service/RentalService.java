@@ -27,10 +27,9 @@ public class RentalService { //Severin
         return rentalRepo.getRentalById(id);
     }
 
-    public void updateRental(int id){
-        // Skal den ikke have et Rental objekt som parameter?
-        // Indtil videre gør jeg, som der står i klassediagrammet - Severin.
-        rentalRepo.update(id);
+    public void updateRental(Rental rental){
+
+        rentalRepo.update(rental);
     }
 
     public void deleteRental(int id){
