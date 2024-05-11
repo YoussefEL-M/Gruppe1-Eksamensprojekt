@@ -1,6 +1,8 @@
 package com.example.gruppe1eksamensprojekt.model;
 
 
+import com.example.gruppe1eksamensprojekt.service.UserService;
+
 //Youssef
 public class User {
 
@@ -8,14 +10,16 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private UserTypes type;
     private int id;
 
     public User() {}
-    public User(String name, String username, String password, String email, int id) {
+    public User(String name, String username, String password, String email, UserTypes type, int id) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.type = type;
     }
     public String getName() {
         return name;
@@ -41,6 +45,15 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public UserTypes getType() {
+        return type;
+    }
+
+    public void setType(UserTypes type) {
+        this.type = type;
+    }
+
     public int getId() {
         return id;
     }
