@@ -7,13 +7,15 @@ public class Report {
     private int rentalId;
     private String title;
     private LocalDate date;
+    private String comment;
 
     public Report() {}
 
-    public Report(int rentalId, String title, LocalDate date) {
+    public Report(int rentalId, String title, LocalDate date, String comment) {
         this.rentalId = rentalId;
         this.title = title;
         this.date = date;
+        this.comment = comment;
     }
 
     public int getId() {
@@ -46,5 +48,13 @@ public class Report {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
