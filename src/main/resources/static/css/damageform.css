@@ -1,0 +1,21 @@
+/* Bjarke og Severin */
+
+.reportform{
+    width: 26%;
+    justify-items: center;
+    justify-content: space-around;
+    height:60vh;
+    border: 2px solid black;
+    padding:30px;
+    margin:30px auto;
+    flex-direction: column;
+    display:flex;
+    overflow:auto;
+}
+
+.reportfield{
+    margin-bottom: 25px;
+    align-content: flex-start;
+    text-align: left;
+    border-bottom:3px solid black;
+}
