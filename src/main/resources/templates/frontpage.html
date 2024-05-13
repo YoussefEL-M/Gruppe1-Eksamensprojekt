@@ -1,3 +1,5 @@
+<!-- Bjarke og Severin -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +23,8 @@
             </div>
         </div>
 
+        <span style=" color:red"><p id="user_not_found"></p></span>
+
         <div class="loginFields">
             <div>
                 <label for="password">Adgangskode</label>
@@ -29,6 +33,8 @@
                 <input type="password" id="password" name="password" required>
             </div>
         </div>
+
+        <span style="color:red"><p id="password_mismatch"></p></span>
 
         <div id="createuseroption">
             <a href="/createUser">Registrer</a>
@@ -40,6 +46,19 @@
 
     </form>
 </div>
+
+<script th:inline="javascript">
+    var userNotFound = /*[[${userNotFound}]]*/ false;
+    if (userNotFound===true){
+        document.getElementById("user_not_found").innerHTML="Denne bruger findes ikke.";
+    }
+</script>
+<script th:inline="javascript">
+    var passwordMismatch = /*[[${passwordMismatch}]]*/ false;
+    if (passwordMismatch===true){
+        document.getElementById("password_mismatch").innerHTML="Forkert password til denne bruger.";
+    }
+</script>
 
 </body>
 </html>
