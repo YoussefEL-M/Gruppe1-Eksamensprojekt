@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 //Youssef
@@ -18,28 +19,30 @@ public class RentalRepo {
     JdbcTemplate jdbcTemplate;
 
     public void create(Rental rental) {
-        String sql = "INSERT INTO rentals (pickUpLocation, returnLocation, type, id, customerId, startDate, endDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO rental (pickUpLocation, returnLocation, type, id, customerId, startDate, endDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getId(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate());
     }
 
     public Rental getRentalById(int id) {
-        String sql = "SELECT * FROM rentals WHERE id = ?";
+        String sql = "SELECT * FROM rental WHERE id = ?";
         RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
     public void update(Rental rental) {
-        String sql = "UPDATE rentals SET pickUpLocation=?, returnLocation=?, type=?, customerId=?, startDate=?, endDate=? WHERE id=?";
+        String sql = "UPDATE rental SET pickUpLocation=?, returnLocation=?, type=?, customerId=?, startDate=?, endDate=? WHERE id=?";
         jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate(), rental.getId());
     }
 
     public void delete(int id) {
-        String sql = "DELETE FROM rentals WHERE id = ?";
+        String sql = "DELETE FROM rental WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
     public List<Rental> getAll() {
-        String sql = "SELECT * FROM rentals";
+        String sql = "SELECT * FROM rental";
         RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
+
+
 }

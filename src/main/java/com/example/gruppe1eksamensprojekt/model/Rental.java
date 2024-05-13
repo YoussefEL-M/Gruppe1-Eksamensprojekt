@@ -16,7 +16,6 @@ public class Rental {
         this.pickUpLocation = pickUpLocation;
         this.returnLocation = returnLocation;
         this.type = type;
-        this.id = id;
         this.customerId = id;
         this.startDate = startDate;
         this.endDate = endDate;
