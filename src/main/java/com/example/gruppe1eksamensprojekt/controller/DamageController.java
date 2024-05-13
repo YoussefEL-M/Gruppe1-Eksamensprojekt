@@ -23,7 +23,7 @@ public class DamageController {
 
     //Noter i klassediagram
     @Autowired
-    private ReportService reportService;
+    ReportService reportService;
 
 
 
@@ -85,7 +85,6 @@ public class DamageController {
     //Opdater metode i klassediagram
     @PostMapping("/updateAReport")
     public String updateReport(@RequestParam("id") int reportId,
-                               @RequestParam("rentalId") int rentalId,
                                @RequestParam("title") String title,
                                @RequestParam("date") LocalDate date,
                                @RequestParam("comment") String description) {
@@ -96,6 +95,7 @@ public class DamageController {
         report.setDate(date);
         report.setComment(description);
 
+        //Opdaterer til de nye værdier med metode fra service
         reportService.updateReport(report);
 
         return "redirect:/rapportside?id="+reportId;
