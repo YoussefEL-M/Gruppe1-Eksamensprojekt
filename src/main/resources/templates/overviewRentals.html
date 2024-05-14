@@ -36,50 +36,46 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>Cost</th>
+            <th>Kunde ID</th>
+            <th>Kunde navn</th>
+            <th>Kunde tlf.</th>
+            <th>Bil ID</th>
+            <th>Start</th>
+            <th>Slut</th>
+
         </tr>
         </thead>
         <tbody>
 
-            <tr>
-                <td>1</td>
-                <td>Honda</td>
-                <td>Accord</td>
-                <td>2009</td>
-                <td>500</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Toyota</td>
-                <td>Camry</td>
-                <td>2012</td>
-                <td>800</td>
-            </tr>
-        <tr>
-            <td>1</td>
-            <td>Honda</td>
-            <td>Accord</td>
-            <td>2009</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Toyota</td>
-            <td>Camry</td>
-            <td>2012</td>
-            <td>800</td>
-        </tr>
-            <!--    <tr th:each="car : ${cars}">-->
-            <!--        <td><a th:href="@{${wish.url}}" th:text="${wish.name}"></a></td>-->
-            <!--        <td th:text="${wish.price}"></td>-->
-            <!--        <td th:text="${wish.amount}"></td>-->
-            <!--        <td th:text="${wish.description}"></td>-->
-            <!--        <td> <img th:src="@{${wish.image_url}}" alt="If this image displays, I'll eat my hat."> </td>-->
-            <!--    </tr>-->
+<!--            <tr>-->
+<!--                <td>1</td>-->
+<!--                <td>Honda</td>-->
+<!--                <td>Accord</td>-->
+<!--                <td>2009</td>-->
+<!--                <td>500</td>-->
+<!--            </tr>-->
+
+                <tr th:each="rental : ${rentalList}">
+                   <td th:text="${rental.getId()}"> </td>
+                    <td th:text="${rental.getCustomerId()}"> </td>
+                    <td th:text="${rental.getName()}"> </td>
+                    <td th:text="${rental.getTelnr()}"> </td>
+                   <td th:text="${rental.carID}"></td>
+                    <td th:text="${rental.getStartDate()}"></td>
+                    <td th:text="${rental.getEndDate()}"></td>
+               </tr>
+
     </tbody>
+<!--        <tbody>-->
+
+
+<!--        <tr th:each="rental : ${rentalList}">-->
+
+<!--            <td th:text="${rental.getName()}"> </td>-->
+
+
+<!--        </tr>-->
+<!--        </tbody>-->
     </table>
 
 </div>

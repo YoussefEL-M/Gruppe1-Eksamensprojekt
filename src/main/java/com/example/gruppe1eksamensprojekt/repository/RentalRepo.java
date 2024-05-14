@@ -1,6 +1,5 @@
 package com.example.gruppe1eksamensprojekt.repository;
 
-
 import com.example.gruppe1eksamensprojekt.model.Rental;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -43,6 +42,9 @@ public class RentalRepo {
         RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
+
+
+
 
 
 }

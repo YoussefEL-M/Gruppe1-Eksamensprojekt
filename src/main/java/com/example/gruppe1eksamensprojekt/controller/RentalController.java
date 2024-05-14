@@ -1,11 +1,9 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
 import com.example.gruppe1eksamensprojekt.model.Rental;
+import com.example.gruppe1eksamensprojekt.model.RentalCustomerJoin;
 import com.example.gruppe1eksamensprojekt.model.User;
-import com.example.gruppe1eksamensprojekt.service.CarService;
-import com.example.gruppe1eksamensprojekt.service.CustomerSevice;
-import com.example.gruppe1eksamensprojekt.service.RentalService;
-import com.example.gruppe1eksamensprojekt.service.UserService;
+import com.example.gruppe1eksamensprojekt.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -32,10 +30,16 @@ public class RentalController { // Severin
     @Autowired
     CarService carService;
 
+    @Autowired
+    RentalCustomerJoinService rentalCustomerJoinService;
+
     @GetMapping("/")
-    public String login(){
-        // Burde måske omdirigere til /rental, hvis brugeren er logget ind.
-        return "frontpage";
+    public String login(HttpSession session, Model model){
+        // Todo: evt. tilføj funktionalitet der sender brugeren til en bestemt side alt efter brugertype.
+        if(session.getAttribute("user")==null) {
+            return "frontpage";
+        }
+        return "redirect:/rental";
     }
 
     @PostMapping("/loggingIn")
@@ -58,7 +62,7 @@ public class RentalController { // Severin
 
     @GetMapping("/findRental")
     public String findRental(HttpSession session, Model model){
-        model.addAttribute("rentalList", rentalService.getAll());
+        model.addAttribute("rentalList", rentalCustomerJoinService.getAll());
         return "overviewRentals";
     }
 
