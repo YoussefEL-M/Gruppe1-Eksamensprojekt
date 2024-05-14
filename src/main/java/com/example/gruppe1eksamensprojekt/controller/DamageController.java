@@ -109,9 +109,28 @@ public class DamageController {
         return "redirect:/rapportside?id= "+reportId;
     }
 
+    @GetMapping("/rapporter")
+    public String getAllReports(Model model) {
 
+        model.addAttribute("reports", reportService.getAll());
+        return "/overviewReports";
+    }
 
+    @PostMapping("/updateReport")
+    public String updateReport(@RequestParam("id") int reportId,
+                               @RequestParam("title") String title,
+                               @RequestParam("date") LocalDate date,
+                               @RequestParam("comment") String description) {
 
+        Report report = reportService.getReportById(reportId);
 
+        report.setTitle(title);
+        report.setDate(date);
+        report.setComment(description);
+
+        reportService.updateReport(report);
+
+        return "redirect:/reportUpdateForm?id=" + reportId;
+    }
 
 }

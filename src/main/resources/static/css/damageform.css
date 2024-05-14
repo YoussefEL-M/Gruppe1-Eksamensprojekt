@@ -1,0 +1,85 @@
+/*Youssef*/
+
+.reportform {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.reportfield {
+    margin-bottom: 15px;
+}
+
+.reportfield label {
+    display: block;
+    font-weight: bold;
+}
+
+.reportfield input[type="text"],
+.reportfield select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.reportfield select {
+    height: 36px;
+}
+
+.reportfield input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.reportfield input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.updateReportForm {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.updateReportForm h2 {
+    margin-top: 0;
+}
+
+.reportFields {
+    margin-bottom: 15px;
+}
+
+.reportFields label {
+    display: block;
+    font-weight: bold;
+}
+
+.reportFields input[type="text"],
+.reportFields input[type="number"],
+.reportFields input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}

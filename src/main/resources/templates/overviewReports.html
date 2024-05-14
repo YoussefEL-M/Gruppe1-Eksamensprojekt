@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>overviewBookings</title>
+    <title>Title</title>
     <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
-    <link rel="stylesheet" href="../static/CSS/overviewBookings.css" th:href="@{/CSS/overviewBookings.css}">
+    <link rel="stylesheet" href="../static/CSS/reportsOverview.css" th:href="@{/CSS/reportsOverview.css}">
+
 </head>
 <body>
 <header>
@@ -29,9 +30,31 @@
         </div>
     </div>
 </header>
-
-<div class="main">
-    <h1> Oversigt over bookinger</h1>
+<div class="container">
+    <h2>Rapport oversigt</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Udlejnings-ID</th>
+            <th>Title</th>
+            <th>Dato</th>
+            <th>Behandling</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="report : ${reports}">
+            <td th:text="${report.id}"></td>
+            <td th:text="${report.rentalId}"></td>
+            <td th:text="${report.title}"></td>
+            <td th:text="${report.date}"></td>
+            <td>
+                <button class="update">Opdater</button>
+                <button class="delete">Slet</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>
