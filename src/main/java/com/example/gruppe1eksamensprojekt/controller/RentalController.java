@@ -62,7 +62,7 @@ public class RentalController { // Severin
 
     @GetMapping("/findRental")
     public String findRental(HttpSession session, Model model){
-        model.addAttribute("rentalList", rentalService.getAll());
+        model.addAttribute("rentalList", rentalCustomerJoinService.getAll());
         return "overviewRentals";
     }
 
@@ -137,7 +137,7 @@ public class RentalController { // Severin
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.removeAttribute("User");
+        session.removeAttribute("user");
         return "redirect:/";
     }
 
