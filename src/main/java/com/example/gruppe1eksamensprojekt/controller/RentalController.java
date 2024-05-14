@@ -6,6 +6,7 @@ import com.example.gruppe1eksamensprojekt.model.User;
 import com.example.gruppe1eksamensprojekt.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -110,6 +111,7 @@ public class RentalController { // Severin
                                   @RequestParam("email") String email,
                                   @RequestParam("username")String username,
                                   @RequestParam("password") String password,
+                                  @RequestParam("type") String type,
                                   RedirectAttributes redirectAttributes,
                                   Model model) {
         User existingUser;
@@ -126,7 +128,7 @@ public class RentalController { // Severin
             redirectAttributes.addAttribute("username", username);
             redirectAttributes.addAttribute("password", password);
 
-            User newUser = new User(name, username, password, email);
+            User newUser = new User(name, username, password, email, email);
             userService.createUser(newUser);
 
             return "redirect:/";
