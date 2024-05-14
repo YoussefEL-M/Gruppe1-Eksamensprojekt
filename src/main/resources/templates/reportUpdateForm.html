@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damagehome.css}">
+
+
+</head>
+<body>
+<div class="updateReportForm">
+    <form action="/updateReport" method="post">
+        <h2>Opdater rapport</h2>
+
+        <input name="id" type="number" hidden th:value="${report.id}">
+
+        <div class="reportFields">
+            <div>
+                <label for="rental-id">Kommentar:</label>
+            </div>
+            <div>
+                <input id="rental-id" name="rental-id" type="number" th:value="${report.rentalId}">
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="title-field">Titel:</label>
+            </div>
+            <div>
+                <input id="title-field" name="title" type="text" th:value="${report.title}">
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="comment">Kommentar:</label>
+            </div>
+            <div>
+                <input id="comment" name="comment" type="text" th:value="${report.comment}">
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="date-field">Dato:</label>
+            </div>
+            <div>
+                <input id="date-field" name="date" type="date" th:value="${report.date}">
+            </div>
+        </div>
+
+        <button type="submit" value="Opdater rapport">Opdater rapport</button>
+    </form>
+</div>
+
+</body>
+</html>

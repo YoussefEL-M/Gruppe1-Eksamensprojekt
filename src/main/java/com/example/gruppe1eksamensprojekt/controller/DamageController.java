@@ -1,8 +1,7 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
 import com.example.gruppe1eksamensprojekt.model.Report;
-import com.example.gruppe1eksamensprojekt.model.User;
-import com.example.gruppe1eksamensprojekt.service.UserService;
+import com.example.gruppe1eksamensprojekt.repository.ReportRepo;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -108,9 +107,28 @@ public class DamageController {
         return "redirect:/rapportside?id= "+reportId;
     }
 
+    @GetMapping("/rapporter")
+    public String getAllReports(Model model) {
 
+        model.addAttribute("reports", reportService.getAll());
+        return "/overviewReports";
+    }
 
+    @PostMapping("/updateReport")
+    public String updateReport(@RequestParam("id") int reportId,
+                               @RequestParam("title") String title,
+                               @RequestParam("date") LocalDate date,
+                               @RequestParam("comment") String description) {
 
+        Report report = reportService.getReportById(reportId);
 
+        report.setTitle(title);
+        report.setDate(date);
+        report.setComment(description);
+
+        reportService.updateReport(report);
+
+        return "redirect:/reportUpdateForm?id=" + reportId;
+    }
 
 }
