@@ -11,22 +11,22 @@
 <header>
     <div class="container">
         <div class="logo">
-            <a th:href="@{/static}"> <img src="" th:src="@{}" alt="Logo"> </a>
+            <a th:href="@{/static}"> <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo"> </a>
         </div>
 
         <div class="dropdown" tabindex="1">
             <i class="db2" tabindex="1"></i>
             <a class="dropbtn">Vælg handling</a>
             <div class="dropdown-content">
-                <a href="#">Se oversigt over lejeaftaler</a>
-                <a href="#">Se oversigt over bookinger</a>
-                <a href="#">Opret lejeaftale</a>
+                <a href="#">Se oversigt over rapporter</a>
+                <a href="#">Dine rapporter</a>
+                <a href="#">Opret rapport</a>
 
             </div>
         </div>
 
         <div class="logout-button">
-            <a th:href="@{/logout}"> <button>Logout </button></a>
+            <a th:href="@{/logout}"><button>Logout </button> </a>
         </div>
     </div>
 </header>
@@ -40,6 +40,7 @@
             <th>Title</th>
             <th>Dato</th>
             <th>Behandling</th>
+            <th>Beskrivelse</th>
         </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@
             <td th:text="${report.rentalId}"></td>
             <td th:text="${report.title}"></td>
             <td th:text="${report.date}"></td>
+            <td th:text="${report.comment}"></td>
             <td>
                 <button class="update">Opdater</button>
                 <button class="delete">Slet</button>
