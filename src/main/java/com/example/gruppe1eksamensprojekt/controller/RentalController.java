@@ -128,7 +128,7 @@ public class RentalController { // Severin
             redirectAttributes.addAttribute("username", username);
             redirectAttributes.addAttribute("password", password);
 
-            User newUser = new User(name, username, password, email, email);
+            User newUser = new User(name, username, password, email, type);
             userService.createUser(newUser);
 
             return "redirect:/";

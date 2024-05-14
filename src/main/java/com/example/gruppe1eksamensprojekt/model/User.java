@@ -19,6 +19,7 @@ public class User {
         this.email = email;
         this.type = type;
     }
+
     public String getName() {
         return name;
     }
