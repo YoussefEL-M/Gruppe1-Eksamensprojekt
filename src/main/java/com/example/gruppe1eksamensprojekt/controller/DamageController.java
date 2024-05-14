@@ -2,6 +2,7 @@ package com.example.gruppe1eksamensprojekt.controller;
 
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.model.User;
+import com.example.gruppe1eksamensprojekt.service.ReportService;
 import com.example.gruppe1eksamensprojekt.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
