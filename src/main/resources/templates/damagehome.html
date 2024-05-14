@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!-- Bjarke og Severin -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dataregistration</title>
+    <link rel="stylesheet" href="../static/CSS/damagehome.css" th:href="@{/CSS/damagehome.css}">
+    <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/static}"> <img src="" th:src="@{}" alt="Logo"> </a>
+        </div>
+
+        <div class="dropdown" tabindex="1">
+            <i class="db2" tabindex="1"></i>
+            <a class="dropbtn">Vælg handling</a>
+            <div class="dropdown-content">
+                <a href="#">Se oversigt over ubehandlede biler</a>
+                <a href="#">Se oversigt over skaderapporter</a>
+
+            </div>
+        </div>
+
+        <div class="logout-button">
+            <a th:href="@{/logout}"> <button>Logout </button></a>
+        </div>
+    </div>
+</header>
+
+<div class="main">
+    <h1>Velkommen til Skade og udbedring</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</div>
+
+
+
+<div class="split">
+
+
+    <div class="halves">
+
+        <h2 class="splitHead">
+            Indleveret i dag.
+        </h2>
+
+        <table class="tasklist">
+            <thead>
+            <tr>
+                <th>Bilmærke</th>
+                <th>Model</th>
+                <th>Indleveret</th>
+                <th>Nummerplade</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="car : ${carlist}">
+                <td th:text="${car.brand}"></td>
+                <td th:test="${car.model}"></td>
+                <td th:test="${car.lastUpdated}"></td>
+                <td th:test="${car.licensePlate}"></td>
+                <td th:test="${car.status}"></td>
+                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html">Rediger</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div class="halves">
+
+        <h2 class="splitHead"> Status uændret i to uger eller mere </h2>
+
+        <table class="tasklist">
+            <thead>
+            <tr>
+                <th>Bilmærke</th>
+                <th>Model</th>
+                <th>Indleveret</th>
+                <th>Nummerplade</th>
+                <th>Status</th>
+                <th>Rediger</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="car : ${pendingcarlist}">
+                <td th:text="${car.brand}"></td>
+                <td th:test="${car.model}"></td>
+                <td th:test="${car.lastUpdated}"></td>
+                <td th:test="${car.licensePlate}"></td>
+                <td th:test="${car.status}"></td>
+                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html">Rediger</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+</body>
+</html>

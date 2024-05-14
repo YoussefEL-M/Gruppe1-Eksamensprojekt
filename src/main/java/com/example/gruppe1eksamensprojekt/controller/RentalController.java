@@ -6,7 +6,6 @@ import com.example.gruppe1eksamensprojekt.model.User;
 import com.example.gruppe1eksamensprojekt.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +34,7 @@ public class RentalController { // Severin
 
     @GetMapping("/")
     public String login(HttpSession session, Model model){
-        // Todo: evt. tilføj funktionalitet der sender brugeren til en bestemt side alt efter brugertype.
+
         if(session.getAttribute("user")==null) {
             return "frontpage";
         }
@@ -62,7 +61,7 @@ public class RentalController { // Severin
 
     @GetMapping("/findRental")
     public String findRental(HttpSession session, Model model){
-        model.addAttribute("rentalList", rentalCustomerJoinService.getAll());
+        model.addAttribute("rentalList", rentalService.getAll());
         return "overviewRentals";
     }
 

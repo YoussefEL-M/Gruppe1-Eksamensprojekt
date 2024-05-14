@@ -1,0 +1,74 @@
+/* Youssef og Clara */
+
+.container {
+    max-width: 1000px;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.update, .delete {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 4px;
+}
+
+.delete {
+    background-color: #f44336;
+}
+
+.delete:hover {
+    background-color: crimson;
+}
+
+.update:hover {
+    background-color: #45a049;
+}
+
+button input[type = "submit"]{
+    padding: 5px 10px;
+    background-color: #1892C3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 4px;
+}
+
+button {
+    background-color:white;
+    color:#1892C3;
+    border: 1px solid #1892C3;
+    font-weight:bold;
+}
+
+button:hover {
+    background-color: #1892C3;
+    color:white;
+}

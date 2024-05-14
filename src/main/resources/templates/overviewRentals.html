@@ -10,7 +10,7 @@
 <header>
     <div class="container">
         <div class="logo">
-            <a > <img src="" alt="Logo"> </a>
+            <a th:href="@{/static}"> <img src="" th:src="@{}" alt="Logo"> </a>
         </div>
 
         <div class="dropdown" tabindex="1">
@@ -47,13 +47,7 @@
         </thead>
         <tbody>
 
-<!--            <tr>-->
-<!--                <td>1</td>-->
-<!--                <td>Honda</td>-->
-<!--                <td>Accord</td>-->
-<!--                <td>2009</td>-->
-<!--                <td>500</td>-->
-<!--            </tr>-->
+
 
                 <tr th:each="rental : ${rentalList}">
                    <td th:text="${rental.getId()}"> </td>
@@ -66,16 +60,7 @@
                </tr>
 
     </tbody>
-<!--        <tbody>-->
 
-
-<!--        <tr th:each="rental : ${rentalList}">-->
-
-<!--            <td th:text="${rental.getName()}"> </td>-->
-
-
-<!--        </tr>-->
-<!--        </tbody>-->
     </table>
 
 </div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damagehome.css}">
+    <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
+
+
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/static}"> <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo"> </a>
+        </div>
+
+        <div class="dropdown" tabindex="1">
+            <i class="db2" tabindex="1"></i>
+            <a class="dropbtn">Vælg handling</a>
+            <div class="dropdown-content">
+                <a href="#">Se oversigt over rapporter</a>
+                <a href="#">Dine rapporter</a>
+                <a href="#">Opret rapport</a>
+
+            </div>
+        </div>
+
+        <div class="logout-button">
+            <a th:href="@{/logout}"><button>Logout </button> </a>
+        </div>
+    </div>
+</header>
+
+
+<div class="updateReportForm">
+    <form action="/updateReport" method="post">
+        <h2>Opdater rapport</h2>
+
+        <input name="id" type="number" hidden th:value="${report.id}">
+
+        <div class="reportFields">
+            <div>
+                <label for="rental-id">Udlejnings-id:</label>
+            </div>
+            <div>
+                <input id="rental-id" name="rental-id" type="number" th:value="${report.rentalId}">
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="title-field">Titel:</label>
+            </div>
+            <div>
+                <input id="title-field" name="title" type="text" th:value="${report.title}">
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="comment">Kommentar:</label>
+            </div>
+            <div>
+                <input id="comment" name="comment" type="text" th:value="${report.comment}">
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="date-field">Dato:</label>
+            </div>
+            <div>
+                <input id="date-field" name="date" type="date" th:value="${report.date}">
+            </div>
+        </div>
+
+        <button type="submit" value="Opdater rapport">Opdater rapport</button>
+    </form>
+</div>
+
+</body>
+</html>
