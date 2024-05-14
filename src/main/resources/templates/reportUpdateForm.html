@@ -4,10 +4,36 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damagehome.css}">
+    <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
 
 
 </head>
 <body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/static}"> <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo"> </a>
+        </div>
+
+        <div class="dropdown" tabindex="1">
+            <i class="db2" tabindex="1"></i>
+            <a class="dropbtn">Vælg handling</a>
+            <div class="dropdown-content">
+                <a href="#">Se oversigt over rapporter</a>
+                <a href="#">Dine rapporter</a>
+                <a href="#">Opret rapport</a>
+
+            </div>
+        </div>
+
+        <div class="logout-button">
+            <a th:href="@{/logout}"><button>Logout </button> </a>
+        </div>
+    </div>
+</header>
+
+
 <div class="updateReportForm">
     <form action="/updateReport" method="post">
         <h2>Opdater rapport</h2>

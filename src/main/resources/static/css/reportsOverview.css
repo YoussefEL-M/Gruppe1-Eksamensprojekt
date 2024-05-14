@@ -1,10 +1,12 @@
+/* Youssef og Clara */
+
 .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+    max-width: 1000px;
+    margin: 10px auto;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
 }
 
 h2 {
@@ -34,12 +36,39 @@ th {
     border: none;
     cursor: pointer;
     margin-right: 5px;
+    border-radius: 4px;
 }
 
 .delete {
     background-color: #f44336;
 }
 
-.update:hover, .delete:hover {
+.delete:hover {
+    background-color: crimson;
+}
+
+.update:hover {
     background-color: #45a049;
+}
+
+button input[type = "submit"]{
+    padding: 5px 10px;
+    background-color: #1892C3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 4px;
+}
+
+button {
+    background-color:white;
+    color:#1892C3;
+    border: 1px solid #1892C3;
+    font-weight:bold;
+}
+
+button:hover {
+    background-color: #1892C3;
+    color:white;
 }

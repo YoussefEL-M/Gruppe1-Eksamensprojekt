@@ -19,6 +19,21 @@ header {
 }
 
 
+button {
+    background-color:white;
+    color:#1892C3;
+    border: 1px solid #1892C3;
+    border-radius: 4px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover {
+    background-color: #1892C3;
+    color:white;
+}
+
+
 /* dd container */
 .dropdown {
     margin: 10px 80px 10px auto;
