@@ -8,13 +8,15 @@ public class Customer {
     private String name;
     private String telnr;
     private String address;
+    private String email;
     private LocalDate birthdate;
     private int id;
 
-    public Customer(String name, String telnr, String address, LocalDate birthdate, int id) {
+    public Customer(String name, String telnr, String address, String email, LocalDate birthdate, int id) {
         this.name = name;
         this.telnr = telnr;
         this.address = address;
+        this.email = email;
         this.birthdate = birthdate;
         this.id = id;
     }
@@ -39,6 +41,8 @@ public class Customer {
     public void setAddress(String address) {
         this.address = address;
     }
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
     public LocalDate getBirthdate() {
         return birthdate;
     }

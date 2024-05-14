@@ -17,34 +17,35 @@ public class UserRepo {
     JdbcTemplate jdbcTemplate;
 
     public void create(User user) {
-        String sql = "INSERT INTO users (name, username, password, email, id) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (name, type, username, password, email, id) VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getPassword(), user.getEmail(), user.getId());
+
     }
 
     public User getUserById(int id) {
-        String sql = "SELECT * FROM users WHERE id = ?";
+        String sql = "SELECT * FROM user WHERE id = ?";
         RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
     public void update(User user) {
-        String sql = "UPDATE users SET name=?, username=?, password=?, email=? WHERE id=?";
+        String sql = "UPDATE user SET name=?, username=?, password=?, email=? WHERE id=?";
         jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getPassword(), user.getEmail(), user.getId());
     }
 
     public void delete(int id) {
-        String sql = "DELETE FROM users WHERE id = ?";
+        String sql = "DELETE FROM user WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
 
     public List<User> getAll() {
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM user";
         RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     public User getUserByUsername(String username) {
-        String sql = "SELECT * FROM users WHERE username = ?";
+        String sql = "SELECT * FROM user WHERE username = ?";
         RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, username);
     }

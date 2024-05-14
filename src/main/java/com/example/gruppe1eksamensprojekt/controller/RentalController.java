@@ -1,7 +1,6 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
 import com.example.gruppe1eksamensprojekt.model.User;
-import com.example.gruppe1eksamensprojekt.model.UserTypes;
 import com.example.gruppe1eksamensprojekt.service.CarService;
 import com.example.gruppe1eksamensprojekt.service.CustomerSevice;
 import com.example.gruppe1eksamensprojekt.service.RentalService;
@@ -41,12 +40,6 @@ public class RentalController { // Severin
 
         User user = userService.login(username, password, model);
         // Todo: evt. tilføj funktionalitet der sender brugeren til en bestemt side alt efter brugertype.
-        if(user.getType() == UserTypes.DATAREGISTRERING)
-            return "redirect:/rental";
-        else if (user.getType() == UserTypes.SKADE_OG_UDBEDRING)
-            return "redirect:/skadeOgUdbedring";
-        else if(user.getType() == UserTypes.FORRETNINGSUDVIKLER)
-            return "redirect:/forretningsudvikler";
         session.setAttribute("user", user);
         return "login";
     }

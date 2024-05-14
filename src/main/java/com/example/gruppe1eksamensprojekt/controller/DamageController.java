@@ -21,15 +21,13 @@ import java.time.LocalDate;
 public class DamageController {
 
 
-    //Noter i klassediagram
     @Autowired
     ReportService reportService;
 
 
 
-    //Ny metode noter i klassediagram
     @GetMapping("/skadeOgUdbedring")
-    public String skadeUdbedringsforside(HttpSession session) {
+    public String skadeUdbedringsForside(HttpSession session) {
         if(session.getAttribute("user")!= null)
             return "sideForSkadeOgUdbedring";
         return "frontpage";
@@ -50,7 +48,6 @@ public class DamageController {
     }
 
 
-    //Ny metode noter i klassediagram
     @PostMapping("/opretRapport")
     public String createAReport(@RequestParam("rentalId") int idForRental,
                                 @RequestParam("title") String reportTitle,
@@ -70,7 +67,6 @@ public class DamageController {
     }
 
 
-    //Ny metode noter i klassediagram
     @GetMapping("/rapportside/{id}")
     public String showUpdateReportForm(@PathVariable("id") int reportId, Model model) {
 
@@ -82,7 +78,6 @@ public class DamageController {
 
     }
 
-    //Opdater metode i klassediagram
     @PostMapping("/updateAReport")
     public String updateReport(@RequestParam("id") int reportId,
                                @RequestParam("title") String title,
@@ -95,7 +90,6 @@ public class DamageController {
         report.setDate(date);
         report.setComment(description);
 
-        //Opdaterer til de nye værdier med metode fra service
         reportService.updateReport(report);
 
         return "redirect:/rapportside?id="+reportId;
@@ -105,7 +99,6 @@ public class DamageController {
 
 
 
-    //Opdater metode i klassediagram
 
     @GetMapping("/rapportside/{id}")
     public String deleteReport(@PathVariable("id") int reportId) {
