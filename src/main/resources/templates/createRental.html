@@ -17,7 +17,7 @@
                 <h2 class="splitHead"> Søg efter kunde </h2>
                 <div class="loginFields">
                     <div>
-                        <input list="customers">
+                        <input list="customers" name="customer">
                         <datalist id="customers">
                             <!-- Todo: test. Ikke implementeret i Controller. -->
                             <option th:each="customer : ${customerlist}" th:value="${customer.name} + ' - ' + ${customer.telnr}"></option>

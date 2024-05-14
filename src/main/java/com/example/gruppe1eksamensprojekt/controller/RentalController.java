@@ -75,6 +75,7 @@ public class RentalController { // Severin
         return "redirect:/findRental";
     }
 
+
     @GetMapping("/findBooking")
     public String findBooking(HttpSession session, Model model){
 
@@ -88,11 +89,11 @@ public class RentalController { // Severin
     }
 
     @PostMapping("/submitRental")
-    public String submitRental(HttpSession session, Model model, @RequestParam("customer") int customer, @RequestParam("startDate") String startDate, @RequestParam("pickuppoint") String pickuppoint, @RequestParam("car") String car, @RequestParam("type") String type, @RequestParam("dropoffpoint") String dropoffpoint){
+    public String submitRental(HttpSession session, Model model, @RequestParam("customer") int customer, @RequestParam("startDate") String startDate, @RequestParam("pickuppoint") String pickuppoint, @RequestParam("car") int car, @RequestParam("type") String type, @RequestParam("dropoffpoint") String dropoffpoint){
         String endDate=rentalService.calcEndDate(startDate,type);
-        Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate);
+        Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car);
         rentalService.createRental(rental);
-        return "redirect:/";
+        return "redirect:/rental";
     }
 
     @GetMapping("/createUser")
@@ -125,8 +126,14 @@ public class RentalController { // Severin
             User newUser = new User(name, username, password, email);
             userService.createUser(newUser);
 
-            return "redirect:/loggingIn";
+            return "redirect:/";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("User");
+        return "redirect:/";
     }
 
 }

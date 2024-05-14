@@ -11,14 +11,17 @@ public class Rental {
     private int customerId;
     private String startDate;
     private String endDate;
+    private int carId;
 
-    public Rental(String pickUpLocation, String returnLocation, String type, int id, String startDate, String endDate) {
+    public Rental(String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId) {
         this.pickUpLocation = pickUpLocation;
         this.returnLocation = returnLocation;
-        this.type = type;
-        this.customerId = id;
+        this.type=type;
+        this.customerId = customerId;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.carId = carId;
+
     }
 
     public Rental(){}
@@ -64,6 +67,12 @@ public class Rental {
     }
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+    public int getCarID() {
+        return carId;
+    }
+    public void setCarID(int carID) {
+        this.carId = carID;
     }
 
 }

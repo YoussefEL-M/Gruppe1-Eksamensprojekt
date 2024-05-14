@@ -22,9 +22,9 @@ CREATE TABLE IF NOT EXISTS carIdentification
     );
 
 
-CREATE TABLE IF NOT EXISTS car
-(id	INT	PRIMARY KEY	NOT NULL,
- serialNumber	VARCHAR(50),	FOREIGN KEY(serialNumber)	REFERENCES caridentification(serialNumber),
+CREATE TABLE IF NOT EXISTS car(
+                                  id	INT	PRIMARY KEY	NOT NULL,
+                                  serialNumber	VARCHAR(50),	FOREIGN KEY(serialNumber)	REFERENCES caridentification(serialNumber),
     color	VARCHAR(50)	NOT NULL,
     trimLevel	VARCHAR(100)	NOT NULL,
     steelPrice	DOUBLE,
@@ -72,5 +72,15 @@ INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Henriette', '333
 INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Herbert', '44444444', 'Vej 14', '1955-11-11');
 INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Gitte', '55555555', 'Vej 14', '1988-11-11');
 
+
+
+INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('1234', 'DS', 'McQueen');
+
+INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, damaged, ds, licensePlate) VALUES ('1','1234','Red', 'McQueen', '14', '1000','30', 0, 1, 'Kachow');
+
+INSERT INTO rental (pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id) VALUES ('a', 'a', '3', '1', '2024-01-01', '2024-04-01', '1');
+
 SELECT * FROM customer;
 SELECT * FROM user;
+SELECT * FROM rental;
+SELECT * FROM car;

@@ -17,8 +17,8 @@ public class UserRepo {
     JdbcTemplate jdbcTemplate;
 
     public void create(User user) {
-        String sql = "INSERT INTO user (name, username, password, email, id) VALUES (?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getPassword(), user.getEmail(), user.getId());
+        String sql = "INSERT INTO user (name, username, password, email) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getPassword(), user.getEmail());
     }
 
     public User getUserById(int id) {

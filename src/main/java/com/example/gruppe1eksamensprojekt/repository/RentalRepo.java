@@ -19,8 +19,8 @@ public class RentalRepo {
     JdbcTemplate jdbcTemplate;
 
     public void create(Rental rental) {
-        String sql = "INSERT INTO rental (pickUpLocation, returnLocation, type, id, customerId, startDate, endDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getId(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate());
+        String sql = "INSERT INTO rental (pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate(), rental.getCarID());
     }
 
     public Rental getRentalById(int id) {
