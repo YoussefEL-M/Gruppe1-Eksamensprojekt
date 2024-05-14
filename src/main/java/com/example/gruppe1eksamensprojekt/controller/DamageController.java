@@ -27,29 +27,29 @@ public class DamageController {
 
 
 
-    @GetMapping("/skadeOgUdbedring")
+    @GetMapping("/damage")
     public String skadeUdbedringsForside(HttpSession session) {
         if(session.getAttribute("user")!= null)
-            return "sideForSkadeOgUdbedring";
+            return "damagehome";
         return "frontpage";
     }
 
-    @GetMapping("/rapporter")
+    @GetMapping("/reports")
     public String retrieveAllReports(Model model) {
 
         model.addAttribute("listOfReports", reportService.getAll());
 
-        return "rapportside";
+        return "overviewReports";
     }
 
-    @GetMapping("/opret")
+    @GetMapping("/create")
     public String createReport() {
 
-        return "opretRapport";
+        return "damageform";
     }
 
 
-    @PostMapping("/opretRapport")
+    @PostMapping("/createReport")
     public String createAReport(@RequestParam("rentalId") int idForRental,
                                 @RequestParam("title") String reportTitle,
                                 @RequestParam("date")LocalDate reportDate,
@@ -64,11 +64,11 @@ public class DamageController {
 
         reportService.createReport(report);
 
-        return "redirect:/rapportside";
+        return "redirect:/overviewReports";
     }
 
 
-    @GetMapping("/rapportside/{id}")
+    @GetMapping("/updateForm/{id}")
     public String showUpdateReportForm(@PathVariable("id") int reportId, Model model) {
 
         Report report = reportService.getReportById(reportId);
@@ -79,7 +79,7 @@ public class DamageController {
 
     }
 
-    @PostMapping("/updateAReport")
+    @PostMapping("/updateReport")
     public String updateReport(@RequestParam("id") int reportId,
                                @RequestParam("title") String title,
                                @RequestParam("date") LocalDate date,
@@ -93,7 +93,7 @@ public class DamageController {
 
         reportService.updateReport(report);
 
-        return "redirect:/rapportside?id="+reportId;
+        return "redirect:/overviewReports?id="+reportId;
 
     }
 
@@ -101,20 +101,14 @@ public class DamageController {
 
 
 
-    @GetMapping("/rapportside/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteReport(@PathVariable("id") int reportId) {
 
         reportService.deleteReport(reportId);
 
-        return "redirect:/rapportside?id= "+reportId;
+        return "redirect:/overviewReports?id= "+reportId;
     }
 
-    @GetMapping("/rapporter")
-    public String getAllReports(Model model) {
-
-        model.addAttribute("reports", reportService.getAll());
-        return "/overviewReports";
-    }
 
 
 }
