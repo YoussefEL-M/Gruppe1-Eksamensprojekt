@@ -1,10 +1,13 @@
-header {
 
+
+header {
     border-bottom:2px solid black;
-    margin-left: 10%;
-    margin-right: 10%;
+
 }
 
+.logo{
+    margin-left: 8% ;
+}
 .container {
 
     display: flex;
@@ -13,8 +16,9 @@ header {
 
 
 .logout-button {
-    margin: 10px 20px 20px 20px;
+    margin: 10px 8% 20px 20px;
     cursor: pointer;
+
 
 }
 

@@ -43,7 +43,7 @@ public class UserRepo {
 //            jdbcTemplate.queryForObject(statementForReport, rowMapper, user);
 //        }
 
-        jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getPassword(), user.getEmail(), user.getId());
+        jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getPassword(), user.getEmail(), user.getType());
 
     }
 
