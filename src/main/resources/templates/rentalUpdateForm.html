@@ -34,33 +34,33 @@
 </header>
 
 
-<div class="updateReportForm">
-    <form action="/updateReport" method="post">
+<div class="updateRentalForm">
+    <form action="/updateRental" method="post">
         <h2>Opdater lejeaftale</h2>
 
         <input name="id" type="number" hidden th:value="${rental.getId()}">
 
         <div class="reportFields">
             <div>
-                <label for="rental-id">Slut dato:</label>
+                <label for="endDate">Slut dato:</label>
             </div>
             <div>
-                <input id="rental-id" name="rental-id" type="date" th:value="${rental.getEndDate()}">
+                <input id="endDate" name="endDate" type="date" th:value="${rental.getEndDate()}">
             </div>
         </div>
 
         <div class="reportFields">
             <div>
-                <label for="title-field">Indleveringssted:</label>
+                <label for="returnLocation">Indleveringssted:</label>
             </div>
             <div>
-                <input id="title-field" name="title" type="text" th:value="${rental.getReturnLocation()}">
+                <input id="returnLocation" name="returnLocation" type="text" th:value="${rental.getReturnLocation()}">
             </div>
         </div>
 
 
 
-        <button type="submit" value="Opdater lejeaftale">Opdater rapport</button>
+        <button type="submit" value="Opdater lejeaftale">Opdater lejeaftale</button>
     </form>
 </div>
 
