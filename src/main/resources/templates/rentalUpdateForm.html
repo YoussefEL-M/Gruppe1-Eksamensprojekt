@@ -38,14 +38,14 @@
     <form action="/updateReport" method="post">
         <h2>Opdater lejeaftale</h2>
 
-        <input name="id" type="number" hidden th:value="${rental.id}">
+        <input name="id" type="number" hidden th:value="${rental.getId()}">
 
         <div class="reportFields">
             <div>
                 <label for="rental-id">Slut dato:</label>
             </div>
             <div>
-                <input id="rental-id" name="rental-id" type="number" th:value="${rental.endDate}">
+                <input id="rental-id" name="rental-id" type="date" th:value="${rental.getEndDate()}">
             </div>
         </div>
 
@@ -54,7 +54,7 @@
                 <label for="title-field">Indleveringssted:</label>
             </div>
             <div>
-                <input id="title-field" name="title" type="text" th:value="${rental.returnLocation}">
+                <input id="title-field" name="title" type="text" th:value="${rental.getReturnLocation()}">
             </div>
         </div>
 
