@@ -15,10 +15,16 @@ public class Car {
     private boolean damaged;
     private boolean ds;
     private String licensePlate;
+    private String fuelType;
+    private int kmTravelled;
+    private double fuelefficiency;
+    private double price;
+    private String gearType;
+    private String features;
 
     public Car() {}
 
-    public Car(int id, String brand, String serialNumber, String model, String color, String trimLevel, int steelPrice, double registrationTax, double emission, boolean damaged, boolean ds, String licensePlate) {
+    public Car(int id, String brand, String serialNumber, String model, String color, String trimLevel, int steelPrice, double registrationTax, double emission, boolean damaged, boolean ds, String licensePlate, String fuelType, int kmTravelled, double fuelefficiency, double price, String gearType, String features) {
         this.id = id;
         this.brand = brand;
         this.serialNumber = serialNumber;
@@ -31,6 +37,12 @@ public class Car {
         this.damaged = damaged;
         this.ds = ds;
         this.licensePlate = licensePlate;
+        this.fuelType = fuelType;
+        this.kmTravelled = kmTravelled;
+        this.fuelefficiency = fuelefficiency;
+        this.price = price;
+        this.gearType = gearType;
+        this.features = features;
     }
     public int getId() {
         return id;
@@ -101,5 +113,40 @@ public class Car {
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
     }
-
+    public String getFuelType() {
+        return fuelType;
+    }
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+    public int getKmTravelled() {
+        return kmTravelled;
+    }
+    public void setKmTravelled(int kmTravelled) {
+        this.kmTravelled = kmTravelled;
+    }
+    public double getFuelefficiency() {
+        return fuelefficiency;
+    }
+    public void setFuelefficiency(double fuelefficiency) {
+        this.fuelefficiency = fuelefficiency;
+    }
+    public double getPrice() {
+        return price;
+    }
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    public String getGearType() {
+        return gearType;
+    }
+    public void setGearType(String gearType) {
+        this.gearType = gearType;
+    }
+    public String getFeatures() {
+        return features;
+    }
+    public void setFeatures(String features) {
+        this.features = features;
+    }
 }

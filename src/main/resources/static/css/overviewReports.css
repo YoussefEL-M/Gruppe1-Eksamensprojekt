@@ -1,6 +1,11 @@
 /* Youssef og Clara */
-
+body{
+    display: flex;
+    flex-direction: column;
+}
 .container {
+    display: flex;
+    flex-direction: column;
     max-width: 1000px;
     margin: 10px auto;
     padding: 10px;
@@ -12,6 +17,9 @@
 h2 {
     margin-top: 0;
     margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+    color: #333333;
 }
 
 table {
@@ -27,6 +35,22 @@ th, td {
 
 th {
     background-color: #f2f2f2;
+}
+.info {
+    margin-bottom: 20px;
+}
+
+.totals {
+    text-align: right;
+}
+
+.totals p {
+    margin-bottom: 5px;
+}
+
+.totals p span {
+    font-weight: bold;
+    color: #1892C3;
 }
 
 .update, .delete {

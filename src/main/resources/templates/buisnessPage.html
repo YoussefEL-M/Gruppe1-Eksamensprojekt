@@ -3,8 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../static/CSS/overviewRentals.css" th:href="@{/CSS/overviewRentals.css}">
+    <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
 </head>
 <body>
+<header>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/static}"> <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo"> </a>
+        </div>
+
+        <div class="dropdown" tabindex="1">
+            <i class="db2" tabindex="1"></i>
+            <a class="drop_button">Vælg handling</a>
+            <div class="drop_content">
+                <a href="#">Se oversigt over rapporter</a>
+                <a href="#">Dine rapporter</a>
+                <a href="#">Opret rapport</a>
+            </div>
+        </div>
+
+        <div class="logout-button">
+            <a th:href="@{/logout}"><button>Logout</button></a>
+        </div>
+    </div>
+</header>
+
+<div class="main">
+    <h1>Oversigt over udlejet biler</h1>
+    <div class="info">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Mærke</th>
+                <th>Model</th>
+                <th>Farve</th>
+                <th>Nummerplade</th>
+                <th>Brændstoftype</th>
+                <th>Km kørt</th>
+                <th>Brændstofeffektivitet</th>
+                <th>Gear Type</th>
+                <th>Funktioner</th>
+                <th>Pris</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="car : ${rentedCars}">
+                <td th:text="${car.id}"></td>
+                <td th:text="${car.brand}"></td>
+                <td th:text="${car.model}"></td>
+                <td th:text="${car.color}"></td>
+                <td th:text="${car.licensePlate}"></td>
+                <td th:text="${car.fuelType}"></td>
+                <td th:text="${car.kmTravelled}"></td>
+                <td th:text="${car.fuelefficiency}"></td>
+                <td th:text="${car.gearType}"></td>
+                <td th:text="${car.features}"></td>
+                <td th:text="${car.price}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="totals">
+        <p>Total Rented Cars: <span th:text="${rentedCars.size()}"></span></p>
+        <p>Total Price of Rented Cars: <span th:text="${totalRentedCarsPrice}"></span> DKK</p>
+    </div>
+</div>
+
 
 </body>
 </html>
