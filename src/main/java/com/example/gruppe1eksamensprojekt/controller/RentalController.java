@@ -66,13 +66,19 @@ public class RentalController { // Severin
         return "overviewRentals";
     }
 
-    @GetMapping("/update")
+    @GetMapping("/editRental")
+    public String editRental(@RequestParam("id") int id, HttpSession session, Model model){
+        model.addAttribute("rental",rentalService.getRentalById(id));
+
+        return "rentalUpdateForm";
+    }
+    @GetMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, HttpSession session){
         // Todo: mangler parametre; afventer frontend.
         return "redirect:/findRental";
     }
 
-    @PostMapping("/delete")
+    @GetMapping("/deleteRental")
     public String deleteRental(@RequestParam("id") int id, HttpSession session){
         // Jeg antager at metoden skal have en id som parameter; er ikke med på klassediagrammet.
         rentalService.deleteRental(id);

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damagehome.css}">
+    <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
+
+
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/static}"> <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo"> </a>
+        </div>
+
+        <div class="dropdown" tabindex="1">
+            <i class="db2" tabindex="1"></i>
+            <a class="dropbtn">Vælg handling</a>
+            <div class="dropdown-content">
+                <a th:href="@{/findRental}">Se oversigt over lejeaftaler</a>
+                <a th:href="@{/findBooking}">Se oversigt over bookinger</a>
+                <a th:href="@{/createRental}">Opret lejeaftale</a>
+
+            </div>
+        </div>
+
+        <div class="logout-button">
+            <a th:href="@{/logout}"><button>Logout </button> </a>
+        </div>
+    </div>
+</header>
+
+
+<div class="updateReportForm">
+    <form action="/updateReport" method="post">
+        <h2>Opdater lejeaftale</h2>
+
+        <input name="id" type="number" hidden th:value="${rental.id}">
+
+        <div class="reportFields">
+            <div>
+                <label for="rental-id">Slut dato:</label>
+            </div>
+            <div>
+                <input id="rental-id" name="rental-id" type="number" th:value="${rental.endDate}">
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="title-field">Indleveringssted:</label>
+            </div>
+            <div>
+                <input id="title-field" name="title" type="text" th:value="${rental.returnLocation}">
+            </div>
+        </div>
+
+
+
+        <button type="submit" value="Opdater lejeaftale">Opdater rapport</button>
+    </form>
+</div>
+
+</body>
+</html>
