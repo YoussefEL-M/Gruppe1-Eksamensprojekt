@@ -60,7 +60,7 @@
                         <a th:href="@{'/editRental?id='+${rental.getId()}}"> <button>Rediger </button></a>
                     </div>
                         <div class="delete-button">
-                            <a th:href="@{'/deleteRental?id='+${rental.getId()}}"> <button>Slet</button></a>
+                            <a th:href="@{'/deleteRental?id='+${rental.getId()}}" onclick="return confirm('Er du sikker på du vil slette aftalen?')"> <button>Slet</button></a>
                         </div>
                     </td>
                </tr>
