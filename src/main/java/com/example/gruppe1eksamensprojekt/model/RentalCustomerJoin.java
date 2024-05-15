@@ -77,10 +77,10 @@ public class RentalCustomerJoin {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
-    public int getCarID() {
+    public int getCarId() {
         return carId;
     }
-    public void setCarID(int carID) {
+    public void setCarId(int carID) {
         this.carId = carID;
     }
 
