@@ -29,6 +29,7 @@ public class UserService { // Severin
         return userRepo.getUserById(id);
     }
 
+
     public void updateUser(User user){
 
         userRepo.update(user);
@@ -54,6 +55,11 @@ public class UserService { // Severin
         model.addAttribute("passwordMismatch", true);
         return null;
 
+    }
+
+
+    public User getUserByUsername(String username){
+        return userRepo.getUserByUsername(username);
     }
 
 }

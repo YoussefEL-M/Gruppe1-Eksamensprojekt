@@ -67,3 +67,24 @@ CREATE TABLE IF NOT EXISTS report
  date	DATE	NOT NULL,
  comment	VARCHAR(500)	NOT NULL
 );
+
+
+
+
+DELETE FROM customer;
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Lars', '12345678', 'Vej 14', '2011-11-11');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Birgitte', '87654321', 'Gade 69', '1999-11-11');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Jens', '11111111', 'Vej 14', '1920-11-11');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Hans', '22222222', 'Vej 14', '1992-11-11');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Henriette', '33333333', 'Vej 14', '1973-11-11');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Herbert', '44444444', 'Vej 14', '1955-11-11');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Gitte', '55555555', 'Vej 14', '1988-11-11');
+
+
+
+INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('1234', 'DS', 'McQueen');
+
+INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, damaged, ds, licensePlate) VALUES ('1','1234','Red', 'McQueen', '14', '1000','30', 0, 1, 'Kachow');
+
+INSERT INTO rental (pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id) VALUES ('a', 'a', '3', '1', '2024-01-01', '2024-04-01', '1');
+

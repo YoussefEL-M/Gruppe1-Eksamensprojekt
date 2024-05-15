@@ -5,6 +5,7 @@ import com.example.gruppe1eksamensprojekt.repository.RentalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -34,5 +35,11 @@ public class RentalService { //Severin
 
     public void deleteRental(int id){
         rentalRepo.delete(id);
+    }
+
+    public String calcEndDate(String startDate, String type) {
+
+        if (type.equals("3")) return LocalDate.parse(startDate).plusMonths(3).toString();
+        else return LocalDate.parse(startDate).plusMonths(5).toString();
     }
 }

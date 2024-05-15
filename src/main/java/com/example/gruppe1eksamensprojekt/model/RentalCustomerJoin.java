@@ -1,9 +1,8 @@
 package com.example.gruppe1eksamensprojekt.model;
 
+import java.time.LocalDate;
 
-//Youssef
-public class Rental {
-
+public class RentalCustomerJoin {
     private String pickUpLocation;
     private String returnLocation;
     private String type;
@@ -12,8 +11,13 @@ public class Rental {
     private String startDate;
     private String endDate;
     private int carId;
+    private String name;
+    private String telnr;
+    private String address;
+    private LocalDate birthdate;
 
-    public Rental(String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId) {
+    public RentalCustomerJoin(int id, String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId,String name, String telnr, String address, LocalDate birthdate) {
+        this.id=id;
         this.pickUpLocation = pickUpLocation;
         this.returnLocation = returnLocation;
         this.type=type;
@@ -21,10 +25,15 @@ public class Rental {
         this.startDate = startDate;
         this.endDate = endDate;
         this.carId = carId;
+        this.name = name;
+        this.telnr = telnr;
+        this.address = address;
+        this.birthdate = birthdate;
 
     }
 
-    public Rental(){}
+    public RentalCustomerJoin(){}
+
 
     public String getPickUpLocation() {
         return pickUpLocation;
@@ -68,11 +77,37 @@ public class Rental {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
-    public int getCarID() {
+    public int getCarId() {
         return carId;
     }
-    public void setCarID(int carID) {
+    public void setCarId(int carID) {
         this.carId = carID;
     }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getTelnr() {
+        return telnr;
+    }
+    public void setTelnr(String telnr) {
+        this.telnr = telnr;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
+    }
+
 
 }
