@@ -41,7 +41,7 @@
 }
 
 .reportfield input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #1892C3;
 }
 
 .updateReportForm {
@@ -76,7 +76,7 @@
 }
 
 button[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #1892C3;
     color: white;
     padding: 10px 20px;
     border: none;
