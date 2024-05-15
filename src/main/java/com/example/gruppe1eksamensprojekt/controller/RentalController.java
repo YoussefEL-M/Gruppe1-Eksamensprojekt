@@ -66,7 +66,12 @@ public class RentalController { // Severin
         return "overviewRentals";
     }
 
+    @GetMapping("/editRental")
+    public String editRental(@RequestParam("id") int id, HttpSession session, Model model){
+        model.addAttribute("rental",rentalService.getRentalById(id));
 
+        return "rentalUpdateForm";
+    }
     @GetMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, HttpSession session){
         // Todo: mangler parametre; afventer frontend.
@@ -85,13 +90,6 @@ public class RentalController { // Severin
     public String findBooking(HttpSession session, Model model){
 
         return "overviewBookings";
-    }
-
-    @GetMapping("/editRental")
-    public String editRental(@RequestParam("id") int id, HttpSession session, Model model){
-        model.addAttribute("rental",rentalService.getRentalById(id));
-
-        return "rentalUpdateForm";
     }
 
     @GetMapping("/createRental")
