@@ -36,10 +36,10 @@ public class RentalController { // Severin
     @GetMapping("/")
     public String login(HttpSession session, Model model){
 
-        if(session.getAttribute("user")==null) {
+        if(session.getAttribute("user")==null)
             return "frontpage";
-        }
-        return "redirect:/rental";
+
+        return "redirect:/rental"; // Todo: redirect by user type.
     }
 
     @PostMapping("/loggingIn")
@@ -56,31 +56,39 @@ public class RentalController { // Severin
     @GetMapping("/rental")
     public String rental(HttpSession session, Model model){
         // Todo: evt. rettigheder pr. bruger type.
-        if(session.getAttribute("user")!=null) return "dataregistration";
-        else return "frontpage";
+        if(session.getAttribute("user")==null)
+            return "frontpage";
+        return "dataregistration";
     }
 
     @GetMapping("/findRental")
     public String findRental(HttpSession session, Model model){
+        if(session.getAttribute("user")==null)
+            return "frontpage";
         model.addAttribute("rentalList", rentalCustomerJoinService.getAll());
         return "overviewRentals";
     }
 
     @GetMapping("/editRental")
     public String editRental(@RequestParam("id") int id, HttpSession session, Model model){
+        if(session.getAttribute("user")==null)
+            return "frontpage";
         model.addAttribute("rental",rentalService.getRentalById(id));
 
         return "rentalUpdateForm";
     }
     @GetMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, HttpSession session){
+        if(session.getAttribute("user")==null)
+            return "frontpage";
         // Todo: mangler parametre; afventer frontend.
         return "redirect:/findRental";
     }
 
     @GetMapping("/deleteRental")
     public String deleteRental(@RequestParam("id") int id, HttpSession session){
-        // Jeg antager at metoden skal have en id som parameter; er ikke med på klassediagrammet.
+        if(session.getAttribute("user")==null)
+            return "frontpage";
         rentalService.deleteRental(id);
         return "redirect:/findRental";
     }
@@ -88,18 +96,24 @@ public class RentalController { // Severin
 
     @GetMapping("/findBooking")
     public String findBooking(HttpSession session, Model model){
+        if(session.getAttribute("user")==null)
+            return "frontpage";
 
         return "overviewBookings";
     }
 
     @GetMapping("/createRental")
     public String createRental(HttpSession session, Model model){
+        if(session.getAttribute("user")==null)
+            return "frontpage";
 
         return "createRental";
     }
 
     @PostMapping("/submitRental")
     public String submitRental(HttpSession session, Model model, @RequestParam("customer") int customer, @RequestParam("startDate") String startDate, @RequestParam("pickuppoint") String pickuppoint, @RequestParam("car") int car, @RequestParam("type") String type, @RequestParam("dropoffpoint") String dropoffpoint){
+        if(session.getAttribute("user")==null)
+            return "frontpage";
         String endDate=rentalService.calcEndDate(startDate,type);
         Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car);
         rentalService.createRental(rental);

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.util.List;
 
 // Clara
 
@@ -29,13 +30,16 @@ public class DamageController {
 
     @GetMapping("/damage")
     public String skadeUdbedringsForside(HttpSession session) {
-        if(session.getAttribute("user")!= null)
-            return "damagehome";
-        return "frontpage";
+        if(session.getAttribute("user")== null)
+            return "frontpage";
+        return "damagehome";
     }
 
     @GetMapping("/reports")
-    public String retrieveAllReports(Model model) {
+    public String retrieveAllReports(HttpSession session, Model model) {
+
+        if(session.getAttribute("user")==null)
+            return "frontpage";
 
         model.addAttribute("listOfReports", reportService.getAll());
 
@@ -43,8 +47,9 @@ public class DamageController {
     }
 
     @GetMapping("/create")
-    public String createReport() {
-
+    public String createReport(HttpSession session) {
+        if(session.getAttribute("user")==null)
+            return "frontpage";
         return "damageform";
     }
 
@@ -54,7 +59,10 @@ public class DamageController {
                                 @RequestParam("title") String reportTitle,
                                 @RequestParam("date")LocalDate reportDate,
                                 @RequestParam("comment") String description,
-                                RedirectAttributes redirectAttributes) {
+                                RedirectAttributes redirectAttributes, HttpSession session) {
+
+        if(session.getAttribute("user")==null)
+            return "frontpage";
 
         redirectAttributes.addAttribute("rentalId", idForRental);
         redirectAttributes.addAttribute("title", reportTitle);
@@ -69,7 +77,10 @@ public class DamageController {
 
 
     @GetMapping("/updateForm/{id}")
-    public String showUpdateReportForm(@PathVariable("id") int reportId, Model model) {
+    public String showUpdateReportForm(@PathVariable("id") int reportId, HttpSession session, Model model) {
+
+        if(session.getAttribute("user")==null)
+            return "frontpage";
 
         Report report = reportService.getReportById(reportId);
 
@@ -83,7 +94,10 @@ public class DamageController {
     public String updateReport(@RequestParam("id") int reportId,
                                @RequestParam("title") String title,
                                @RequestParam("date") LocalDate date,
-                               @RequestParam("comment") String description) {
+                               @RequestParam("comment") String description, HttpSession session) {
+
+        if(session.getAttribute("user")==null)
+            return "frontpage";
 
         Report report = reportService.getReportById(reportId);
 
@@ -102,7 +116,10 @@ public class DamageController {
 
 
     @GetMapping("/delete/{id}")
-    public String deleteReport(@PathVariable("id") int reportId) {
+    public String deleteReport(@PathVariable("id") int reportId, HttpSession session) {
+
+        if(session.getAttribute("user")==null)
+            return "frontpage";
 
         reportService.deleteReport(reportId);
 
