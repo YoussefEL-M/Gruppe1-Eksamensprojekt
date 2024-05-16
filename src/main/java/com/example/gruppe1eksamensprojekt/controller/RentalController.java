@@ -111,7 +111,13 @@ public class RentalController { // Severin
     }
 
     @PostMapping("/submitRental")
-    public String submitRental(HttpSession session, Model model, @RequestParam("customer") int customer, @RequestParam("startDate") String startDate, @RequestParam("pickuppoint") String pickuppoint, @RequestParam("car") int car, @RequestParam("type") String type, @RequestParam("dropoffpoint") String dropoffpoint){
+    public String submitRental(HttpSession session, Model model,
+                               @RequestParam("customer") int customer,
+                               @RequestParam("startDate") String startDate,
+                               @RequestParam("pickuppoint") String pickuppoint,
+                               @RequestParam("car") int car,
+                               @RequestParam("type") String type,
+                               @RequestParam("dropoffpoint") String dropoffpoint){
         if(session.getAttribute("user")==null)
             return "frontpage";
         String endDate=rentalService.calcEndDate(startDate,type);

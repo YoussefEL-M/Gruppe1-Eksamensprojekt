@@ -12,13 +12,23 @@ public class Car {
     private int steelPrice;
     private double registrationTax;
     private double emission;
-    private boolean damaged;
+    private CarStatus status;
     private boolean ds;
     private String licensePlate;
+    private FuelType fuelType;
+    private double kmTraveled;
+    private String fuelEfficiency;
+    private double price;
+    private boolean manual;
+
 
     public Car() {}
 
-    public Car(int id, String brand, String serialNumber, String model, String color, String trimLevel, int steelPrice, double registrationTax, double emission, boolean damaged, boolean ds, String licensePlate) {
+    public Car(int id, String brand, String serialNumber, String model, String color, String trimLevel,
+               int steelPrice, double registrationTax, double emission, CarStatus status, boolean ds,
+               String licensePlate, FuelType fuelType, double kmTraveled, String fuelEfficiency, double price,
+               boolean manual) {
+
         this.id = id;
         this.brand = brand;
         this.serialNumber = serialNumber;
@@ -28,9 +38,14 @@ public class Car {
         this.steelPrice = steelPrice;
         this.registrationTax = registrationTax;
         this.emission = emission;
-        this.damaged = damaged;
+        this.status = status;
         this.ds = ds;
         this.licensePlate = licensePlate;
+        this.fuelType = fuelType;
+        this.kmTraveled = kmTraveled;
+        this.fuelEfficiency = fuelEfficiency;
+        this.price = price;
+        this.manual = manual;
     }
     public int getId() {
         return id;
@@ -83,12 +98,19 @@ public class Car {
     public void setEmission(double emission) {
         this.emission = emission;
     }
-    public boolean isDamaged() {
-        return damaged;
+
+    public void setSteelPrice(int steelPrice) {
+        this.steelPrice = steelPrice;
     }
-    public void setDamaged(boolean damaged) {
-        this.damaged = damaged;
+
+    public CarStatus getStatus() {
+        return status;
     }
+
+    public void setStatus(CarStatus status) {
+        this.status = status;
+    }
+
     public boolean isDs() {
         return ds;
     }
@@ -102,4 +124,43 @@ public class Car {
         this.licensePlate = licensePlate;
     }
 
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public double getKmTraveled() {
+        return kmTraveled;
+    }
+
+    public void setKmTraveled(double kmTraveled) {
+        this.kmTraveled = kmTraveled;
+    }
+
+    public String getFuelEfficiency() {
+        return fuelEfficiency;
+    }
+
+    public void setFuelEfficiency(String fuelEfficiency) {
+        this.fuelEfficiency = fuelEfficiency;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public boolean isManual() {
+        return manual;
+    }
+
+    public void setManual(boolean manual) {
+        this.manual = manual;
+    }
 }

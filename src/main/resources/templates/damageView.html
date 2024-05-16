@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biler der mangler behandling</title>
+    <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th> Bilmærke</th>
+        <th> Stelnummer</th>
+        <th> Model</th>
+        <th> Farve</th>
+        <th> Udstyrsniveau</th>
+        <th> Status</th>
+        <th> Brændstofstype</th>
+        <th> Distance</th>
+        <th> Km pr. liter brændstof</th>
+        <th> Pris</th>
+        <th> Manuelt gear?</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="car : ${pendingcarlist}">
+        <td th:text="${car.brand}"></td>
+        <td th:number="${car.serialNumber}"></td>
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.color}"></td>
+        <td th:text="${car.trimLevel}"></td>
+        <td th:text="${car.status}"></td>
+        <td th:text="${car.fuelType}"></td>
+        <td th:number="${car.kmTraveled}"></td>
+        <td th:text="${car.fuelEfficiency}"></td>
+        <td th:number="${car.price}"></td>
+        <td th:text="${car.manual}"></td>
+        <td><a th:href="@{'/damageform/'+ ${car.id}}" href="damageform.html">Opret rapport</a></td>
+
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

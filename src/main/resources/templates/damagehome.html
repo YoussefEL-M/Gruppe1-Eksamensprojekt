@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>dataregistration</title>
+    <title>Skade og udbedring</title>
     <link rel="stylesheet" href="../static/CSS/damagehome.css" th:href="@{/CSS/damagehome.css}">
     <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
 </head>
@@ -63,7 +63,7 @@
                 <td th:test="${car.lastUpdated}"></td>
                 <td th:test="${car.licensePlate}"></td>
                 <td th:test="${car.status}"></td>
-                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html">Rediger</a></td>
+                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html">Opret rapport</a></td>
             </tr>
             </tbody>
         </table>

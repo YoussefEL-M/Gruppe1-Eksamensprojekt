@@ -8,8 +8,9 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String type;
     private int id;
+    private String type;
+
 
     public User() {}
     public User(String name, String username, String password, String email, String type) {
