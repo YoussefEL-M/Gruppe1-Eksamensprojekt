@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damagehome.css}">
+    <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damageform.css}">
     <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
 
 
@@ -34,11 +34,16 @@
 </header>
 
 
-<div class="updateRentalForm">
+<div class="updateReportForm">
     <form action="/updateRental" method="post">
         <h2>Opdater lejeaftale</h2>
 
         <input name="id" type="number" hidden th:value="${rental.getId()}">
+<!--        <input name="pickUpLocation" type="text" hidden th:value="${rental.getPickUpLocation()}">-->
+<!--        <input name="type" type="text" hidden th:value="${rental.getType()}">-->
+<!--        <input name="customerId" type="text" hidden th:value="${rental.getCustomerId()}">-->
+<!--        <input name="startDate" type="text" hidden th:value="${rental.getStartDate()}">-->
+
 
         <div class="reportFields">
             <div>
@@ -55,6 +60,15 @@
             </div>
             <div>
                 <input id="returnLocation" name="returnLocation" type="text" th:value="${rental.getReturnLocation()}">
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="carId">Bil ID:</label>
+            </div>
+            <div>
+                <input id="carId" name="carId" type="text" th:value="${rental.carId}">
             </div>
         </div>
 

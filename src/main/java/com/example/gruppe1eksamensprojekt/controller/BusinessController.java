@@ -17,14 +17,14 @@ public class BusinessController {
     @Autowired
     CarService carService;
 
-    public String businessFrontPage(HttpSession session, Model model){
-        if(session.getAttribute("user")==null)
-            return "forside";
-        List<Car> rentedCars = carService.getRented();
-        model.addAttribute("rentedCars", rentedCars); // Skulle frontend bruge listen, eller kun antal?
-        model.addAttribute("noOfRentedCars", rentedCars.size());
-        model.addAttribute("rentedCarsTotalPrice", carService.getRentedCarsTotalPrice());
-
-        return "businessPage";
-    }
+//    public String businessFrontPage(HttpSession session, Model model){
+//        if(session.getAttribute("user")==null)
+//            return "forside";
+//        List<Car> rentedCars = carService.getRented();
+//        model.addAttribute("rentedCars", rentedCars); // Skulle frontend bruge listen, eller kun antal?
+//        model.addAttribute("noOfRentedCars", rentedCars.size());
+//        model.addAttribute("rentedCarsTotalPrice", carService.getRentedCarsTotalPrice());
+//
+//        return "businessPage";
+//    }
 }
