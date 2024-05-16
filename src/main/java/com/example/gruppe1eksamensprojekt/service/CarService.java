@@ -36,4 +36,12 @@ public class CarService { // Severin
     public void deleteCar(int id){
         carRepo.delete(id);
     }
+
+    public List<Car> getRented(){
+        return carRepo.getRented();
+    }
+
+    public double getRentedCarsTotalPrice(){
+        return carRepo.getRented().stream().mapToDouble(Car::getPrice).sum().orElse(0.0);
+    }
 }
