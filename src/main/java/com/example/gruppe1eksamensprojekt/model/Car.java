@@ -21,10 +21,11 @@ public class Car {
     private double price;
     private String gearType;
     private String features;
+    private String status;
 
     public Car() {}
 
-    public Car(int id, String brand, String serialNumber, String model, String color, String trimLevel, int steelPrice, double registrationTax, double emission, boolean damaged, boolean ds, String licensePlate, String fuelType, int kmTravelled, double fuelefficiency, double price, String gearType, String features) {
+    public Car(int id, String brand, String serialNumber, String model, String color, String trimLevel, int steelPrice, double registrationTax, double emission, boolean damaged, boolean ds, String licensePlate, String fuelType, int kmTravelled, double fuelefficiency, double price, String gearType, String features, String status) {
         this.id = id;
         this.brand = brand;
         this.serialNumber = serialNumber;
@@ -43,6 +44,7 @@ public class Car {
         this.price = price;
         this.gearType = gearType;
         this.features = features;
+        this.status = status;
     }
     public int getId() {
         return id;
