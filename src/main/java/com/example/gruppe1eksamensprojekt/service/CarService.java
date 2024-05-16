@@ -41,7 +41,7 @@ public class CarService { // Severin
         return carRepo.getRented();
     }
 
-//    public double getRentedCarsTotalPrice(){
-//        return carRepo.getRented().stream().mapToDouble(Car::getPrice).sum().orElse(0.0);
-//    }
+    public double getRentedCarsTotalPrice(){
+        return carRepo.getRented().stream().mapToDouble(Car::getPrice).sum();
+    }
 }
