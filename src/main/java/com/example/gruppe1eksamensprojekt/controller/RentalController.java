@@ -77,12 +77,18 @@ public class RentalController { // Severin
 
         return "rentalUpdateForm";
     }
-    @GetMapping("/updateRental")
-    public String updateRental(@RequestParam("id") int id, HttpSession session){
+    @PostMapping("/updateRental")
+    public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate, @RequestParam("returnLocation") String returnLocation, @RequestParam("carId") int carId, HttpSession session){
         if(session.getAttribute("user")==null)
             return "frontpage";
-        // Todo: mangler parametre; afventer frontend.
+
+        Rental rental = rentalService.getRentalById(id);
+        rental.setEndDate(endDate);
+        rental.setReturnLocation(returnLocation);
+        rental.setCarId(carId);
+        rentalService.updateRental(rental);
         return "redirect:/findRental";
+
     }
 
     @GetMapping("/deleteRental")
