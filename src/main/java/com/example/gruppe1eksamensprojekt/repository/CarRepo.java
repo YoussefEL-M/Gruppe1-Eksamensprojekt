@@ -41,4 +41,10 @@ public class CarRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
+    public List<Car> getRented(){
+        String sql = "SELECT * FROM car WHERE status = 'RENTED'";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
 }
