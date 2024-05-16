@@ -98,9 +98,8 @@ public class Car {
     public void setEmission(double emission) {
         this.emission = emission;
     }
-
-    public void setSteelPrice(int steelPrice) {
-        this.steelPrice = steelPrice;
+    public boolean isDamaged() {
+        return damaged;
     }
 
     public CarStatus getStatus() {
