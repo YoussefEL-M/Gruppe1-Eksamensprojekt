@@ -18,8 +18,8 @@ public class RentalRepo {
     JdbcTemplate jdbcTemplate;
 
     public void create(Rental rental) {
-        String sql = "INSERT INTO rental (pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate(), rental.getCarId());
+        String sql = "INSERT INTO rental (pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate(), rental.getCarId(), rental.getStatus());
     }
 
     public Rental getRentalById(int id) {
@@ -29,8 +29,8 @@ public class RentalRepo {
     }
 
     public void update(Rental rental) {
-        String sql = "UPDATE rental SET pickUpLocation=?, returnLocation=?, type=?, customer_id=?, startDate=?, endDate=?, car_id=? WHERE id=?";
-        jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate(), rental.getCarId(), rental.getId());
+        String sql = "UPDATE rental SET pickUpLocation=?, returnLocation=?, type=?, customer_id=?, startDate=?, endDate=?, status=?, car_id=? WHERE id=?";
+        jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate(), rental.getStatus(), rental.getCarId(), rental.getId());
     }
 
 

@@ -121,7 +121,7 @@ public class RentalController { // Severin
         if(session.getAttribute("user")==null)
             return "frontpage";
         String endDate=rentalService.calcEndDate(startDate,type);
-        Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car);
+        Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false);
         rentalService.createRental(rental);
         return "redirect:/rental";
     }
@@ -165,6 +165,14 @@ public class RentalController { // Severin
     public String logout(HttpSession session) {
         session.removeAttribute("user");
         return "redirect:/";
+    }
+
+    @GetMapping("/editRentalStatus")
+    public String editRentalStatus(@RequestParam("id") int id){
+        Rental rental = rentalService.getRentalById(id);
+        rental.setStatus(true);
+        rentalService.updateRental(rental);
+        return "redirect:/findRental";
     }
 
 }

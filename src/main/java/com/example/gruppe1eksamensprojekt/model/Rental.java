@@ -13,7 +13,9 @@ public class Rental {
     private String endDate;
     private int carId;
 
-    public Rental(String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId) {
+    private boolean status;
+
+    public Rental(String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId, boolean status) {
         this.pickUpLocation = pickUpLocation;
         this.returnLocation = returnLocation;
         this.type=type;
@@ -21,6 +23,7 @@ public class Rental {
         this.startDate = startDate;
         this.endDate = endDate;
         this.carId = carId;
+        this.status=status;
 
     }
 
@@ -73,6 +76,13 @@ public class Rental {
     }
     public void setCarId(int carID) {
         this.carId = carID;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
 }

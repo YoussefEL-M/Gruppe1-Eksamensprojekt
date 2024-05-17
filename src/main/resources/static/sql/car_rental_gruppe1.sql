@@ -57,7 +57,8 @@ CREATE TABLE IF NOT EXISTS rental
     returnLocation	VARCHAR(150)	NOT NULL,
     type	VARCHAR(100)	NOT NULL,
     startDate	DATE	NOT NULL,
-    endDate	DATE	NOT NULL
+    endDate	DATE	NOT NULL,
+    status BOOLEAN
     );
 
 CREATE TABLE IF NOT EXISTS report
@@ -83,7 +84,9 @@ INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Gitte', '5555555
 
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('1234', 'DS', 'McQueen');
 
-INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, damaged, ds, licensePlate) VALUES ('1','1234','Red', 'McQueen', '14', '1000','30', 0, 1, 'Kachow');
+INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, status, ds, licensePlate, lastUpdated) VALUES ('1','1234','Red', 'McQueen', '14', '1000','30', 0, 1, 'Kachow', '2024-04-01');
 
 INSERT INTO rental (pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id) VALUES ('a', 'a', '3', '1', '2024-01-01', '2024-04-01', '1');
 
+select * from car;
+select * from rental

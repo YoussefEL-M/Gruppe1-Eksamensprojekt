@@ -14,7 +14,7 @@ public class RentalCustomerJoinRepo {
     JdbcTemplate jdbcTemplate;
 
     public List<RentalCustomerJoin> getAll() {
-        String sql = "SELECT rental.id, rental.customer_id, rental.car_id, rental.user_id, rental.pickUpLocation, rental.returnLocation, rental.type, rental.startDate, rental.endDate, customer.name, customer.telnr, customer.email, customer.address, customer.birthDate " +
+        String sql = "SELECT rental.id, rental.customer_id, rental.car_id, rental.user_id, rental.pickUpLocation, rental.returnLocation, rental.type, rental.startDate, rental.endDate, rental.status, customer.name, customer.telnr, customer.email, customer.address, customer.birthDate " +
                 "FROM rental " +
                 "LEFT JOIN customer " +
                 "ON rental.customer_id = customer.id";
