@@ -128,6 +128,18 @@ public class DamageController {
         return "redirect:/overviewReports?id= "+reportId;
     }
 
+    @GetMapping("/ubehandledeBiler")
+    public String showDamagedCars(HttpSession session, Model model) {
+
+        if(session.getAttribute("user")== null) {
+            return "frontpage";
+        }
+
+        return "damageView";
+    }
+
+
+
 
 
 }

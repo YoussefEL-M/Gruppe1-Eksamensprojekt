@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!--Clara-->
     <meta charset="UTF-8">
     <title>Biler der mangler behandling</title>
     <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
 </head>
 <body>
+
+<h1>Beskadigede biler der mangler opfølgning på</h1>
 
 <table>
     <thead>
@@ -17,7 +21,7 @@
         <th> Udstyrsniveau</th>
         <th> Status</th>
         <th> Brændstofstype</th>
-        <th> Distance</th>
+        <th> Distance kørt</th>
         <th> Km pr. liter brændstof</th>
         <th> Pris</th>
         <th> Manuelt gear?</th>
@@ -25,9 +29,9 @@
     </thead>
 
     <tbody>
-    <tr th:each="car : ${pendingcarlist}">
+    <tr th:each="car : ${damagedCarList}">
         <td th:text="${car.brand}"></td>
-        <td th:number="${car.serialNumber}"></td>
+        <td th:text="${car.serialNumber}"></td>
         <td th:text="${car.model}"></td>
         <td th:text="${car.color}"></td>
         <td th:text="${car.trimLevel}"></td>
@@ -42,7 +46,6 @@
     </tr>
     </tbody>
 </table>
-
 
 </body>
 </html>

@@ -78,7 +78,9 @@ public class RentalController { // Severin
         return "rentalUpdateForm";
     }
     @PostMapping("/updateRental")
-    public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate, @RequestParam("returnLocation") String returnLocation, @RequestParam("carId") int carId, HttpSession session){
+    public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
+                               @RequestParam("returnLocation") String returnLocation,
+                               @RequestParam("carId") int carId, HttpSession session){
         if(session.getAttribute("user")==null)
             return "frontpage";
 

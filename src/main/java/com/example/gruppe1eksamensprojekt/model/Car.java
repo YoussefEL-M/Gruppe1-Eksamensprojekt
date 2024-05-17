@@ -98,9 +98,6 @@ public class Car {
     public void setEmission(double emission) {
         this.emission = emission;
     }
-    public boolean isDamaged() {
-        return damaged;
-    }
 
     public CarStatus getStatus() {
         return status;
