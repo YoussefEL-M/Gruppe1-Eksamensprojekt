@@ -7,28 +7,8 @@
     <link rel="stylesheet" href="../static/CSS/overviewRentals.css" th:href="@{/CSS/overviewRentals.css}">
 </head>
 <body>
-<header>
-    <div class="container">
-        <div class="logo">
-            <a th:href="@{/static}"> <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo"> </a>
-        </div>
 
-        <div class="dropdown" tabindex="1">
-            <i class="db2" tabindex="1"></i>
-            <a class="drop_button">Vælg handling</a>
-            <div class="drop_content">
-                <a th:href="@{/findRental}">Se oversigt over lejeaftaler</a>
-                <a th:href="@{/findBooking}">Se oversigt over bookinger</a>
-                <a th:href="@{/createRental}">Opret lejeaftale</a>
-
-            </div>
-        </div>
-
-        <div class="logout-button">
-            <a th:href="@{/logout}"> <button>Logout </button></a>
-        </div>
-    </div>
-</header>
+<header th:insert="fragments/rentalheader.html"></header>
 
 <div class="main">
     <h1>Oversigt over lejeaftaler</h1>
