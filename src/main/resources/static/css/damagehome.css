@@ -4,6 +4,10 @@ h1, h2, p, a, li {
     font-family: "Arial", sans-serif;
 }
 
+#overskrift {
+    text-align: center;
+}
+
 
 
 .main {
