@@ -1,5 +1,6 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
+import com.example.gruppe1eksamensprojekt.model.Car;
 import com.example.gruppe1eksamensprojekt.model.CarStatus;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.model.User;
@@ -34,9 +35,17 @@ public class DamageController {
 
 
     @GetMapping("/damage")
-    public String skadeUdbedringsForside(HttpSession session) {
-        if(session.getAttribute("user")== null)
+    public String skadeUdbedringsForside(HttpSession session, Model model) {
+        if(session.getAttribute("user")== null) {
             return "frontpage";
+        }
+
+        List<Car> carList = carService.getRented();
+        model.addAttribute("carlist", carList);
+
+        List<Car> pendingCarList = carService.getDamagedCars();
+        model.addAttribute("pendingcarlist", pendingCarList);
+
         return "damagehome";
     }
 
