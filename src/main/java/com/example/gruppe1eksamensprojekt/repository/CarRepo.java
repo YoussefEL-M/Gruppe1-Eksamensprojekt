@@ -16,8 +16,10 @@ public class CarRepo {
     private JdbcTemplate jdbcTemplate;
 
     public void create(Car car) {
-        String sql = "INSERT INTO car (id, brand, serialNumber, model, color, trimLevel, steelPrice, registrationTax, emission, damaged, ds, licensePlate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, car.getId(), car.getBrand(), car.getSerialNumber(), car.getModel(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.isDamaged(), car.isDs(), car.getLicensePlate());
+        String sql = "INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, status, ds, licensePlate, fuelType, kmTraveled, fuelEfficiency, price, manual) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String carId = "INSERT INTO carIdentification (serialnumber, brand, model) VALUES (?,?,?)";
+        jdbcTemplate.update(sql, car.getId(), car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus(), car.isDs(), car.getLicensePlate(), car.getFuelType(), car.getKmTraveled(), car.getFuelEfficiency(), car.getPrice(), car.isManual());
+        jdbcTemplate.update(carId, car.getSerialNumber(), car.getBrand(), car.getModel());
     }
 
     public Car getCarById(int id){
@@ -27,12 +29,16 @@ public class CarRepo {
     }
 
     public void update(Car car) {
-        String sql = "UPDATE car SET brand=?, serialNumber=?, model=?, color=?, trimLevel=?, steelPrice=?, registrationTax=?, emission=?, damaged=?, ds=?, licensePlate=? WHERE id=?";
-        jdbcTemplate.update(sql, car.getBrand(), car.getSerialNumber(), car.getModel(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.isDamaged(), car.isDs(), car.getLicensePlate(), car.getId());
+        String sql = "UPDATE car SET serialNumber=?, color=?, trimLevel=?, steelPrice=?, registrationTax=?, emission=?, status=?, ds=?, licensePlate=?, fuelType = ?, kmTraveled = ?, fuelEfficiency = ?, price = ?, manual  = ? WHERE id=?";
+        String updateCarIdentification  = "UPDATE carIdentification SET brand = ?, model = ? WHERE serialNumber = ?";
+        jdbcTemplate.update(sql, car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus(), car.isDs(), car.getLicensePlate(), car.getId());
+        jdbcTemplate.update(updateCarIdentification, car.getBrand(), car.getModel());
     }
     public void delete(int id) {
         String sql = "DELETE FROM car WHERE id = ?";
+        String deleteFromCarId = "DELETE FROM carIdentification WHERE serialNumber = ?";
         jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(deleteFromCarId, id);
     }
 
     public List<Car> getAll() {
@@ -43,6 +49,12 @@ public class CarRepo {
 
     public List<Car> getRented(){
         String sql = "SELECT * FROM car WHERE status = 'RENTED'";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public List<Car> getDamagedCars() {
+        String sql = "SELECT * FROM car WHERE status = 'DAMAGED'";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql, rowMapper);
     }

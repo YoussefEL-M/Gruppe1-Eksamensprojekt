@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>dataregistration</title>
+    <title>Skade og udbedring</title>
     <link rel="stylesheet" href="../static/CSS/damagehome.css" th:href="@{/CSS/damagehome.css}">
     <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
 </head>
@@ -27,7 +27,7 @@
             Indleveret i dag.
         </h2>
 
-        <table class="tasklist">
+        <table class="taskList">
             <thead>
             <tr>
                 <th>Bilmærke</th>
@@ -74,7 +74,7 @@
                 <td th:text="${car.lastUpdated}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.status}"></td>
-                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html">Rediger</a></td>
+                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button>Rediger</button></a></td>
             </tr>
             </tbody>
         </table>

@@ -12,20 +12,23 @@ public class Car {
     private int steelPrice;
     private double registrationTax;
     private double emission;
-    private boolean damaged;
+    private CarStatus status;
     private boolean ds;
     private String licensePlate;
-    private String fuelType;
-    private int kmTravelled;
-    private double fuelefficiency;
+    private FuelType fuelType;
+    private double kmTraveled;
+    private String fuelEfficiency;
     private double price;
-    private String gearType;
-    private String features;
-    private String status;
+    private boolean manual;
+
 
     public Car() {}
 
-    public Car(int id, String brand, String serialNumber, String model, String color, String trimLevel, int steelPrice, double registrationTax, double emission, boolean damaged, boolean ds, String licensePlate, String fuelType, int kmTravelled, double fuelefficiency, double price, String gearType, String features, String status) {
+    public Car(int id, String brand, String serialNumber, String model, String color, String trimLevel,
+               int steelPrice, double registrationTax, double emission, CarStatus status, boolean ds,
+               String licensePlate, FuelType fuelType, double kmTraveled, String fuelEfficiency, double price,
+               boolean manual) {
+
         this.id = id;
         this.brand = brand;
         this.serialNumber = serialNumber;
@@ -35,16 +38,14 @@ public class Car {
         this.steelPrice = steelPrice;
         this.registrationTax = registrationTax;
         this.emission = emission;
-        this.damaged = damaged;
+        this.status = status;
         this.ds = ds;
         this.licensePlate = licensePlate;
         this.fuelType = fuelType;
-        this.kmTravelled = kmTravelled;
-        this.fuelefficiency = fuelefficiency;
+        this.kmTraveled = kmTraveled;
+        this.fuelEfficiency = fuelEfficiency;
         this.price = price;
-        this.gearType = gearType;
-        this.features = features;
-        this.status = status;
+        this.manual = manual;
     }
     public int getId() {
         return id;
@@ -97,12 +98,15 @@ public class Car {
     public void setEmission(double emission) {
         this.emission = emission;
     }
-    public boolean isDamaged() {
-        return damaged;
+
+    public CarStatus getStatus() {
+        return status;
     }
-    public void setDamaged(boolean damaged) {
-        this.damaged = damaged;
+
+    public void setStatus(CarStatus status) {
+        this.status = status;
     }
+
     public boolean isDs() {
         return ds;
     }
@@ -115,40 +119,44 @@ public class Car {
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
     }
-    public String getFuelType() {
+
+    public FuelType getFuelType() {
         return fuelType;
     }
-    public void setFuelType(String fuelType) {
+
+    public void setFuelType(FuelType fuelType) {
         this.fuelType = fuelType;
     }
-    public int getKmTravelled() {
-        return kmTravelled;
+
+    public double getKmTraveled() {
+        return kmTraveled;
     }
-    public void setKmTravelled(int kmTravelled) {
-        this.kmTravelled = kmTravelled;
+
+    public void setKmTraveled(double kmTraveled) {
+        this.kmTraveled = kmTraveled;
     }
-    public double getFuelefficiency() {
-        return fuelefficiency;
+
+    public String getFuelEfficiency() {
+        return fuelEfficiency;
     }
-    public void setFuelefficiency(double fuelefficiency) {
-        this.fuelefficiency = fuelefficiency;
+
+    public void setFuelEfficiency(String fuelEfficiency) {
+        this.fuelEfficiency = fuelEfficiency;
     }
+
     public double getPrice() {
         return price;
     }
+
     public void setPrice(double price) {
         this.price = price;
     }
-    public String getGearType() {
-        return gearType;
+
+    public boolean isManual() {
+        return manual;
     }
-    public void setGearType(String gearType) {
-        this.gearType = gearType;
-    }
-    public String getFeatures() {
-        return features;
-    }
-    public void setFeatures(String features) {
-        this.features = features;
+
+    public void setManual(boolean manual) {
+        this.manual = manual;
     }
 }

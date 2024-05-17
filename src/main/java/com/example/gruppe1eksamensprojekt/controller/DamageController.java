@@ -1,5 +1,6 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
+import com.example.gruppe1eksamensprojekt.model.CarStatus;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.model.User;
 import com.example.gruppe1eksamensprojekt.service.ReportService;
@@ -59,6 +60,7 @@ public class DamageController {
                                 @RequestParam("title") String reportTitle,
                                 @RequestParam("date")LocalDate reportDate,
                                 @RequestParam("comment") String description,
+                                @RequestParam("lastUpdated") LocalDate updateDate,
                                 RedirectAttributes redirectAttributes, HttpSession session) {
 
         if(session.getAttribute("user")==null)
@@ -68,7 +70,7 @@ public class DamageController {
         redirectAttributes.addAttribute("title", reportTitle);
         redirectAttributes.addAttribute("date", reportDate);
 
-        Report report = new Report(idForRental, reportTitle, reportDate, description);
+        Report report = new Report(idForRental, reportTitle, reportDate, description, updateDate);
 
         reportService.createReport(report);
 
@@ -125,6 +127,18 @@ public class DamageController {
 
         return "redirect:/overviewReports?id= "+reportId;
     }
+
+    @GetMapping("/ubehandledeBiler")
+    public String showDamagedCars(HttpSession session, Model model) {
+
+        if(session.getAttribute("user")== null) {
+            return "frontpage";
+        }
+
+        return "damageView";
+    }
+
+
 
 
 

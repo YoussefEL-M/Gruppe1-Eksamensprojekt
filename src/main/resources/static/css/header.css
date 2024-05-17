@@ -30,9 +30,24 @@ button {
     border-radius: 4px;
     font-weight:bold;
     cursor:pointer;
+    height:30px;
+    width:73px;
 }
 
-button:hover {
+.rapportknap {
+    background-color:white;
+    color:#1892C3;
+    border: 1px solid #1892C3;
+    border-radius: 4px;
+    font-weight:bold;
+    cursor:pointer;
+    height:30px;
+    width:100px;
+}
+
+
+
+button:hover, .rapportknap:hover {
     background-color: #1892C3;
     color:white;
 }
@@ -52,6 +67,7 @@ button:hover {
     border: 1px solid black;
     cursor: pointer;
     transition: 0s;
+    border-radius:5px;
 
 }
 

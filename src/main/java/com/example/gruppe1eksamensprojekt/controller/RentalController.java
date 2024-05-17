@@ -78,7 +78,9 @@ public class RentalController { // Severin
         return "rentalUpdateForm";
     }
     @PostMapping("/updateRental")
-    public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate, @RequestParam("returnLocation") String returnLocation, @RequestParam("carId") int carId, HttpSession session){
+    public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
+                               @RequestParam("returnLocation") String returnLocation,
+                               @RequestParam("carId") int carId, HttpSession session){
         if(session.getAttribute("user")==null)
             return "frontpage";
 
@@ -117,7 +119,13 @@ public class RentalController { // Severin
     }
 
     @PostMapping("/submitRental")
-    public String submitRental(HttpSession session, Model model, @RequestParam("customer") int customer, @RequestParam("startDate") String startDate, @RequestParam("pickuppoint") String pickuppoint, @RequestParam("car") int car, @RequestParam("type") String type, @RequestParam("dropoffpoint") String dropoffpoint){
+    public String submitRental(HttpSession session, Model model,
+                               @RequestParam("customer") int customer,
+                               @RequestParam("startDate") String startDate,
+                               @RequestParam("pickuppoint") String pickuppoint,
+                               @RequestParam("car") int car,
+                               @RequestParam("type") String type,
+                               @RequestParam("dropoffpoint") String dropoffpoint){
         if(session.getAttribute("user")==null)
             return "frontpage";
         String endDate=rentalService.calcEndDate(startDate,type);
