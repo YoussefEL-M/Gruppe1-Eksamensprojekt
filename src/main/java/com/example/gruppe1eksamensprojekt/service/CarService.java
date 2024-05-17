@@ -1,6 +1,7 @@
 package com.example.gruppe1eksamensprojekt.service;
 
 import com.example.gruppe1eksamensprojekt.model.Car;
+import com.example.gruppe1eksamensprojekt.model.User;
 import com.example.gruppe1eksamensprojekt.repository.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

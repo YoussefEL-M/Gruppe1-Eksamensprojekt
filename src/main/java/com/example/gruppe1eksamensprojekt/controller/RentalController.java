@@ -25,7 +25,7 @@ public class RentalController { // Severin
     RentalService rentalService;
 
     @Autowired
-    CustomerSevice customerSevice;
+    CustomerSevice customerService;
 
     @Autowired
     CarService carService;
@@ -112,9 +112,12 @@ public class RentalController { // Severin
 
     @GetMapping("/createRental")
     public String createRental(HttpSession session, Model model){
+
         if(session.getAttribute("user")==null)
             return "frontpage";
 
+        model.addAttribute("customerList", customerService.getAll());
+        model.addAttribute("carList", carService.getAll());
         return "createRental";
     }
 
