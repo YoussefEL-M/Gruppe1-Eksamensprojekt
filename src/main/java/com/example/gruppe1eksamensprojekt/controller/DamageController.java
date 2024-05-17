@@ -3,6 +3,7 @@ package com.example.gruppe1eksamensprojekt.controller;
 import com.example.gruppe1eksamensprojekt.model.CarStatus;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.model.User;
+import com.example.gruppe1eksamensprojekt.service.CarService;
 import com.example.gruppe1eksamensprojekt.service.ReportService;
 import com.example.gruppe1eksamensprojekt.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -26,6 +27,9 @@ public class DamageController {
 
     @Autowired
     ReportService reportService;
+
+    @Autowired
+    CarService carService;
 
 
 
@@ -134,6 +138,8 @@ public class DamageController {
         if(session.getAttribute("user")== null) {
             return "frontpage";
         }
+
+        model.addAttribute("listOfDamagedCars", carService.getDamagedCars());
 
         return "damageView";
     }

@@ -54,7 +54,7 @@ public class CarRepo {
     }
 
     public List<Car> getDamagedCars() {
-        String sql = "SELECT * FROM car WHERE status = 'DAMAGED'";
+        String sql = "SELECT * FROM car WHERE status = 'DAMAGED' AND ds = false";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql, rowMapper);
     }

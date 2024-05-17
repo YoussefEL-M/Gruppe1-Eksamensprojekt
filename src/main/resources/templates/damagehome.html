@@ -43,7 +43,7 @@
                 <td th:text="${car.lastUpdated}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.status}"></td>
-                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html">Rediger</a></td>
+                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button>Opret rapport</button></a></td>
             </tr>
             </tbody>
         </table>
