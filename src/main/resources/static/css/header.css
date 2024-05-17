@@ -38,13 +38,12 @@ button:hover {
 }
 
 
+/*dropdown menu med inspiration fra https://jsfiddle.net/8evtxnsL/, Bjarke*/
 .dropdown {
     margin: 10px 80px 10px auto;
     display: inline-block;
     position: relative;
     outline: none;
-
-
 }
 
 .drop_button {
