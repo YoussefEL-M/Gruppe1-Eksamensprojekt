@@ -39,7 +39,6 @@ public class RentalService { //Severin
 
     public String calcEndDate(String startDate, String type) {
 
-        if (type.equals("3")) return LocalDate.parse(startDate).plusMonths(3).toString();
-        else return LocalDate.parse(startDate).plusMonths(5).toString();
+        return LocalDate.parse(startDate).plusMonths(Integer.parseInt(type)).toString();
     }
 }
