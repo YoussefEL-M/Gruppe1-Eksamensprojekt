@@ -38,8 +38,8 @@ public class RentalController { // Severin
 
         if(session.getAttribute("user")==null)
             return "frontpage";
-
-        return "redirect:/rental"; // Todo: redirect by user type.
+        User user = (User) session.getAttribute("user");
+        return "redirect:" + user.getFrontPage();
     }
 
     @PostMapping("/loggingIn")
@@ -48,7 +48,7 @@ public class RentalController { // Severin
         // Todo: evt. tilføj funktionalitet der sender brugeren til en bestemt side alt efter brugertype.
         if(user != null) {
             session.setAttribute("user", user);
-            return "redirect:/rental";
+            return "redirect:" + user.getFrontPage();
         }
         else return "redirect:/";
     }
@@ -140,25 +140,8 @@ public class RentalController { // Severin
                                   @RequestParam("type") String type,
                                   RedirectAttributes redirectAttributes,
                                   Model model) {
-        User existingUser;
-        try {
-            existingUser = userService.getUserByUsername(username);
-        } catch (EmptyResultDataAccessException E){
-            existingUser=null;
-        }
-        if(existingUser != null){
-            model.addAttribute("usernameExists", true);
-            return "register";
-        }else {
-
-            redirectAttributes.addAttribute("username", username);
-            redirectAttributes.addAttribute("password", password);
-
-            User newUser = new User(name, username, password, email, type);
-            userService.createUser(newUser);
-
-            return "redirect:/";
-        }
+        // Opdateret for at rykke logikken fra Controlleren ned i Service.
+        return userService.createUser(name, email, username, password, type, model, redirectAttributes);
     }
 
     @GetMapping("/logout")
