@@ -125,9 +125,11 @@ public class RentalController { // Severin
                                @RequestParam("pickuppoint") String pickuppoint,
                                @RequestParam("car") int car,
                                @RequestParam("type") String type,
-                               @RequestParam("dropoffpoint") String dropoffpoint){
+                               @RequestParam("dropoffpoint") String dropoffpoint,
+                               @RequestParam("unlimitedMonth") int unlimitedMonth){
         if(session.getAttribute("user")==null)
             return "frontpage";
+        if(!type.equals("5")) type=String.valueOf(unlimitedMonth);
         String endDate=rentalService.calcEndDate(startDate,type);
         Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false);
         rentalService.createRental(rental);
