@@ -41,8 +41,15 @@ public class CarRepo {
         jdbcTemplate.update(deleteFromCarId, id);
     }
 
+//    public List<Car> getAll() {
+//        String sql = "SELECT * FROM car";
+//        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+//        return jdbcTemplate.query(sql, rowMapper);
+//    }
     public List<Car> getAll() {
-        String sql = "SELECT * FROM car";
+        String sql = "SELECT * FROM car " +
+                "LEFT JOIN carIdentification " +
+                "ON car.serialNumber = carIdentification.serialNumber";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
