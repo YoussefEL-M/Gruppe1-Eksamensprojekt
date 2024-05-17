@@ -34,7 +34,7 @@ button {
     width:73px;
 }
 
-#rapportknap {
+.rapportknap {
     background-color:white;
     color:#1892C3;
     border: 1px solid #1892C3;
@@ -47,7 +47,7 @@ button {
 
 
 
-button:hover, #rapportknap:hover {
+button:hover, .rapportknap:hover {
     background-color: #1892C3;
     color:white;
 }
@@ -68,6 +68,7 @@ button:hover, #rapportknap:hover {
     border: 1px solid black;
     cursor: pointer;
     transition: 0s;
+    border-radius:5px;
 
 }
 

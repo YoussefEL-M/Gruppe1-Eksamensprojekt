@@ -5,13 +5,36 @@
     <!--Clara-->
     <meta charset="UTF-8">
     <title>Biler der mangler behandling</title>
+    <link rel="stylesheet" href="../static/css/damagehome.css" th:href="@{/css/damagehome.css}">
     <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
 </head>
 <body>
 
+<header>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/static}"> <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo"> </a>
+        </div>
+
+        <div class="dropdown" tabindex="1">
+            <i class="db2" tabindex="1"></i>
+            <a class="drop_button">Vælg handling</a>
+            <div class="drop_content">
+                <a href="/ubehandledeBiler">Se oversigt over ubehandlede biler</a>
+                <a href="/reports">Se oversigt over skaderapporter</a>
+
+            </div>
+        </div>
+
+        <div class="logout-button">
+            <a th:href="@{/logout}"> <button>Logout </button></a>
+        </div>
+    </div>
+</header>
+
 <h1>Beskadigede biler der mangler opfølgning på</h1>
 
-<table>
+<table class="taskList">
     <thead>
     <tr>
         <th> Bilmærke</th>
@@ -41,7 +64,7 @@
         <td th:text="${car.fuelEfficiency}"></td>
         <td th:number="${car.price}"></td>
         <td th:text="${car.manual}"></td>
-        <td><a th:href="@{'/damageform/'+ ${car.id}}" href="damageform.html">Opret rapport</a></td>
+        <td><a th:href="@{'/damageform/'+ ${car.id}}" href="damageform.html"><button class="rapportknap"> Opret rapport </button></a></td>
 
     </tr>
     </tbody>

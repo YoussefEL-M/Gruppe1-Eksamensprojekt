@@ -46,7 +46,7 @@
             Indleveret i dag.
         </h2>
 
-        <table class="tasklist">
+        <table class="taskList">
             <thead>
             <tr>
                 <th>Bilmærke</th>
@@ -59,11 +59,11 @@
             <tbody>
             <tr th:each="car : ${carlist}">
                 <td th:text="${car.brand}"></td>
-                <td th:test="${car.model}"></td>
-                <td th:test="${car.lastUpdated}"></td>
-                <td th:test="${car.licensePlate}"></td>
-                <td th:test="${car.status}"></td>
-                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button id="rapportknap"> Opret rapport</button></a></td>
+                <td th:text="${car.model}"></td>
+                <td th:text="${car.lastUpdated}"></td>
+                <td th:text="${car.licensePlate}"></td>
+                <td th:text="${car.status}"></td>
+                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button class="rapportknap"> Opret rapport</button></a></td>
             </tr>
             </tbody>
         </table>
@@ -89,10 +89,10 @@
             <tbody>
             <tr th:each="car : ${pendingcarlist}">
                 <td th:text="${car.brand}"></td>
-                <td th:test="${car.model}"></td>
-                <td th:test="${car.lastUpdated}"></td>
-                <td th:test="${car.licensePlate}"></td>
-                <td th:test="${car.status}"></td>
+                <td th:text="${car.model}"></td>
+                <td th:text="${car.lastUpdated}"></td>
+                <td th:text="${car.licensePlate}"></td>
+                <td th:text="${car.status}"></td>
                 <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button>Rediger</button></a></td>
             </tr>
             </tbody>

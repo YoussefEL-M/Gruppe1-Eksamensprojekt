@@ -59,8 +59,4 @@ public class CarRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
-    public List<Car> returnedToday(int carId, int rentalId) {
-        String
-    }
-
 }
