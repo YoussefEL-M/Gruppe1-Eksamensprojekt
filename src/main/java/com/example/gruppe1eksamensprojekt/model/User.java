@@ -2,7 +2,7 @@ package com.example.gruppe1eksamensprojekt.model;
 
 
 //Youssef
-public class User {
+public abstract class User {
 
     private String name;
     private String username;
@@ -19,6 +19,8 @@ public class User {
         this.email = email;
         this.type = type;
     }
+
+    public abstract String getFrontPage();
 
     public String getName() {
         return name;
@@ -60,3 +62,4 @@ public class User {
         this.id = id;
     }
 }
+

@@ -1,5 +1,8 @@
 package com.example.gruppe1eksamensprojekt.repository;
 
+import com.example.gruppe1eksamensprojekt.model.BusinessUser;
+import com.example.gruppe1eksamensprojekt.model.DamageUser;
+import com.example.gruppe1eksamensprojekt.model.DataUser;
 import com.example.gruppe1eksamensprojekt.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 //Youssef
@@ -15,6 +20,36 @@ public class UserRepo {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    // Løsning til mapping af nedarvede objekter fundet på StackOverflow og justeret.
+    // https://stackoverflow.com/questions/1834341/spring-jdbc-rowmapper-with-class-hierarchies
+    // - Severin
+
+    final RowMapper<User> dataMapper = new BeanPropertyRowMapper(DataUser.class);
+    final RowMapper<User> damageMapper = new BeanPropertyRowMapper(DamageUser.class);
+    final RowMapper<User> businessMapper = new BeanPropertyRowMapper(BusinessUser.class);
+
+    RowMapper<User> mapperSwitch = new RowMapper<User>() {
+        @Override
+        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+            String userType = rs.getString("type");
+            switch (userType){
+                case ("Dataregistrering") -> {
+                    return dataMapper.mapRow(rs, rowNum);
+                }
+                case ("SkadeOgUdbedring") -> {
+                    return damageMapper.mapRow(rs, rowNum);
+                }
+                case ("Forretningsudvikler") -> {
+                    return businessMapper.mapRow(rs, rowNum);
+                }
+                default -> {
+                    break;
+                }
+            }
+            return null;
+        }
+    };
 
     public void create(User user) {
         String sql = "INSERT INTO user (name, username, password, email, type) VALUES (?, ?, ?, ?, ?)";
@@ -49,8 +84,7 @@ public class UserRepo {
 
     public User getUserById(int id) {
         String sql = "SELECT * FROM user WHERE id = ?";
-        RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
-        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+        return jdbcTemplate.queryForObject(sql, mapperSwitch, id);
     }
 
     public void update(User user) {
@@ -65,13 +99,11 @@ public class UserRepo {
 
     public List<User> getAll() {
         String sql = "SELECT * FROM user";
-        RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
-        return jdbcTemplate.query(sql, rowMapper);
+        return jdbcTemplate.query(sql, mapperSwitch);
     }
 
     public User getUserByUsername(String username) {
         String sql = "SELECT * FROM user WHERE username = ?";
-        RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
-        return jdbcTemplate.queryForObject(sql, rowMapper, username);
+        return jdbcTemplate.queryForObject(sql, mapperSwitch, username);
     }
 }
