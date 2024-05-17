@@ -1,6 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
+</head>
+<body>
 <div class="container">
     <div class="logo">
-        <a th:href="@{/static}">
+        <a th:href="@{/damage}">
             <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo">
         </a>
     </div>
@@ -8,9 +16,9 @@
     <div class="dropdown" tabindex="1">
         <a class="drop_button">Vælg handling</a>
         <div class="drop_content">
-            <a href="../damagehome.html">Se oversigt over rapporter</a>
+            <a href="/reports">Se oversigt over rapporter</a>
             <a href="#">Dine rapporter</a>
-            <a href="../damageform.html">Opret rapport</a>
+            <a href="/create">Opret rapport</a>
         </div>
     </div>
     <div class="logout-button">
@@ -19,4 +27,5 @@
         </a>
     </div>
 </div>
-
+</body>
+</html>

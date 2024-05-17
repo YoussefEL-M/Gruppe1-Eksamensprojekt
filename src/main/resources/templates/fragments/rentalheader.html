@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
+</head>
+<body>
+
 <div class="container">
     <div class="logo">
         <a th:href="@{/dataregistration.html}">
@@ -7,11 +16,12 @@
 <!--    dropdown menu med inspiration fra https://jsfiddle.net/8evtxnsL/, Bjarke-->
 
     <div class="dropdown" tabindex="1">
+        <i class="db2" tabindex="1"></i>
         <a class="drop_button">Vælg handling</a>
         <div class="drop_content">
-            <a th:href="@{/findRental}">Se oversigt over lejeaftaler</a>
-            <a th:href="@{/findBooking}">Se oversigt over bookinger</a>
-            <a th:href="@{/createRental}">Opret lejeaftale</a>
+            <a href="/findRental">Se oversigt over lejeaftaler</a>
+            <a href="#">Dine rapporter</a>
+            <a href="/createRental">Opret lejeaftale</a>
         </div>
     </div>
     <div class="logout-button">
@@ -21,3 +31,5 @@
     </div>
 </div>
 
+</body>
+</html>
