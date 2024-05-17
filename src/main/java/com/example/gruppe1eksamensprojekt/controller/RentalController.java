@@ -141,7 +141,7 @@ public class RentalController { // Severin
                                   RedirectAttributes redirectAttributes,
                                   Model model) {
         // Opdateret for at rykke logikken fra Controlleren ned i Service.
-        return userService.createUser(name, email, username, password, type, model, redirectAttributes);
+        return userService.createUser(name, username, email, password, type, model, redirectAttributes);
     }
 
     @GetMapping("/logout")

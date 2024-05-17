@@ -88,5 +88,3 @@ INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax
 
 INSERT INTO rental (pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id) VALUES ('a', 'a', '3', '1', '2024-01-01', '2024-04-01', '1');
 
-select * from car;
-select * from rental
