@@ -61,9 +61,13 @@ public class DamageController {
     }
 
     @GetMapping("/create")
-    public String createReport(HttpSession session) {
-        if(session.getAttribute("user")==null)
+    public String createReport(HttpSession session, Model model) {
+        if(session.getAttribute("user")==null) {
             return "frontpage";
+        }
+        List<Car> cars = carService.getDamagedCars();
+        model.addAttribute("cars", cars);
+
         return "damageform";
     }
 
@@ -73,6 +77,7 @@ public class DamageController {
                                 @RequestParam("title") String reportTitle,
                                 @RequestParam("date")LocalDate reportDate,
                                 @RequestParam("comment") String description,
+                                @RequestParam("treatment") String treatment,
                                 @RequestParam("lastUpdated") LocalDate updateDate,
                                 RedirectAttributes redirectAttributes, HttpSession session) {
 
@@ -83,7 +88,7 @@ public class DamageController {
         redirectAttributes.addAttribute("title", reportTitle);
         redirectAttributes.addAttribute("date", reportDate);
 
-        Report report = new Report(idForRental, reportTitle, reportDate, description, updateDate);
+        Report report = new Report(idForRental, reportTitle, reportDate, description, treatment, updateDate);
 
         reportService.createReport(report);
 
@@ -101,7 +106,7 @@ public class DamageController {
 
         model.addAttribute("report", report);
 
-        return "redirect:/reportUpdateForm";
+        return "reportUpdateForm";
 
     }
 
@@ -109,20 +114,25 @@ public class DamageController {
     public String updateReport(@RequestParam("id") int reportId,
                                @RequestParam("title") String title,
                                @RequestParam("date") LocalDate date,
-                               @RequestParam("comment") String description, HttpSession session) {
+                               @RequestParam("comment") String description,
+                               @RequestParam("treatment") String treatment,
+                               HttpSession session) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";
 
         Report report = reportService.getReportById(reportId);
 
-        report.setTitle(title);
-        report.setDate(date);
-        report.setComment(description);
+        if (report != null) {
+            report.setTitle(title);
+            report.setDate(date);
+            report.setComment(description);
+            report.setTreatment(treatment);
 
-        reportService.updateReport(report);
+            reportService.updateReport(report);
+        }
 
-        return "redirect:/overviewReports?id="+reportId;
+        return "redirect:/reports";
 
     }
 
@@ -138,7 +148,7 @@ public class DamageController {
 
         reportService.deleteReport(reportId);
 
-        return "redirect:/overviewReports?id= "+reportId;
+        return "redirect:/reports";
     }
 
     @GetMapping("/ubehandledeBiler")
