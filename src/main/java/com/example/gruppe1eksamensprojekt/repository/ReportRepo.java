@@ -27,7 +27,7 @@ public class ReportRepo {
 
     public void update(Report report) {
         String sql = "UPDATE report SET rentalId=?, title=?, date=?, comment=?, treatment=? WHERE id=?";
-        jdbcTemplate.update(sql, report.getRentalId(), report.getTitle(), report.getDate(), report.getId(), report.getComment(), report.getTreatment());
+        jdbcTemplate.update(sql, report.getRentalId(), report.getTitle(), report.getDate(), report.getComment(), report.getTreatment(), report.getId());
     }
 
     public void delete(int id) {
