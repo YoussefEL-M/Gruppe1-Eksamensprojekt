@@ -17,7 +17,7 @@
                 <label for="name">Navn</label>
             </div>
             <div>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name" th:value="${name}" required>
             </div>
         </div>
         <div class="loginFields">
@@ -25,7 +25,7 @@
                 <label for="email">E-mail</label>
             </div>
             <div>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" th:value="${email}" required>
             </div>
         </div>
         <div class="loginFields">
@@ -33,25 +33,38 @@
                 <label for="username">Brugernavn</label>
             </div>
             <div>
-                <input type="text" name="username" id="username" required>
+                <input type="text" name="username" id="username" th:value="${username}" required>
             </div>
         </div>
+
+        <span style=" color:red"><p id="username_exists"></p></span>
 
         <div class="loginFields">
             <div>
                 <label for="password">Adgangskode</label>
             </div>
             <div>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" th:value="${password}" required>
             </div>
         </div>
+        <div class="loginFields">
+            <div>
+                <label for="confirmPassword">Bekræft adgangskode</label>
+            </div>
+            <div>
+                <input type="password" id="confirmPassword" name="confirmPassword" th:value="${confirmPassword}" required>
+            </div>
+        </div>
+
+        <span style=" color:red"><p id="password_mismatch"></p></span>
+
         <div>
             <div>
-                <input type="radio" id="data" name="type" value="Dataregistrering">
+                <input type="radio" id="data" name="type" value="Dataregistrering" th:checked="${type == 'Dataregistrering'}">
                 <label for="data">Dataregistering</label><br>
-                <input type="radio" id="skade" name="type" value="SkadeOgUdbedring">
+                <input type="radio" id="skade" name="type" value="SkadeOgUdbedring" th:checked="${type == 'SkadeOgUdbedring'}">
                 <label for="skade">Skade og udbedring</label><br>
-                <input type="radio" id="forretning" name="type" value="Forretningsudvikler" required>
+                <input type="radio" id="forretning" name="type" value="Forretningsudvikler" th:checked="${type == 'Forretningsudvikler'}" required>
                 <label for="forretning">Forretningsudvikler</label><br>
             </div>
         </div>
@@ -64,6 +77,20 @@
 
     </form>
 </div>
+
+<script th:inline="javascript">
+    var passwordMismatch = /*[[${passwordMismatch}]]*/ false;
+    if (passwordMismatch===true){
+        document.getElementById("password_mismatch").innerHTML="Adgangskode stemmer ikke overens.";
+    }
+</script>
+
+<script th:inline="javascript">
+    var usernameExists = /*[[${usernameExists}]]*/ false;
+    if (usernameExists===true){
+        document.getElementById("username_exists").innerHTML="Bruger findes allerede.";
+    }
+</script>
 
 </body>
 </html>

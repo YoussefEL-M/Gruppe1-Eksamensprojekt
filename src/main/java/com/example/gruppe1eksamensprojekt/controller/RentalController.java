@@ -43,8 +43,8 @@ public class RentalController { // Severin
     }
 
     @PostMapping("/loggingIn")
-    public String loggingIn(HttpSession session, Model model, @RequestParam("username") String username, @RequestParam("password") String password){
-        User user = userService.login(username, password, model);
+    public String loggingIn(HttpSession session, RedirectAttributes redirectAttributes, @RequestParam("username") String username, @RequestParam("password") String password){
+        User user = userService.login(username, password, redirectAttributes);
         // Todo: evt. tilføj funktionalitet der sender brugeren til en bestemt side alt efter brugertype.
         if(user != null) {
             session.setAttribute("user", user);
@@ -150,10 +150,20 @@ public class RentalController { // Severin
                                   @RequestParam("email") String email,
                                   @RequestParam("username")String username,
                                   @RequestParam("password") String password,
+                                  @RequestParam("confirmPassword") String confirmPassword,
                                   @RequestParam("type") String type,
                                   RedirectAttributes redirectAttributes,
                                   Model model) {
+        if(!password.equals(confirmPassword)){
+            redirectAttributes.addFlashAttribute("name", name);
+            redirectAttributes.addFlashAttribute("email", email);
+            redirectAttributes.addFlashAttribute("username", username);
+            redirectAttributes.addFlashAttribute("type", type);
+            redirectAttributes.addFlashAttribute("passwordMismatch", true);
+            return "redirect:/createUser";
+        }
         // Opdateret for at rykke logikken fra Controlleren ned i Service.
+        // Servicemetoden createUser() har nu returnværdi, der omdiregerer alt efter metodens udfald.
         return userService.createUser(name, username, password, email, type, model, redirectAttributes);
     }
 
