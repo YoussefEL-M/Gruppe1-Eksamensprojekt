@@ -2,56 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damageform.css}">
-
-
-
+    <title>Opdater Rapport</title>
+    <link rel="stylesheet" href="../static/CSS/reportUpdateForm.css" th:href="@{/CSS/reportUpdateForm.css}">
 </head>
 <body>
 
 <header th:insert="fragments/damageheader.html"></header>
 
-
 <div class="updateReportForm">
     <form action="/updateReport" method="post">
         <h2>Opdater rapport</h2>
 
-        <input name="id" type="number" hidden th:value="${report.id}">
+        <input name="id" type="hidden" th:value="${report.id}">
 
         <div class="reportFields">
             <div>
-                <label for="rental-id">Udlejnings-id:</label>
+                <label for="title">Titel:</label>
             </div>
             <div>
-                <input id="rental-id" name="rental-id" type="number" th:value="${report.rentalId}">
+                <input id="title" name="title" type="text" th:value="${report.title}">
             </div>
         </div>
 
         <div class="reportFields">
             <div>
-                <label for="title-field">Titel:</label>
+                <label for="date">Dato:</label>
             </div>
             <div>
-                <input id="title-field" name="title" type="text" th:value="${report.title}">
-            </div>
-        </div>
-
-        <div class="reportFields">
-            <div>
-                <label for="comment">Kommentar:</label>
-            </div>
-            <div>
-                <textarea id="comment" name="comment" th:value="${report.comment}"> </textarea>
+                <input id="date" name="date" type="date" th:value="${report.date}">
             </div>
         </div>
 
         <div class="reportFields">
             <div>
-                <label for="date-field">Dato:</label>
+                <label for="treatment">Behandling:</label>
             </div>
             <div>
-                <input id="date-field" name="date" type="date" th:value="${report.date}">
+                <input id="treatment" name="treatment" type="text" th:value="${report.treatment}">
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="comment">Beskrivelse:</label>
+            </div>
+            <div>
+                <textarea id="comment" name="comment" th:text="${report.comment}"></textarea>
             </div>
         </div>
 

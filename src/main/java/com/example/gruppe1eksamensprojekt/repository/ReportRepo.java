@@ -21,13 +21,13 @@ public class ReportRepo {
     }
 
     public void create(Report report) {
-        String sql = "INSERT INTO report (rentalId, title, date) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, report.getRentalId(), report.getTitle(), report.getDate());
+        String sql = "INSERT INTO report (rentalId, title, date, comment, treatment) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, report.getRentalId(), report.getTitle(), report.getDate(), report.getComment(), report.getTreatment());
     }
 
     public void update(Report report) {
-        String sql = "UPDATE report SET rentalId=?, title=?, date=? WHERE id=?";
-        jdbcTemplate.update(sql, report.getRentalId(), report.getTitle(), report.getDate(), report.getId());
+        String sql = "UPDATE report SET rentalId=?, title=?, date=?, comment=?, treatment=? WHERE id=?";
+        jdbcTemplate.update(sql, report.getRentalId(), report.getTitle(), report.getDate(), report.getId(), report.getComment(), report.getTreatment());
     }
 
     public void delete(int id) {

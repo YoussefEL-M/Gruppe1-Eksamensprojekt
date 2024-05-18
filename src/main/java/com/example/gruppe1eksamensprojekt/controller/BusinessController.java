@@ -21,7 +21,7 @@ public class BusinessController {
   @GetMapping("/businesspage")
    public String businessFrontPage(HttpSession session, Model model){
         if(session.getAttribute("user")==null)
-           return "forside";
+           return "frontpage";
       List<Car> rentedCars = carService.getRented();
        model.addAttribute("rentedCars", rentedCars); // Skulle frontend bruge listen, eller kun antal?
        model.addAttribute("noOfRentedCars", rentedCars.size());
