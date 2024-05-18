@@ -1,5 +1,6 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
+import com.example.gruppe1eksamensprojekt.model.Car;
 import com.example.gruppe1eksamensprojekt.model.CarStatus;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.model.User;
@@ -52,29 +53,40 @@ public class DamageController {
     }
 
     @GetMapping("/create")
-    public String createReport(HttpSession session) {
-        if(session.getAttribute("user")==null)
+    public String createReport(HttpSession session, Model model) {
+        if(session.getAttribute("user")==null) {
             return "frontpage";
+        }
+
+        List<Car> damagedCars = carService.getDamagedCars();
+
+        model.addAttribute("car", damagedCars);
+
         return "damageform";
     }
 
 
     @PostMapping("/createReport")
-    public String createAReport(@RequestParam("rentalId") int idForRental,
-                                @RequestParam("title") String reportTitle,
-                                @RequestParam("date")LocalDate reportDate,
-                                @RequestParam("comment") String description,
-                                @RequestParam("lastUpdated") LocalDate updateDate,
+    public String createAReport(@RequestParam("brand") String carBrand,
+                                @RequestParam("model") String carModel,
+                                @RequestParam("lastUpdated")LocalDate lastUpdatedDate,
+                                @RequestParam("licensePlate") String licensePlate,
+                                @RequestParam("status") CarStatus carStatus,
+                                @RequestParam("")
                                 RedirectAttributes redirectAttributes, HttpSession session) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        redirectAttributes.addAttribute("rentalId", idForRental);
-        redirectAttributes.addAttribute("title", reportTitle);
-        redirectAttributes.addAttribute("date", reportDate);
+        redirectAttributes.addAttribute("brand", carBrand);
+        redirectAttributes.addAttribute("model", carModel);
+        redirectAttributes.addAttribute("lastUpdated", lastUpdatedDate);
+        redirectAttributes.addAttribute("licensePlate", licensePlate);
+        redirectAttributes.addAttribute("status", carStatus);
 
-        Report report = new Report(idForRental, reportTitle, reportDate, description, updateDate);
+
+
+        Report report = new Report();
 
         reportService.createReport(report);
 
