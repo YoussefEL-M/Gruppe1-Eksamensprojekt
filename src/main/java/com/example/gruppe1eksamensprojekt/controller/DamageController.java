@@ -35,9 +35,17 @@ public class DamageController {
 
 
     @GetMapping("/damage")
-    public String skadeUdbedringsForside(HttpSession session) {
-        if(session.getAttribute("user")== null)
+    public String skadeUdbedringsForside(HttpSession session, Model model) {
+        if(session.getAttribute("user")== null) {
             return "frontpage";
+        }
+
+        List<Car> carList = carService.getRented();
+        model.addAttribute("carlist", carList);
+
+        List<Car> pendingCarList = carService.getDamagedCars();
+        model.addAttribute("pendingcarlist", pendingCarList);
+
         return "damagehome";
     }
 
@@ -58,10 +66,8 @@ public class DamageController {
         if(session.getAttribute("user")==null) {
             return "frontpage";
         }
-
-        List<Car> damagedCars = carService.getDamagedCars();
-
-        model.addAttribute("car", damagedCars);
+        List<Car> cars = carService.getDamagedCars();
+        model.addAttribute("cars", cars);
 
         return "damageform";
     }
@@ -69,25 +75,22 @@ public class DamageController {
 
     //Husk at opdaterer i klassediagram
     @PostMapping("/createReport")
-    public String createAReport(@RequestParam("brand") String carBrand,
-                                @RequestParam("model") String carModel,
-                                @RequestParam("lastUpdated")LocalDate lastUpdatedDate,
-                                @RequestParam("licensePlate") String licensePlate,
-                                @RequestParam("status") CarStatus carStatus,
-                                @RequestParam("")
+    public String createAReport(@RequestParam("rentalId") int idForRental,
+                                @RequestParam("title") String reportTitle,
+                                @RequestParam("date")LocalDate reportDate,
+                                @RequestParam("comment") String description,
+                                @RequestParam("treatment") String treatment,
+                                @RequestParam("lastUpdated") LocalDate updateDate,
                                 RedirectAttributes redirectAttributes, HttpSession session) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        redirectAttributes.addAttribute("brand", carBrand);
-        redirectAttributes.addAttribute("model", carModel);
-        redirectAttributes.addAttribute("lastUpdated", lastUpdatedDate);
-        redirectAttributes.addAttribute("licensePlate", licensePlate);
-        redirectAttributes.addAttribute("status", carStatus);
+        redirectAttributes.addAttribute("rentalId", idForRental);
+        redirectAttributes.addAttribute("title", reportTitle);
+        redirectAttributes.addAttribute("date", reportDate);
 
-
-        Report report = new Report();
+        Report report = new Report(idForRental, reportTitle, reportDate, description, treatment, updateDate);
 
         reportService.createReport(report);
 
@@ -105,7 +108,7 @@ public class DamageController {
 
         model.addAttribute("report", report);
 
-        return "redirect:/reportUpdateForm";
+        return "reportUpdateForm";
 
     }
 
@@ -113,20 +116,25 @@ public class DamageController {
     public String updateReport(@RequestParam("id") int reportId,
                                @RequestParam("title") String title,
                                @RequestParam("date") LocalDate date,
-                               @RequestParam("comment") String description, HttpSession session) {
+                               @RequestParam("comment") String description,
+                               @RequestParam("treatment") String treatment,
+                               HttpSession session) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";
 
         Report report = reportService.getReportById(reportId);
 
-        report.setTitle(title);
-        report.setDate(date);
-        report.setComment(description);
+        if (report != null) {
+            report.setTitle(title);
+            report.setDate(date);
+            report.setComment(description);
+            report.setTreatment(treatment);
 
-        reportService.updateReport(report);
+            reportService.updateReport(report);
+        }
 
-        return "redirect:/overviewReports?id="+reportId;
+        return "redirect:/reports";
 
     }
 
@@ -142,7 +150,7 @@ public class DamageController {
 
         reportService.deleteReport(reportId);
 
-        return "redirect:/overviewReports?id= "+reportId;
+        return "redirect:/reports";
     }
 
     @GetMapping("/ubehandledeBiler")

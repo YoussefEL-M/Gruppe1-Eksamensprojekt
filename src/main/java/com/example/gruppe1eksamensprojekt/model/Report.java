@@ -8,16 +8,19 @@ public class Report {
     private String title;
     private LocalDate date;
     private String comment;
+    private String treatment;
     private LocalDate lastUpdated;
 
     public Report() {}
 
-    public Report(int rentalId, String title, LocalDate date, String comment, LocalDate lastUpdated) {
+    public Report(int rentalId, String title, LocalDate date, String comment, String treatment, LocalDate lastUpdated) {
         this.rentalId = rentalId;
         this.title = title;
         this.date = date;
         this.comment = comment;
+        this.treatment = treatment;
         this.lastUpdated = lastUpdated;
+
     }
 
     public int getId() {
@@ -66,5 +69,11 @@ public class Report {
 
     public void setLastUpdated(LocalDate lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+    public String getTreatment() {
+        return treatment;
+    }
+    public void setTreatment(String treatment) {
+        this.treatment = treatment;
     }
 }

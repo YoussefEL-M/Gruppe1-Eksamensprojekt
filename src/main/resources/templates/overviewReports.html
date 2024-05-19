@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../static/CSS/overviewReports.css" th:href="@{/CSS/overviewReports.css}">
-
+    <title>Rapport Oversigt</title>
+    <link rel="stylesheet" href="../static/css/overviewReports.css" th:href="@{/css/overviewReports.css}">
 </head>
 <body>
 
@@ -21,19 +20,29 @@
             <th>Dato</th>
             <th>Behandling</th>
             <th>Beskrivelse</th>
-            <th>Rediger</th>
+            <th>Handling</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="report : ${reports}">
+        <tr th:each="report : ${listOfReports}">
             <td th:text="${report.id}"></td>
             <td th:text="${report.rentalId}"></td>
             <td th:text="${report.title}"></td>
             <td th:text="${report.date}"></td>
+            <td th:text="${report.treatment}"></td>
             <td th:text="${report.comment}"></td>
             <td>
-                <button class="update">Opdater</button>
-                <button class="delete">Slet</button>
+                <div class="edit-button">
+                    <a th:href="@{'/updateForm/' + ${report.id}}">
+                        <button>Opdater</button>
+                    </a>
+                </div>
+                <div class="delete-button">
+                    <a th:href="@{'/delete/' + ${report.id}}"
+                       onclick="return confirm('Er du sikker på du vil slette rapporten?')">
+                        <button>Slet</button>
+                    </a>
+                </div>
             </td>
         </tr>
         </tbody>

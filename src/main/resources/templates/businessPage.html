@@ -36,10 +36,10 @@
                 <td th:text="${car.color}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.fuelType}"></td>
-                <td th:text="${car.kmTravelled}"></td>
-                <td th:text="${car.fuelefficiency}"></td>
-                <td th:text="${car.gearType}"></td>
-                <td th:text="${car.features}"></td>
+                <td th:text="${car.kmTraveled}"></td>
+                <td th:text="${car.fuelEfficiency}"></td>
+                <td th:text="${car.manual ? 'Manual' : 'Automatic'}"></td>
+                <td th:text="${car.trimLevel}"></td>
                 <td th:text="${car.price}"></td>
             </tr>
             </tbody>
@@ -50,7 +50,5 @@
         <p>Total pris for udlejede biler: <span th:text="${rentedCarsTotalPrice}"></span> DKK</p>
     </div>
 </div>
-
-
 </body>
 </html>
