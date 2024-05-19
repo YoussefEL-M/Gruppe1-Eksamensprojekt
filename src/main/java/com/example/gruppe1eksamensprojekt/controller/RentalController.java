@@ -1,8 +1,6 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
-import com.example.gruppe1eksamensprojekt.model.Rental;
-import com.example.gruppe1eksamensprojekt.model.RentalCustomerJoin;
-import com.example.gruppe1eksamensprojekt.model.User;
+import com.example.gruppe1eksamensprojekt.model.*;
 import com.example.gruppe1eksamensprojekt.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,9 +53,11 @@ public class RentalController { // Severin
 
     @GetMapping("/rental")
     public String rental(HttpSession session, Model model){
-        // Todo: evt. rettigheder pr. bruger type.
+
         if(session.getAttribute("user")==null)
             return "frontpage";
+
+        model.addAttribute("carList",carService.getAvailableCars());
         return "dataregistration";
     }
 
@@ -141,6 +141,9 @@ public class RentalController { // Severin
         String endDate=rentalService.calcEndDate(startDate,type);
         Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false);
         rentalService.createRental(rental);
+        Car newcar = carService.getCarById(car);
+        newcar.setStatus(CarStatus.RENTED);
+        carService.updateCar(newcar);
         return "redirect:/rental";
     }
 
@@ -174,6 +177,11 @@ public class RentalController { // Severin
         Rental rental = rentalService.getRentalById(id, model);
         rental.setStatus(true);
         rentalService.updateRental(rental);
+
+        Car car = carService.getCarById(rental.getCarId());
+        car.setStatus(CarStatus.PENDING);
+        carService.updateCar(car);
+
         return "redirect:/findRental";
     }
 

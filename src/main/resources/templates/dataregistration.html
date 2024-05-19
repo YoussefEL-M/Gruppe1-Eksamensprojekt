@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>dataregistration</title>
-  <link rel="stylesheet" href="../static/CSS/dataregistration.css" th:href="@{/CSS/dataregistration.css}">
+  <link rel="stylesheet" href="../static/CSS/overviewRentals.css" th:href="@{/CSS/overviewRentals.css}">
 </head>
 
 <body>
@@ -12,41 +12,38 @@
 
 <div class="main">
   <h1>Velkommen til Dataregistrering</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-</div>
+  <br>
+  <h1>Oversigt over ledige biler:</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Mærke</th>
+      <th>Model</th>
+      <th>Udstyrsniveau</th>
+      <th>Brændstof</th>
+      <th>Pris</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="car : ${carList}">
+      <td th:text="${car.getId()}"> </td>
+      <td th:text="${car.getBrand()}"> </td>
+      <td th:text="${car.getModel()}"> </td>
+      <td th:text="${car.getTrimLevel()}"> </td>
+      <td th:text="${car.getFuelType()}"> </td>
+      <td th:text="${car.getPrice()+' kr.'}"> </td>
 
 
 
-<div class="split">
+    </tr>
 
+    </tbody>
 
-  <div class="halves">
-
-    <h2 class="splitHead">
-      Opgaver
-    </h2>
-
-    <ol class="tasklist">
-      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-      <li>Sed vitae nisi vel leo efficitur convallis.</li>
-      <li>Nulla facilisi. Maecenas euismod ultrices purus, id congue risus tempor nec.</li>
-      <li>Proin vitae sapien at leo placerat commodo nec et justo.</li>
-      <li>Phasellus nec lacinia urna, vitae interdum magna.</li>
-      <li>Integer ultrices fringilla eros, nec rutrum odio dignissim quis. Vestibulum at varius mauris.</li>
-      <li>Duis id quam eget arcu fermentum euismod. Quisque non vestibulum lorem. Fusce nec scelerisque magna.</li>
-
-
-    </ol>
-  </div>
-
-
-
-  <div class="halves">
-
-    <h2 class="splitHead"> Bookinger </h2>
-
-  </div>
-
+  </table>
 
 </div>
 

@@ -63,4 +63,10 @@ public class CarService { // Severin
 
     //Clara
     public List<Car> getDamagedCars() {return carRepo.getDamagedCars();}
+
+
+    public List<Car> getAvailableCars() {return carRepo.getAvailableCars();}
+
+
+
 }
