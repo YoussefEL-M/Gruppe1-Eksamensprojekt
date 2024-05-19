@@ -38,7 +38,7 @@
             <td th:text="${rental.getEndDate()}"></td>
             <td>
                 <div th:if="${rental.getStatus() == false}">
-                    <a th:href="@{'/editRentalStatus?id='+${rental.getId()}}"> <button>Indlever </button></a>
+                    <a th:href="@{'/editRentalStatus?id='+${rental.getId()}+'&page=your'}"> <button>Indlever </button></a>
                 </div>
                 <div th:if="${rental.getStatus() == true}">
                     <a>Indleveret</a>
@@ -50,7 +50,7 @@
                 <a th:href="@{'/editRental?id='+${rental.getId()}}"> <button> Rediger </button></a>
             </div>
                 <div class="delete-button">
-                    <a th:href="@{'/deleteRental?id='+${rental.getId()}}" onclick="return confirm('Er du sikker på du vil slette aftalen?')"> <button>Slet</button></a>
+                    <a th:href="@{'/deleteRental?id='+${rental.getId()}+'&page=your'}" onclick="return confirm('Er du sikker på du vil slette aftalen?')"> <button>Slet</button></a>
                 </div>
             </td>
         </tr>
