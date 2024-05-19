@@ -118,7 +118,7 @@ public class RentalController { // Severin
             return "frontpage";
 
         model.addAttribute("customerList", customerService.getAll());
-        model.addAttribute("carList", carService.getAll());
+        model.addAttribute("carList", carService.getAvailableCars());
         return "createRental";
     }
 
