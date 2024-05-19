@@ -78,8 +78,8 @@ public class DamageController {
     public String createAReport(@RequestParam("rentalId") int idForRental,
                                 @RequestParam("title") String reportTitle,
                                 @RequestParam("date")LocalDate reportDate,
-                                @RequestParam("comment") String description,
                                 @RequestParam("treatment") String treatment,
+                                @RequestParam("comment") String description,
                                 @RequestParam("lastUpdated") LocalDate updateDate,
                                 RedirectAttributes redirectAttributes, HttpSession session) {
 

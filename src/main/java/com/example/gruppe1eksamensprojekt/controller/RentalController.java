@@ -141,7 +141,7 @@ public class RentalController { // Severin
         String endDate=rentalService.calcEndDate(startDate,type);
         Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false);
         rentalService.createRental(rental);
-        Car newcar = carService.getCarById(car);
+        Car newcar = carService.getCarById(car, model);
         newcar.setStatus(CarStatus.RENTED);
         carService.updateCar(newcar);
         return "redirect:/rental";
@@ -178,7 +178,7 @@ public class RentalController { // Severin
         rental.setStatus(true);
         rentalService.updateRental(rental);
 
-        Car car = carService.getCarById(rental.getCarId());
+        Car car = carService.getCarById(rental.getCarId(), model);
         car.setStatus(CarStatus.PENDING);
         carService.updateCar(car);
 
