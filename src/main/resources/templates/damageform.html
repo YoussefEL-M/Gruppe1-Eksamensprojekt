@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Bjarke og Severin -->
+<!-- Youssef -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,39 +10,61 @@
 
 <header th:insert="fragments/damageheader.html"></header>
 
-<div class="reportform">
+<!-- <div class="reportform">
     <div class="reportfield">
         <p th:text="'Mærke: ' + ${car.brand}"></p>
         <p th:text="'Model: ' + ${car.model}"></p>
         <p th:text="'Indleveret: ' + ${car.lastUpdated}"></p>
         <p th:text="'Nummerplade: ' + ${car.licensePlate}"></p>
         <p th:text="'Status: ' + ${car.status}"></p>
-    </div>
+    </div>-->
 
     <form action="/createReport" method="post">
-        <!-- Todo: implementer funktionalitet. -->
+        <h2>Create Damage Report</h2>
 
-
-        <div class="reportfield">
-            <div>
-                <label for="comment">Kommentar</label>
-            </div>
-            <div>
-                <textarea id="comment" name="comment" placeholder="Kommentar..."></textarea>
-            </div>
-            <div>
-                <label for="status">Status</label>
-            </div>
-            <div>
-                <select id="status" name="status">
-                    <option value="PENDING">Afventer behandling</option>
-                    <option value="DAMAGED">Skadet</option>
-                    <option value="AVAILABLE">Klar til udlejning</option>
-                </select>
-                <input type="submit">
-            </div>
+        <div>
+            <label for="rentalId">Udlejnings-ID:</label>
+            <input id="rentalId" name="rentalId" type="text" required>
         </div>
 
+        <div>
+            <label for="title">Titel:</label>
+            <input id="title" name="title" type="text" required>
+        </div>
+
+        <div>
+            <label for="date">Dato:</label>
+            <input id="date" name="date" type="date" required>
+        </div>
+
+        <div>
+            <label for="treatment">Behandling:</label>
+            <textarea id="treatment" name="treatment"></textarea>
+        </div>
+
+        <div>
+            <label for="comment">Kommentar:</label>
+            <textarea id="comment" name="comment"></textarea>
+        </div>
+
+        <div class="damages">
+            <h3>Skader:</h3>
+            <!-- Et Thymleaf loop der itererer fa 0 - 4-->
+            <div th:each="i : ${#numbers.sequence(0, 4)}">
+                <!-- Generere et unikt name til hver input ved brug af thymeleaf -->
+                <input type="text" th:name="|report[${i}].damage|" placeholder="Skade beksrivelse" />
+                <input type="number" step="0.01" th:name="|report[${i}].price|" placeholder="Pris" />
+            </div>
+        </div>
+        <div class="status">
+            <h3>Status</h3>
+            <select id="status" name="status">
+                <option value="PENDING">Afventer behandling</option>
+                <option value="DAMAGED">Skadet</option>
+                <option value="AVAILABLE">Klar til udlejning</option>
+            </select>
+        </div>
+        <button type="submit">Create Report</button>
     </form>
 </div>
 

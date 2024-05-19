@@ -1,6 +1,9 @@
 package com.example.gruppe1eksamensprojekt.model;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Report {
     private int id;
@@ -10,8 +13,12 @@ public class Report {
     private String comment;
     private String treatment;
     private LocalDate lastUpdated;
+    private Map<String, Double> damages;
 
-    public Report() {}
+    public Report() {
+        this.damages = new HashMap<>();
+    }
+
 
     public Report(int rentalId, String title, LocalDate date, String comment, String treatment, LocalDate lastUpdated) {
         this.rentalId = rentalId;
@@ -75,5 +82,11 @@ public class Report {
     }
     public void setTreatment(String treatment) {
         this.treatment = treatment;
+    }
+    public Map<String, Double> getDamages() {
+        return damages;
+    }
+    public void setDamages(Map<String, Double> damages) {
+        this.damages = damages;
     }
 }
