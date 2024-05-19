@@ -53,8 +53,23 @@ public class UserService { // Severin
             return "register";
     }
 
-    public User getUserById(int id){
-        return userRepo.getUserById(id);
+    //Opdater i klassediagram
+    public User getUserById(int id, Model model){
+
+        User user;
+        try {
+            user = userRepo.getUserById(id);
+        } catch (EmptyResultDataAccessException ERDA) {
+
+            model.addAttribute("unableToFindUser", true);
+            return null;
+        }
+
+        if (user.getId() == id) {
+
+            return user;
+        }
+        return null;
     }
 
 

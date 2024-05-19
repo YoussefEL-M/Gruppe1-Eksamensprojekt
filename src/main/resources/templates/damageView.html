@@ -5,15 +5,18 @@
     <!--Clara-->
     <meta charset="UTF-8">
     <title>Biler der mangler behandling</title>
-    <link rel="stylesheet" href="../static/css/damagehome.css" th:href="@{/css/overviewReports.css}">
+    <link rel="stylesheet" href="../static/css/overviewReports.css" th:href="@{/css/overviewReports.css}">
 </head>
 <body>
 
 <header th:insert="fragments/damageheader.html"></header>
 
-<h1>Beskadigede biler der mangler opfølgning på</h1>
+<div id="overskrift">
+    <h1>Beskadigede biler der mangler opfølgning på</h1>
+</div>
 
-<table class="taskList">
+<div class="main">
+<table>
     <thead>
     <tr>
         <th> Bilmærke</th>
@@ -27,6 +30,7 @@
         <th> Km pr. liter brændstof</th>
         <th> Pris</th>
         <th> Manuelt gear?</th>
+        <th></th>
     </tr>
     </thead>
 
@@ -48,6 +52,6 @@
     </tr>
     </tbody>
 </table>
-
+</div>
 </body>
 </html>

@@ -3,7 +3,9 @@ package com.example.gruppe1eksamensprojekt.service;
 import com.example.gruppe1eksamensprojekt.model.Rental;
 import com.example.gruppe1eksamensprojekt.repository.RentalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,8 +26,22 @@ public class RentalService { //Severin
         rentalRepo.create(rental);
     }
 
-    public Rental getRentalById(int id){
-        return rentalRepo.getRentalById(id);
+    //Opdater i klassediagram
+    public Rental getRentalById(int id, Model model){
+
+        Rental rental;
+        try {
+            rental = rentalRepo.getRentalById(id);
+        } catch (EmptyResultDataAccessException ERDA) {
+
+            model.addAttribute("unableToFindRental", true);
+            return null;
+        }
+        if(rental.getId() == id) {
+
+            return rental;
+        }
+        return null;
     }
 
     public void updateRental(Rental rental){
