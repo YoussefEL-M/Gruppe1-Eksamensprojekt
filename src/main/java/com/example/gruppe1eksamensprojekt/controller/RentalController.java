@@ -1,8 +1,6 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
-import com.example.gruppe1eksamensprojekt.model.Rental;
-import com.example.gruppe1eksamensprojekt.model.RentalCustomerJoin;
-import com.example.gruppe1eksamensprojekt.model.User;
+import com.example.gruppe1eksamensprojekt.model.*;
 import com.example.gruppe1eksamensprojekt.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +71,10 @@ public class RentalController { // Severin
     public String editRental(@RequestParam("id") int id, HttpSession session, Model model){
         if(session.getAttribute("user")==null)
             return "frontpage";
-        model.addAttribute("rental",rentalService.getRentalById(id));
+        Rental rental = rentalService.getRentalById(id);
+        model.addAttribute("rental", rental);
+        model.addAttribute("cars", carService.getAvailable());
+        model.addAttribute("rentalCar", carService.getCarById(rental.getCarId()));
 
         return "rentalUpdateForm";
     }
@@ -97,6 +98,9 @@ public class RentalController { // Severin
     public String deleteRental(@RequestParam("id") int id, HttpSession session){
         if(session.getAttribute("user")==null)
             return "frontpage";
+        Car car = carService.getCarById(rentalService.getRentalById(id).getCarId());
+        car.setStatus(CarStatus.AVAILABLE);
+        carService.updateCar(car);
         rentalService.deleteRental(id);
         return "redirect:/findRental";
     }
@@ -117,7 +121,7 @@ public class RentalController { // Severin
             return "frontpage";
 
         model.addAttribute("customerList", customerService.getAll());
-        model.addAttribute("carList", carService.getAll());
+        model.addAttribute("carList", carService.getAvailable());
         return "createRental";
     }
 

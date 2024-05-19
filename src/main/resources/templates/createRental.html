@@ -30,7 +30,7 @@
             </div>
 
             <div class="thirds">
-                <h2 class="splitHead"> Vælg start dato</h2>
+                <h2 class="splitHead"> Vælg startdato</h2>
                 <div class="loginFields">
                     <div>
                         <input type="date" name="startDate" th:value="${startDate}" required>
@@ -61,11 +61,11 @@
                         </datalist>
                     </div>
                 </div>
-                <span style=" color:red"><p id="carNotFound"></p></span>
+                <span style=" color:red"><p id="carError"></p></span>
             </div>
 
             <div class="thirds">
-                <h2 class="splitHead"> Vælg aftale type</h2>
+                <h2 class="splitHead"> Vælg aftaletype</h2>
                 <div class="loginFields">
                     <div>
                         <input type="radio" id="limited" name="type" value="5" th:checked="${type == 5}">
@@ -105,7 +105,12 @@
 
     var carNotFound = /*[[${carNotFound}]]*/ false;
     if (carNotFound===true){
-        document.getElementById("carNotFound").innerHTML="Kunne ikke finde bilen i systemet.";
+        document.getElementById("carError").innerHTML="Kunne ikke finde bilen i systemet.";
+    }
+
+    var carAlreadyRented = /*[[${carAlreadyRented}]]*/ false;
+    if (carAlreadyRented===true){
+        document.getElementById("carError").innerHTML="Bilen er allerede udlejet.";
     }
 
     var timeTravelException = /*[[${timeTravelException}]]*/ false;

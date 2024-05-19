@@ -18,18 +18,31 @@
         <h2>Opdater lejeaftale</h2>
 
         <input name="id" type="number" hidden th:value="${rental.getId()}">
-<!--        <input name="pickUpLocation" type="text" hidden th:value="${rental.getPickUpLocation()}">-->
-<!--        <input name="type" type="text" hidden th:value="${rental.getType()}">-->
-<!--        <input name="customerId" type="text" hidden th:value="${rental.getCustomerId()}">-->
-<!--        <input name="startDate" type="text" hidden th:value="${rental.getStartDate()}">-->
-
 
         <div class="reportFields">
             <div>
-                <label for="endDate">Slut dato:</label>
+                <label for="startDate">Startdato:</label>
             </div>
             <div>
-                <input id="endDate" name="endDate" type="date" th:value="${rental.getEndDate()}">
+                <input id="startDate" name="startDate" type="date" th:value="${rental.getStartDate()}" required>
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="endDate">Slutdato:</label>
+            </div>
+            <div>
+                <input id="endDate" name="endDate" type="date" th:value="${rental.getEndDate()}" required>
+            </div>
+        </div>
+
+        <div class="reportFields">
+            <div>
+                <label for="pickUpLocation">Opsamlingssted:</label>
+            </div>
+            <div>
+                <input id="pickUpLocation" name="pickUpLocation" type="text" th:value="${rental.getPickUpLocation()}" required>
             </div>
         </div>
 
@@ -38,16 +51,20 @@
                 <label for="returnLocation">Indleveringssted:</label>
             </div>
             <div>
-                <input id="returnLocation" name="returnLocation" type="text" th:value="${rental.getReturnLocation()}">
+                <input id="returnLocation" name="returnLocation" type="text" th:value="${rental.getReturnLocation()}" required>
             </div>
         </div>
 
         <div class="reportFields">
             <div>
-                <label for="carId">Bil ID:</label>
+                <label for="cars">Bil:</label>
             </div>
             <div>
-                <input id="carId" name="carId" type="text" th:value="${rental.carId}">
+                <input list="cars" name="car" th:value="${rentalCar.id} + '. ' + ${rentalCar.getBrand()} + ' - ' + ${rentalCar.getModel()} + ' - ' + ${rentalCar.price}" required>
+                <datalist id="cars">
+                    <option th:text="${rentalCar.brand}+ ' - ' + ${rentalCar.model}+ ' - ' + ${rentalCar.price}" th:value="${rentalCar.id} + '. ' + ${rentalCar.brand}+ ' - ' + ${rentalCar.model}+ ' - ' + ${rentalCar.price}"></option>
+                    <option th:each="car : ${cars}" th:text="${car.brand}+ ' - ' + ${car.model}+ ' - ' + ${car.price}" th:value="${car.id} + '. ' + ${car.brand}+ ' - ' + ${car.model}+ ' - ' + ${car.price}"></option>
+                </datalist>
             </div>
         </div>
 

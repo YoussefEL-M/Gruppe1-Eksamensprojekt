@@ -1,5 +1,7 @@
 package com.example.gruppe1eksamensprojekt.service;
 
+import com.example.gruppe1eksamensprojekt.model.Car;
+import com.example.gruppe1eksamensprojekt.model.CarStatus;
 import com.example.gruppe1eksamensprojekt.model.Rental;
 import com.example.gruppe1eksamensprojekt.repository.CarRepo;
 import com.example.gruppe1eksamensprojekt.repository.CustomerRepo;
@@ -57,7 +59,10 @@ public class RentalService { //Severin
 
         try{
             carId = Integer.parseInt(car.split("\\.")[0]);
-            carRepo.getCarById(carId);
+            if(!carRepo.getCarById(carId).getStatus().equals(CarStatus.AVAILABLE)){
+                redirectAttributes.addFlashAttribute("carAlreadyRented", true);
+                error = true;
+            }
         } catch (EmptyResultDataAccessException | NumberFormatException E){
             redirectAttributes.addFlashAttribute("carNotFound", true);
             error = true;
@@ -82,6 +87,9 @@ public class RentalService { //Severin
             redirectAttributes.addFlashAttribute("unlimitedMonth", unlimitedMonth);
         } else{
             String endDate = calcEndDate(startDate,type);
+            Car carToUpdate = carRepo.getCarById(carId);
+            carToUpdate.setStatus(CarStatus.RENTED);
+            carRepo.update(carToUpdate);
             Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, false);
             rentalRepo.create(rental);
             return "redirect:/rental";

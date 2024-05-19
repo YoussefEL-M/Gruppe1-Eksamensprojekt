@@ -38,6 +38,10 @@ public class CarService { // Severin
         carRepo.delete(id);
     }
 
+    public List<Car> getAvailable(){
+        return carRepo.getAvailable();
+    }
+
     public List<Car> getRented(){
         return carRepo.getRented();
     }

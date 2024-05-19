@@ -23,16 +23,18 @@ public class CarRepo {
     }
 
     public Car getCarById(int id){
-        String sql = "SELECT * FROM car WHERE id = ?";
+        String sql = "SELECT * FROM car " +
+                "LEFT JOIN carIdentification " +
+                "ON car.serialNumber = carIdentification.serialNumber WHERE id = ?";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
     public void update(Car car) {
-        String sql = "UPDATE car SET serialNumber=?, color=?, trimLevel=?, steelPrice=?, registrationTax=?, emission=?, status=?, ds=?, licensePlate=?, fuelType = ?, kmTraveled = ?, fuelEfficiency = ?, price = ?, manual  = ? WHERE id=?";
+        String sql = "UPDATE car SET serialNumber = ?, color = ?, trimLevel = ?, steelPrice = ?, registrationTax = ?, emission = ?, status = ?, ds = ?, licensePlate = ?, fuelType = ?, kmTraveled = ?, fuelEfficiency = ?, price = ?, manual  = ? WHERE id=?";
         String updateCarIdentification  = "UPDATE carIdentification SET brand = ?, model = ? WHERE serialNumber = ?";
-        jdbcTemplate.update(sql, car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus(), car.isDs(), car.getLicensePlate(), car.getId());
-        jdbcTemplate.update(updateCarIdentification, car.getBrand(), car.getModel());
+        jdbcTemplate.update(sql, car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus().toString(), car.isDs(), car.getLicensePlate(), car.getFuelType().toString(), car.getKmTraveled(), car.getFuelEfficiency(), car.getPrice(), car.isManual(), car.getId());
+        jdbcTemplate.update(updateCarIdentification, car.getBrand(), car.getModel(), car.getSerialNumber());
     }
     public void delete(int id) {
         String sql = "DELETE FROM car WHERE id = ?";
@@ -50,7 +52,17 @@ public class CarRepo {
     }
 
     public List<Car> getRented(){
-        String sql = "SELECT * FROM car WHERE status = 'RENTED'";
+        String sql = "SELECT * FROM car " +
+                "LEFT JOIN carIdentification " +
+                "ON car.serialNumber = carIdentification.serialNumber WHERE status = 'RENTED'";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public List<Car> getAvailable(){
+        String sql = "SELECT * FROM car " +
+                "LEFT JOIN carIdentification " +
+                "ON car.serialNumber = carIdentification.serialNumber WHERE status = 'AVAILABLE'";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
