@@ -31,7 +31,6 @@
             <tr>
                 <th>Bilmærke</th>
                 <th>Model</th>
-                <th>Indleveret</th>
                 <th>Nummerplade</th>
                 <th>Status</th>
             </tr>
@@ -40,7 +39,6 @@
             <tr th:each="car : ${carlist}">
                 <td th:text="${car.brand}"></td>
                 <td th:text="${car.model}"></td>
-                <td th:text="${car.lastUpdated}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.status}"></td>
                 <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button>Opret rapport</button></a></td>
@@ -60,7 +58,6 @@
             <tr>
                 <th>Bilmærke</th>
                 <th>Model</th>
-                <th>Indleveret</th>
                 <th>Nummerplade</th>
                 <th>Status</th>
                 <th>Rediger</th>
@@ -70,7 +67,6 @@
             <tr th:each="car : ${pendingcarlist}">
                 <td th:text="${car.brand}"></td>
                 <td th:text="${car.model}"></td>
-                <td th:text="${car.lastUpdated}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.status}"></td>
                 <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button>Rediger</button></a></td>
