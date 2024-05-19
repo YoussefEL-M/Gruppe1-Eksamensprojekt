@@ -75,6 +75,15 @@ CREATE TABLE IF NOT EXISTS report
 
 
 
+CREATE TABLE IF NOT EXISTS damages (
+                                       id	INT PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
+                                       report_id INT,
+                                       damage VARCHAR(50),
+    price DOUBLE
+    );
+
+
+
 
 INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Lars', '12345678', 'Vej 14', '2011-11-11');
 INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Birgitte', '87654321', 'Gade 69', '1999-11-11');
@@ -96,3 +105,7 @@ INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax
 INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, status, ds, licensePlate, fuelType, kmTraveled, fuelEfficiency, price, manual) VALUES ('3','1111','Red', 'Max', '14', '1000','30', 'AVAILABLE', 1, 'Kachow', 'PETROL', '100', '20', '100000',  '0');
 INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, status, ds, licensePlate, fuelType, kmTraveled, fuelEfficiency, price, manual) VALUES ('4','2222','brown', 'Max', '14', '1000','30', 'AVAILABLE', 1, 'Kachow', 'ELECTRIC', '100', '20', '100',  '0');
 
+INSERT INTO USER (type, name, username, password, email) VALUES ('Dataregistrering', 'lars', 'lars', 'lars', 'lars@lars.dk');
+INSERT INTO USER (type, name, username, password, email) VALUES ('SkadeOgUdbedring', 's', 's', 's', 's@s.dk');
+
+INSERT INTO rental (user_id, pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id,status) VALUES ('1','a', 'a', '3', '1', '2024-01-01', '2024-04-01', '1','0');

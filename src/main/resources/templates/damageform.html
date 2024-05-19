@@ -52,8 +52,8 @@
             <!-- Et Thymleaf loop der itererer fa 0 - 4-->
             <div th:each="i : ${#numbers.sequence(0, 4)}">
                 <!-- Generere et unikt name til hver input ved brug af thymeleaf -->
-                <input type="text" th:name="|report[${i}].damage|" placeholder="Skade beksrivelse" />
-                <input type="number" step="0.01" th:name="|report[${i}].price|" placeholder="Pris" />
+                <input type="text" th:name="|report${i}damage|" placeholder="Skade beksrivelse" />
+                <input type="number" step="0.01" th:name="|report${i}price|" placeholder="Pris" value="0" />
             </div>
         </div>
         <div class="status">

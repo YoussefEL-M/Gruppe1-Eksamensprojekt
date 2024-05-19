@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ReportService { // Severin
@@ -32,5 +33,15 @@ public class ReportService { // Severin
     public void deleteReport(int id){
         reportRepo.delete(id);
     }
+
+    public void createDamages(Report report) {
+        for (var entry : report.getDamages().entrySet()){
+            reportRepo.createDamage(report.getId(), entry.getKey(), entry.getValue());
+
+        }
+
+    }
+
+    public int lastId(){return reportRepo.lastId(); }
 
 }

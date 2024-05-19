@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ReportRepo {
@@ -39,5 +40,15 @@ public class ReportRepo {
         String sql = "SELECT * FROM report WHERE id = ?";
         RowMapper<Report> rowMapper = new BeanPropertyRowMapper<>(Report.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+    public void createDamage(int id, String damage, double price) {
+        String sql = "INSERT INTO damages (report_id, damage, price) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, id, damage, price);
+    }
+
+    public int lastId() {
+        String sql = "SELECT MAX(id) FROM report";
+        return jdbcTemplate.queryForObject(sql, int.class);
     }
 }

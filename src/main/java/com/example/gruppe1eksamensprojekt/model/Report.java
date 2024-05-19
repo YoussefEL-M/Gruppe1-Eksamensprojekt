@@ -15,18 +15,25 @@ public class Report {
     private LocalDate lastUpdated;
     private Map<String, Double> damages;
 
-    public Report() {
-        this.damages = new HashMap<>();
+
+    public Report(){
     }
-
-
-    public Report(int rentalId, String title, LocalDate date, String comment, String treatment, LocalDate lastUpdated) {
+    public Report(int id, int rentalId, String title, LocalDate date, String comment, String treatment) {
+        this.id=id;
         this.rentalId = rentalId;
         this.title = title;
         this.date = date;
         this.comment = comment;
         this.treatment = treatment;
-        this.lastUpdated = lastUpdated;
+
+    }
+    public Report(int rentalId, String title, LocalDate date, String comment, String treatment, Map<String, Double> damages) {
+        this.rentalId = rentalId;
+        this.title = title;
+        this.date = date;
+        this.comment = comment;
+        this.treatment = treatment;
+        this.damages = damages;
 
     }
 
@@ -77,9 +84,11 @@ public class Report {
     public void setLastUpdated(LocalDate lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
     public String getTreatment() {
         return treatment;
     }
+
     public void setTreatment(String treatment) {
         this.treatment = treatment;
     }

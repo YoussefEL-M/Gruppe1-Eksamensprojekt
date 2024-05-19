@@ -33,7 +33,6 @@ public class CarRepo {
     public void update(Car car) {
         String sql = "UPDATE car SET serialNumber=?, color=?, trimLevel=?, steelPrice=?, registrationTax=?, emission=?, status=?, ds=?, licensePlate=?, fuelType = ?, kmTraveled = ?, fuelEfficiency = ?, price = ?, manual  = ? WHERE id=?";
         jdbcTemplate.update(sql, car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus().name(), car.isDs(), car.getLicensePlate(), car.getFuelType().name(), car.getKmTraveled(), car.getFuelEfficiency(), car.getPrice(), car.isManual(), car.getId());
-
     }
     public void delete(int id) {
         String sql = "DELETE FROM car WHERE id = ?";
