@@ -52,6 +52,7 @@ public class DamageController {
         return "overviewReports";
     }
 
+    //Husk at opdaterer i klassediagram
     @GetMapping("/create")
     public String createReport(HttpSession session, Model model) {
         if(session.getAttribute("user")==null) {
@@ -66,6 +67,7 @@ public class DamageController {
     }
 
 
+    //Husk at opdaterer i klassediagram
     @PostMapping("/createReport")
     public String createAReport(@RequestParam("brand") String carBrand,
                                 @RequestParam("model") String carModel,
@@ -83,7 +85,6 @@ public class DamageController {
         redirectAttributes.addAttribute("lastUpdated", lastUpdatedDate);
         redirectAttributes.addAttribute("licensePlate", licensePlate);
         redirectAttributes.addAttribute("status", carStatus);
-
 
 
         Report report = new Report();
