@@ -65,6 +65,7 @@ public class DamageController {
         return "overviewReports";
     }
 
+    //Husk at opdaterer i klassediagram
     @GetMapping("/create")
     public String createReport(HttpSession session, Model model) {
         if(session.getAttribute("user")==null) {
@@ -77,6 +78,7 @@ public class DamageController {
     }
 
 
+    //Husk at opdaterer i klassediagram
     @PostMapping("/createReport")
     public String createAReport(@RequestParam("rentalId") int idForRental,
                                 @RequestParam("title") String reportTitle,
@@ -119,33 +121,33 @@ public class DamageController {
         return "redirect:/reports";
     }
 
-
+    //Opdater i klassediagram
     @GetMapping("/updateForm/{id}")
     public String showUpdateReportForm(@PathVariable("id") int reportId, HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        Report report = reportService.getReportById(reportId);
+        Report report = reportService.getReportById(reportId, model);
 
         model.addAttribute("report", report);
 
         return "reportUpdateForm";
 
     }
-
+    // opdater i klassediagram
     @PostMapping("/updateReport")
     public String updateReport(@RequestParam("id") int reportId,
                                @RequestParam("title") String title,
                                @RequestParam("date") LocalDate date,
                                @RequestParam("comment") String description,
                                @RequestParam("treatment") String treatment,
-                               HttpSession session) {
+                               HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        Report report = reportService.getReportById(reportId);
+        Report report = reportService.getReportById(reportId, model);
 
         if (report != null) {
             report.setTitle(title);

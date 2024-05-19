@@ -85,6 +85,15 @@ button input[type = "submit"]{
     border-radius: 4px;
 }
 
+.rapportknap {
+
+    cursor:pointer;
+    border-radius: 4px;
+    width:100px;
+    height:30px;
+
+}
+
 button {
     background-color:white;
     color:#1892C3;
@@ -95,4 +104,8 @@ button {
 button:hover {
     background-color: #1892C3;
     color:white;
+}
+
+#overskrift {
+    text-align: center;
 }

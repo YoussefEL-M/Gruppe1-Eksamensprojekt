@@ -4,7 +4,9 @@ import com.example.gruppe1eksamensprojekt.model.Car;
 import com.example.gruppe1eksamensprojekt.model.User;
 import com.example.gruppe1eksamensprojekt.repository.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -24,8 +26,21 @@ public class CarService { // Severin
         carRepo.create(car);
     }
 
-    public Car getCarById(int id){
-        return carRepo.getCarById(id);
+    //Noter i klassediagram
+    public Car getCarById(int id, Model model){
+
+        Car car;
+        try {
+            car = carRepo.getCarById(id);
+        } catch (EmptyResultDataAccessException ERDA) {
+            model.addAttribute("unableToFindCar", true);
+            return null;
+        }
+        if(car.getId() == id) {
+            return car;
+        }
+
+        return null;
     }
 
     public void updateCar(Car car){

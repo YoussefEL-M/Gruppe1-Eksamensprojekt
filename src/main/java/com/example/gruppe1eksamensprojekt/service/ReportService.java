@@ -3,7 +3,9 @@ package com.example.gruppe1eksamensprojekt.service;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.repository.ReportRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Map;
@@ -22,8 +24,22 @@ public class ReportService { // Severin
         reportRepo.create(report);
     }
 
-    public Report getReportById(int id){
-        return reportRepo.getReportById(id);
+    //Opdater i klassediagram
+    public Report getReportById(int id, Model model){
+
+        Report report;
+
+        try {
+            report = reportRepo.getReportById(id);
+        } catch (EmptyResultDataAccessException ERDA) {
+
+            model.addAttribute("unableToFindReport", true);
+            return null;
+        }
+        if(report.getId() == id) {
+            return report;
+        }
+        return null;
     }
 
     public void updateReport(Report report){

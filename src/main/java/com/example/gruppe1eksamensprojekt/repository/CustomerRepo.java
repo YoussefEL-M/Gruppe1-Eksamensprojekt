@@ -2,6 +2,7 @@ package com.example.gruppe1eksamensprojekt.repository;
 
 import com.example.gruppe1eksamensprojekt.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -20,7 +21,7 @@ public class CustomerRepo {
         jdbcTemplate.update(sql, customer.getName(), customer.getTelnr(), customer.getAddress(), customer.getBirthdate(), customer.getId());
     }
 
-    public Customer getCustomerById(int id) {
+    public Customer getCustomerById(int id) throws EmptyResultDataAccessException {
         String sql = "SELECT * FROM customer WHERE id = ?";
         RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, id);

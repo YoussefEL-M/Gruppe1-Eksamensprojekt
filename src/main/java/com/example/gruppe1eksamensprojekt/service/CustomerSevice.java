@@ -3,7 +3,9 @@ package com.example.gruppe1eksamensprojekt.service;
 import com.example.gruppe1eksamensprojekt.model.Customer;
 import com.example.gruppe1eksamensprojekt.repository.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -23,10 +25,24 @@ public class CustomerSevice { // Severin
         customerRepo.create(customer);
     }
 
-    public Customer getCustomerById(int id){
+    //Opdater i klassediagram
+    public Customer getCustomerById(int id, Model model){
         // Er ikke i klassediagrammet, men antager at vi skal bruge den.
         // Todo: tilføj til klassediagram.
-        return customerRepo.getCustomerById(id);
+
+        Customer customer;
+        try {
+            customer = customerRepo.getCustomerById(id);
+        } catch (EmptyResultDataAccessException ERDA) {
+
+            model.addAttribute("unableToFindCustomer", true);
+            return null;
+        }
+        if(customer.getId() == id) {
+            return customer;
+        }
+
+        return null;
     }
 
     public void updateCustomer(Customer customer){

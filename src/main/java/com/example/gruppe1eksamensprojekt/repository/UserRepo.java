@@ -4,6 +4,7 @@ import com.example.gruppe1eksamensprojekt.model.BusinessUser;
 import com.example.gruppe1eksamensprojekt.model.DamageUser;
 import com.example.gruppe1eksamensprojekt.model.DataUser;
 import com.example.gruppe1eksamensprojekt.model.User;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -82,7 +83,8 @@ public class UserRepo {
 
     }
 
-    public User getUserById(int id) {
+    //opdater i klassediagram
+    public User getUserById(int id) throws EmptyResultDataAccessException {
         String sql = "SELECT * FROM user WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, mapperSwitch, id);
     }
@@ -102,7 +104,8 @@ public class UserRepo {
         return jdbcTemplate.query(sql, mapperSwitch);
     }
 
-    public User getUserByUsername(String username) {
+    //Opdater i klassediagram
+    public User getUserByUsername(String username) throws EmptyResultDataAccessException {
         String sql = "SELECT * FROM user WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, mapperSwitch, username);
     }

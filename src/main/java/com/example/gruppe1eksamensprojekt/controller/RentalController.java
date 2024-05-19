@@ -73,18 +73,23 @@ public class RentalController { // Severin
     public String editRental(@RequestParam("id") int id, HttpSession session, Model model){
         if(session.getAttribute("user")==null)
             return "frontpage";
-        model.addAttribute("rental",rentalService.getRentalById(id));
+        //Har indsat model i getRentalById metode som parameter grundet, at den bruges i service.
+        //Ved ikke om den skal være der, men har sat den der på grund af, at den ellers ville gå i fejl
+        model.addAttribute("rental",rentalService.getRentalById(id, model));
 
         return "rentalUpdateForm";
     }
+
+    //Opdater klassediagram
     @PostMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
                                @RequestParam("returnLocation") String returnLocation,
-                               @RequestParam("carId") int carId, HttpSession session){
+                               @RequestParam("carId") int carId, HttpSession session,
+                               Model model){
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        Rental rental = rentalService.getRentalById(id);
+        Rental rental = rentalService.getRentalById(id, model);
         rental.setEndDate(endDate);
         rental.setReturnLocation(returnLocation);
         rental.setCarId(carId);
@@ -138,7 +143,7 @@ public class RentalController { // Severin
         User user = (User) session.getAttribute("user");
         Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false, user.getId());
         rentalService.createRental(rental);
-        Car newcar = carService.getCarById(car);
+        Car newcar = carService.getCarById(car, model);
         newcar.setStatus(CarStatus.RENTED);
         carService.updateCar(newcar);
         return "redirect:/rental";
@@ -168,13 +173,14 @@ public class RentalController { // Severin
         return "redirect:/";
     }
 
+    //Opdater i klassediagram
     @GetMapping("/editRentalStatus")
-    public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page){
-        Rental rental = rentalService.getRentalById(id);
+    public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page, Model model){
+        Rental rental = rentalService.getRentalById(id, model);
         rental.setStatus(true);
         rentalService.updateRental(rental);
 
-        Car car = carService.getCarById(rental.getCarId());
+        Car car = carService.getCarById(rental.getCarId(), model);
         car.setStatus(CarStatus.PENDING);
         carService.updateCar(car);
 
