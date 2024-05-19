@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>dataregistration</title>
+    <title>Opret rapport</title>
     <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damageform.css}">
 </head>
 <body>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="damage">
-            <h3>Skader:</h3>
+            <h3>Skader</h3>
             <!-- Et Thymleaf loop der itererer fa 0 - 4-->
             <div class="reportFields" th:each="i : ${#numbers.sequence(0, 4)}">
                 <!-- Generere et unikt name til hver input ved brug af thymeleaf -->
