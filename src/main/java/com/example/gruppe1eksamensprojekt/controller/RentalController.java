@@ -79,19 +79,16 @@ public class RentalController { // Severin
         return "rentalUpdateForm";
     }
     @PostMapping("/updateRental")
-    public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
-                               @RequestParam("returnLocation") String returnLocation,
-                               @RequestParam("carId") int carId, HttpSession session){
+    public String updateRental(@RequestParam("id") int id, @RequestParam("startDate") String startDate,
+                               @RequestParam("pickUpLocation") String pickUpLocation,
+                               @RequestParam("car") String car,
+                               @RequestParam("endDate") String endDate,
+                               @RequestParam("returnLocation") String returnLocation, HttpSession session, RedirectAttributes redirectAttributes){
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        Rental rental = rentalService.getRentalById(id);
-        rental.setEndDate(endDate);
-        rental.setReturnLocation(returnLocation);
-        rental.setCarId(carId);
-        rentalService.updateRental(rental);
-        return "redirect:/findRental";
-
+        // Ændret, så validateAndUpdate returnerer en redirect String.
+        return rentalService.validateAndUpdate(id, startDate, pickUpLocation, car, endDate, returnLocation, redirectAttributes);
     }
 
     @GetMapping("/deleteRental")

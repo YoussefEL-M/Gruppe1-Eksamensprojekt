@@ -103,8 +103,48 @@ public class RentalService { //Severin
     }
 
     public void updateRental(Rental rental){
-
         rentalRepo.update(rental);
+    }
+
+    public String validateAndUpdate(int id, String startDate, String pickUpLocation, String car, String endDate, String returnLocation, RedirectAttributes redirectAttributes){
+        boolean error = false;
+        int carId = 0;
+
+        if(LocalDate.parse(startDate).isAfter(LocalDate.parse(endDate))){
+            redirectAttributes.addFlashAttribute("timeTravelException", true);
+            error = true;
+        }
+
+        try{
+            carId = Integer.parseInt(car.split("\\.")[0]);
+            // Hvis bilen ikke er den samme som den i report (er blevet ændret) og ikke er tilgængelig, set error flag.
+            if(!carRepo.getCarById(carId).getStatus().equals(CarStatus.AVAILABLE) && carId != rentalRepo.getRentalById(id).getCarId()){
+                redirectAttributes.addFlashAttribute("carAlreadyRented", true);
+                error = true;
+            }
+        } catch (EmptyResultDataAccessException | NumberFormatException E){
+            redirectAttributes.addFlashAttribute("carNotFound", true);
+            error = true;
+        }
+
+        if(error){
+            redirectAttributes.addFlashAttribute("startDate", startDate);
+            redirectAttributes.addFlashAttribute("endDate", endDate);
+            redirectAttributes.addFlashAttribute("pickUpLocation", pickUpLocation);
+            redirectAttributes.addFlashAttribute("returnLocation", returnLocation);
+            redirectAttributes.addFlashAttribute("car", car);
+            redirectAttributes.addFlashAttribute("error", true);
+            return "redirect:/editRental?id=" + id;
+        }
+
+        Rental rental = rentalRepo.getRentalById(id);
+        rental.setStartDate(startDate);
+        rental.setEndDate(endDate);
+        rental.setPickUpLocation(pickUpLocation);
+        rental.setReturnLocation(returnLocation);
+        rental.setCarId(carId);
+        rentalRepo.update(rental);
+        return "redirect:/findRental";
     }
 
     public void deleteRental(int id){

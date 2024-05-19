@@ -37,6 +37,8 @@
             </div>
         </div>
 
+        <span style=" color:red"><p id="timeTravelException"></p></span>
+
         <div class="reportFields">
             <div>
                 <label for="pickUpLocation">Opsamlingssted:</label>
@@ -60,7 +62,7 @@
                 <label for="cars">Bil:</label>
             </div>
             <div>
-                <input list="cars" name="car" th:value="${rentalCar.id} + '. ' + ${rentalCar.getBrand()} + ' - ' + ${rentalCar.getModel()} + ' - ' + ${rentalCar.price}" required>
+                <input list="cars" id="car" name="car" th:value="${rentalCar.id} + '. ' + ${rentalCar.getBrand()} + ' - ' + ${rentalCar.getModel()} + ' - ' + ${rentalCar.price}" required>
                 <datalist id="cars">
                     <option th:text="${rentalCar.brand}+ ' - ' + ${rentalCar.model}+ ' - ' + ${rentalCar.price}" th:value="${rentalCar.id} + '. ' + ${rentalCar.brand}+ ' - ' + ${rentalCar.model}+ ' - ' + ${rentalCar.price}"></option>
                     <option th:each="car : ${cars}" th:text="${car.brand}+ ' - ' + ${car.model}+ ' - ' + ${car.price}" th:value="${car.id} + '. ' + ${car.brand}+ ' - ' + ${car.model}+ ' - ' + ${car.price}"></option>
@@ -68,11 +70,41 @@
             </div>
         </div>
 
+        <span style=" color:red"><p id="carError"></p></span>
+
 
 
         <button type="submit" value="Opdater lejeaftale">Opdater lejeaftale</button>
     </form>
 </div>
+
+<script th:inline="javascript">
+        /* Hvis der er fejl i formularen og den bliver omdiregeret til, overskriv data fra rental objekt med data fra oprindelig formular. */
+        var error = /*[[${error}]]*/ false;
+        if (error === true) {
+            document.getElementById("startDate").value = /*[[${startDate}]]*/ "";
+            document.getElementById("endDate").value = /*[[${endDate}]]*/ "";
+            document.getElementById("pickUpLocation").value = /*[[${pickUpLocation}]]*/ "";
+            document.getElementById("returnLocation").value = /*[[${returnLocation}]]*/ "";
+            document.getElementById("car").value = /*[[${car}]]*/ "";
+        }
+
+        var carNotFound = /*[[${carNotFound}]]*/ false;
+        if (carNotFound === true) {
+            document.getElementById("carError").innerHTML = "Kunne ikke finde bilen i systemet.";
+        }
+
+        var carAlreadyRented = /*[[${carAlreadyRented}]]*/ false;
+        if (carAlreadyRented === true) {
+            document.getElementById("carError").innerHTML = "Bilen er allerede udlejet.";
+        }
+
+        var timeTravelException = /*[[${timeTravelException}]]*/ false;
+        if (timeTravelException === true) {
+            document.getElementById("timeTravelException").innerHTML = "Startdato er i fortiden.";
+        }
+
+</script>
 
 </body>
 </html>
