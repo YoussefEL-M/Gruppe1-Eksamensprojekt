@@ -122,21 +122,20 @@ public class RentalController { // Severin
     }
 
     @PostMapping("/submitRental")
-    public String submitRental(HttpSession session, Model model,
-                               @RequestParam("customer") int customer,
+    public String submitRental(HttpSession session, RedirectAttributes redirectAttributes,
+                               @RequestParam("customer") String customer,
                                @RequestParam("startDate") String startDate,
                                @RequestParam("pickuppoint") String pickuppoint,
-                               @RequestParam("car") int car,
+                               @RequestParam("car") String car,
                                @RequestParam("type") String type,
                                @RequestParam("dropoffpoint") String dropoffpoint,
-                               @RequestParam("unlimitedMonth") int unlimitedMonth){
+                               @RequestParam("unlimitedMonth") String unlimitedMonth){
         if(session.getAttribute("user")==null)
             return "frontpage";
-        if(!type.equals("5")) type=String.valueOf(unlimitedMonth);
-        String endDate=rentalService.calcEndDate(startDate,type);
-        Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false);
-        rentalService.createRental(rental);
-        return "redirect:/rental";
+
+        // Opdateret, så submitRental() returnerer et redirect.
+        return rentalService.submitRental(customer, startDate, pickuppoint, car, type, dropoffpoint, unlimitedMonth, redirectAttributes);
+
     }
 
     @GetMapping("/createUser")
