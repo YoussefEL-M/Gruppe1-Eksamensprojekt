@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dine lejeaftaler</title>
+    <link rel="stylesheet" href="../static/CSS/overviewRentals.css" th:href="@{/CSS/overviewRentals.css}">
+</head>
+<body>
+<header th:insert="fragments/rentalheader.html"></header>
+
+
+<div class="main">
+    <h1>Oversigt over lejeaftaler</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Kunde ID</th>
+            <th>Kunde navn</th>
+            <th>Kunde tlf.</th>
+            <th>Bil ID</th>
+            <th>Start Dato</th>
+            <th>Slut Dato</th>
+            <th>Status</th>
+            <th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="rental : ${rentalList}">
+            <td th:text="${rental.getId()}"> </td>
+            <td th:text="${rental.getCustomerId()}"> </td>
+            <td th:text="${rental.getName()}"> </td>
+            <td th:text="${rental.getTelnr()}"> </td>
+            <td th:text="${rental.getCarId()}"></td>
+            <td th:text="${rental.getStartDate()}"></td>
+            <td th:text="${rental.getEndDate()}"></td>
+            <td>
+                <div th:if="${rental.getStatus() == false}">
+                    <a th:href="@{'/editRentalStatus?id='+${rental.getId()}}"> <button>Indlever </button></a>
+                </div>
+                <div th:if="${rental.getStatus() == true}">
+                    <a>Indleveret</a>
+                </div>
+            </td>
+
+
+            <td><div class="edit-button">
+                <a th:href="@{'/editRental?id='+${rental.getId()}}"> <button> Rediger </button></a>
+            </div>
+                <div class="delete-button">
+                    <a th:href="@{'/deleteRental?id='+${rental.getId()}}" onclick="return confirm('Er du sikker på du vil slette aftalen?')"> <button>Slet</button></a>
+                </div>
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+</body>
+</html>

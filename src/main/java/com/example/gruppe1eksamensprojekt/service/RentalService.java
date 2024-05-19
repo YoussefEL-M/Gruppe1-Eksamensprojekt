@@ -41,4 +41,9 @@ public class RentalService { //Severin
 
         return LocalDate.parse(startDate).plusMonths(Integer.parseInt(type)).toString();
     }
+
+    public Rental getRentalsByUserID(int id){
+        return rentalRepo.getRentalsByUserID(id);
+    }
+
 }

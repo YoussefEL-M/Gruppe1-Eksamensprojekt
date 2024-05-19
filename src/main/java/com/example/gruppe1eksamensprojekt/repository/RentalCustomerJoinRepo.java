@@ -22,4 +22,13 @@ public class RentalCustomerJoinRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
+    public List<RentalCustomerJoin> getAllByUserId(int id) {
+        String sql = "SELECT rental.id, rental.customer_id, rental.car_id, rental.user_id, rental.pickUpLocation, rental.returnLocation, rental.type, rental.startDate, rental.endDate, rental.status, customer.name, customer.telnr, customer.email, customer.address, customer.birthDate " +
+                "FROM rental " +
+                "LEFT JOIN customer " +
+                "ON rental.customer_id = customer.id WHERE user_id = ?";
+        RowMapper<RentalCustomerJoin> rowMapper = new BeanPropertyRowMapper<>(RentalCustomerJoin.class);
+        return jdbcTemplate.query(sql, rowMapper, id);
+    }
+
 }

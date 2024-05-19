@@ -18,8 +18,8 @@ public class RentalRepo {
     JdbcTemplate jdbcTemplate;
 
     public void create(Rental rental) {
-        String sql = "INSERT INTO rental (pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate(), rental.getCarId(), rental.getStatus());
+        String sql = "INSERT INTO rental (pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id, status, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, rental.getPickUpLocation(), rental.getReturnLocation(), rental.getType(), rental.getCustomerId(), rental.getStartDate(), rental.getEndDate(), rental.getCarId(), rental.getStatus(), rental.getUserID());
     }
 
     public Rental getRentalById(int id) {
@@ -47,6 +47,11 @@ public class RentalRepo {
     }
 
 
+    public Rental getRentalsByUserID(int id) {
+        String sql = "SELECT * FROM rental WHERE user_id = ?";
+        RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
 
 
 

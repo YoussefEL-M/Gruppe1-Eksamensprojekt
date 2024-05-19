@@ -134,7 +134,8 @@ public class RentalController { // Severin
             return "frontpage";
         if(!type.equals("5")) type=String.valueOf(unlimitedMonth);
         String endDate=rentalService.calcEndDate(startDate,type);
-        Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false);
+        User user = (User) session.getAttribute("user");
+        Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false, user.getId());
         rentalService.createRental(rental);
         Car newcar = carService.getCarById(car);
         newcar.setStatus(CarStatus.RENTED);
@@ -177,6 +178,16 @@ public class RentalController { // Severin
         carService.updateCar(car);
 
         return "redirect:/findRental";
+    }
+
+    @GetMapping("/yourRentals")
+    public String yourRentals(Model model, HttpSession session){
+
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("rentalList",rentalCustomerJoinService.getAllByUserId(user.getId()));
+
+
+        return "yourRentals";
     }
 
 }
