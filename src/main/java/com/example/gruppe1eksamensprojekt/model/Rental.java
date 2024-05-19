@@ -12,10 +12,10 @@ public class Rental {
     private String startDate;
     private String endDate;
     private int carId;
-
     private boolean status;
+    private int userId;
 
-    public Rental(String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId, boolean status) {
+    public Rental(String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId, boolean status, int userID) {
         this.pickUpLocation = pickUpLocation;
         this.returnLocation = returnLocation;
         this.type=type;
@@ -24,6 +24,7 @@ public class Rental {
         this.endDate = endDate;
         this.carId = carId;
         this.status=status;
+        this.userId=userID;
 
     }
 
@@ -83,6 +84,13 @@ public class Rental {
     }
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public int getUserID() {
+        return userId;
+    }
+    public void setUserID(int userId) {
+        this.userId = userId;
     }
 
 }

@@ -18,5 +18,8 @@ public class RentalCustomerJoinService {
         return rentalCustomerJoinRepo.getAll();
     }
 
+    public List<RentalCustomerJoin> getAllByUserId(int id){
+        return rentalCustomerJoinRepo.getAllByUserId(id);
+    }
 
 }
