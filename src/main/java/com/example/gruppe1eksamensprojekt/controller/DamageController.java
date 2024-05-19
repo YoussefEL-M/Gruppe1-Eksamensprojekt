@@ -96,7 +96,7 @@ public class DamageController {
                                 @RequestParam("report4damage") String report4damage,
                                 @RequestParam("report4price") double report4price,
                                 @RequestParam("status") String status,
-                                HttpSession session) {
+                                HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";
@@ -115,7 +115,8 @@ public class DamageController {
        report.setId(reportService.lastId());
        reportService.createDamages(report);
 
-        Car newcar = carService.getCarById(rentalService.getRentalById(idForRental).getCarId());
+        int carid=rentalService.getRentalById(idForRental,model).getCarId();
+        Car newcar =carService.getCarById(carid,model);
         newcar.setStatus(CarStatus.valueOf(status));
         carService.updateCar(newcar);
         return "redirect:/reports";
