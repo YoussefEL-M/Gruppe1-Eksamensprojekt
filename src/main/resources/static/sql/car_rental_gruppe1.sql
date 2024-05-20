@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS report
 
 CREATE TABLE IF NOT EXISTS damages (
                                        id	INT PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
-                                       report_id INT,
+                                       report_id INT, FOREIGN KEY(report_id)	REFERENCES report(id),
                                        damage VARCHAR(50),
     price DOUBLE
     );

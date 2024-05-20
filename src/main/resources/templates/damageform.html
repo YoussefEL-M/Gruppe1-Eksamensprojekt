@@ -23,9 +23,9 @@
         <h2>Create Damage Report</h2>
 
         <div>
-            <label for="rentalId">Udlejnings-ID:</label>
-            <input list="rentalId" name="rentalId" id="rentalId" th:value="${rental}" required>
-            <datalist id="cars">
+            <label for="rental">Udlejnings-ID:</label>
+            <input list="rental" name="rental" th:value="${rental}" required>
+            <datalist id="rental">
                 <option th:each="rental : ${rentalList}" th:text="${rental.getId()}+ ' - ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}" th:value="${rental.getId()}+ ' - ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}"></option>
             </datalist>
         </div>

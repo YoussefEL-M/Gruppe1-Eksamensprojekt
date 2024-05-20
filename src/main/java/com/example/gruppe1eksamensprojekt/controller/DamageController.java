@@ -78,7 +78,7 @@ public class DamageController {
 
     //Husk at opdaterer i klassediagram
     @PostMapping("/createReport")
-    public String createAReport(@RequestParam("rentalId") String rental,
+    public String createAReport(@RequestParam("rental") String rental,
                                 @RequestParam("title") String reportTitle,
                                 @RequestParam("date")LocalDate reportDate,
                                 @RequestParam("treatment") String treatment,
@@ -96,9 +96,6 @@ public class DamageController {
                                 @RequestParam("status") String status,
                                 HttpSession session, Model model,
                                 RedirectAttributes redirectAttributes) {
-
-        if(session.getAttribute("user")==null)
-            return "frontpage";
 
 
         return reportService.submitReport(rental, reportTitle, reportDate, treatment, comment, report0damage, report1damage, report2damage, report3damage, report4damage, report0price, report1price,report2price, report3price, report4price, status, redirectAttributes, model);
