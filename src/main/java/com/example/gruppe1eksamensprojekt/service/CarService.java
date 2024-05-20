@@ -27,13 +27,12 @@ public class CarService { // Severin
     }
 
     //Noter i klassediagram
-    public Car getCarById(int id, Model model){
+    public Car getCarById(int id){
 
         Car car;
         try {
             car = carRepo.getCarById(id);
         } catch (EmptyResultDataAccessException ERDA) {
-            model.addAttribute("unableToFindCar", true);
             return null;
         }
         if(car.getId() == id) {

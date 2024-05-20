@@ -3,28 +3,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>dataregistration</title>
+    <title>Opret rapport</title>
     <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damageform.css}">
 </head>
 <body>
 
 <header th:insert="fragments/damageheader.html"></header>
 
+<!-- <div class="reportform">
+    <div class="reportfield">
+        <p th:text="'Mærke: ' + ${car.brand}"></p>
+        <p th:text="'Model: ' + ${car.model}"></p>
+        <p th:text="'Indleveret: ' + ${car.lastUpdated}"></p>
+        <p th:text="'Nummerplade: ' + ${car.licensePlate}"></p>
+        <p th:text="'Status: ' + ${car.status}"></p>
+    </div>-->
+<div class="reportform">
 
 
     <form action="/createReport" method="post">
-        <h2>Create Damage Report</h2>
+        <h2>Opret skadesrapport</h2>
 
-        <div>
+        <div class="reportFields">
             <label for="rental">Udlejnings-ID:</label>
             <input list="rental" name="rental" th:value="${rental}" required>
             <datalist id="rental">
                 <option th:each="rental : ${rentalList}" th:text="${rental.getId()}+ ' - ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}" th:value="${rental.getId()}+ '. ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}"></option>
             </datalist>
 
-
         </div>
 
+        <div class="reportFields">
         <span style="color:red"><p id="rentalNotFound"></p></span>
 
         <div>
@@ -32,17 +41,17 @@
             <input id="title" name="title" type="text" th:value="${reportTitle}" required>
         </div>
 
-        <div>
+        <div class="reportFields">
             <label for="date">Dato:</label>
             <input id="date" name="date" type="date" th:value="${reportDate}" required>
         </div>
 
-        <div>
+        <div class="reportFields">
             <label for="treatment">Behandling:</label>
             <textarea id="treatment" name="treatment" type="text" th:text="${treatment}"></textarea>
         </div>
 
-        <div>
+        <div class="reportFields">
             <label for="comment">Kommentar:</label>
             <textarea id="comment" name="comment" th:text="${comment}"></textarea>
         </div>
@@ -73,7 +82,7 @@
              </div>
 
         </div>
-        <div class="status">
+        <div class="reportFields">
             <h3>Status</h3>
             <select id="status" name="status">
                 <option value="PENDING">Afventer behandling</option>
@@ -81,7 +90,9 @@
                 <option value="AVAILABLE">Klar til udlejning</option>
             </select>
         </div>
-        <button type="submit">Create Report</button>
+        <div id="rapportKnap">
+        <button type="submit">Opret rapport</button>
+        </div>
     </form>
 </div>
 

@@ -108,7 +108,7 @@ public class DamageController {
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        Report report = reportService.getReportById(reportId, model);
+        Report report = reportService.getReportById(reportId);
 
         model.addAttribute("report", report);
 
@@ -127,7 +127,7 @@ public class DamageController {
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        Report report = reportService.getReportById(reportId, model);
+        Report report = reportService.getReportById(reportId);
 
         if (report != null) {
             report.setTitle(title);
