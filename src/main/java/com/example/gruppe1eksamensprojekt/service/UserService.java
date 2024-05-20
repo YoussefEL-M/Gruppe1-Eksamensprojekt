@@ -30,8 +30,8 @@ public class UserService { // Severin
         try {
             userRepo.getUserByUsername(username);
         } catch (EmptyResultDataAccessException E){
-            redirectAttributes.addAttribute("username", username);
-            redirectAttributes.addAttribute("password", password);
+            redirectAttributes.addFlashAttribute("username", username);
+            redirectAttributes.addFlashAttribute("password", password);
 
             User newUser;
 
@@ -40,17 +40,25 @@ public class UserService { // Severin
                 case("SkadeOgUdbedring") -> newUser = new DamageUser(name, username, password, email, type);
                 case("Forretningsudvikler") -> newUser = new BusinessUser(name, username, password, email, type);
                 default -> {
-                    redirectAttributes.addAttribute("typeError", true); // Todo: implementer i frontend?
+                    redirectAttributes.addFlashAttribute("typeError", true); // Todo: implementer i frontend?
                     return "redirect:/register";
                 }
             }
 
             userRepo.create(newUser);
+            redirectAttributes.addFlashAttribute("username", username);
+            redirectAttributes.addFlashAttribute("password", password);
 
             return "redirect:/";
         }
-            model.addAttribute("usernameExists", true);
-            return "register";
+
+            redirectAttributes.addFlashAttribute("name", name);
+            redirectAttributes.addFlashAttribute("email", email);
+            redirectAttributes.addFlashAttribute("password", password);
+            redirectAttributes.addFlashAttribute("confirmPassword", password);
+            redirectAttributes.addFlashAttribute("type", type);
+            redirectAttributes.addFlashAttribute("usernameExists", true);
+            return "redirect:/createUser";
     }
 
     //Opdater i klassediagram
@@ -82,20 +90,21 @@ public class UserService { // Severin
         userRepo.delete(id);
     }
 
-    public User login(String username, String password, Model model){
+    public User login(String username, String password, RedirectAttributes redirectAttributes){
         // Todo: tilføj getUserByUsername() til repo.
         // Todo: håndter login i frontend med Model attributter.
         User user;
         try {
             user = userRepo.getUserByUsername(username);
         } catch (EmptyResultDataAccessException E){
-            model.addAttribute("userNotFound", true);
+            redirectAttributes.addFlashAttribute("userNotFound", true);
             return null;
         }
         if(user.getPassword().equals(password))
             return user;
 
-        model.addAttribute("passwordMismatch", true);
+        redirectAttributes.addFlashAttribute("passwordMismatch", true);
+        redirectAttributes.addFlashAttribute("username", username);
         return null;
 
     }
