@@ -24,7 +24,10 @@
 
         <div>
             <label for="rentalId">Udlejnings-ID:</label>
-            <input id="rentalId" name="rentalId" type="text" required>
+            <input list="rentalId" name="rentalId" id="rentalId" th:value="${car}" required>
+            <datalist id="cars">
+                <option th:each="rental : ${rentalList}" th:text="${rental.getId()}+ ' - ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}" th:value="${rental.getId()}+ ' - ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}"></option>
+            </datalist>
         </div>
 
         <div>

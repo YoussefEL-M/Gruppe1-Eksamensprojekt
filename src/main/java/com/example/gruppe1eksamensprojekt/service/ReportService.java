@@ -1,5 +1,7 @@
 package com.example.gruppe1eksamensprojekt.service;
 
+import com.example.gruppe1eksamensprojekt.model.Car;
+import com.example.gruppe1eksamensprojekt.model.CarStatus;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.repository.ReportRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +20,10 @@ public class ReportService { // Severin
 
     @Autowired
     private ReportRepo reportRepo;
+    @Autowired
+    private RentalService rentalService;
+    @Autowired
+    private CarService carService;
 
     public List<Report> getAll(){
         return reportRepo.getAll();
@@ -63,64 +70,59 @@ public class ReportService { // Severin
     public int lastId(){return reportRepo.lastId(); }
 
 
-    public String submitReport(int idForRental, String reportTitle, LocalDate reportDate, String treatment, String comment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  int report0price,   int report1price,  int report2price,  int report3price,  int report4price, RedirectAttributes redirectAttributes){
+    public String submitReport(String rental, String reportTitle, LocalDate reportDate, String treatment, String comment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  Double report0price,   Double report1price,  Double report2price,  Double report3price,  Double report4price, String status, RedirectAttributes redirectAttributes, Model model){
         boolean error = false;
-        int customerId = 0;
-        int carId = 0;
+        int rentalId = 0;
 
         try{
-            customerId = Integer.parseInt(customer.split("\\.")[0]);
-            customerRepo.getCustomerById(customerId);
+            rentalId = Integer.parseInt(rental.split("\\.")[0]);
+            reportRepo.getReportById(rentalId);
         } catch (EmptyResultDataAccessException | NumberFormatException E){
-            redirectAttributes.addFlashAttribute("customerNotFound", true);
-            error = true;
-        }
-        // Kan der være behov for at registrere en kontrakt efter lejeperioden begynder?
-        if(LocalDate.parse(startDate).isBefore(LocalDate.now())) {
-            redirectAttributes.addFlashAttribute("timeTravelException", true);
+            redirectAttributes.addFlashAttribute("reportNotFound", true);
             error = true;
         }
 
-
-        try{
-            carId = Integer.parseInt(car.split("\\.")[0]);
-            if(!carRepo.getCarById(carId).getStatus().equals(CarStatus.AVAILABLE)){
-                redirectAttributes.addFlashAttribute("carAlreadyRented", true);
-                error = true;
-            }
-        } catch (EmptyResultDataAccessException | NumberFormatException E){
-            redirectAttributes.addFlashAttribute("carNotFound", true);
-            error = true;
-        }
-
-        // Hvis type ikke er Limited, sæt type lig antal måneder valgt til Unlimited.
-        if(!type.equals("5")) type = unlimitedMonth;
-        if(type.isEmpty()) type = "0";
-        if(3>Integer.parseInt(type)||Integer.parseInt(type)>36) {
-            redirectAttributes.addFlashAttribute("typeError", true);
-            error = true;
-        }
 
 
         if(error) {
-            redirectAttributes.addFlashAttribute("customer", customer);
-            redirectAttributes.addFlashAttribute("startDate", startDate);
-            redirectAttributes.addFlashAttribute("pickuppoint", pickuppoint);
-            redirectAttributes.addFlashAttribute("car", car);
-            redirectAttributes.addFlashAttribute("type", Integer.parseInt(type));
-            redirectAttributes.addFlashAttribute("dropoffpoint", dropoffpoint);
-            redirectAttributes.addFlashAttribute("unlimitedMonth", unlimitedMonth);
+            redirectAttributes.addFlashAttribute("rental", rental);
+            redirectAttributes.addFlashAttribute("reportTitle", reportTitle);
+            redirectAttributes.addFlashAttribute("reportDate", reportDate);
+            redirectAttributes.addFlashAttribute("treatment", treatment);
+            redirectAttributes.addFlashAttribute("comment", comment);
+            redirectAttributes.addFlashAttribute("report0damage", report0damage);
+            redirectAttributes.addFlashAttribute("report1damage", report1damage);
+            redirectAttributes.addFlashAttribute("report2damage", report2damage);
+            redirectAttributes.addFlashAttribute("report3damage", report3damage);
+            redirectAttributes.addFlashAttribute("report4damage", report4damage);
+            redirectAttributes.addFlashAttribute("report0price", report0price);
+            redirectAttributes.addFlashAttribute("report1price", report1price);
+            redirectAttributes.addFlashAttribute("report2price", report2price);
+            redirectAttributes.addFlashAttribute("report3price", report3price);
+            redirectAttributes.addFlashAttribute("report4price", report4price);
         } else{
-            String endDate = calcEndDate(startDate,type);
-            Car carToUpdate = carRepo.getCarById(carId);
-            carToUpdate.setStatus(CarStatus.RENTED);
-            carRepo.update(carToUpdate);
-            Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, false);
-            rentalRepo.create(rental);
-            return "redirect:/rental";
+            Map<String, Double> damages = new HashMap<>();
+            if (!report0damage.isEmpty()) damages.put(report0damage,report0price);
+            if (!report1damage.isEmpty()) damages.put(report1damage,report1price);
+            if (!report2damage.isEmpty()) damages.put(report2damage,report2price);
+            if (!report3damage.isEmpty()) damages.put(report3damage,report3price);
+            if (!report4damage.isEmpty()) damages.put(report4damage,report4price);
+
+            Report report = new Report(rentalId, reportTitle, reportDate, treatment, comment, damages);
+
+            createReport(report);
+
+            report.setId(lastId());
+            createDamages(report);
+
+            int carid=rentalService.getRentalById(rentalId,model).getCarId();
+            Car newcar =carService.getCarById(carid,model);
+            newcar.setStatus(CarStatus.valueOf(status));
+            carService.updateCar(newcar);
+            return "redirect:/reports";
         }
 
-        return "redirect:/createRental";
+        return "redirect:/createReport";
     }
 
 

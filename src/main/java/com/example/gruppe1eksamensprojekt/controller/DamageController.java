@@ -1,13 +1,7 @@
 package com.example.gruppe1eksamensprojekt.controller;
 
-import com.example.gruppe1eksamensprojekt.model.Car;
-import com.example.gruppe1eksamensprojekt.model.CarStatus;
-import com.example.gruppe1eksamensprojekt.model.Report;
-import com.example.gruppe1eksamensprojekt.model.User;
-import com.example.gruppe1eksamensprojekt.service.CarService;
-import com.example.gruppe1eksamensprojekt.service.RentalService;
-import com.example.gruppe1eksamensprojekt.service.ReportService;
-import com.example.gruppe1eksamensprojekt.service.UserService;
+import com.example.gruppe1eksamensprojekt.model.*;
+import com.example.gruppe1eksamensprojekt.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +30,8 @@ public class DamageController {
     CarService carService;
     @Autowired
     RentalService rentalService;
+    @Autowired
+    RentalCustomerJoinService rentalCustomerJoinService;
 
 
 
@@ -73,6 +69,8 @@ public class DamageController {
         }
         List<Car> cars = carService.getDamagedCars();
         model.addAttribute("cars", cars);
+        List<RentalCustomerJoin> rentalList = rentalCustomerJoinService.getAll();
+        model.addAttribute("rentalList", rentalList);
 
         return "damageform";
     }
@@ -80,7 +78,7 @@ public class DamageController {
 
     //Husk at opdaterer i klassediagram
     @PostMapping("/createReport")
-    public String createAReport(@RequestParam("rentalId") int idForRental,
+    public String createAReport(@RequestParam("rentalId") String rental,
                                 @RequestParam("title") String reportTitle,
                                 @RequestParam("date")LocalDate reportDate,
                                 @RequestParam("treatment") String treatment,
@@ -96,30 +94,14 @@ public class DamageController {
                                 @RequestParam("report4damage") String report4damage,
                                 @RequestParam("report4price") double report4price,
                                 @RequestParam("status") String status,
-                                HttpSession session, Model model) {
+                                HttpSession session, Model model,
+                                RedirectAttributes redirectAttributes) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        Map<String, Double> damages = new HashMap<>();
-        if (!report0damage.isEmpty()) damages.put(report0damage,report0price);
-        if (!report1damage.isEmpty()) damages.put(report1damage,report1price);
-        if (!report2damage.isEmpty()) damages.put(report2damage,report2price);
-        if (!report3damage.isEmpty()) damages.put(report3damage,report3price);
-        if (!report4damage.isEmpty()) damages.put(report4damage,report4price);
 
-       Report report = new Report(idForRental, reportTitle, reportDate, treatment, comment, damages);
-
-       reportService.createReport(report);
-
-       report.setId(reportService.lastId());
-       reportService.createDamages(report);
-
-        int carid=rentalService.getRentalById(idForRental,model).getCarId();
-        Car newcar =carService.getCarById(carid,model);
-        newcar.setStatus(CarStatus.valueOf(status));
-        carService.updateCar(newcar);
-        return "redirect:/reports";
+        return reportService.submitReport(rental, reportTitle, reportDate, treatment, comment, report0damage, report1damage, report2damage, report3damage, report4damage, report0price, report1price,report2price, report3price, report4price, status, redirectAttributes, model);
     }
 
     //Opdater i klassediagram
