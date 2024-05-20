@@ -24,7 +24,7 @@
 
         <div>
             <label for="rentalId">Udlejnings-ID:</label>
-            <input list="rentalId" name="rentalId" id="rentalId" th:value="${car}" required>
+            <input list="rentalId" name="rentalId" id="rentalId" th:value="${rental}" required>
             <datalist id="cars">
                 <option th:each="rental : ${rentalList}" th:text="${rental.getId()}+ ' - ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}" th:value="${rental.getId()}+ ' - ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}"></option>
             </datalist>
@@ -32,31 +32,32 @@
 
         <div>
             <label for="title">Titel:</label>
-            <input id="title" name="title" type="text" required>
+            <input id="title" name="title" type="text" th:value="${reportTitle}" required>
         </div>
 
         <div>
             <label for="date">Dato:</label>
-            <input id="date" name="date" type="date" required>
+            <input id="date" name="date" type="date" th:value="${reportDate}" required>
         </div>
 
         <div>
             <label for="treatment">Behandling:</label>
-            <textarea id="treatment" name="treatment"></textarea>
+            <textarea id="treatment" name="treatment" th:value="${treatment}"></textarea>
         </div>
 
         <div>
             <label for="comment">Kommentar:</label>
-            <textarea id="comment" name="comment"></textarea>
+            <textarea id="comment" name="comment" th:value="${comment}"></textarea>
         </div>
-
+<!--        th:value="|report${i}price|"-->
+<!--        th:value="|report${i}damage|"-->
         <div class="damages">
             <h3>Skader:</h3>
             <!-- Et Thymleaf loop der itererer fa 0 - 4-->
             <div th:each="i : ${#numbers.sequence(0, 4)}">
                 <!-- Generere et unikt name til hver input ved brug af thymeleaf -->
-                <input type="text" th:name="|report${i}damage|" placeholder="Skade beksrivelse" />
-                <input type="number" step="0.01" th:name="|report${i}price|" placeholder="Pris" value="0" />
+                <input type="text" th:name="|report${i}damage|"  placeholder="Skade beksrivelse" />
+                <input type="number" step="0.01" th:name="|report${i}price|" placeholder="Pris"  value="0" />
             </div>
         </div>
         <div class="status">
