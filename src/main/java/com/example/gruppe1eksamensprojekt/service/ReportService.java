@@ -3,6 +3,7 @@ package com.example.gruppe1eksamensprojekt.service;
 import com.example.gruppe1eksamensprojekt.model.Car;
 import com.example.gruppe1eksamensprojekt.model.CarStatus;
 import com.example.gruppe1eksamensprojekt.model.Report;
+import com.example.gruppe1eksamensprojekt.repository.RentalRepo;
 import com.example.gruppe1eksamensprojekt.repository.ReportRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -20,6 +21,8 @@ public class ReportService { // Severin
 
     @Autowired
     private ReportRepo reportRepo;
+    @Autowired
+    private RentalRepo rentalRepo;
     @Autowired
     private RentalService rentalService;
     @Autowired
@@ -74,33 +77,33 @@ public class ReportService { // Severin
         boolean error = false;
         int rentalId = 0;
 
-//        try{
+        try{
             rentalId = Integer.parseInt(rental.split("\\.")[0]);
-            reportRepo.getReportById(rentalId);
-//        } catch (EmptyResultDataAccessException | NumberFormatException E){
-//            redirectAttributes.addFlashAttribute("reportNotFound", true);
-//            error = true;
-//        }
+            rentalRepo.getRentalById(rentalId);
+        } catch (EmptyResultDataAccessException | NumberFormatException E){
+            redirectAttributes.addFlashAttribute("reportNotFound", true);
+            error = true;
+        }
 
 
 
-//        if(error) {
-//            redirectAttributes.addFlashAttribute("rental", rental);
-//            redirectAttributes.addFlashAttribute("reportTitle", reportTitle);
-//            redirectAttributes.addFlashAttribute("reportDate", reportDate);
-//            redirectAttributes.addFlashAttribute("treatment", treatment);
-//            redirectAttributes.addFlashAttribute("comment", comment);
-//            redirectAttributes.addFlashAttribute("report0damage", report0damage);
-//            redirectAttributes.addFlashAttribute("report1damage", report1damage);
-//            redirectAttributes.addFlashAttribute("report2damage", report2damage);
-//            redirectAttributes.addFlashAttribute("report3damage", report3damage);
-//            redirectAttributes.addFlashAttribute("report4damage", report4damage);
-//            redirectAttributes.addFlashAttribute("report0price", report0price);
-//            redirectAttributes.addFlashAttribute("report1price", report1price);
-//            redirectAttributes.addFlashAttribute("report2price", report2price);
-//            redirectAttributes.addFlashAttribute("report3price", report3price);
-//            redirectAttributes.addFlashAttribute("report4price", report4price);
-//        } else{
+        if(error) {
+            redirectAttributes.addFlashAttribute("rental", rental);
+            redirectAttributes.addFlashAttribute("reportTitle", reportTitle);
+            redirectAttributes.addFlashAttribute("reportDate", reportDate);
+            redirectAttributes.addFlashAttribute("treatment", treatment);
+            redirectAttributes.addFlashAttribute("comment", comment);
+            redirectAttributes.addFlashAttribute("report0damage", report0damage);
+            redirectAttributes.addFlashAttribute("report1damage", report1damage);
+            redirectAttributes.addFlashAttribute("report2damage", report2damage);
+            redirectAttributes.addFlashAttribute("report3damage", report3damage);
+            redirectAttributes.addFlashAttribute("report4damage", report4damage);
+            redirectAttributes.addFlashAttribute("report0price", report0price);
+            redirectAttributes.addFlashAttribute("report1price", report1price);
+            redirectAttributes.addFlashAttribute("report2price", report2price);
+            redirectAttributes.addFlashAttribute("report3price", report3price);
+            redirectAttributes.addFlashAttribute("report4price", report4price);
+        } else{
             Map<String, Double> damages = new HashMap<>();
             if (!report0damage.isEmpty()) damages.put(report0damage,report0price);
             if (!report1damage.isEmpty()) damages.put(report1damage,report1price);
@@ -120,9 +123,9 @@ public class ReportService { // Severin
             newcar.setStatus(CarStatus.valueOf(status));
             carService.updateCar(newcar);
             return "redirect:/damage";
-//        }
+        }
 
-//        return "redirect:/create";
+        return "redirect:/create";
     }
 
 
