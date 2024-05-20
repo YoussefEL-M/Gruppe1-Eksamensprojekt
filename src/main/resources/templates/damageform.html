@@ -28,6 +28,8 @@
             <datalist id="rental">
                 <option th:each="rental : ${rentalList}" th:text="${rental.getId()}+ ' - ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}" th:value="${rental.getId()}+ '. ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}"></option>
             </datalist>
+            <span style=" color:red"><p id="customerNotFound"></p></span>
+
         </div>
 
         <div>
@@ -73,4 +75,10 @@
 </div>
 
 </body>
+<script th:inline="javascript">
+    var customerNotFound = /*[[${customerNotFound}]]*/ false;
+    if (customerNotFound===true){
+        document.getElementById("rentalNotFound").innerHTML="Kunne ikke finde kunden i systemet.";
+    }
+</script>
 </html>
