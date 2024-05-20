@@ -73,7 +73,7 @@ public class ReportService { // Severin
     public int lastId(){return reportRepo.lastId(); }
 
 
-    public String submitReport(String rental, String reportTitle, LocalDate reportDate, String treatment, String comment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  Double report0price,   Double report1price,  Double report2price,  Double report3price,  Double report4price, String status, RedirectAttributes redirectAttributes, Model model){
+    public String submitReport(String rental, String reportTitle, LocalDate reportDate, String treatment, String comment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  String report0price,   String report1price,  String report2price,  String report3price,  String report4price, String status, RedirectAttributes redirectAttributes, Model model){
         boolean error = false;
         int rentalId = 0;
 
@@ -105,11 +105,11 @@ public class ReportService { // Severin
             redirectAttributes.addFlashAttribute("report4price", report4price);
         } else{
             Map<String, Double> damages = new HashMap<>();
-            if (!report0damage.isEmpty()) damages.put(report0damage,report0price);
-            if (!report1damage.isEmpty()) damages.put(report1damage,report1price);
-            if (!report2damage.isEmpty()) damages.put(report2damage,report2price);
-            if (!report3damage.isEmpty()) damages.put(report3damage,report3price);
-            if (!report4damage.isEmpty()) damages.put(report4damage,report4price);
+            if (!report0damage.isEmpty() && !report0price.isEmpty()) damages.put(report0damage,Double.valueOf(report0price));
+            if (!report1damage.isEmpty() && !report1price.isEmpty()) damages.put(report1damage,Double.valueOf(report1price));
+            if (!report2damage.isEmpty() && !report2price.isEmpty()) damages.put(report2damage,Double.valueOf(report2price));
+            if (!report3damage.isEmpty() && !report3price.isEmpty()) damages.put(report3damage,Double.valueOf(report3price));
+            if (!report4damage.isEmpty() && !report4price.isEmpty()) damages.put(report4damage,Double.valueOf(report4price));
 
             Report report = new Report(rentalId, reportTitle, reportDate, treatment, comment, damages);
 
