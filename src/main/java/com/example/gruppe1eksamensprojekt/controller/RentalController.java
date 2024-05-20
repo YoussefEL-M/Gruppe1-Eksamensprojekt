@@ -41,8 +41,8 @@ public class RentalController { // Severin
     }
 
     @PostMapping("/loggingIn")
-    public String loggingIn(HttpSession session, Model model, @RequestParam("username") String username, @RequestParam("password") String password){
-        User user = userService.login(username, password, model);
+    public String loggingIn(HttpSession session, RedirectAttributes redirectAttributes, @RequestParam("username") String username, @RequestParam("password") String password){
+        User user = userService.login(username, password, redirectAttributes);
         // Todo: evt. tilføj funktionalitet der sender brugeren til en bestemt side alt efter brugertype.
         if(user != null) {
             session.setAttribute("user", user);
@@ -73,9 +73,10 @@ public class RentalController { // Severin
     public String editRental(@RequestParam("id") int id, HttpSession session, Model model){
         if(session.getAttribute("user")==null)
             return "frontpage";
-        //Har indsat model i getRentalById metode som parameter grundet, at den bruges i service.
-        //Ved ikke om den skal være der, men har sat den der på grund af, at den ellers ville gå i fejl
-        model.addAttribute("rental",rentalService.getRentalById(id));
+        Rental rental = rentalService.getRentalById(id);
+        model.addAttribute("rental", rental);
+        model.addAttribute("cars", carService.getAvailable());
+        model.addAttribute("rentalCar", carService.getCarById(rental.getCarId()));
 
         return "rentalUpdateForm";
     }
@@ -88,19 +89,17 @@ public class RentalController { // Severin
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        Rental rental = rentalService.getRentalById(id);
-        rental.setEndDate(endDate);
-        rental.setReturnLocation(returnLocation);
-        rental.setCarId(carId);
-        rentalService.updateRental(rental);
-        return "redirect:/findRental";
-
+        // Ændret, så validateAndUpdate returnerer en redirect String.
+        return rentalService.validateAndUpdate(id, startDate, pickUpLocation, car, endDate, returnLocation, redirectAttributes);
     }
 
     @GetMapping("/deleteRental")
     public String deleteRental(@RequestParam("id") int id, @RequestParam("page") String page, HttpSession session){
         if(session.getAttribute("user")==null)
             return "frontpage";
+        Car car = carService.getCarById(rentalService.getRentalById(id).getCarId());
+        car.setStatus(CarStatus.AVAILABLE);
+        carService.updateCar(car);
         rentalService.deleteRental(id);
         if (page.equals("your")) return "redirect:/yourRentals";
         return "redirect:/findRental";
@@ -122,30 +121,25 @@ public class RentalController { // Severin
             return "frontpage";
 
         model.addAttribute("customerList", customerService.getAll());
-        model.addAttribute("carList", carService.getAvailableCars());
+        model.addAttribute("carList", carService.getAvailable());
         return "createRental";
     }
 
     @PostMapping("/submitRental")
-    public String submitRental(HttpSession session, Model model,
-                               @RequestParam("customer") int customer,
+    public String submitRental(HttpSession session, RedirectAttributes redirectAttributes,
+                               @RequestParam("customer") String customer,
                                @RequestParam("startDate") String startDate,
                                @RequestParam("pickuppoint") String pickuppoint,
-                               @RequestParam("car") int car,
+                               @RequestParam("car") String car,
                                @RequestParam("type") String type,
                                @RequestParam("dropoffpoint") String dropoffpoint,
-                               @RequestParam("unlimitedMonth") int unlimitedMonth){
+                               @RequestParam("unlimitedMonth") String unlimitedMonth){
         if(session.getAttribute("user")==null)
             return "frontpage";
-        if(!type.equals("5")) type=String.valueOf(unlimitedMonth);
-        String endDate=rentalService.calcEndDate(startDate,type);
-        User user = (User) session.getAttribute("user");
-        Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false, user.getId());
-        rentalService.createRental(rental);
-        Car newcar = carService.getCarById(car);
-        newcar.setStatus(CarStatus.RENTED);
-        carService.updateCar(newcar);
-        return "redirect:/rental";
+
+        // Opdateret, så submitRental() returnerer et redirect.
+        return rentalService.submitRental(customer, startDate, pickuppoint, car, type, dropoffpoint, unlimitedMonth, redirectAttributes);
+
     }
 
     @GetMapping("/createUser")
@@ -159,10 +153,20 @@ public class RentalController { // Severin
                                   @RequestParam("email") String email,
                                   @RequestParam("username")String username,
                                   @RequestParam("password") String password,
+                                  @RequestParam("confirmPassword") String confirmPassword,
                                   @RequestParam("type") String type,
                                   RedirectAttributes redirectAttributes,
                                   Model model) {
+        if(!password.equals(confirmPassword)){
+            redirectAttributes.addFlashAttribute("name", name);
+            redirectAttributes.addFlashAttribute("email", email);
+            redirectAttributes.addFlashAttribute("username", username);
+            redirectAttributes.addFlashAttribute("type", type);
+            redirectAttributes.addFlashAttribute("passwordMismatch", true);
+            return "redirect:/createUser";
+        }
         // Opdateret for at rykke logikken fra Controlleren ned i Service.
+        // Servicemetoden createUser() har nu returnværdi, der omdiregerer alt efter metodens udfald.
         return userService.createUser(name, username, password, email, type, model, redirectAttributes);
     }
 

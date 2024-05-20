@@ -20,28 +20,30 @@
                 <h2 class="splitHead"> Søg efter kunde </h2>
                 <div class="loginFields">
                     <div>
-                        <input list="customers" name="customer">
+                        <input list="customers" name="customer" th:value="${customer}" required>
                         <datalist id="customers">
-                            <option th:each="customer : ${customerList}" th:text="${customer.name} + ' - ' + ${customer.telnr}" th:value="${customer.id}"></option>
+                            <option th:each="customer : ${customerList}" th:text="${customer.name} + ' - ' + ${customer.telnr}" th:value="${customer.id} + '. ' + ${customer.name} + ' - ' + ${customer.telnr}"></option>
                         </datalist>
                     </div>
                 </div>
+                <span style=" color:red"><p id="customerNotFound"></p></span>
             </div>
 
             <div class="thirds">
-                <h2 class="splitHead"> Vælg start dato</h2>
+                <h2 class="splitHead"> Vælg startdato</h2>
                 <div class="loginFields">
                     <div>
-                        <input type="date" name="startDate">
+                        <input type="date" name="startDate" th:value="${startDate}" required>
                     </div>
                 </div>
+                <span style=" color:red"><p id="timeTravelException"></p></span>
             </div>
             <div class="thirds">
 
                 <h2 class="splitHead"> Vælg udleveringssted </h2>
                 <div class="loginFields">
                     <div>
-                        <input type="text" name="pickuppoint" required>
+                        <input type="text" name="pickuppoint" th:value="${pickuppoint}" required>
                     </div>
                 </div>
             </div>
@@ -53,34 +55,34 @@
                 <h2 class="splitHead"> Søg efter bil </h2>
                 <div class="loginFields">
                     <div>
-                        <input list="cars" name="car" required>
+                        <input list="cars" name="car" th:value="${car}" required>
                         <datalist id="cars">
-                            <option th:each="car : ${carList}" th:text="${car.brand}+ ' - ' + ${car.model}+ ' - ' + ${car.price}" th:value="${car.id}"></option>
+                            <option th:each="car : ${carList}" th:text="${car.brand}+ ' - ' + ${car.model}+ ' - ' + ${car.price}" th:value="${car.id} + '. ' + ${car.brand}+ ' - ' + ${car.model}+ ' - ' + ${car.price}"></option>
                         </datalist>
                     </div>
                 </div>
+                <span style=" color:red"><p id="carError"></p></span>
             </div>
 
             <div class="thirds">
-                <h2 class="splitHead"> Vælg aftale type</h2>
+                <h2 class="splitHead"> Vælg aftaletype</h2>
                 <div class="loginFields">
-
-
                     <div>
-                        <input type="radio" id="limited" name="type" value="5">
+                        <input type="radio" id="limited" name="type" value="5" th:checked="${type == 5}">
                         <label for="limited">Limited, 5 Måneder</label><br>
-                        <input type="radio" id="unlimited" name="type"  value="0" required>
+                        <input type="radio" id="unlimited" name="type"  value="3" th:checked="${type != 5}" required>
                         <label for="unlimited">Unlimited, angiv måneder (3-36): </label><br>
-                        <input type="number" name="unlimitedMonth" value="0">
+                        <input type="number" name="unlimitedMonth" min="3" max="36" th:value="${type}">
                     </div>
                 </div>
+                <span style=" color:red"><p id="typeError"></p></span>
             </div>
             <div class="thirds">
 
                 <h2 class="splitHead"> Vælg indleveringssted </h2>
                 <div class="loginFields">
                     <div>
-                        <input type="text" name="dropoffpoint"  required>
+                        <input type="text" name="dropoffpoint" th:value="${dropoffpoint}" required>
                     </div>
                 </div>
             </div>
@@ -94,6 +96,33 @@
 
     </form>
 </div>
+
+<script th:inline="javascript">
+    var customerNotFound = /*[[${customerNotFound}]]*/ false;
+    if (customerNotFound===true){
+        document.getElementById("customerNotFound").innerHTML="Kunne ikke finde kunden i systemet.";
+    }
+
+    var carNotFound = /*[[${carNotFound}]]*/ false;
+    if (carNotFound===true){
+        document.getElementById("carError").innerHTML="Kunne ikke finde bilen i systemet.";
+    }
+
+    var carAlreadyRented = /*[[${carAlreadyRented}]]*/ false;
+    if (carAlreadyRented===true){
+        document.getElementById("carError").innerHTML="Bilen er allerede udlejet.";
+    }
+
+    var timeTravelException = /*[[${timeTravelException}]]*/ false;
+    if (timeTravelException===true){
+        document.getElementById("timeTravelException").innerHTML="Startdato er i fortiden.";
+    }
+
+    var typeError = /*[[${typeError}]]*/ false;
+    if (typeError===true){
+        document.getElementById("typeError").innerHTML="Ugyldigt antal måneder.";
+    }
+</script>
 
 </body>
 </html>
