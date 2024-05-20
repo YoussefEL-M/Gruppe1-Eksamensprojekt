@@ -24,7 +24,7 @@ public class ReportService { // Severin
     }
 
     //Opdater i klassediagram
-    public Report getReportById(int id, Model model){
+    public Report getReportById(int id){
 
         Report report;
 
@@ -32,7 +32,6 @@ public class ReportService { // Severin
             report = reportRepo.getReportById(id);
         } catch (EmptyResultDataAccessException ERDA) {
 
-            model.addAttribute("unableToFindReport", true);
             return null;
         }
         if(report.getId() == id) {

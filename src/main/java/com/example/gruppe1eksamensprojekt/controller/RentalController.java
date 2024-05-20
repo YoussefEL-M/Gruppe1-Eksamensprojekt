@@ -75,7 +75,7 @@ public class RentalController { // Severin
             return "frontpage";
         //Har indsat model i getRentalById metode som parameter grundet, at den bruges i service.
         //Ved ikke om den skal være der, men har sat den der på grund af, at den ellers ville gå i fejl
-        model.addAttribute("rental",rentalService.getRentalById(id, model));
+        model.addAttribute("rental",rentalService.getRentalById(id));
 
         return "rentalUpdateForm";
     }
@@ -84,12 +84,11 @@ public class RentalController { // Severin
     @PostMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
                                @RequestParam("returnLocation") String returnLocation,
-                               @RequestParam("carId") int carId, HttpSession session,
-                               Model model){
+                               @RequestParam("carId") int carId, HttpSession session){
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        Rental rental = rentalService.getRentalById(id, model);
+        Rental rental = rentalService.getRentalById(id);
         rental.setEndDate(endDate);
         rental.setReturnLocation(returnLocation);
         rental.setCarId(carId);
@@ -143,7 +142,7 @@ public class RentalController { // Severin
         User user = (User) session.getAttribute("user");
         Rental rental = new Rental(pickuppoint, dropoffpoint, type, customer, startDate, endDate, car, false, user.getId());
         rentalService.createRental(rental);
-        Car newcar = carService.getCarById(car, model);
+        Car newcar = carService.getCarById(car);
         newcar.setStatus(CarStatus.RENTED);
         carService.updateCar(newcar);
         return "redirect:/rental";
@@ -176,11 +175,11 @@ public class RentalController { // Severin
     //Opdater i klassediagram
     @GetMapping("/editRentalStatus")
     public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page, Model model){
-        Rental rental = rentalService.getRentalById(id, model);
+        Rental rental = rentalService.getRentalById(id);
         rental.setStatus(true);
         rentalService.updateRental(rental);
 
-        Car car = carService.getCarById(rental.getCarId(), model);
+        Car car = carService.getCarById(rental.getCarId());
         car.setStatus(CarStatus.PENDING);
         carService.updateCar(car);
 

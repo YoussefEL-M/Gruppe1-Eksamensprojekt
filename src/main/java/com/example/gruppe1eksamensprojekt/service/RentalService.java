@@ -27,14 +27,13 @@ public class RentalService { //Severin
     }
 
     //Opdater i klassediagram
-    public Rental getRentalById(int id, Model model){
+    public Rental getRentalById(int id){
 
         Rental rental;
         try {
             rental = rentalRepo.getRentalById(id);
         } catch (EmptyResultDataAccessException ERDA) {
 
-            model.addAttribute("unableToFindRental", true);
             return null;
         }
         if(rental.getId() == id) {
