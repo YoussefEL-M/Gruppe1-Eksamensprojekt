@@ -81,7 +81,7 @@ public class ReportService { // Severin
             rentalId = Integer.parseInt(rental.split("\\.")[0]);
             rentalRepo.getRentalById(rentalId);
         } catch (EmptyResultDataAccessException | NumberFormatException E){
-            redirectAttributes.addFlashAttribute("reportNotFound", true);
+            redirectAttributes.addFlashAttribute("rentalNotFound", true);
             error = true;
         }
 

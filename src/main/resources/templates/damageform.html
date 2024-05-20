@@ -74,11 +74,13 @@
     </form>
 </div>
 
-</body>
 <script th:inline="javascript">
-    var customerNotFound = /*[[${customerNotFound}]]*/ false;
-    if (customerNotFound===true){
+    var rentalNotFound = /*[[${customerNotFound}]]*/ false;
+    if (rentalNotFound===true){
         document.getElementById("rentalNotFound").innerHTML="Kunne ikke finde kunden i systemet.";
     }
 </script>
+
+</body>
+
 </html>
