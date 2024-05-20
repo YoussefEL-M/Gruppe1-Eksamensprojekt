@@ -153,6 +153,19 @@ public class RentalService { //Severin
         }
 
         Rental rental = rentalRepo.getRentalById(id);
+
+        // Hvis bilen i lejeaftalen er blevet ændret, opdater bilernes status.
+        if (rental.getCarId()!=carId){
+            Car oldCar = carRepo.getCarById(rental.getCarId());
+            Car newCar = carRepo.getCarById(carId);
+
+            oldCar.setStatus(CarStatus.AVAILABLE);
+            newCar.setStatus(CarStatus.RENTED);
+
+            carRepo.update(oldCar);
+            carRepo.update(newCar);
+        }
+
         rental.setStartDate(startDate);
         rental.setEndDate(endDate);
         rental.setPickUpLocation(pickUpLocation);
