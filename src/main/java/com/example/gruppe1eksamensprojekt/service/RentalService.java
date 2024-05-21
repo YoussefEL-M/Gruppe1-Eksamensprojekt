@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 
 @Service
@@ -87,8 +88,8 @@ public class RentalService { //Severin
             redirectAttributes.addFlashAttribute("dropoffpoint", dropoffpoint);
             redirectAttributes.addFlashAttribute("unlimitedMonth", unlimitedMonth);
         } else{
-            String endDate = calcEndDate(startDate,type);
             Car carToUpdate = carRepo.getCarById(carId);
+            String endDate = calcEndDate(startDate,type, carToUpdate.isDs());
             carToUpdate.setStatus(CarStatus.RENTED);
             carRepo.update(carToUpdate);
             Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, false);
@@ -179,9 +180,27 @@ public class RentalService { //Severin
         rentalRepo.delete(id);
     }
 
-    public String calcEndDate(String startDate, String type) {
+    public String calcEndDate(String startDate, String type, boolean isDS) {
 
-        return LocalDate.parse(startDate).plusMonths(Integer.parseInt(type)).toString();
+        LocalDate endDate = LocalDate.parse(startDate).plusMonths(Integer.parseInt(type));
+
+        // Hvis bilen er en DS bil, skal den returneres to dage før måneden slutter, for at undgå at betale en ekstra måneds nummerpladeafgift.
+        if(isDS) {
+            // Hvis slutdato ikke er en af de sidste to dage i måneden, returner slutdato.
+            if (endDate.plusDays(2).getMonth().equals(endDate.getMonth())) {
+                return endDate.toString();
+            }
+
+            // Hvis slutdato er den næstsidste dag i måneden, træk en dag fra og returner ny slutdato.
+            else if (endDate.plusDays(1).getMonth().equals(endDate.getMonth())) {
+                return endDate.minusDays(1).toString();
+            }
+
+            // Hvis slutdato er den sidste dag i måneden, træk to dage fra og returner ny slutdato.
+            else return endDate.minusDays(2).toString();
+        }
+
+        return endDate.toString();
     }
 
     public Rental getRentalsByUserID(int id){
