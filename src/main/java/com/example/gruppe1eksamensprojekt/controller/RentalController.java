@@ -189,7 +189,7 @@ public class RentalController { // Severin
     @GetMapping("/editRentalStatus")
     public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page, Model model){
         Rental rental = rentalService.getRentalById(id);
-        rental.setStatus(true);
+        rental.setStatus("LATEST");
         rentalService.updateRental(rental);
 
         Car car = carService.getCarById(rental.getCarId());

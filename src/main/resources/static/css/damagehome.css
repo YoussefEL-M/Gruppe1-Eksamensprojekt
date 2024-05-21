@@ -67,3 +67,12 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+#reportButton {
+    height:30px;
+    width:120px;
+
+}
+#reportButtonDiv{
+    text-align: center;
+}

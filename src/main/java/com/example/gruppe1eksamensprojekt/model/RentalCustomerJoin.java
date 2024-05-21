@@ -16,12 +16,12 @@ public class RentalCustomerJoin {
     private String address;
     private LocalDate birthdate;
 
-    private boolean status;
+    private String status;
 
     private int userId;
 
 
-    public RentalCustomerJoin(int id, String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId,String name, String telnr, String address, LocalDate birthdate, boolean status, int userId) {
+    public RentalCustomerJoin(int id, String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId,String name, String telnr, String address, LocalDate birthdate, String status, int userId) {
         this.id=id;
         this.pickUpLocation = pickUpLocation;
         this.returnLocation = returnLocation;
@@ -116,10 +116,10 @@ public class RentalCustomerJoin {
         this.birthdate = birthdate;
     }
 
-    public boolean getStatus() {
+    public String getStatus() {
         return status;
     }
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

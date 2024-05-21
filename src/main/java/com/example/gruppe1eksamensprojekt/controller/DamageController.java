@@ -41,7 +41,7 @@ public class DamageController {
             return "frontpage";
         }
 
-        List<Car> carList = carService.getRented();
+        List<Car> carList = carService.getPending();
         model.addAttribute("carlist", carList);
 
         List<Car> pendingCarList = carService.getNotUpdated();
@@ -67,14 +67,22 @@ public class DamageController {
         if(session.getAttribute("user")==null) {
             return "frontpage";
         }
-        List<Car> cars = carService.getDamagedCars();
-        model.addAttribute("cars", cars);
+//        List<Car> cars = carService.getDamagedCars();
+//        model.addAttribute("cars", cars);
         List<RentalCustomerJoin> rentalList = rentalCustomerJoinService.getAll();
         model.addAttribute("rentalList", rentalList);
 
         return "damageform";
     }
 
+    @GetMapping("/createx/{id}")
+    public String create(@PathVariable("id") int id, RedirectAttributes redirectAttributes){
+
+        RentalCustomerJoin rental = rentalCustomerJoinService.getRentalByCar(id);
+        String string = rental.getId()+ ". " + rental.getName()+ " - " + rental.getEndDate();
+        redirectAttributes.addFlashAttribute("rental", string);
+        return "redirect:/create";
+    }
 
     //Husk at opdaterer i klassediagram
     @PostMapping("/createReport")
@@ -169,6 +177,7 @@ public class DamageController {
         return "damageView";
     }
 
+    //Bjarke
     @GetMapping("/updateStatus/{id}/{status}")
     public String updateStatus(@PathVariable("id") int id, @PathVariable("status") String status){
 

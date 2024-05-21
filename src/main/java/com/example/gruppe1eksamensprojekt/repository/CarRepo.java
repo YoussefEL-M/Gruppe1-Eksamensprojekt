@@ -59,6 +59,14 @@ public class CarRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
+    public List<Car> getPending(){
+        String sql = "SELECT * FROM car " +
+                "LEFT JOIN carIdentification " +
+                "ON car.serialNumber = carIdentification.serialNumber WHERE status = 'PENDING'";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
     public List<Car> getAvailable(){
         String sql = "SELECT * FROM car " +
                 "LEFT JOIN carIdentification " +
@@ -90,6 +98,8 @@ public class CarRepo {
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql,rowMapper, date);
     }
+
+
 
 
 

@@ -23,7 +23,7 @@
     <div class="halves">
 
         <h2 class="splitHead">
-            Indleveret i dag.
+            Biler klar til behandling
         </h2>
 
         <table class="taskList">
@@ -33,6 +33,7 @@
                 <th>Model</th>
                 <th>Nummerplade</th>
                 <th>Status</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -41,7 +42,7 @@
                 <td th:text="${car.model}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.status}"></td>
-                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button>Opret rapport</button></a></td>
+                <td><div id="reportButtonDiv"><a th:href="@{'/createx/' + ${car.id}}" href="damageform.html"><button id="reportButton">Opret rapport</button></a></div></td>
             </tr>
             </tbody>
         </table>
@@ -51,6 +52,7 @@
 
     <div class="halves">
 
+<!--        Bjarke-->
         <h2 class="splitHead"> Status uændret i 5 dage eller mere </h2>
 
         <table class="tasklist">

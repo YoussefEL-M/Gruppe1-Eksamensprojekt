@@ -36,7 +36,6 @@ public class RentalRepo {
 
 
 
-
     public void delete(int id) {
         String sql = "DELETE FROM rental WHERE id = ?";
         jdbcTemplate.update(sql, id);
@@ -53,6 +52,10 @@ public class RentalRepo {
         RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
+
+
+
+
 
 
 

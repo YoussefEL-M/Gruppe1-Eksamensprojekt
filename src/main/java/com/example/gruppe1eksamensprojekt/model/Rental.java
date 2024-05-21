@@ -12,10 +12,10 @@ public class Rental {
     private String startDate;
     private String endDate;
     private int carId;
-    private boolean status;
+    private String status;
     private int userId;
 
-    public Rental(String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId, boolean status, int userID) {
+    public Rental(String pickUpLocation, String returnLocation, String type, int customerId, String startDate, String endDate, int carId, String status, int userID) {
         this.pickUpLocation = pickUpLocation;
         this.returnLocation = returnLocation;
         this.type=type;
@@ -79,10 +79,10 @@ public class Rental {
         this.carId = carID;
     }
 
-    public boolean getStatus() {
+    public String getStatus() {
         return status;
     }
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

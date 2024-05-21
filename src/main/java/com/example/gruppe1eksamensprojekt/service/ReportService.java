@@ -2,6 +2,7 @@ package com.example.gruppe1eksamensprojekt.service;
 
 import com.example.gruppe1eksamensprojekt.model.Car;
 import com.example.gruppe1eksamensprojekt.model.CarStatus;
+import com.example.gruppe1eksamensprojekt.model.Rental;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.repository.RentalRepo;
 import com.example.gruppe1eksamensprojekt.repository.ReportRepo;
@@ -122,6 +123,10 @@ public class ReportService { // Severin
             newcar.setStatus(CarStatus.valueOf(status));
             newcar.setLastUpdated(LocalDate.now());
             carService.updateCar(newcar);
+
+            Rental newRental = rentalService.getRentalById(rentalId);
+            newRental.setStatus("FINISHED");
+            rentalService.updateRental(newRental);
 
             return "redirect:/damage";
         }
