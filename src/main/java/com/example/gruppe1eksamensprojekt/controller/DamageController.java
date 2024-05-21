@@ -44,7 +44,7 @@ public class DamageController {
         List<Car> carList = carService.getRented();
         model.addAttribute("carlist", carList);
 
-        List<Car> pendingCarList = carService.getDamagedCars();
+        List<Car> pendingCarList = carService.getNotUpdated();
         model.addAttribute("pendingcarlist", pendingCarList);
 
         return "damagehome";
@@ -169,7 +169,17 @@ public class DamageController {
         return "damageView";
     }
 
+    @GetMapping("/updateStatus/{id}/{status}")
+    public String updateStatus(@PathVariable("id") int id, @PathVariable("status") String status){
 
+        Car car =carService.getCarById(id);
+        car.setStatus(CarStatus.valueOf(status));
+        car.setLastUpdated(LocalDate.now());
+
+        carService.updateCar(car);
+
+      return "redirect:/";
+    }
 
 
 

@@ -120,7 +120,9 @@ public class ReportService { // Severin
             int carid=rentalService.getRentalById(rentalId).getCarId();
             Car newcar =carService.getCarById(carid);
             newcar.setStatus(CarStatus.valueOf(status));
+            newcar.setLastUpdated(LocalDate.now());
             carService.updateCar(newcar);
+
             return "redirect:/damage";
         }
 
