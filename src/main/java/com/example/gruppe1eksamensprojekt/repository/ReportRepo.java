@@ -22,9 +22,16 @@ public class ReportRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
+    //Clara
+    public List<Report> getYourReports(int userId) {
+        String sql = "SELECT * FROM report WHERE user_id = ?";
+        RowMapper<Report> rowMapper = new BeanPropertyRowMapper<>(Report.class);
+        return jdbcTemplate.query(sql, rowMapper, userId);
+    }
+
     public void create(Report report) {
-        String sql = "INSERT INTO report (rentalId, title, date, comment, treatment) VALUES (?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, report.getRentalId(), report.getTitle(), report.getDate(), report.getComment(), report.getTreatment());
+        String sql = "INSERT INTO report (rentalId, user_id, title, date, comment, treatment) VALUES (?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, report.getRentalId(), report.getUser_id(), report.getTitle(), report.getDate(), report.getComment(), report.getTreatment());
     }
 
     public void update(Report report) {

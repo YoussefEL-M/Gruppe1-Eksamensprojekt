@@ -61,6 +61,19 @@ public class DamageController {
         return "overviewReports";
     }
 
+    //Opdater klassediagram!!
+    @GetMapping("/yourReports")
+    public String retrieveYourReports(HttpSession session, Model model) {
+
+        if(session.getAttribute("user") == null) {
+            return "frontpage";
+        }
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("yourReportslist", reportService.getYourReports(user.getId()));
+
+        return "yourReports";
+    }
+
     //Husk at opdaterer i klassediagram
     @GetMapping("/create")
     public String createReport(HttpSession session, Model model) {
@@ -97,8 +110,10 @@ public class DamageController {
                                 HttpSession session,
                                 RedirectAttributes redirectAttributes) {
 
+        User user = (User) session.getAttribute("user");
+        int user_id = user.getId();
 
-        return reportService.submitReport(rental, reportTitle, reportDate, treatment, comment, report0damage, report1damage, report2damage, report3damage, report4damage, report0price, report1price,report2price, report3price, report4price, status, redirectAttributes);
+        return reportService.submitReport(rental, user_id, reportTitle, reportDate, treatment, comment, report0damage, report1damage, report2damage, report3damage, report4damage, report0price, report1price,report2price, report3price, report4price, status, redirectAttributes);
     }
 
     //Opdater i klassediagram

@@ -14,7 +14,7 @@ body{
 /*    background-color: #ffffff;*/
 /*}*/
 
-h2 {
+h1, h2 {
     margin-top: 0;
     margin-bottom: 20px;
     text-align: center;
@@ -79,17 +79,6 @@ th {
     border-radius: 4px;
 }
 
-.delete {
-    background-color: #f44336;
-}
-
-.delete:hover {
-    background-color: crimson;
-}
-
-.update:hover {
-    background-color: #45a049;
-}
 
 button input[type = "submit"]{
     padding: 5px 10px;
@@ -107,7 +96,19 @@ button input[type = "submit"]{
     border-radius: 4px;
     width:100px;
     height:30px;
+}
+.opretRapport {
+    cursor:pointer;
+    border-radius: 4px;
+    width:120px;
+    height:45px;
+    margin-bottom: 20px;
+    align-content: center;
+}
 
+.update-button, .delete-button {
+    height:35px;
+    width:90px;
 }
 
 button {
@@ -122,6 +123,6 @@ button:hover {
     color:white;
 }
 
-#overskrift {
+.overskrift {
     text-align: center;
 }
