@@ -72,7 +72,7 @@ public class ReportService { // Severin
     public int lastId(){return reportRepo.lastId(); }
 
 
-    public String submitReport(String rental, String reportTitle, LocalDate reportDate, String treatment, String comment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  String report0price,   String report1price,  String report2price,  String report3price,  String report4price, String status, RedirectAttributes redirectAttributes, Model model){
+    public String submitReport(String rental, String reportTitle, LocalDate reportDate, String treatment, String comment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  String report0price,   String report1price,  String report2price,  String report3price,  String report4price, String status, RedirectAttributes redirectAttributes){
         boolean error = false;
         int rentalId = 0;
 
@@ -117,8 +117,8 @@ public class ReportService { // Severin
             report.setId(lastId());
             createDamages(report);
 
-            int carid=rentalService.getRentalById(rentalId,model).getCarId();
-            Car newcar =carService.getCarById(carid,model);
+            int carid=rentalService.getRentalById(rentalId).getCarId();
+            Car newcar =carService.getCarById(carid);
             newcar.setStatus(CarStatus.valueOf(status));
             carService.updateCar(newcar);
             return "redirect:/damage";

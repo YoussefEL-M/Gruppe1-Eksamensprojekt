@@ -94,11 +94,11 @@ public class DamageController {
                                 @RequestParam("report4damage") String report4damage,
                                 @RequestParam("report4price") String report4price,
                                 @RequestParam("status") String status,
-                                HttpSession session, Model model,
+                                HttpSession session,
                                 RedirectAttributes redirectAttributes) {
 
 
-        return reportService.submitReport(rental, reportTitle, reportDate, treatment, comment, report0damage, report1damage, report2damage, report3damage, report4damage, report0price, report1price,report2price, report3price, report4price, status, redirectAttributes, model);
+        return reportService.submitReport(rental, reportTitle, reportDate, treatment, comment, report0damage, report1damage, report2damage, report3damage, report4damage, report0price, report1price,report2price, report3price, report4price, status, redirectAttributes);
     }
 
     //Opdater i klassediagram

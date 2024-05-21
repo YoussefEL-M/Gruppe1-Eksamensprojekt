@@ -39,7 +39,7 @@ public class RentalService { //Severin
         rentalRepo.create(rental);
     }
 
-    public String submitRental(String customer, String startDate, String pickuppoint, String car, String type, String dropoffpoint, String unlimitedMonth, RedirectAttributes redirectAttributes){
+    public String submitRental(String customer, String startDate, String pickuppoint, String car, String type, String dropoffpoint, String unlimitedMonth, int userID, RedirectAttributes redirectAttributes){
         boolean error = false;
         int customerId = 0;
         int carId = 0;
@@ -91,7 +91,7 @@ public class RentalService { //Severin
             Car carToUpdate = carRepo.getCarById(carId);
             carToUpdate.setStatus(CarStatus.RENTED);
             carRepo.update(carToUpdate);
-            Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, false);
+            Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, false, userID);
             rentalRepo.create(rental);
             return "redirect:/rental";
         }

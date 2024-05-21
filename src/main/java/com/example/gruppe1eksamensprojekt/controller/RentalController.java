@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+
 @Controller
 public class RentalController { // Severin
     // Todo: gennemgå metodernes Models og sørg for at deres attributter er navngivet korrekt.
@@ -81,11 +83,16 @@ public class RentalController { // Severin
         return "rentalUpdateForm";
     }
 
+
     //Opdater klassediagram
     @PostMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
-                               @RequestParam("returnLocation") String returnLocation,
-                               @RequestParam("carId") int carId, HttpSession session){
+                               @RequestParam("pickUpLocation") String pickUpLocation,
+                               @RequestParam("startDate") String startDate,
+                               @RequestParam("carId") String car,
+                               @RequestParam("returnUpLocation") String returnLocation,
+                               RedirectAttributes redirectAttributes,
+                               HttpSession session){
         if(session.getAttribute("user")==null)
             return "frontpage";
 
@@ -137,8 +144,10 @@ public class RentalController { // Severin
         if(session.getAttribute("user")==null)
             return "frontpage";
 
+        User user = (User) session.getAttribute("user");
+        int userID =user.getId();
         // Opdateret, så submitRental() returnerer et redirect.
-        return rentalService.submitRental(customer, startDate, pickuppoint, car, type, dropoffpoint, unlimitedMonth, redirectAttributes);
+        return rentalService.submitRental(customer, startDate, pickuppoint, car, type, dropoffpoint, unlimitedMonth, userID, redirectAttributes);
 
     }
 
