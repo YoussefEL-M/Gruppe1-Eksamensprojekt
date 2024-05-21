@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>All Cars Overview</title>
     <link rel="stylesheet" href="../static/CSS/overviewReports.css" th:href="@{/CSS/overviewReports.css}">
 </head>
 <body>
@@ -12,7 +12,7 @@
 <header th:insert="fragments/businessheader.html"></header>
 
 <div class="main">
-    <h1>Oversigt over udlejet biler</h1>
+    <h1>Oversigt over alle biler</h1>
     <div class="info">
         <table>
             <thead>
@@ -27,11 +27,12 @@
                 <th>Brændstofeffektivitet</th>
                 <th>Gear Type</th>
                 <th>Funktioner</th>
+                <th>Status</th>
                 <th>Pris</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="car : ${rentedCars}">
+            <tr th:each="car : ${cars}">
                 <td th:text="${car.id}"></td>
                 <td th:text="${car.brand}"></td>
                 <td th:text="${car.model}"></td>
@@ -42,14 +43,11 @@
                 <td th:text="${car.fuelEfficiency}"></td>
                 <td th:text="${car.manual ? 'Manual' : 'Automatic'}"></td>
                 <td th:text="${car.trimLevel}"></td>
+                <td th:text="${car.status}"></td>
                 <td th:text="${car.price}"></td>
             </tr>
             </tbody>
         </table>
-    </div>
-    <div class="totals">
-        <p>Antal udlejede biler: <span th:text="${noOfRentedCars}"></span></p>
-        <p>Total pris for udlejede biler: <span th:text="${rentedCarsTotalPrice}"></span> DKK</p>
     </div>
 </div>
 </body>

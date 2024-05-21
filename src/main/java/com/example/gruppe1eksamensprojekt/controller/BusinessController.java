@@ -29,4 +29,13 @@ public class BusinessController {
 
        return "businessPage";
    }
+
+   //Youssef
+    @GetMapping("/allcars")
+    public String allCarsPage(Model model) {
+        List<Car> allCars = carService.getAll();
+        model.addAttribute("cars", allCars);
+        return "businessOverview";
+    }
+
 }
