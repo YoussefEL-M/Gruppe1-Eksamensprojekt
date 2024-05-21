@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS rental
 CREATE TABLE IF NOT EXISTS report
 (id	INT PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
  rentalId	INT,	FOREIGN KEY(rentalId)	REFERENCES rental(id),
+    user_id INT,    FOREIGN KEY(user_id)    REFERENCES user(id),
     title	VARCHAR(50)	NOT NULL,
     date	DATE	NOT NULL,
     comment	VARCHAR(500)	NOT NULL
