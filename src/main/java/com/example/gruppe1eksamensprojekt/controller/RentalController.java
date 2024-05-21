@@ -89,8 +89,8 @@ public class RentalController { // Severin
     public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
                                @RequestParam("pickUpLocation") String pickUpLocation,
                                @RequestParam("startDate") String startDate,
-                               @RequestParam("carId") String car,
-                               @RequestParam("returnUpLocation") String returnLocation,
+                               @RequestParam("car") String car,
+                               @RequestParam("returnLocation") String returnLocation,
                                RedirectAttributes redirectAttributes,
                                HttpSession session){
         if(session.getAttribute("user")==null)
