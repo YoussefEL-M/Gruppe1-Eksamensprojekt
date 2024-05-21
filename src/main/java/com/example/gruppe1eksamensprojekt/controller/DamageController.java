@@ -61,6 +61,19 @@ public class DamageController {
         return "overviewReports";
     }
 
+    //Opdater klassediagram!!
+    @GetMapping("yourReports")
+    public String retrieveYourReports(HttpSession session, Model model) {
+
+        if(session.getAttribute("user") == null) {
+            return "frontpage";
+        }
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("yourReportslist", reportService.getYourReports(user.getId()));
+
+        return "yourReports";
+    }
+
     //Husk at opdaterer i klassediagram
     @GetMapping("/create")
     public String createReport(HttpSession session, Model model) {

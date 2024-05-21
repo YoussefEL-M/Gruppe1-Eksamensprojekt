@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dine rapporter</title>
+    <link rel="stylesheet" href="../static/css/overviewReports.css" th:href="@{css/overviewReports.css}">
+</head>
+<body>
+
+<header th:insert="fragments/damageheader.html"></header>
+
+</body>
+
+<h1>Dine rapporter</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Udlejnings-ID</th>
+        <th>Titel</th>
+        <th>Dato</th>
+        <th>Behandling</th>
+        <th>Beskrivelse</th>
+        <th>Skader</th>
+        <th>Handling</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="report : ${yourReportslist}">
+        <td th:text="${report.getId()}"></td>
+        <td th:text="${report.getRentalId()}"></td>
+        <td th:text="${report.getTitle()}"></td>
+        <td th:text="${report.getDate()}"></td>
+        <td th:text="${report.getTreatment()}"></td>
+        <td th:text="${report.getComment()}"></td>
+        <td>
+            <ul>
+                <li th:each="damage : ${report.damages}">
+                    <span th:text="${damage.getKey()}"></span> : <span th:text="${damage.getValue()}"></span>
+                </li>
+            </ul>
+        </td>
+        <td>
+            <div class="edit-button">
+                <a th:href="@{'/updateForm/' + ${report.getId()}}"> <button>Opdater rapport</button></a>
+            </div>
+
+            <div class="delete-button">
+                <a th:href="@{'/delete/' + ${report.id}}"
+                   onclick="return confirm('Er du sikker på, at du vil slette denne rapport?')">
+                    <button>Slet rapport</button></a>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</html>
