@@ -29,8 +29,9 @@ public class Report {
         this.treatment = treatment;
 
     }
-    public Report(int rentalId, String title, LocalDate date, String comment, String treatment, Map<String, Double> damages) {
+    public Report(int rentalId, int user_id, String title, LocalDate date, String comment, String treatment, Map<String, Double> damages) {
         this.rentalId = rentalId;
+        this.user_id = user_id;
         this.title = title;
         this.date = date;
         this.comment = comment;
@@ -38,6 +39,7 @@ public class Report {
         this.damages = damages;
 
     }
+
 
     public int getId() {
         return id;

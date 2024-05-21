@@ -13,6 +13,10 @@
 
 <h1>Dine rapporter</h1>
 
+<div class="overskrift">
+    <a href="/create"><button class="opretRapport">Opret ny rapport</button></a>
+</div>
+
 <table>
     <thead>
     <tr>
@@ -44,14 +48,14 @@
             </ul>
         </td>
         <td>
-            <div class="edit-button">
-                <a th:href="@{'/updateForm/' + ${report.getId()}}"> <button>Opdater rapport</button></a>
+            <div>
+                <a th:href="@{'/updateForm/' + ${report.getId()}}"> <button class="update-button">Opdater rapport</button></a>
             </div>
 
-            <div class="delete-button">
+            <div>
                 <a th:href="@{'/delete/' + ${report.getId()}}"
                    onclick="return confirm('Er du sikker på, at du vil slette denne rapport?')">
-                    <button>Slet rapport</button></a>
+                    <button class="delete-button">Slet rapport</button></a>
             </div>
         </td>
     </tr>

@@ -71,7 +71,8 @@ CREATE TABLE IF NOT EXISTS report
     user_id INT,    FOREIGN KEY(user_id)    REFERENCES user(id),
     title	VARCHAR(50)	NOT NULL,
     date	DATE	NOT NULL,
-    comment	VARCHAR(500)	NOT NULL
+    comment	VARCHAR(500)	NOT NULL,
+    treatment   VARCHAR(500)
     );
 
 
