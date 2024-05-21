@@ -24,8 +24,7 @@ public class RentalCustomerJoinRepo {
     }
 
     public List<RentalCustomerJoin> getAllByUserId(int id) {
-        String sql = "SELECT rental.id, rental.customer_id, rental.car_id, rental.user_id, rental.pickUpLocation, rental.returnLocation, rental.type, rental.startDate, rental.endDate, rental.status, customer.name, customer.telnr, customer.email, customer.address, customer.birthDate " +
-                "FROM rental " +
+        String sql = "SELECT * FROM rental " +
                 "LEFT JOIN customer " +
                 "ON rental.customer_id = customer.id WHERE user_id = ?";
         RowMapper<RentalCustomerJoin> rowMapper = new BeanPropertyRowMapper<>(RentalCustomerJoin.class);
@@ -34,7 +33,7 @@ public class RentalCustomerJoinRepo {
 
 
     public RentalCustomerJoin getRentalByCar(int id) {
-        String sql = "SELECT * FROM rental WHERE car_id = ? and status='CURRENT' ";
+        String sql = "SELECT * FROM rental LEFT JOIN customer ON rental.customer_id = customer.id WHERE car_id = ? and status='CURRENT' ";
         RowMapper<RentalCustomerJoin> rowMapper = new BeanPropertyRowMapper<>(RentalCustomerJoin.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }

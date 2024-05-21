@@ -38,10 +38,10 @@
                     <td th:text="${rental.getStartDate()}"></td>
                     <td th:text="${rental.getEndDate()}"></td>
                     <td>
-                        <div th:if="${rental.getStatus() == false}">
+                        <div th:if="${rental.getStatus().equals('FRESH')}">
                             <a th:href="@{'/editRentalStatus?id='+${rental.getId()}+'&page=all'}"> <button>Indlever </button></a>
                         </div>
-                        <div th:if="${rental.getStatus() == true}">
+                        <div th:if="${!rental.getStatus().equals('FRESH') == true}">
                             <a>Indleveret</a>
                         </div>
                     </td>

@@ -67,15 +67,15 @@ public class DamageController {
         if(session.getAttribute("user")==null) {
             return "frontpage";
         }
-//        List<Car> cars = carService.getDamagedCars();
-//        model.addAttribute("cars", cars);
+
         List<RentalCustomerJoin> rentalList = rentalCustomerJoinService.getAll();
         model.addAttribute("rentalList", rentalList);
 
         return "damageform";
     }
 
-    @GetMapping("/createx/{id}")
+    //Bjarke
+    @GetMapping("/create/{id}")
     public String create(@PathVariable("id") int id, RedirectAttributes redirectAttributes){
 
         RentalCustomerJoin rental = rentalCustomerJoinService.getRentalByCar(id);

@@ -91,7 +91,7 @@ public class RentalService { //Severin
             Car carToUpdate = carRepo.getCarById(carId);
             carToUpdate.setStatus(CarStatus.RENTED);
             carRepo.update(carToUpdate);
-            Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, "CURRENT", userID);
+            Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, "FRESH", userID);
             rentalRepo.create(rental);
             return "redirect:/rental";
         }
