@@ -13,6 +13,12 @@
             <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo">
         </a>
     </div>
+    <div class="dropdown" tabindex="1">
+        <a class="drop_button">Vælg handling</a>
+        <div class="drop_content">
+            <a href="/allcars"> Biler der mangler rapport </a>
+        </div>
+    </div>
     <div class="logout-button">
         <a th:href="@{/logout}">
             <button>Logout</button>

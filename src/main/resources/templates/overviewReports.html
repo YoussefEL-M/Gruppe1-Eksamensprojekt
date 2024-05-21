@@ -22,6 +22,7 @@
             <th>Dato</th>
             <th>Behandling</th>
             <th>Beskrivelse</th>
+            <th>Skader</th>
             <th>Handling</th>
         </tr>
         </thead>
@@ -33,6 +34,13 @@
             <td th:text="${report.date}"></td>
             <td th:text="${report.treatment}"></td>
             <td th:text="${report.comment}"></td>
+            <td>
+                <ul>
+                    <li th:each="damage : ${report.damages}">
+                        <span th:text="${damage.key}"></span>: <span th:text="${damage.value}"></span>
+                    </li>
+                </ul>
+            </td>
             <td>
                 <div class="edit-button">
                     <a th:href="@{'/updateForm/' + ${report.id}}">
