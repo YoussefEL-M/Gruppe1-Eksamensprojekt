@@ -32,7 +32,7 @@ public class ReportService { // Severin
         return reportRepo.getAll();
     }
 
-    public Report getYourReports(int userId) {return reportRepo.getYourReports(userId);}
+    public List<Report> getYourReports(int userId) {return reportRepo.getYourReports(userId);}
 
     public void createReport(Report report){
         reportRepo.create(report);

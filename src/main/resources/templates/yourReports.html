@@ -17,6 +17,7 @@
     <thead>
     <tr>
         <th>ID</th>
+        <th>Bruger ID</th>
         <th>Udlejnings-ID</th>
         <th>Titel</th>
         <th>Dato</th>
@@ -29,6 +30,7 @@
     <tbody>
     <tr th:each="report : ${yourReportslist}">
         <td th:text="${report.getId()}"></td>
+        <td th:text="${report.getUser_id()}"></td>
         <td th:text="${report.getRentalId()}"></td>
         <td th:text="${report.getTitle()}"></td>
         <td th:text="${report.getDate()}"></td>

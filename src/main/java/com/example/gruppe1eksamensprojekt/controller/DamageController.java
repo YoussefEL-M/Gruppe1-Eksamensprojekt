@@ -62,7 +62,7 @@ public class DamageController {
     }
 
     //Opdater klassediagram!!
-    @GetMapping("yourReports")
+    @GetMapping("/yourReports")
     public String retrieveYourReports(HttpSession session, Model model) {
 
         if(session.getAttribute("user") == null) {
