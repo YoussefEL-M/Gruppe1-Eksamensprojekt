@@ -32,7 +32,7 @@ public class ReportService { // Severin
         return reportRepo.getAll();
     }
 
-    public Report getYourReports(int userId) {return reportRepo.getYourReports(userId);}
+    public List<Report> getYourReports(int userId) {return reportRepo.getYourReports(userId);}
 
     public void createReport(Report report){
         reportRepo.create(report);
@@ -74,7 +74,7 @@ public class ReportService { // Severin
     public int lastId(){return reportRepo.lastId(); }
 
 
-    public String submitReport(String rental, String reportTitle, LocalDate reportDate, String comment, String treatment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  String report0price,   String report1price,  String report2price,  String report3price,  String report4price, String status, RedirectAttributes redirectAttributes){
+    public String submitReport(String rental, int user_id, String reportTitle, LocalDate reportDate, String comment, String treatment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  String report0price,   String report1price,  String report2price,  String report3price,  String report4price, String status, RedirectAttributes redirectAttributes){
         boolean error = false;
         int rentalId = 0;
 
@@ -112,7 +112,7 @@ public class ReportService { // Severin
             if (!report3damage.isEmpty() && !report3price.isEmpty()) damages.put(report3damage,Double.valueOf(report3price));
             if (!report4damage.isEmpty() && !report4price.isEmpty()) damages.put(report4damage,Double.valueOf(report4price));
 
-            Report report = new Report(rentalId, reportTitle, reportDate, treatment, comment, damages);
+            Report report = new Report(rentalId, user_id, reportTitle, reportDate, treatment, comment, damages);
 
             createReport(report);
 
@@ -122,7 +122,9 @@ public class ReportService { // Severin
             int carid=rentalService.getRentalById(rentalId).getCarId();
             Car newcar =carService.getCarById(carid);
             newcar.setStatus(CarStatus.valueOf(status));
+            newcar.setLastUpdated(LocalDate.now());
             carService.updateCar(newcar);
+
             return "redirect:/damage";
         }
 

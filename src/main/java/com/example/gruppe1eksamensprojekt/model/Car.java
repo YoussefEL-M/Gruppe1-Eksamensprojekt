@@ -1,6 +1,8 @@
 package com.example.gruppe1eksamensprojekt.model;
 
 
+import java.time.LocalDate;
+
 //Youssef
 public class Car {
     private int id;
@@ -20,6 +22,8 @@ public class Car {
     private String fuelEfficiency;
     private double price;
     private boolean manual;
+
+    private LocalDate lastUpdated;
 
 
     public Car() {}
@@ -159,4 +163,8 @@ public class Car {
     public void setManual(boolean manual) {
         this.manual = manual;
     }
+
+    public LocalDate getLastUpdated() {return lastUpdated;}
+
+    public void setLastUpdated(LocalDate lastUpdated) {this.lastUpdated = lastUpdated;}
 }

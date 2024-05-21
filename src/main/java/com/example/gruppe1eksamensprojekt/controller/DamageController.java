@@ -44,7 +44,7 @@ public class DamageController {
         List<Car> carList = carService.getRented();
         model.addAttribute("carlist", carList);
 
-        List<Car> pendingCarList = carService.getDamagedCars();
+        List<Car> pendingCarList = carService.getNotUpdated();
         model.addAttribute("pendingcarlist", pendingCarList);
 
         return "damagehome";
@@ -62,7 +62,7 @@ public class DamageController {
     }
 
     //Opdater klassediagram!!
-    @GetMapping("yourReports")
+    @GetMapping("/yourReports")
     public String retrieveYourReports(HttpSession session, Model model) {
 
         if(session.getAttribute("user") == null) {
@@ -110,8 +110,10 @@ public class DamageController {
                                 HttpSession session,
                                 RedirectAttributes redirectAttributes) {
 
+        User user = (User) session.getAttribute("user");
+        int user_id = user.getId();
 
-        return reportService.submitReport(rental, reportTitle, reportDate, treatment, comment, report0damage, report1damage, report2damage, report3damage, report4damage, report0price, report1price,report2price, report3price, report4price, status, redirectAttributes);
+        return reportService.submitReport(rental, user_id, reportTitle, reportDate, treatment, comment, report0damage, report1damage, report2damage, report3damage, report4damage, report0price, report1price,report2price, report3price, report4price, status, redirectAttributes);
     }
 
     //Opdater i klassediagram
@@ -182,7 +184,17 @@ public class DamageController {
         return "damageView";
     }
 
+    @GetMapping("/updateStatus/{id}/{status}")
+    public String updateStatus(@PathVariable("id") int id, @PathVariable("status") String status){
 
+        Car car =carService.getCarById(id);
+        car.setStatus(CarStatus.valueOf(status));
+        car.setLastUpdated(LocalDate.now());
+
+        carService.updateCar(car);
+
+      return "redirect:/";
+    }
 
 
 
