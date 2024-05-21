@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class Report {
     private int id;
-    private int user_id;
     private int rentalId;
+    private int user_id;
     private String title;
     private LocalDate date;
     private String comment;
@@ -19,10 +19,10 @@ public class Report {
 
     public Report(){
     }
-    public Report(int id, int user_id, int rentalId, String title, LocalDate date, String comment, String treatment) {
+    public Report(int id, int rentalId, int user_id, String title, LocalDate date, String comment, String treatment) {
         this.id=id;
-        this.user_id = user_id;
         this.rentalId = rentalId;
+        this.user_id = user_id;
         this.title = title;
         this.date = date;
         this.comment = comment;
@@ -47,20 +47,20 @@ public class Report {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
     public int getRentalId() {
         return rentalId;
     }
 
     public void setRentalId(int rentalId) {
         this.rentalId = rentalId;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getTitle() {

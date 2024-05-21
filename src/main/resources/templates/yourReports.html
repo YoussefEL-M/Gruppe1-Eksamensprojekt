@@ -49,7 +49,7 @@
             </div>
 
             <div class="delete-button">
-                <a th:href="@{'/delete/' + ${report.id}}"
+                <a th:href="@{'/delete/' + ${report.getId()}}"
                    onclick="return confirm('Er du sikker på, at du vil slette denne rapport?')">
                     <button>Slet rapport</button></a>
             </div>
