@@ -166,15 +166,16 @@ public class RentalService { //Severin
         rentalRepo.delete(id);
     }
 
-    public String calcEndDate(String startDate, String type) {
 
-        return LocalDate.parse(startDate).plusMonths(Integer.parseInt(type)).toString();
+    //Bjarke
+    //Beregner en slut dato udfra en start dato og et antal af måneder
+    public String calcEndDate(String startDate, String month) {
+
+        return LocalDate.parse(startDate).plusMonths(Integer.parseInt(month)).toString();
     }
 
-    public Rental getRentalsByUserID(int id){
-        return rentalRepo.getRentalsByUserID(id);
-    }
 
+    //Bjarke
     public List<Rental> getCurrentRentals(){return rentalRepo.getCurrentRentals();}
 
 

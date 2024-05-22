@@ -64,7 +64,10 @@ public class ReportService { // Severin
         reportRepo.delete(id);
     }
 
+
+    //Bjarke
     public void createDamages(Report report) {
+        //looper over damages som gemmes i repo
         for (var entry : report.getDamages().entrySet()){
             reportRepo.createDamage(report.getId(), entry.getKey(), entry.getValue());
 
@@ -72,9 +75,10 @@ public class ReportService { // Severin
 
     }
 
+    //Bjarke
     public int lastId(){return reportRepo.lastId(); }
 
-
+    //Bjarke
     public String submitReport(String rental, int user_id, String reportTitle, LocalDate reportDate, String comment, String treatment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  String report0price,   String report1price,  String report2price,  String report3price,  String report4price, String status, RedirectAttributes redirectAttributes){
         boolean error = false;
         int rentalId = 0;
@@ -86,9 +90,7 @@ public class ReportService { // Severin
             redirectAttributes.addFlashAttribute("rentalNotFound", true);
             error = true;
         }
-
-
-
+        //Hvis der blev givet et forket rental input, puttes værdierne i flash attributer og man redirectes tilbage til formen
         if(error) {
             redirectAttributes.addFlashAttribute("rental", rental);
             redirectAttributes.addFlashAttribute("reportTitle", reportTitle);

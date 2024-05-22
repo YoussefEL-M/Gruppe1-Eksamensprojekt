@@ -55,6 +55,8 @@ public class ReportRepo {
         jdbcTemplate.update(sql, id, damage, price);
     }
 
+    //Bjarke
+    //Henter den report med højeste id for at få den nyligst lavede rapport
     public int lastId() {
         String sql = "SELECT MAX(id) FROM report";
         return jdbcTemplate.queryForObject(sql, int.class);

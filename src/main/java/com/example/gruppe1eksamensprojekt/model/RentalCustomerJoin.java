@@ -2,6 +2,7 @@ package com.example.gruppe1eksamensprojekt.model;
 
 import java.time.LocalDate;
 
+//Bjarke
 public class RentalCustomerJoin {
     private String pickUpLocation;
     private String returnLocation;

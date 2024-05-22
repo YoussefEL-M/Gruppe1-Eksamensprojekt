@@ -108,8 +108,4 @@ public class UserService { // Severin
     }
 
 
-    public User getUserByUsername(String username){
-        return userRepo.getUserByUsername(username);
-    }
-
 }
