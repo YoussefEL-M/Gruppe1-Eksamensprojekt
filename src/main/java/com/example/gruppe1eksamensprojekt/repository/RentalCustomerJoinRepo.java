@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+//Bjarke
+//Metoder til at hente joins af Rentals og Customers så information fra begge kan tilgås
 @Repository
 public class RentalCustomerJoinRepo {
 

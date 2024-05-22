@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.List;
 
 @Service
@@ -180,6 +179,8 @@ public class RentalService { //Severin
         rentalRepo.delete(id);
     }
 
+    // Bjarke og Severin
+    // Beregner slutdato på lejeaftale ud fra startdato og antal måneder.
     public String calcEndDate(String startDate, String type, boolean isDS) {
 
         LocalDate endDate = LocalDate.parse(startDate).plusMonths(Integer.parseInt(type));
@@ -203,10 +204,11 @@ public class RentalService { //Severin
         return endDate.toString();
     }
 
-    public Rental getRentalsByUserID(int id){
-        return rentalRepo.getRentalsByUserID(id);
+        return LocalDate.parse(startDate).plusMonths(Integer.parseInt(month)).toString();
     }
 
+
+    //Bjarke
     public List<Rental> getCurrentRentals(){return rentalRepo.getCurrentRentals();}
 
 

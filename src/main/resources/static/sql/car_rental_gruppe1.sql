@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS rental
     type	int	NOT NULL,
     startDate	DATE	NOT NULL,
     endDate	DATE	NOT NULL,
-    status VARCHAR(10)
+    status  VARCHAR(10)
     );
 
 CREATE TABLE IF NOT EXISTS report
@@ -111,7 +111,7 @@ INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax
 INSERT INTO USER (type, name, username, password, email) VALUES ('Dataregistrering', 'lars', 'lars', 'lars', 'lars@lars.dk');
 INSERT INTO USER (type, name, username, password, email) VALUES ('SkadeOgUdbedring', 's', 's', 's', 's@s.dk');
 
-
+INSERT INTO rental (user_id, pickUpLocation, returnLocation, type, customer_id, startDate, endDate, car_id,status) VALUES ('1','a', 'a', '3', '1', '2024-01-01', '2024-04-01', '1','0');
 
 select * from car;
 select * from rental;

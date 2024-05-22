@@ -53,14 +53,13 @@ public class RentalRepo {
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
+    //Bjarke
+    //Henter de rentals fra hvor en bil sidst er tilbageleveret
     public List<Rental> getCurrentRentals() {
         String sql = "SELECT * FROM rental WHERE status = 'CURRENT'";
         RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
-
-
-
 
 
 

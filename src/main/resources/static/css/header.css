@@ -61,6 +61,7 @@ button:hover, .rapportknap:hover {
     display: inline-block;
     position: relative;
     outline: none;
+    z-index: 1000
 }
 
 .drop_button {
