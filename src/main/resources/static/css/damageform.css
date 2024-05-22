@@ -79,11 +79,14 @@ h2 {
 .reportFields input[type="text"],
 .reportFields input[type="number"],
 .reportFields input[type="date"],
-.reportFields select{
+.reportFields select, textarea{
     width: calc(100% - 20px);
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
+}
+.damagefield {
+    margin-bottom: 5px;
 }
 
 button[type="submit"] {

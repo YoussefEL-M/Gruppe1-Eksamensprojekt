@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS car
     price	DOUBLE	NOT NULL,
     manual	BOOLEAN	NOT NULL,
     lastUpdated DATE
-
     );
 
 
@@ -63,7 +62,7 @@ CREATE TABLE IF NOT EXISTS rental
     type	int	NOT NULL,
     startDate	DATE	NOT NULL,
     endDate	DATE	NOT NULL,
-    status BOOLEAN
+    status  VARCHAR(10)
     );
 
 CREATE TABLE IF NOT EXISTS report

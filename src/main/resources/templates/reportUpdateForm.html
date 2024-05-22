@@ -51,15 +51,18 @@
             </div>
         </div>
         <div class="reportFields">
-            <h3>Skader:</h3>
+            <h3>Skader</h3>
             <div th:each="i : ${#numbers.sequence(0, 4)}">
-                <div>
-                    <input type="text" th:name="'report' + ${i} + 'damage'" placeholder="Skade beskrivelse" th:value="${report.getDamages()['report' + i + 'damage']}" />
-                    <input type="number" step="0.01" th:name="'report' + ${i} + 'price'" placeholder="Pris" th:value="${report.getDamages()['report' + i + 'price']}" />
+                <div class="damagefield">
+                    <input class="damagefield" type="text" th:name="'report' + ${i} + 'damage'" placeholder="Skade beskrivelse" th:value="${report.getDamages()['report' + i + 'damage']}" />
+                    <input class="damagefield" type="number" step="0.01" th:name="'report' + ${i} + 'price'" placeholder="Pris" th:value="${report.getDamages()['report' + i + 'price']}" />
                 </div>
             </div>
-        </div class="knap">
-        <button type="submit" value="Opdater rapport">Opdater rapport</button>
+        </div>
+        <div class="knap">
+            <button type="submit" value="Opdater rapport">Opdater rapport</button>
+        </div>
+
     </form>
 </div>
 
