@@ -154,6 +154,7 @@ public class DamageController {
                                @RequestParam("date") LocalDate date,
                                @RequestParam("comment") String description,
                                @RequestParam("treatment") String treatment,
+                               @RequestParam String status,
                                HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)
@@ -166,6 +167,10 @@ public class DamageController {
             report.setDate(date);
             report.setComment(description);
             report.setTreatment(treatment);
+
+            Car car = carService.getCarById(rentalService.getRentalById(report.getRentalId()).getCarId());
+            car.setStatus(CarStatus.valueOf(status));
+            car.setLastUpdated(LocalDate.now());
 
             reportService.updateReport(report);
         }
