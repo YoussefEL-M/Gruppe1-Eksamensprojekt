@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Opdater Rapport</title>
-    <link rel="stylesheet" href="../static/CSS/reportUpdateForm.css" th:href="@{/CSS/reportUpdateForm.css}">
+    <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damageform.css}">
 </head>
 <body>
 
@@ -51,7 +51,17 @@
             </div>
         </div>
 
-        <button type="submit" value="Opdater rapport">Opdater rapport</button>
+        <div class="reportFields">
+            <h3>Status</h3>
+            <select id="status" name="status">
+                <option value="PENDING">Afventer behandling</option>
+                <option value="DAMAGED">Skadet</option>
+                <option value="AVAILABLE">Klar til udlejning</option>
+            </select>
+        </div>
+        <div class="knap">
+            <button type="submit" value="Opdater rapport">Opdater rapport</button>
+        </div>
     </form>
 </div>
 

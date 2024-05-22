@@ -62,7 +62,8 @@ public class DamageController {
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        model.addAttribute("listOfReports", reportService.getAll());
+        List<Report> reports = reportService.getAll();
+        model.addAttribute("listOfReports", reports);
 
         return "overviewReports";
     }
@@ -138,8 +139,10 @@ public class DamageController {
             return "frontpage";
 
         Report report = reportService.getReportById(reportId);
+        Map<String, Double> damagesMap = report.getDamages();
 
         model.addAttribute("report", report);
+        model.addAttribute("damagesMap", damagesMap);
 
         return "reportUpdateForm";
 
@@ -151,6 +154,7 @@ public class DamageController {
                                @RequestParam("date") LocalDate date,
                                @RequestParam("comment") String description,
                                @RequestParam("treatment") String treatment,
+                               @RequestParam Map<String, Double> damages,
                                HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)

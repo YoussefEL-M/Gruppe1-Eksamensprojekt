@@ -43,19 +43,19 @@
         <td>
             <ul>
                 <li th:each="damage : ${report.damages}">
-                    <span th:text="${damage.getKey()}"></span> : <span th:text="${damage.getValue()}"></span>
+                    <span th:text="${damage.key}"></span> : <span th:text="${damage.value}"></span>
                 </li>
             </ul>
         </td>
         <td>
-            <div>
-                <a th:href="@{'/updateForm/' + ${report.getId()}}"> <button class="update-button">Opdater rapport</button></a>
+            <div class="edit-button">
+                <a th:href="@{'/updateForm/' + ${report.getId()}}"> <button>Opdater</button></a>
             </div>
 
-            <div>
+            <div class="delete-button">
                 <a th:href="@{'/delete/' + ${report.getId()}}"
                    onclick="return confirm('Er du sikker på, at du vil slette denne rapport?')">
-                    <button class="delete-button">Slet rapport</button></a>
+                    <button>Slet</button></a>
             </div>
         </td>
     </tr>
