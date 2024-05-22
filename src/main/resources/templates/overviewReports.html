@@ -40,8 +40,9 @@
             <td th:text="${report.comment}"></td>
             <td>
                 <ul>
-                    <li th:each="damage : ${report.damages}">
-                        <span th:text="${damage.key}"></span>: <span th:text="${damage.value}"></span>
+                    <li th:each="entry : ${report.damages}">
+                        Beksrivelse:<span th:text="${entry.key}"></span>
+                        pris: <span th:text="${entry.value}"></span>
                     </li>
                 </ul>
             </td>
