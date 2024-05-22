@@ -59,7 +59,7 @@ public class RentalController { // Severin
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        model.addAttribute("carList",carService.getAvailableCars());
+        model.addAttribute("carList",carService.getAvailable());
         return "dataregistration";
     }
 
@@ -151,6 +151,7 @@ public class RentalController { // Severin
 
     }
 
+    //Bjarke
     @GetMapping("/createUser")
     public String register(HttpSession session, Model model){
 
@@ -179,27 +180,31 @@ public class RentalController { // Severin
         return userService.createUser(name, username, password, email, type, model, redirectAttributes);
     }
 
+    //Bjarke
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("user");
         return "redirect:/";
     }
 
-    //Opdater i klassediagram
+
+    //Bjarke
     @GetMapping("/editRentalStatus")
     public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page, Model model){
         Rental rental = rentalService.getRentalById(id);
-        rental.setStatus(true);
+        rental.setStatus("CURRENT");
         rentalService.updateRental(rental);
 
         Car car = carService.getCarById(rental.getCarId());
         car.setStatus(CarStatus.PENDING);
+        car.setLastUpdated(LocalDate.now());
         carService.updateCar(car);
 
         if (page.equals("your")) return "redirect:/yourRentals";
         return "redirect:/findRental";
     }
 
+    //Bjarke
     @GetMapping("/yourRentals")
     public String yourRentals(Model model, HttpSession session){
 

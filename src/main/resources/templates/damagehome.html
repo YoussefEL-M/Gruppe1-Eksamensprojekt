@@ -12,7 +12,7 @@
 
 <div class="main">
     <h1>Velkommen til Skade og udbedring</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
 </div>
 
 
@@ -23,9 +23,9 @@
     <div class="halves">
 
         <h2 class="splitHead">
-            Indleveret i dag.
+            Biler klar til behandling
         </h2>
-
+<!--        <p th:text="${bob}"></p>-->
         <table class="taskList">
             <thead>
             <tr>
@@ -42,7 +42,7 @@
                 <td th:text="${car.model}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.status}"></td>
-                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button>Opret rapport</button></a></td>
+                <td><div id="reportButtonDiv"><a th:href="@{'/create/' + ${car.id}}" href="damageform.html"><button id="reportButton">Opret rapport</button></a></div></td>
             </tr>
             </tbody>
         </table>
@@ -52,6 +52,7 @@
 
     <div class="halves">
 
+<!--        Bjarke-->
         <h2 class="splitHead"> Status uændret i 5 dage eller mere </h2>
 
         <table class="tasklist">

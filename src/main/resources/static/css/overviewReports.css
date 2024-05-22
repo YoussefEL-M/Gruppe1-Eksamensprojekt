@@ -106,7 +106,7 @@ button input[type = "submit"]{
     align-content: center;
 }
 
-.update-button, .delete-button {
+.edit-button, .delete-button {
     height:35px;
     width:90px;
 }
@@ -121,6 +121,9 @@ button {
 button:hover {
     background-color: #1892C3;
     color:white;
+}
+.edit-button, .delete-button {
+    margin:10px;
 }
 
 .overskrift {

@@ -90,8 +90,9 @@ public class RentalService { //Severin
             String endDate = calcEndDate(startDate,type);
             Car carToUpdate = carRepo.getCarById(carId);
             carToUpdate.setStatus(CarStatus.RENTED);
+            carToUpdate.setLastUpdated(LocalDate.now());
             carRepo.update(carToUpdate);
-            Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, false, userID);
+            Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, "FRESH", userID);
             rentalRepo.create(rental);
             return "redirect:/rental";
         }
@@ -165,13 +166,18 @@ public class RentalService { //Severin
         rentalRepo.delete(id);
     }
 
-    public String calcEndDate(String startDate, String type) {
 
-        return LocalDate.parse(startDate).plusMonths(Integer.parseInt(type)).toString();
+    //Bjarke
+    //Beregner en slut dato udfra en start dato og et antal af måneder
+    public String calcEndDate(String startDate, String month) {
+
+        return LocalDate.parse(startDate).plusMonths(Integer.parseInt(month)).toString();
     }
 
-    public Rental getRentalsByUserID(int id){
-        return rentalRepo.getRentalsByUserID(id);
-    }
+
+    //Bjarke
+    public List<Rental> getCurrentRentals(){return rentalRepo.getCurrentRentals();}
+
+
 
 }

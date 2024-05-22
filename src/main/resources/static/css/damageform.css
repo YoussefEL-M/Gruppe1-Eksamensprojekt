@@ -79,11 +79,19 @@ h2 {
 .reportFields input[type="text"],
 .reportFields input[type="number"],
 .reportFields input[type="date"],
-.reportFields select{
+.reportFields select, textarea,
+.reportFields input[list="rental"]{
     width: calc(100% - 20px);
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
+}
+.damagefield {
+    margin-bottom: 3px;
+}
+.damagefieldTop {
+    margin-top:10px;
+    margin-bottom: 3px;
 }
 
 button[type="submit"] {
@@ -97,13 +105,23 @@ button[type="submit"] {
     height:38px;
 
 }
+
 #rapportKnap {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
+.knap {
+    text-align: center;
+}
+
 button:hover {
     background-color: #1892C3;
     color: white;
+}
+
+
+#rentalField{
+    width: 300px;
 }

@@ -36,7 +36,6 @@ public class RentalRepo {
 
 
 
-
     public void delete(int id) {
         String sql = "DELETE FROM rental WHERE id = ?";
         jdbcTemplate.update(sql, id);
@@ -52,6 +51,14 @@ public class RentalRepo {
         String sql = "SELECT * FROM rental WHERE user_id = ?";
         RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+    //Bjarke
+    //Henter de rentals fra hvor en bil sidst er tilbageleveret
+    public List<Rental> getCurrentRentals() {
+        String sql = "SELECT * FROM rental WHERE status = 'CURRENT'";
+        RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
+        return jdbcTemplate.query(sql, rowMapper);
     }
 
 

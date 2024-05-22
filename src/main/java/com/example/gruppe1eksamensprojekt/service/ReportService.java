@@ -2,6 +2,8 @@ package com.example.gruppe1eksamensprojekt.service;
 
 import com.example.gruppe1eksamensprojekt.model.Car;
 import com.example.gruppe1eksamensprojekt.model.CarStatus;
+import com.example.gruppe1eksamensprojekt.model.Damages;
+import com.example.gruppe1eksamensprojekt.model.Rental;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.repository.RentalRepo;
 import com.example.gruppe1eksamensprojekt.repository.ReportRepo;
@@ -29,10 +31,17 @@ public class ReportService { // Severin
     private CarService carService;
 
     public List<Report> getAll(){
-        return reportRepo.getAll();
+
+        List<Report> reports = reportRepo.getAll();
+        populateDamages(reports);
+        return reports;
     }
 
-    public List<Report> getYourReports(int userId) {return reportRepo.getYourReports(userId);}
+    public List<Report> getYourReports(int userId) {
+        List<Report> reports = reportRepo.getYourReports(userId);
+        populateDamages(reports);
+        return reports;
+    }
 
     public void createReport(Report report){
         reportRepo.create(report);
@@ -57,13 +66,23 @@ public class ReportService { // Severin
 
     public void updateReport(Report report){
         reportRepo.update(report);
+
+        for (Map.Entry<String, Double> entry : report.getDamages().entrySet()) {
+            Damages damage = new Damages();
+            damage.setDamage(entry.getKey());
+            damage.setPrice(entry.getValue());
+            reportRepo.updateDamage(report.getId(), damage);
+        }
     }
 
     public void deleteReport(int id){
         reportRepo.delete(id);
     }
 
+
+    //Bjarke
     public void createDamages(Report report) {
+        //looper over damages som gemmes i repo
         for (var entry : report.getDamages().entrySet()){
             reportRepo.createDamage(report.getId(), entry.getKey(), entry.getValue());
 
@@ -71,9 +90,10 @@ public class ReportService { // Severin
 
     }
 
+    //Bjarke
     public int lastId(){return reportRepo.lastId(); }
 
-
+    //Bjarke
     public String submitReport(String rental, int user_id, String reportTitle, LocalDate reportDate, String comment, String treatment, String report0damage, String report1damage, String report2damage, String report3damage, String report4damage,  String report0price,   String report1price,  String report2price,  String report3price,  String report4price, String status, RedirectAttributes redirectAttributes){
         boolean error = false;
         int rentalId = 0;
@@ -85,9 +105,7 @@ public class ReportService { // Severin
             redirectAttributes.addFlashAttribute("rentalNotFound", true);
             error = true;
         }
-
-
-
+        //Hvis der blev givet et forket rental input, puttes værdierne i flash attributer og man redirectes tilbage til formen
         if(error) {
             redirectAttributes.addFlashAttribute("rental", rental);
             redirectAttributes.addFlashAttribute("reportTitle", reportTitle);
@@ -125,11 +143,28 @@ public class ReportService { // Severin
             newcar.setLastUpdated(LocalDate.now());
             carService.updateCar(newcar);
 
+            Rental newRental = rentalService.getRentalById(rentalId);
+            newRental.setStatus("FINISHED");
+            rentalService.updateRental(newRental);
+
             return "redirect:/damage";
         }
 
         return "redirect:/create";
     }
 
+    public List<Damages> getDamagesByReportID(int id){
+        return reportRepo.getDamagesByReportId(id);
+    }
+    public void populateDamages(List<Report> reports) {
+        for (Report report : reports) {
+            List<Damages> damagesList = reportRepo.getDamagesByReportId(report.getId());
+            Map<String, Double> damagesMap = new HashMap<>();
+            for (Damages damage : damagesList) {
+                damagesMap.put(damage.getDamage(), damage.getPrice());
+            }
+            report.setDamages(damagesMap);
+        }
+    }
 
 }

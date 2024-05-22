@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +42,14 @@ public class DamageController {
             return "frontpage";
         }
 
-        List<Car> carList = carService.getRented();
-        model.addAttribute("carlist", carList);
+        List<Rental> rentals = rentalService.getCurrentRentals();
+        List<Car> carList = new ArrayList<>();
 
+        for (Rental rental : rentals){
+            carList.add(carService.getCarById(rental.getCarId()));
+        }
+
+        model.addAttribute("carlist", carList);
         List<Car> pendingCarList = carService.getNotUpdated();
         model.addAttribute("pendingcarlist", pendingCarList);
 
@@ -56,7 +62,8 @@ public class DamageController {
         if(session.getAttribute("user")==null)
             return "frontpage";
 
-        model.addAttribute("listOfReports", reportService.getAll());
+        List<Report> reports = reportService.getAll();
+        model.addAttribute("listOfReports", reports);
 
         return "overviewReports";
     }
@@ -80,14 +87,22 @@ public class DamageController {
         if(session.getAttribute("user")==null) {
             return "frontpage";
         }
-        List<Car> cars = carService.getDamagedCars();
-        model.addAttribute("cars", cars);
+
         List<RentalCustomerJoin> rentalList = rentalCustomerJoinService.getAll();
         model.addAttribute("rentalList", rentalList);
 
         return "damageform";
     }
 
+    //Bjarke
+    @GetMapping("/create/{id}")
+    public String create(@PathVariable("id") int id, RedirectAttributes redirectAttributes){
+
+        RentalCustomerJoin rental = rentalCustomerJoinService.getRentalByCar(id);
+        String string = rental.getId()+ ". " + rental.getName()+ " - " + rental.getEndDate()+ " - " + carService.getCarById(id).getModel();
+        redirectAttributes.addFlashAttribute("rental", string);
+        return "redirect:/create";
+    }
 
     //Husk at opdaterer i klassediagram
     @PostMapping("/createReport")
@@ -124,8 +139,10 @@ public class DamageController {
             return "frontpage";
 
         Report report = reportService.getReportById(reportId);
+        Map<String, Double> damagesMap = report.getDamages();
 
         model.addAttribute("report", report);
+        model.addAttribute("damagesMap", damagesMap);
 
         return "reportUpdateForm";
 
@@ -137,6 +154,7 @@ public class DamageController {
                                @RequestParam("date") LocalDate date,
                                @RequestParam("comment") String description,
                                @RequestParam("treatment") String treatment,
+                               @RequestParam Map<String, Double> damages,
                                HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)
@@ -184,6 +202,7 @@ public class DamageController {
         return "damageView";
     }
 
+    //Bjarke
     @GetMapping("/updateStatus/{id}/{status}")
     public String updateStatus(@PathVariable("id") int id, @PathVariable("status") String status){
 

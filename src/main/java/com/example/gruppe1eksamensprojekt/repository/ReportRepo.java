@@ -1,5 +1,6 @@
 package com.example.gruppe1eksamensprojekt.repository;
 
+import com.example.gruppe1eksamensprojekt.model.Damages;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -55,8 +56,21 @@ public class ReportRepo {
         jdbcTemplate.update(sql, id, damage, price);
     }
 
+    //Bjarke
+    //Henter den report med højeste id for at få den nyligst lavede rapport
     public int lastId() {
         String sql = "SELECT MAX(id) FROM report";
         return jdbcTemplate.queryForObject(sql, int.class);
     }
+
+    public List<Damages> getDamagesByReportId(int reportId) {
+        String sql = "SELECT * FROM damages WHERE report_id = ?";
+        RowMapper<Damages> rowMapper = new BeanPropertyRowMapper<>(Damages.class);
+        return jdbcTemplate.query(sql, rowMapper, reportId);
+    }
+    public void updateDamage(int reportId, Damages damage) {
+        String sql = "UPDATE damages SET price = ? WHERE report_id = ? AND damage = ?";
+        jdbcTemplate.update(sql, damage.getPrice(), reportId, damage.getDamage());
+    }
+
 }

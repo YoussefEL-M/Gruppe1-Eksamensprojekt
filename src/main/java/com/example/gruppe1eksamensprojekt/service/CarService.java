@@ -61,6 +61,8 @@ public class CarService { // Severin
         return carRepo.getRented();
     }
 
+
+
     public double getRentedCarsTotalPrice(){
         return carRepo.getRented().stream().mapToDouble(Car::getPrice).sum();
     }
@@ -69,8 +71,7 @@ public class CarService { // Severin
     public List<Car> getDamagedCars() {return carRepo.getDamagedCars();}
 
 
-    public List<Car> getAvailableCars() {return carRepo.getAvailableCars();}
-
+//Bjarke
     public List<Car> getNotUpdated() {
         String date = LocalDate.now().minusDays(4).toString();
 
