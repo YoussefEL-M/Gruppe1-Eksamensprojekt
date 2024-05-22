@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +42,14 @@ public class DamageController {
             return "frontpage";
         }
 
-        List<Car> carList = carService.getPending();
-        model.addAttribute("carlist", carList);
+        List<Rental> rentals = rentalService.getCurrentRentals();
+        List<Car> carList = new ArrayList<>();
 
+        for (Rental rental : rentals){
+            carList.add(carService.getCarById(rental.getCarId()));
+        }
+
+        model.addAttribute("carlist", carList);
         List<Car> pendingCarList = carService.getNotUpdated();
         model.addAttribute("pendingcarlist", pendingCarList);
 

@@ -53,6 +53,11 @@ public class RentalRepo {
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
+    public List<Rental> getCurrentRentals() {
+        String sql = "SELECT * FROM rental WHERE status = 'CURRENT'";
+        RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
+        return jdbcTemplate.query(sql, rowMapper);
+    }
 
 
 

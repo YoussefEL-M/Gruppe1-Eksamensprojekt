@@ -175,7 +175,7 @@ public class RentalService { //Severin
         return rentalRepo.getRentalsByUserID(id);
     }
 
-
+    public List<Rental> getCurrentRentals(){return rentalRepo.getCurrentRentals();}
 
 
 
