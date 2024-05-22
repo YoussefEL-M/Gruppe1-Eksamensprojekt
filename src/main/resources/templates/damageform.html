@@ -26,7 +26,7 @@
 
         <div class="reportFields">
             <label for="rental">Udlejnings-ID:</label>
-            <input list="rental" name="rental" th:value="${rental}" required>
+            <input id="rentalField" list="rental" name="rental" th:value="${rental}" required>
             <datalist id="rental">
                 <option th:each="rental : ${rentalList}" th:text="${rental.getId()}+ ' - ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}" th:value="${rental.getId()}+ '. ' + ${rental.getName()}+ ' - ' + ${rental.getEndDate()}"></option>
             </datalist>

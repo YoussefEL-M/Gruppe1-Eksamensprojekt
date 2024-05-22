@@ -92,7 +92,7 @@ public class DamageController {
     public String create(@PathVariable("id") int id, RedirectAttributes redirectAttributes){
 
         RentalCustomerJoin rental = rentalCustomerJoinService.getRentalByCar(id);
-        String string = rental.getId()+ ". " + rental.getName()+ " - " + rental.getEndDate();
+        String string = rental.getId()+ ". " + rental.getName()+ " - " + rental.getEndDate()+ " - " + carService.getCarById(id).getModel();
         redirectAttributes.addFlashAttribute("rental", string);
         return "redirect:/create";
     }

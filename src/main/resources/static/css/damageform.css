@@ -107,3 +107,8 @@ button:hover {
     background-color: #1892C3;
     color: white;
 }
+
+
+#rentalField{
+    width: 300px;
+}
