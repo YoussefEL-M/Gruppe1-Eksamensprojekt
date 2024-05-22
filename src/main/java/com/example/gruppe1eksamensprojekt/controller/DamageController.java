@@ -131,29 +131,81 @@ public class DamageController {
         return reportService.submitReport(rental, user_id, reportTitle, reportDate, treatment, comment, report0damage, report1damage, report2damage, report3damage, report4damage, report0price, report1price,report2price, report3price, report4price, status, redirectAttributes);
     }
 
-    //Opdater i klassediagram
-    @GetMapping("/updateForm/{id}")
-    public String showUpdateReportForm(@PathVariable("id") int reportId, HttpSession session, Model model) {
+
+    @GetMapping("/updateReport/{reportId}/{rentalId}")
+    public String updateReport(@PathVariable("reportId") int reportId,@PathVariable("rentalId") int rentalId, RedirectAttributes redirectAttributes, HttpSession session){
 
         if(session.getAttribute("user")==null)
             return "frontpage";
 
         Report report = reportService.getReportById(reportId);
+        reportService.populateDamages(report);
+
+
+        redirectAttributes.addFlashAttribute("reportTitle", report.getTitle());
+        redirectAttributes.addFlashAttribute("reportDate", report.getDate());
+        redirectAttributes.addFlashAttribute("treatment", report.getTreatment());
+        redirectAttributes.addFlashAttribute("comment", report.getComment());
+        if (!report.getDamages().keySet().isEmpty()){
+            redirectAttributes.addFlashAttribute("report0damage", report.getDamages().keySet().toArray()[0]);
+            redirectAttributes.addFlashAttribute("report0price", report.getDamages().values().toArray()[0]);
+            if (report.getDamages().keySet().size()>=2){
+                redirectAttributes.addFlashAttribute("report1damage", report.getDamages().keySet().toArray()[1]);
+                redirectAttributes.addFlashAttribute("report1price", report.getDamages().values().toArray()[1]);
+                if (report.getDamages().keySet().size()>=3){
+                    redirectAttributes.addFlashAttribute("report2damage", report.getDamages().keySet().toArray()[2]);
+                    redirectAttributes.addFlashAttribute("report2price", report.getDamages().values().toArray()[2]);
+                    if (report.getDamages().keySet().size()>=4){
+                        redirectAttributes.addFlashAttribute("report3damage", report.getDamages().keySet().toArray()[3]);
+                        redirectAttributes.addFlashAttribute("report3price", report.getDamages().values().toArray()[3]);
+                        if (report.getDamages().keySet().size()>=5){
+                            redirectAttributes.addFlashAttribute("report4damage", report.getDamages().keySet().toArray()[4]);
+                            redirectAttributes.addFlashAttribute("report4price", report.getDamages().values().toArray()[4]);
+                        }}}}}
+
+        return "redirect:/updateForm/"+reportId+"/"+rentalId;
+    }
+
+    //Opdater i klassediagram
+    @GetMapping("/updateForm/{reportId}/{rentalId}")
+    public String showUpdateReportForm(@PathVariable("reportId") int reportId, @PathVariable("rentalId") int rentalId, HttpSession session, Model model) {
+
+        if(session.getAttribute("user")==null)
+            return "frontpage";
+
+        Report report = reportService.getReportById(reportId);
+        reportService.populateDamages(report);
 
 
         model.addAttribute("report", report);
+        model.addAttribute("rentalId",rentalId);
+
 
 
         return "reportUpdateForm";
 
     }
+
+
     // opdater i klassediagram
     @PostMapping("/updateReport")
-    public String updateReport(@RequestParam("id") int reportId,
+    public String updateReport(@RequestParam("rentalId") int rentalId,
+                                @RequestParam("reportId") int reportId,
                                @RequestParam("title") String title,
                                @RequestParam("date") LocalDate date,
                                @RequestParam("comment") String description,
                                @RequestParam("treatment") String treatment,
+                               @RequestParam("report0damage") String report0damage,
+                               @RequestParam("report0price") String report0price,
+                               @RequestParam("report1damage") String report1damage,
+                               @RequestParam("report1price") String report1price,
+                               @RequestParam("report2damage") String report2damage,
+                               @RequestParam("report2price") String report2price,
+                               @RequestParam("report3damage") String report3damage,
+                               @RequestParam("report3price") String report3price,
+                               @RequestParam("report4damage") String report4damage,
+                               @RequestParam("report4price") String report4price,
+                               @RequestParam("status") String status,
                                HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)
@@ -167,7 +219,26 @@ public class DamageController {
             report.setComment(description);
             report.setTreatment(treatment);
 
+
+
+            int carid=rentalService.getRentalById(rentalId).getCarId();
+            Car newcar =carService.getCarById(carid);
+            newcar.setStatus(CarStatus.valueOf(status));
+            newcar.setLastUpdated(LocalDate.now());
+            carService.updateCar(newcar);
+
+            Map<String, Double> damages = new HashMap<>();
+            if (!report0damage.isEmpty() && !report0price.isEmpty()) damages.put(report0damage,Double.valueOf(report0price));
+            if (!report1damage.isEmpty() && !report1price.isEmpty()) damages.put(report1damage,Double.valueOf(report1price));
+            if (!report2damage.isEmpty() && !report2price.isEmpty()) damages.put(report2damage,Double.valueOf(report2price));
+            if (!report3damage.isEmpty() && !report3price.isEmpty()) damages.put(report3damage,Double.valueOf(report3price));
+            if (!report4damage.isEmpty() && !report4price.isEmpty()) damages.put(report4damage,Double.valueOf(report4price));
+
+            report.setDamages(damages);
+
+
             reportService.updateReport(report);
+
         }
 
 

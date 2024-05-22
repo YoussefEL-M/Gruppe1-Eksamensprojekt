@@ -66,6 +66,8 @@ public class ReportService { // Severin
 
     public void updateReport(Report report){
         reportRepo.update(report);
+        reportRepo.deleteDamagesByReportId(report.getId());
+        createDamages(report);
 
 //        for (Map.Entry<String, Double> entry : report.getDamages().entrySet()) {
 //            Damages damage = new Damages();
@@ -165,6 +167,17 @@ public class ReportService { // Severin
             }
             report.setDamages(damagesMap);
         }
+    }
+
+    public void populateDamages(Report report) {
+
+            List<Damages> damagesList = reportRepo.getDamagesByReportId(report.getId());
+            Map<String, Double> damagesMap = new HashMap<>();
+            for (Damages damage : damagesList) {
+                damagesMap.put(damage.getDamage(), damage.getPrice());
+            }
+            report.setDamages(damagesMap);
+
     }
 
 }

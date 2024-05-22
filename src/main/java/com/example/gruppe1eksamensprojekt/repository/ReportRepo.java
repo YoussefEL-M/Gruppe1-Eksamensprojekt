@@ -75,4 +75,9 @@ public class ReportRepo {
         jdbcTemplate.update(sql, damage.getPrice(), reportId, damage.getDamage());
     }
 
+    public void deleteDamagesByReportId(int id){
+        String sql = "DELETE FROM damages WHERE report_id=?";
+        jdbcTemplate.update(sql,id);
+    }
+
 }
