@@ -32,7 +32,7 @@ public class RentalTest {
         String type ="3";
 
         //Act
-        String testResult=rentalService.calcEndDate(startDate, type);
+        String testResult=rentalService.calcEndDate(startDate, type, false);
 
         //assert
         assertEquals("2020-04-01",testResult);
