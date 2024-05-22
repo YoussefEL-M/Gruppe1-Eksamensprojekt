@@ -142,10 +142,6 @@ public class DamageController {
         reportService.populateDamages(report);
 
 
-        redirectAttributes.addFlashAttribute("reportTitle", report.getTitle());
-        redirectAttributes.addFlashAttribute("reportDate", report.getDate());
-        redirectAttributes.addFlashAttribute("treatment", report.getTreatment());
-        redirectAttributes.addFlashAttribute("comment", report.getComment());
         if (!report.getDamages().keySet().isEmpty()){
             redirectAttributes.addFlashAttribute("report0damage", report.getDamages().keySet().toArray()[0]);
             redirectAttributes.addFlashAttribute("report0price", report.getDamages().values().toArray()[0]);
