@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 //Youssef
@@ -32,8 +33,8 @@ public class CarRepo {
     }
 
     public void update(Car car) {
-        String sql = "UPDATE car SET serialNumber=?, color=?, trimLevel=?, steelPrice=?, registrationTax=?, emission=?, status=?, ds=?, licensePlate=?, fuelType = ?, kmTraveled = ?, fuelEfficiency = ?, price = ?, manual  = ? WHERE id=?";
-        jdbcTemplate.update(sql, car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus().name(), car.isDs(), car.getLicensePlate(), car.getFuelType().name(), car.getKmTraveled(), car.getFuelEfficiency(), car.getPrice(), car.isManual(), car.getId());
+        String sql = "UPDATE car SET serialNumber=?, color=?, trimLevel=?, steelPrice=?, registrationTax=?, emission=?, status=?, ds=?, licensePlate=?, fuelType = ?, kmTraveled = ?, fuelEfficiency = ?, price = ?, manual  = ?, lastUpdated = ? WHERE id=?";
+        jdbcTemplate.update(sql, car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus().name(), car.isDs(), car.getLicensePlate(), car.getFuelType().name(), car.getKmTraveled(), car.getFuelEfficiency(), car.getPrice(), car.isManual(), car.getLastUpdated(), car.getId());
     }
     public void delete(int id) {
         String sql = "DELETE FROM car WHERE id = ?";
@@ -58,6 +59,14 @@ public class CarRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
+    public List<Car> getPending(){
+        String sql = "SELECT * FROM car " +
+                "LEFT JOIN carIdentification " +
+                "ON car.serialNumber = carIdentification.serialNumber WHERE status = 'PENDING'";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
     public List<Car> getAvailable(){
         String sql = "SELECT * FROM car " +
                 "LEFT JOIN carIdentification " +
@@ -73,12 +82,26 @@ public class CarRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
-
+    // Bjarke
     public List<Car> getAvailableCars() {
         String sql = "SELECT * FROM car LEFT JOIN carIdentification " +
                     "ON car.serialNumber = carIdentification.serialNumber WHERE status = 'AVAILABLE'";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
+
+
+    //Bjarke
+    public List<Car> getNotUpdated(String date){
+        String sql = "SELECT * FROM car LEFT JOIN carIdentification ON car.serialNumber = carIdentification.serialNumber " +
+                "WHERE (status='DAMAGED' OR status='PENDING') AND lastUpdated<?";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return jdbcTemplate.query(sql,rowMapper, date);
+    }
+
+
+
+
+
 
 }

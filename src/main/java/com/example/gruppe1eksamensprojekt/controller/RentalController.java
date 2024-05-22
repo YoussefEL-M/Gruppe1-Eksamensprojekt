@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+
 @Controller
 public class RentalController { // Severin
     // Todo: gennemgå metodernes Models og sørg for at deres attributter er navngivet korrekt.
@@ -85,11 +87,16 @@ public class RentalController { // Severin
         return "rentalUpdateForm";
     }
 
+
     //Opdater klassediagram
     @PostMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
+                               @RequestParam("pickUpLocation") String pickUpLocation,
+                               @RequestParam("startDate") String startDate,
+                               @RequestParam("car") String car,
                                @RequestParam("returnLocation") String returnLocation,
-                               @RequestParam("carId") int carId, HttpSession session){
+                               RedirectAttributes redirectAttributes,
+                               HttpSession session){
         if(session.getAttribute("user")==null)
             return "frontpage";
 
@@ -141,8 +148,10 @@ public class RentalController { // Severin
         if(session.getAttribute("user")==null)
             return "frontpage";
 
+        User user = (User) session.getAttribute("user");
+        int userID =user.getId();
         // Opdateret, så submitRental() returnerer et redirect.
-        return rentalService.submitRental(customer, startDate, pickuppoint, car, type, dropoffpoint, unlimitedMonth, redirectAttributes);
+        return rentalService.submitRental(customer, startDate, pickuppoint, car, type, dropoffpoint, unlimitedMonth, userID, redirectAttributes);
 
     }
 
@@ -193,12 +202,13 @@ public class RentalController { // Severin
     //Opdater i klassediagram
     @GetMapping("/editRentalStatus")
     public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page, Model model){
-        Rental rental = rentalService.getRentalById(id, model);
-        rental.setStatus(true);
+        Rental rental = rentalService.getRentalById(id);
+        rental.setStatus("CURRENT");
         rentalService.updateRental(rental);
 
-        Car car = carService.getCarById(rental.getCarId(), model);
+        Car car = carService.getCarById(rental.getCarId());
         car.setStatus(CarStatus.PENDING);
+        car.setLastUpdated(LocalDate.now());
         carService.updateCar(car);
 
         if (page.equals("your")) return "redirect:/yourRentals";

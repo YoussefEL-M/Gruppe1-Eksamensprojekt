@@ -40,7 +40,7 @@ public class RentalService { //Severin
         rentalRepo.create(rental);
     }
 
-    public String submitRental(String customer, String startDate, String pickuppoint, String car, String type, String dropoffpoint, String unlimitedMonth, RedirectAttributes redirectAttributes){
+    public String submitRental(String customer, String startDate, String pickuppoint, String car, String type, String dropoffpoint, String unlimitedMonth, int userID, RedirectAttributes redirectAttributes){
         boolean error = false;
         int customerId = 0;
         int carId = 0;
@@ -91,8 +91,9 @@ public class RentalService { //Severin
             Car carToUpdate = carRepo.getCarById(carId);
             String endDate = calcEndDate(startDate,type, carToUpdate.isDs());
             carToUpdate.setStatus(CarStatus.RENTED);
+            carToUpdate.setLastUpdated(LocalDate.now());
             carRepo.update(carToUpdate);
-            Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, false);
+            Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, "FRESH", userID);
             rentalRepo.create(rental);
             return "redirect:/rental";
         }
@@ -101,14 +102,13 @@ public class RentalService { //Severin
     }
 
     //Opdater i klassediagram
-    public Rental getRentalById(int id, Model model){
+    public Rental getRentalById(int id){
 
         Rental rental;
         try {
             rental = rentalRepo.getRentalById(id);
         } catch (EmptyResultDataAccessException ERDA) {
 
-            model.addAttribute("unableToFindRental", true);
             return null;
         }
         if(rental.getId() == id) {
@@ -206,5 +206,9 @@ public class RentalService { //Severin
     public Rental getRentalsByUserID(int id){
         return rentalRepo.getRentalsByUserID(id);
     }
+
+    public List<Rental> getCurrentRentals(){return rentalRepo.getCurrentRentals();}
+
+
 
 }

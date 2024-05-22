@@ -1,5 +1,15 @@
 /*Youssef*/
 
+h3 {
+    text-align: center;
+    padding-top: 20px;
+}
+
+h2 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
 .reportform {
     max-width: 600px;
     margin: 20px auto;
@@ -68,7 +78,8 @@
 
 .reportFields input[type="text"],
 .reportFields input[type="number"],
-.reportFields input[type="date"] {
+.reportFields input[type="date"],
+.reportFields select{
     width: calc(100% - 20px);
     padding: 8px;
     border: 1px solid #ccc;
@@ -76,10 +87,28 @@
 }
 
 button[type="submit"] {
+    color:#1892C3;
+    background-color:white;
+    padding: 10px 20px;
+    border: 1px solid #1892C3;
+    border-radius: 30px;
+    cursor: pointer;
+    width:300px;
+    height:38px;
+
+}
+#rapportKnap {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+button:hover {
     background-color: #1892C3;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+}
+
+
+#rentalField{
+    width: 300px;
 }

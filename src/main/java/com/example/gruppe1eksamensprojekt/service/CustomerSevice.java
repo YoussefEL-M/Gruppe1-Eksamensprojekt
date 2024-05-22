@@ -26,7 +26,7 @@ public class CustomerSevice { // Severin
     }
 
     //Opdater i klassediagram
-    public Customer getCustomerById(int id, Model model){
+    public Customer getCustomerById(int id){
         // Er ikke i klassediagrammet, men antager at vi skal bruge den.
         // Todo: tilføj til klassediagram.
 
@@ -34,8 +34,6 @@ public class CustomerSevice { // Severin
         try {
             customer = customerRepo.getCustomerById(id);
         } catch (EmptyResultDataAccessException ERDA) {
-
-            model.addAttribute("unableToFindCustomer", true);
             return null;
         }
         if(customer.getId() == id) {

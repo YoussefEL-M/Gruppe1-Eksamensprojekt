@@ -8,6 +8,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -27,13 +28,12 @@ public class CarService { // Severin
     }
 
     //Noter i klassediagram
-    public Car getCarById(int id, Model model){
+    public Car getCarById(int id){
 
         Car car;
         try {
             car = carRepo.getCarById(id);
         } catch (EmptyResultDataAccessException ERDA) {
-            model.addAttribute("unableToFindCar", true);
             return null;
         }
         if(car.getId() == id) {
@@ -61,6 +61,11 @@ public class CarService { // Severin
         return carRepo.getRented();
     }
 
+    public List<Car> getPending(){
+        return carRepo.getPending();
+    }
+
+
     public double getRentedCarsTotalPrice(){
         return carRepo.getRented().stream().mapToDouble(Car::getPrice).sum();
     }
@@ -71,6 +76,11 @@ public class CarService { // Severin
 
     public List<Car> getAvailableCars() {return carRepo.getAvailableCars();}
 
+    public List<Car> getNotUpdated() {
+        String date = LocalDate.now().minusDays(4).toString();
+
+
+        return carRepo.getNotUpdated(date);}
 
 
 }

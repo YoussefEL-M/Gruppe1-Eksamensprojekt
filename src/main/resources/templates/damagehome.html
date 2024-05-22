@@ -12,7 +12,7 @@
 
 <div class="main">
     <h1>Velkommen til Skade og udbedring</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
 </div>
 
 
@@ -23,9 +23,9 @@
     <div class="halves">
 
         <h2 class="splitHead">
-            Indleveret i dag.
+            Biler klar til behandling
         </h2>
-
+<!--        <p th:text="${bob}"></p>-->
         <table class="taskList">
             <thead>
             <tr>
@@ -33,6 +33,7 @@
                 <th>Model</th>
                 <th>Nummerplade</th>
                 <th>Status</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -41,7 +42,7 @@
                 <td th:text="${car.model}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.status}"></td>
-                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button>Opret rapport</button></a></td>
+                <td><div id="reportButtonDiv"><a th:href="@{'/create/' + ${car.id}}" href="damageform.html"><button id="reportButton">Opret rapport</button></a></div></td>
             </tr>
             </tbody>
         </table>
@@ -51,7 +52,8 @@
 
     <div class="halves">
 
-        <h2 class="splitHead"> Status uændret i to uger eller mere </h2>
+<!--        Bjarke-->
+        <h2 class="splitHead"> Status uændret i 5 dage eller mere </h2>
 
         <table class="tasklist">
             <thead>
@@ -60,7 +62,8 @@
                 <th>Model</th>
                 <th>Nummerplade</th>
                 <th>Status</th>
-                <th>Rediger</th>
+                <th>Sidst ændret</th>
+                <th>Ret status</th>
             </tr>
             </thead>
             <tbody>
@@ -69,7 +72,11 @@
                 <td th:text="${car.model}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.status}"></td>
-                <td><a th:href="@{'/damageform/' + ${car.id}}" href="damageform.html"><button>Rediger</button></a></td>
+                <td th:text="${car.lastUpdated}"></td>
+                <td><span th:if="${car.status.name().equals('DAMAGED')}"><a th:href="@{'/updateStatus/' + ${car.id}+ '/PENDING'}" href="damageform.html"><button>Afventer</button></a><a th:href="@{'/updateStatus/' + ${car.id}+ '/AVAILABLE'}" href="damageform.html"><button>Ledig</button></a>
+                </span>
+                    <span th:if="${car.status.name().equals('PENDING')}"><a th:href="@{'/updateStatus/' + ${car.id}+ '/DAMAGED'} " href="damageform.html"><button>Skadet</button></a><a th:href="@{'/updateStatus/' + ${car.id}+ '/AVAILABLE'}" href="damageform.html"><button>Ledig</button></a>
+                </span></td>
             </tr>
             </tbody>
         </table>

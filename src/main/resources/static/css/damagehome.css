@@ -1,6 +1,6 @@
 /* Bjarke og Severin */
 
-h1, h2, p, a, li {
+h1, h2, p, a, li, tr,th,td {
     font-family: "Arial", sans-serif;
 }
 
@@ -20,7 +20,7 @@ h1, h2, p, a, li {
 }
 
 .halves{
-    width: 50%;
+    width: 48%;
     display: inline;
     overflow:auto;
     margin: 0 auto auto auto;
@@ -44,4 +44,35 @@ li {
     width: 380px;
     height: 440px;
     display: inline-grid;
+}
+
+table {
+    width: 80%;
+    color: black;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+#reportButton {
+    height:30px;
+    width:120px;
+
+}
+#reportButtonDiv{
+    text-align: center;
 }

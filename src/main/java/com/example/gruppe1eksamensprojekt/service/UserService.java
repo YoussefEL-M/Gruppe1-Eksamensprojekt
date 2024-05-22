@@ -62,14 +62,12 @@ public class UserService { // Severin
     }
 
     //Opdater i klassediagram
-    public User getUserById(int id, Model model){
+    public User getUserById(int id){
 
         User user;
         try {
             user = userRepo.getUserById(id);
         } catch (EmptyResultDataAccessException ERDA) {
-
-            model.addAttribute("unableToFindUser", true);
             return null;
         }
 
