@@ -90,6 +90,7 @@ public class RentalService { //Severin
             String endDate = calcEndDate(startDate,type);
             Car carToUpdate = carRepo.getCarById(carId);
             carToUpdate.setStatus(CarStatus.RENTED);
+            carToUpdate.setLastUpdated(LocalDate.now());
             carRepo.update(carToUpdate);
             Rental rental = new Rental(pickuppoint, dropoffpoint, type, customerId, startDate, endDate, carId, "FRESH", userID);
             rentalRepo.create(rental);

@@ -194,6 +194,7 @@ public class RentalController { // Severin
 
         Car car = carService.getCarById(rental.getCarId());
         car.setStatus(CarStatus.PENDING);
+        car.setLastUpdated(LocalDate.now());
         carService.updateCar(car);
 
         if (page.equals("your")) return "redirect:/yourRentals";
