@@ -19,8 +19,8 @@ import java.time.LocalDate;
 public class RentalController { // Severin
     // Todo: gennemgå metodernes Models og sørg for at deres attributter er navngivet korrekt.
 
-    @Value("${adminPass}")
-    private String adminPass;
+    //@Value("${adminPass}") //Todo: sæt op til Azure Key Vault.
+    private String adminPass = "test";
 
     @Autowired
     UserService userService;
@@ -180,7 +180,7 @@ public class RentalController { // Severin
             return "redirect:/createUser";
         }
 
-        if(!adminPassword.equals(adminPass){
+        if(!adminPassword.equals(adminPass)){
             redirectAttributes.addFlashAttribute("name", name);
             redirectAttributes.addFlashAttribute("email", email);
             redirectAttributes.addFlashAttribute("username", username);

@@ -204,9 +204,6 @@ public class RentalService { //Severin
         return endDate.toString();
     }
 
-        return LocalDate.parse(startDate).plusMonths(Integer.parseInt(month)).toString();
-    }
-
 
     //Bjarke
     public List<Rental> getCurrentRentals(){return rentalRepo.getCurrentRentals();}
