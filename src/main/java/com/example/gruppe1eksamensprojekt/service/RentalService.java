@@ -161,6 +161,8 @@ public class RentalService { //Severin
 
             oldCar.setStatus(CarStatus.AVAILABLE);
             newCar.setStatus(CarStatus.RENTED);
+            oldCar.setLastUpdated(LocalDate.now());
+            newCar.setLastUpdated(LocalDate.now());
 
             carRepo.update(oldCar);
             carRepo.update(newCar);

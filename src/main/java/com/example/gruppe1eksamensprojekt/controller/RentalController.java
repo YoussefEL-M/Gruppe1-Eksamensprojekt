@@ -110,6 +110,7 @@ public class RentalController { // Severin
             return "frontpage";
         Car car = carService.getCarById(rentalService.getRentalById(id).getCarId());
         car.setStatus(CarStatus.AVAILABLE);
+        car.setLastUpdated(LocalDate.now());
         carService.updateCar(car);
         rentalService.deleteRental(id);
         if (page.equals("your")) return "redirect:/yourRentals";
