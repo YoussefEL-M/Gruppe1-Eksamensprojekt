@@ -132,35 +132,6 @@ public class DamageController {
     }
 
 
-    @GetMapping("/updateReport/{reportId}/{rentalId}")
-    public String updateReport(@PathVariable("reportId") int reportId,@PathVariable("rentalId") int rentalId, RedirectAttributes redirectAttributes, HttpSession session){
-
-        if(session.getAttribute("user")==null)
-            return "frontpage";
-
-        Report report = reportService.getReportById(reportId);
-        reportService.populateDamages(report);
-
-
-        if (!report.getDamages().keySet().isEmpty()){
-            redirectAttributes.addFlashAttribute("report0damage", report.getDamages().keySet().toArray()[0]);
-            redirectAttributes.addFlashAttribute("report0price", report.getDamages().values().toArray()[0]);
-            if (report.getDamages().keySet().size()>=2){
-                redirectAttributes.addFlashAttribute("report1damage", report.getDamages().keySet().toArray()[1]);
-                redirectAttributes.addFlashAttribute("report1price", report.getDamages().values().toArray()[1]);
-                if (report.getDamages().keySet().size()>=3){
-                    redirectAttributes.addFlashAttribute("report2damage", report.getDamages().keySet().toArray()[2]);
-                    redirectAttributes.addFlashAttribute("report2price", report.getDamages().values().toArray()[2]);
-                    if (report.getDamages().keySet().size()>=4){
-                        redirectAttributes.addFlashAttribute("report3damage", report.getDamages().keySet().toArray()[3]);
-                        redirectAttributes.addFlashAttribute("report3price", report.getDamages().values().toArray()[3]);
-                        if (report.getDamages().keySet().size()>=5){
-                            redirectAttributes.addFlashAttribute("report4damage", report.getDamages().keySet().toArray()[4]);
-                            redirectAttributes.addFlashAttribute("report4price", report.getDamages().values().toArray()[4]);
-                        }}}}}
-
-        return "redirect:/updateForm/"+reportId+"/"+rentalId;
-    }
 
     //Opdater i klassediagram
     @GetMapping("/updateForm/{reportId}/{rentalId}")
@@ -171,11 +142,21 @@ public class DamageController {
 
         Report report = reportService.getReportById(reportId);
         reportService.populateDamages(report);
+        List<Damages> damages = reportService.getDamagesByReportID(reportId);
+        String[] damageKeys = {null, null, null, null, null};
+        Double[] damageValues = {null, null, null, null, null};
+        int i = 0;
+        for (Damages d : damages){
+            damageKeys[i]=(d.getDamage());
+            damageValues[i]=(d.getPrice());
+            i++;
+        }
 
 
         model.addAttribute("report", report);
         model.addAttribute("rentalId",rentalId);
-
+        model.addAttribute("damageKeys", damageKeys);
+        model.addAttribute("damageValues", damageValues);
 
 
         return "reportUpdateForm";

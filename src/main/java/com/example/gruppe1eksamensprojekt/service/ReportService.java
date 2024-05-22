@@ -154,6 +154,7 @@ public class ReportService { // Severin
     public List<Damages> getDamagesByReportID(int id){
         return reportRepo.getDamagesByReportId(id);
     }
+
     public void populateDamages(List<Report> reports) {
         for (Report report : reports) {
             List<Damages> damagesList = reportRepo.getDamagesByReportId(report.getId());
