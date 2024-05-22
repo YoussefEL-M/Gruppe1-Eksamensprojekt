@@ -87,8 +87,8 @@ public class RentalService { //Severin
             redirectAttributes.addFlashAttribute("dropoffpoint", dropoffpoint);
             redirectAttributes.addFlashAttribute("unlimitedMonth", unlimitedMonth);
         } else{
-            String endDate = calcEndDate(startDate,type);
             Car carToUpdate = carRepo.getCarById(carId);
+            String endDate = calcEndDate(startDate,type, carToUpdate.isDs());
             carToUpdate.setStatus(CarStatus.RENTED);
             carToUpdate.setLastUpdated(LocalDate.now());
             carRepo.update(carToUpdate);
@@ -153,6 +153,21 @@ public class RentalService { //Severin
         }
 
         Rental rental = rentalRepo.getRentalById(id);
+
+        // Hvis bilen i lejeaftalen er blevet ændret, opdater bilernes status.
+        if (rental.getCarId()!=carId){
+            Car oldCar = carRepo.getCarById(rental.getCarId());
+            Car newCar = carRepo.getCarById(carId);
+
+            oldCar.setStatus(CarStatus.AVAILABLE);
+            newCar.setStatus(CarStatus.RENTED);
+            oldCar.setLastUpdated(LocalDate.now());
+            newCar.setLastUpdated(LocalDate.now());
+
+            carRepo.update(oldCar);
+            carRepo.update(newCar);
+        }
+
         rental.setStartDate(startDate);
         rental.setEndDate(endDate);
         rental.setPickUpLocation(pickUpLocation);
@@ -166,12 +181,29 @@ public class RentalService { //Severin
         rentalRepo.delete(id);
     }
 
+    // Bjarke og Severin
+    // Beregner slutdato på lejeaftale ud fra startdato og antal måneder.
+    public String calcEndDate(String startDate, String type, boolean isDS) {
 
-    //Bjarke
-    //Beregner en slut dato udfra en start dato og et antal af måneder
-    public String calcEndDate(String startDate, String month) {
+        LocalDate endDate = LocalDate.parse(startDate).plusMonths(Integer.parseInt(type));
 
-        return LocalDate.parse(startDate).plusMonths(Integer.parseInt(month)).toString();
+        // Hvis bilen er en DS bil, skal den returneres to dage før måneden slutter, for at undgå at betale en ekstra måneds nummerpladeafgift.
+        if(isDS) {
+            // Hvis slutdato ikke er en af de sidste to dage i måneden, returner slutdato.
+            if (endDate.plusDays(2).getMonth().equals(endDate.getMonth())) {
+                return endDate.toString();
+            }
+
+            // Hvis slutdato er den næstsidste dag i måneden, træk en dag fra og returner ny slutdato.
+            else if (endDate.plusDays(1).getMonth().equals(endDate.getMonth())) {
+                return endDate.minusDays(1).toString();
+            }
+
+            // Hvis slutdato er den sidste dag i måneden, træk to dage fra og returner ny slutdato.
+            else return endDate.minusDays(2).toString();
+        }
+
+        return endDate.toString();
     }
 
 

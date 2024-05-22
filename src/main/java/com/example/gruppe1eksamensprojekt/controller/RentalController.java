@@ -4,6 +4,7 @@ import com.example.gruppe1eksamensprojekt.model.*;
 import com.example.gruppe1eksamensprojekt.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,9 @@ import java.time.LocalDate;
 @Controller
 public class RentalController { // Severin
     // Todo: gennemgå metodernes Models og sørg for at deres attributter er navngivet korrekt.
+
+    //@Value("${adminPass}") //Todo: sæt op til Azure Key Vault.
+    private String adminPass = "test";
 
     @Autowired
     UserService userService;
@@ -106,6 +110,7 @@ public class RentalController { // Severin
             return "frontpage";
         Car car = carService.getCarById(rentalService.getRentalById(id).getCarId());
         car.setStatus(CarStatus.AVAILABLE);
+        car.setLastUpdated(LocalDate.now());
         carService.updateCar(car);
         rentalService.deleteRental(id);
         if (page.equals("your")) return "redirect:/yourRentals";
@@ -164,7 +169,7 @@ public class RentalController { // Severin
                                   @RequestParam("username")String username,
                                   @RequestParam("password") String password,
                                   @RequestParam("confirmPassword") String confirmPassword,
-                                  @RequestParam("type") String type,
+                                  @RequestParam("type") String type, @RequestParam("adminPassword") String adminPassword,
                                   RedirectAttributes redirectAttributes,
                                   Model model) {
         if(!password.equals(confirmPassword)){
@@ -175,6 +180,16 @@ public class RentalController { // Severin
             redirectAttributes.addFlashAttribute("passwordMismatch", true);
             return "redirect:/createUser";
         }
+
+        if(!adminPassword.equals(adminPass)){
+            redirectAttributes.addFlashAttribute("name", name);
+            redirectAttributes.addFlashAttribute("email", email);
+            redirectAttributes.addFlashAttribute("username", username);
+            redirectAttributes.addFlashAttribute("type", type);
+            redirectAttributes.addFlashAttribute("adminPasswordMismatch", true);
+            return "redirect:/createUser";
+        }
+
         // Opdateret for at rykke logikken fra Controlleren ned i Service.
         // Servicemetoden createUser() har nu returnværdi, der omdiregerer alt efter metodens udfald.
         return userService.createUser(name, username, password, email, type, model, redirectAttributes);

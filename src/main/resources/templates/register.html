@@ -70,6 +70,17 @@
             </div>
         </div>
 
+        <div class="loginFields">
+            <div>
+                <label for="adminPassword">Indtast administratorkode</label>
+            </div>
+            <div>
+                <input type="password" id="adminPassword" name="adminPassword" required>
+            </div>
+        </div>
+
+        <span style=" color:red"><p id="admin_password_mismatch"></p></span>
+
 
 
         <div class="buttonDiv">
@@ -84,14 +95,18 @@
     if (passwordMismatch===true){
         document.getElementById("password_mismatch").innerHTML="Adgangskode stemmer ikke overens.";
     }
-</script>
 
-<script th:inline="javascript">
     var usernameExists = /*[[${usernameExists}]]*/ false;
     if (usernameExists===true){
         document.getElementById("username_exists").innerHTML="Bruger findes allerede.";
     }
+
+    var adminPasswordMismatch = /*[[${adminPasswordMismatch}]]*/ false;
+    if (adminPasswordMismatch===true){
+        document.getElementById("admin_password_mismatch").innerHTML="Forkert administratorkode.";
+    }
 </script>
+
 
 </body>
 </html>
