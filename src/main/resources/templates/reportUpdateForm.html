@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Opdater Rapport</title>
-    <link rel="stylesheet" href="../static/CSS/reportUpdateForm.css" th:href="@{/CSS/reportUpdateForm.css}">
+    <link rel="stylesheet" href="../static/CSS/damageform.css" th:href="@{/CSS/damageform.css}">
 </head>
 <body>
 
@@ -50,8 +50,9 @@
                 <textarea id="comment" name="comment" th:text="${report.comment}"></textarea>
             </div>
         </div>
-
-        <button type="submit" value="Opdater rapport">Opdater rapport</button>
+        <div class="knap">
+            <button type="submit" value="Opdater rapport">Opdater rapport</button>
+        </div>
     </form>
 </div>
 
