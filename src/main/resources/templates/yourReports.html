@@ -43,7 +43,7 @@
         <td>
             <ul>
                 <li th:each="damage : ${report.damages}">
-                    <span th:text="${damage.getKey()}"></span> : <span th:text="${damage.getValue()}"></span>
+                    <span th:text="${damage.key}"></span> : <span th:text="${damage.value}"></span>
                 </li>
             </ul>
         </td>

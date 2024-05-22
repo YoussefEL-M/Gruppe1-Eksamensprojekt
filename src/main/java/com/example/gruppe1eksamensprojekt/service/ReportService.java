@@ -2,6 +2,7 @@ package com.example.gruppe1eksamensprojekt.service;
 
 import com.example.gruppe1eksamensprojekt.model.Car;
 import com.example.gruppe1eksamensprojekt.model.CarStatus;
+import com.example.gruppe1eksamensprojekt.model.Damages;
 import com.example.gruppe1eksamensprojekt.model.Report;
 import com.example.gruppe1eksamensprojekt.repository.RentalRepo;
 import com.example.gruppe1eksamensprojekt.repository.ReportRepo;
@@ -29,10 +30,17 @@ public class ReportService { // Severin
     private CarService carService;
 
     public List<Report> getAll(){
-        return reportRepo.getAll();
+
+        List<Report> reports = reportRepo.getAll();
+        populateDamages(reports);
+        return reports;
     }
 
-    public List<Report> getYourReports(int userId) {return reportRepo.getYourReports(userId);}
+    public List<Report> getYourReports(int userId) {
+        List<Report> reports = reportRepo.getYourReports(userId);
+        populateDamages(reports);
+        return reports;
+    }
 
     public void createReport(Report report){
         reportRepo.create(report);
@@ -56,7 +64,15 @@ public class ReportService { // Severin
     }
 
     public void updateReport(Report report){
+
         reportRepo.update(report);
+
+        for (Map.Entry<String, Double> entry : report.getDamages().entrySet()) {
+            Damages damage = new Damages();
+            damage.setDamage(entry.getKey());
+            damage.setPrice(entry.getValue());
+            reportRepo.updateDamage(report.getId(), damage);
+        }
     }
 
     public void deleteReport(int id){
@@ -122,12 +138,27 @@ public class ReportService { // Severin
             int carid=rentalService.getRentalById(rentalId).getCarId();
             Car newcar =carService.getCarById(carid);
             newcar.setStatus(CarStatus.valueOf(status));
+            newcar.setLastUpdated(LocalDate.now());
             carService.updateCar(newcar);
+
             return "redirect:/damage";
         }
 
         return "redirect:/create";
     }
 
+    public List<Damages> getDamagesByReportID(int id){
+        return reportRepo.getDamagesByReportId(id);
+    }
+    public void populateDamages(List<Report> reports) {
+        for (Report report : reports) {
+            List<Damages> damagesList = reportRepo.getDamagesByReportId(report.getId());
+            Map<String, Double> damagesMap = new HashMap<>();
+            for (Damages damage : damagesList) {
+                damagesMap.put(damage.getDamage(), damage.getPrice());
+            }
+            report.setDamages(damagesMap);
+        }
+    }
 
 }

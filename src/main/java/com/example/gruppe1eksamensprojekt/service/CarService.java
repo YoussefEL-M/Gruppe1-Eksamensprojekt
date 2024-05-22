@@ -8,6 +8,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -70,6 +71,11 @@ public class CarService { // Severin
 
     public List<Car> getAvailableCars() {return carRepo.getAvailableCars();}
 
+    public List<Car> getNotUpdated() {
+        String date = LocalDate.now().minusDays(4).toString();
+
+
+        return carRepo.getNotUpdated(date);}
 
 
 }

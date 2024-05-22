@@ -11,22 +11,16 @@ h1, h2, p, a, li, tr,th,td {
 
 
 table {
-    width: 60%;
-    color: black;
+    width: 100%;
     border-collapse: collapse;
-    margin: auto;
 }
 
 th, td {
-    border: 1px solid #888888;
-    padding: 16px;
+    border: 1px solid #dddddd;
+    padding: 8px;
     text-align: left;
 }
 
-
-thead{
-    background-color: #eeeef6;
-}
-tr:nth-child(even) {
-    background-color: #eeeef6;
+th {
+    background-color: #f2f2f2;
 }

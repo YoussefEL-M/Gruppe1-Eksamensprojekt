@@ -9,14 +9,15 @@
 
 <div class="container">
     <div class="logo">
-        <a th:href="@{/businessPage.html}">
+        <a href="businesspage">
             <img src="../static/image/img.png" th:src="@{/image/img.png}" alt="Logo">
         </a>
     </div>
     <div class="dropdown" tabindex="1">
         <a class="drop_button">Vælg handling</a>
         <div class="drop_content">
-            <a href="/allcars"> Biler der mangler rapport </a>
+            <a href="businesspage">Oversigt over udlejede biler</a>
+            <a href="allcars">Oversigt over alle biler</a>
         </div>
     </div>
     <div class="logout-button">
