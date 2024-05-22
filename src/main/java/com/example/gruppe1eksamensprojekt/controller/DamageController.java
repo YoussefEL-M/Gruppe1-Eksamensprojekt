@@ -139,10 +139,10 @@ public class DamageController {
             return "frontpage";
 
         Report report = reportService.getReportById(reportId);
-        Map<String, Double> damagesMap = report.getDamages();
+
 
         model.addAttribute("report", report);
-        model.addAttribute("damagesMap", damagesMap);
+
 
         return "reportUpdateForm";
 
@@ -154,7 +154,6 @@ public class DamageController {
                                @RequestParam("date") LocalDate date,
                                @RequestParam("comment") String description,
                                @RequestParam("treatment") String treatment,
-                               @RequestParam Map<String, Double> damages,
                                HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)
@@ -170,6 +169,8 @@ public class DamageController {
 
             reportService.updateReport(report);
         }
+
+
 
         return "redirect:/reports";
 

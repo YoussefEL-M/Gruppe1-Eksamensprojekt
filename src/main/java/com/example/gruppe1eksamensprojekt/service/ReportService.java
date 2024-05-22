@@ -67,12 +67,12 @@ public class ReportService { // Severin
     public void updateReport(Report report){
         reportRepo.update(report);
 
-        for (Map.Entry<String, Double> entry : report.getDamages().entrySet()) {
-            Damages damage = new Damages();
-            damage.setDamage(entry.getKey());
-            damage.setPrice(entry.getValue());
-            reportRepo.updateDamage(report.getId(), damage);
-        }
+//        for (Map.Entry<String, Double> entry : report.getDamages().entrySet()) {
+//            Damages damage = new Damages();
+//            damage.setDamage(entry.getKey());
+//            damage.setPrice(entry.getValue());
+//            reportRepo.updateDamage(report.getId(), damage);
+//        }
     }
 
     public void deleteReport(int id){

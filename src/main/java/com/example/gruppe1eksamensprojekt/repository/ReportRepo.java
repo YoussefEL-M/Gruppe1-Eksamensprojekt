@@ -41,8 +41,10 @@ public class ReportRepo {
     }
 
     public void delete(int id) {
-        String sql = "DELETE FROM report WHERE id = ?";
+        String sql = "DELETE FROM damages WHERE report_id = ?";
         jdbcTemplate.update(sql, id);
+        String sql2 = "DELETE FROM report WHERE id = ?";
+        jdbcTemplate.update(sql2, id);
     }
 
     public Report getReportById(int id) throws EmptyResultDataAccessException {
