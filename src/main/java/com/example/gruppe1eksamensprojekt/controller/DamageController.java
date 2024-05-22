@@ -140,7 +140,7 @@ public class DamageController {
                                @RequestParam("date") LocalDate date,
                                @RequestParam("comment") String description,
                                @RequestParam("treatment") String treatment,
-                               @RequestParam Map<String, String> damages,
+                               @RequestParam Map<String, Double> damages,
                                HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)
