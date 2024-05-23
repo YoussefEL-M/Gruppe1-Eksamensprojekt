@@ -24,3 +24,7 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+.edit-button, .delete-button {
+    margin-bottom:5px;
+    margin-top:5px;
+}
