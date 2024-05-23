@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>createRental</title>
+    <title>Opret lejeaftale</title>
     <link rel="stylesheet" href="../static/CSS/createRental.css" th:href="@{/CSS/createRental.css}">
     <link rel="stylesheet" href="../static/CSS/header.css" th:href="@{/CSS/header.css}">
 </head>
@@ -20,7 +20,7 @@
             <div class="thirds">
                 <h2 class="splitHead"> Søg efter kunde </h2>
                 <div class="loginFields">
-                    <div>
+                    <div class="rentalField">
                         <input list="customers" name="customer" th:value="${customer}" required>
                         <datalist id="customers">
                             <option th:each="customer : ${customerList}" th:text="${customer.name} + ' - ' + ${customer.telnr}" th:value="${customer.id} + '. ' + ${customer.name} + ' - ' + ${customer.telnr}"></option>
@@ -33,7 +33,7 @@
             <div class="thirds">
                 <h2 class="splitHead"> Vælg startdato</h2>
                 <div class="loginFields">
-                    <div>
+                    <div class="rentalField">
                         <input type="date" name="startDate" th:value="${startDate}" required>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
 
                 <h2 class="splitHead"> Vælg udleveringssted </h2>
                 <div class="loginFields">
-                    <div>
+                    <div class="rentalField">
                         <input type="text" name="pickuppoint" th:value="${pickuppoint}" required>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
             <div class="thirds">
                 <h2 class="splitHead"> Søg efter bil </h2>
                 <div class="loginFields">
-                    <div>
+                    <div class="rentalField">
                         <input list="cars" name="car" th:value="${car}" required>
                         <datalist id="cars">
                             <option th:each="car : ${carList}" th:text="${car.brand}+ ' - ' + ${car.model}+ ' - ' + ${car.price}" th:value="${car.id} + '. ' + ${car.brand}+ ' - ' + ${car.model}+ ' - ' + ${car.price}"></option>
@@ -68,7 +68,7 @@
             <div class="thirds">
                 <h2 class="splitHead"> Vælg aftaletype</h2>
                 <div class="loginFields">
-                    <div>
+                    <div class="rentalField">
                         <input type="radio" id="limited" name="type" value="5" th:checked="${type == 5}">
                         <label for="limited">Limited, 5 Måneder</label><br>
                         <input type="radio" id="unlimited" name="type"  value="3" th:checked="${type != 5}" required>
@@ -82,7 +82,7 @@
 
                 <h2 class="splitHead"> Vælg indleveringssted </h2>
                 <div class="loginFields">
-                    <div>
+                    <div class="rentalField">
                         <input type="text" name="dropoffpoint" th:value="${dropoffpoint}" required>
                     </div>
                 </div>
