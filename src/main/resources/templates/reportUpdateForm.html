@@ -13,7 +13,9 @@
     <form action="/updateReport" method="post">
         <h2>Opdater rapport</h2>
 
-        <input name="id" type="hidden" th:value="${report.id}">
+        <input name="rentalId" type="hidden" th:value="${rentalId}">
+
+        <input name="reportId" type="hidden" th:value="${report.id}">
 
         <div class="reportFields">
             <div>
@@ -49,6 +51,32 @@
             <div>
                 <textarea id="comment" name="comment" th:text="${report.comment}"></textarea>
             </div>
+        </div>
+
+        <div class="damages">
+            <h3>Skader</h3>
+
+            <div>
+                <input class="damagefield" type="text" th:name="report0damage"  placeholder="Skade beskrivelse" th:value="${damageKeys[0]}"/>
+                <input class="damagefield" type="number" step="0.01" th:name="report0price" placeholder="Pris"  th:value="${damageValues[0]}" />
+            </div>
+            <div>
+                <input class="damagefieldTop" type="text" th:name="report1damage"  placeholder="Skade beskrivelse" th:value="${damageKeys[1]}"/>
+                <input class="damagefield" type="number" step="0.01" th:name="report1price" placeholder="Pris"  th:value="${damageValues[1]}" />
+            </div>
+            <div>
+                <input class="damagefieldTop" type="text" th:name="report2damage"  placeholder="Skade beskrivelse" th:value="${damageKeys[2]}"/>
+                <input class="damagefield" type="number" step="0.01" th:name="report2price" placeholder="Pris"  th:value="${damageValues[2]}" />
+            </div>
+            <div>
+                <input class="damagefieldTop" type="text" th:name="report3damage"  placeholder="Skade beskrivelse" th:value="${damageKeys[3]}"/>
+                <input class="damagefield" type="number" step="0.01" th:name="report3price" placeholder="Pris"  th:value="${damageValues[3]}" />
+            </div>
+            <div>
+                <input class="damagefieldTop" type="text" th:name="report4damage"  placeholder="Skade beskrivelse" th:value="${damageKeys[4]}"/>
+                <input class="damagefield" type="number" step="0.01" th:name="report4price" placeholder="Pris"  th:value="${damageValues[4]}" />
+            </div>
+
         </div>
 
         <div class="reportFields">
