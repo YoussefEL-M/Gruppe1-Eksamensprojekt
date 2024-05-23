@@ -107,7 +107,7 @@ INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Hanne', '9999999
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN001', 'Toyota', 'Camry');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN002', 'BMW', 'X5');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN003', 'Honda', 'Accord');
-INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN004', 'Ford', 'Mustang');
+INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN004', 'DS', 'DS 4');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN005', 'Tesla', 'Model S');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN006', 'Audi', 'Q7');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN007', 'Lexus', 'RX');
@@ -116,13 +116,13 @@ INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN009', 'Nis
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN010', 'Mercedes-Benz', 'C-Class');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN011', 'Jaguar', 'I-Pace');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN012', 'Volvo', 'XC60');
-INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN013', 'Chevrolet', 'Camaro');
-INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN014', 'Mercedes-Benz', 'E-Class');
+INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN013', 'DS', 'DS 4');
+INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN014', 'DS', 'DS 7');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN015', 'Hyundai', 'Sonata');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN016', 'Subaru', 'Outback');
-INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN017', 'Audi', 'e-tron');
+INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN017', 'DS', 'DS 4');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN018', 'Toyota', 'Highlander');
-INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN019', 'Mazda', 'CX-5');
+INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN019', 'DS', 'DS 7');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN020', 'Tesla', 'Model X');
 
 INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, status, ds, licensePlate, fuelType, kmTraveled, fuelEfficiency, price, manual, lastUpdated) VALUES ('1', 'SN001', 'Rød', 'Sport', '800', '1500', '120', 'AVAILABLE', '0', 'ABC123', 'PETROL', '15000', '15', '30000', '0', '2024-03-15');
