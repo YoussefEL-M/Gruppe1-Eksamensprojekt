@@ -97,7 +97,7 @@ INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Herbert', '44444
 INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Gitte', '55555555', 'Vej 14', '1988-11-11');
 
 
-
+-- Biler genereret med chatGPT, Bjarke
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN001', 'Toyota', 'Camry');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN002', 'BMW', 'X5');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN003', 'Honda', 'Accord');
@@ -118,7 +118,6 @@ INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN017', 'Aud
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN018', 'Toyota', 'Highlander');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN019', 'Mazda', 'CX-5');
 INSERT INTO carIdentification (serialNumber, brand, model) VALUES ('SN020', 'Tesla', 'Model X');
-
 
 INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, status, ds, licensePlate, fuelType, kmTraveled, fuelEfficiency, price, manual, lastUpdated) VALUES ('1', 'SN001', 'Rød', 'Sport', '800', '1500', '120', 'AVAILABLE', '0', 'ABC123', 'PETROL', '15000', '15', '30000', '0', '2024-03-15');
 INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, status, ds, licensePlate, fuelType, kmTraveled, fuelEfficiency, price, manual, lastUpdated) VALUES ('2', 'SN002', 'Blå', 'Luxury', '900', '1800', '110', 'AVAILABLE', '0', 'DEF456', 'DIESEL', '20000', '20', '40000', '1', '2024-03-10');
