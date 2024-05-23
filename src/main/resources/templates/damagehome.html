@@ -25,7 +25,7 @@
         <h2 class="splitHead">
             Biler klar til behandling
         </h2>
-<!--        <p th:text="${bob}"></p>-->
+
         <table class="taskList">
             <thead>
             <tr>
@@ -83,6 +83,33 @@
     </div>
 
 
+</div>
+
+<div id="DS">
+<h2 class="splitHead">
+    DS biler hos FDM
+</h2>
+
+<table class="dsList">
+    <thead>
+    <tr>
+        <th>Bilmærke</th>
+        <th>Model</th>
+        <th>Nummerplade</th>
+        <th>Status</th>
+        <th>Opret rapport for bil</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${carlistDS}">
+        <td th:text="${car.brand}"></td>
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.licensePlate}"></td>
+        <td th:text="${car.status}"></td>
+        <td><a th:href="@{'/updateStatus/' + ${car.id}+ '/AVAILABLE'}" href="damageform.html"><button>Ledig</button></a></td>
+    </tr>
+    </tbody>
+</table>
 </div>
 
 </body>

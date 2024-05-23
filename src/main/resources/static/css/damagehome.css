@@ -76,3 +76,8 @@ th {
 #reportButtonDiv{
     text-align: center;
 }
+
+#DS{
+    width: 50%;
+    margin: 80px auto auto auto;
+}

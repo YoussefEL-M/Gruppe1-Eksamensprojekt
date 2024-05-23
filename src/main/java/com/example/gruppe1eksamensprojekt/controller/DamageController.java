@@ -44,12 +44,18 @@ public class DamageController {
 
         List<Rental> rentals = rentalService.getCurrentRentals();
         List<Car> carList = new ArrayList<>();
+        List<Car> carListDS = new ArrayList<>();
 
+        Car car;
         for (Rental rental : rentals){
-            carList.add(carService.getCarById(rental.getCarId()));
+            car = carService.getCarById(rental.getCarId());
+            if (!car.isDs()) carList.add(car);
+            else carListDS.add(car);
         }
 
         model.addAttribute("carlist", carList);
+        model.addAttribute("carlistDS", carListDS);
+
         List<Car> pendingCarList = carService.getNotUpdated();
         model.addAttribute("pendingcarlist", pendingCarList);
 
@@ -248,6 +254,11 @@ public class DamageController {
         car.setLastUpdated(LocalDate.now());
 
         carService.updateCar(car);
+
+        Rental rental = rentalService.getCurrentRentalByCarID(id);
+        rental.setStatus("FINISHED");
+        rentalService.updateRental(rental);
+
 
       return "redirect:/";
     }
