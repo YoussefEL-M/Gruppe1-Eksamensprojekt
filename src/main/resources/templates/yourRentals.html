@@ -47,12 +47,15 @@
             </td>
 
 
-            <td><div class="edit-button">
+            <td>
+                 <span th:if="${!rental.getStatus().equals('FINISHED')}">
+                     <div class="edit-button">
                 <a th:href="@{'/editRental?id='+${rental.getId()}}"> <button> Rediger </button></a>
             </div>
                 <div class="delete-button">
                     <a th:href="@{'/deleteRental?id='+${rental.getId()}+'&page=your'}" onclick="return confirm('Er du sikker på du vil slette aftalen?')"> <button>Slet</button></a>
                 </div>
+                 </span>
             </td>
         </tr>
 
