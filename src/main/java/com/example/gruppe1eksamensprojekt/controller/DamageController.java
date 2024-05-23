@@ -239,18 +239,6 @@ public class DamageController {
         return "redirect:/reports";
     }
 
-    @GetMapping("/ubehandledeBiler")
-    public String showDamagedCars(HttpSession session, Model model) {
-
-        if(session.getAttribute("user")== null) {
-            return "frontpage";
-        }
-
-        model.addAttribute("listOfDamagedCars", carService.getDamagedCars());
-
-        return "damageView";
-    }
-
     //Bjarke
     @GetMapping("/updateStatus/{id}/{status}")
     public String updateStatus(@PathVariable("id") int id, @PathVariable("status") String status){
