@@ -42,7 +42,7 @@
                 <td th:text="${car.model}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.status}"></td>
-                <td><div id="reportButtonDiv"><a th:href="@{'/create/' + ${car.id}}" href="damageform.html"><button id="reportButton">Opret rapport</button></a></div></td>
+                <td><div class="reportButtonDiv"><a th:href="@{'/create/' + ${car.id}}" href="damageform.html"><button id="reportButton">Opret rapport</button></a></div></td>
             </tr>
             </tbody>
         </table>
@@ -97,7 +97,7 @@
         <th>Model</th>
         <th>Nummerplade</th>
         <th>Status</th>
-        <th>Opret rapport for bil</th>
+        <th>Meld klar</th>
     </tr>
     </thead>
     <tbody>
@@ -106,7 +106,7 @@
         <td th:text="${car.model}"></td>
         <td th:text="${car.licensePlate}"></td>
         <td th:text="${car.status}"></td>
-        <td><a th:href="@{'/updateStatus/' + ${car.id}+ '/AVAILABLE'}" href="damageform.html"><button>Ledig</button></a></td>
+        <td><div class="reportButtonDiv"><a th:href="@{'/updateStatus/' + ${car.id}+ '/AVAILABLE'}" href="damageform.html"><button>Klar</button></a></div></td>
     </tr>
     </tbody>
 </table>
