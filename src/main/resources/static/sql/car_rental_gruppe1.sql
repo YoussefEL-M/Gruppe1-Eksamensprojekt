@@ -88,13 +88,19 @@ CREATE TABLE IF NOT EXISTS damages (
 
 
 
-INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Lars', '12345678', 'Vej 14', '2011-11-11');
-INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Birgitte', '87654321', 'Gade 69', '1999-11-11');
-INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Jens', '11111111', 'Vej 14', '1920-11-11');
-INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Hans', '22222222', 'Vej 14', '1992-11-11');
-INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Henriette', '33333333', 'Vej 14', '1973-11-11');
-INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Herbert', '44444444', 'Vej 14', '1955-11-11');
-INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Gitte', '55555555', 'Vej 14', '1988-11-11');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Lars', '12345678', 'Vej 14', '1956-09-23');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Birgitte', '87654321', 'Gade 69', '1968-03-11');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Jens', '11111111', 'Lærkevej 1', '1977-11-05');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Hans', '22222222', 'Birkevej 12', '1982-07-18');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Henriette', '33333333', 'Vibevej 182', '1990-12-30');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Herbert', '44444444', 'Vinkelvej 3', '1945-02-14');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Gitte', '55555555', 'Østergade 6', '1972-06-28');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Bo', '44444444', 'Engvej 321', '1988-10-03');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Sune', '55555555', 'Møllevej 56', '1963-04-20');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Camilla', '66666666', 'Vestergade 99', '1998-08-15');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Persille', '77777777', 'Kirkevej 2', '2000-05-26');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Rolph', '88888888', 'Bøgevej 152', '1952-01-09');
+INSERT INTO customer (name, telnr, address, birthdate) VALUES ('Hanne', '99999999', 'Nørregade 32', '1967-12-09');
 
 
 -- Biler genereret med chatGPT, Bjarke
