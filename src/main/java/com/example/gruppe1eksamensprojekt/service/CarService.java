@@ -49,8 +49,8 @@ public class CarService { // Severin
         carRepo.update(car);
     }
 
-    public void deleteCar(int id){
-        carRepo.delete(id);
+    public void deleteCar(String serialNumber){
+        carRepo.delete(serialNumber);
     }
 
     public List<Car> getAvailable(){

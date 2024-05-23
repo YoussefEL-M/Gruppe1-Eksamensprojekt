@@ -36,11 +36,11 @@ public class CarRepo {
         String sql = "UPDATE car SET serialNumber=?, color=?, trimLevel=?, steelPrice=?, registrationTax=?, emission=?, status=?, ds=?, licensePlate=?, fuelType = ?, kmTraveled = ?, fuelEfficiency = ?, price = ?, manual  = ?, lastUpdated = ? WHERE id=?";
         jdbcTemplate.update(sql, car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus().name(), car.isDs(), car.getLicensePlate(), car.getFuelType().name(), car.getKmTraveled(), car.getFuelEfficiency(), car.getPrice(), car.isManual(), car.getLastUpdated(), car.getId());
     }
-    public void delete(int id) {
-        String sql = "DELETE FROM car WHERE id = ?";
+    public void delete(String serialNumber) {
+        String sql = "DELETE FROM car WHERE serialNumber = ?";
         String deleteFromCarId = "DELETE FROM carIdentification WHERE serialNumber = ?";
-        jdbcTemplate.update(sql, id);
-        jdbcTemplate.update(deleteFromCarId, id);
+        jdbcTemplate.update(sql, serialNumber);
+        jdbcTemplate.update(deleteFromCarId, serialNumber);
     }
 
     public List<Car> getAll() {
