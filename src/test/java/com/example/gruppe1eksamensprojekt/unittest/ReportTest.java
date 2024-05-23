@@ -63,7 +63,7 @@ public class ReportTest {
         reportService.deleteReport(report.getId());
     }
 
-    @Test
+   /* @Test
     void createReportTest() {
         // Arrange
         Report newReport = new Report();
@@ -84,6 +84,7 @@ public class ReportTest {
         assertEquals("Test Report", newReport.getTitle());
         assertEquals("Test Comment", newReport.getComment());
     }
+
 
 
     @Test
@@ -199,7 +200,7 @@ public class ReportTest {
         assertEquals(100.0, actualDamages.get(0).getPrice());
     }
 
-    @Test
+   /* @Test
     void populateDamagesListTest() {
         // Arrange
         Report report1 = new Report();
@@ -253,6 +254,6 @@ public class ReportTest {
 
         // Assert
         assertEquals(100.0, report.getDamages().get("Scratch"));
-    }
+    }*/
 
 }

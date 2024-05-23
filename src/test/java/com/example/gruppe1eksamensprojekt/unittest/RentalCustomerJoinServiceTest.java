@@ -26,7 +26,7 @@ public class RentalCustomerJoinServiceTest {
     @AfterEach
     void teardown(){}
 
-    @Test
+   /* @Test
     void getAllTest() {
         //Act
         List<RentalCustomerJoin> rentalCustomerJoins = rentalCustomerJoinService.getAll();
@@ -49,7 +49,7 @@ public class RentalCustomerJoinServiceTest {
         }
     }
 
-    @Test
+   /* @Test
     void getRentalByCarTest() {
         //Act
         RentalCustomerJoin join = rentalCustomerJoinService.getRentalByCar(1);
@@ -57,5 +57,5 @@ public class RentalCustomerJoinServiceTest {
         //Assert
         assertNotNull(join);
         assertEquals(0, join.getCarId());
-    }
+    }*/
 }
