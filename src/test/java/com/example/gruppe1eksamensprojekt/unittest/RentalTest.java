@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class RentalTest {
@@ -39,4 +39,47 @@ public class RentalTest {
 
 
     }
+
+
+
+    @Test
+    void getRentalById(){
+
+        int id = 1;
+
+        int testResult=rentalService.getRentalById(id).getId();
+
+        assertEquals(1,testResult);
+
+    }
+
+
+    @Test
+    void createRental(){
+        Rental newRental = new Rental();
+        newRental.setPickUpLocation("KBH");
+        newRental.setReturnLocation("Roskilde");
+        newRental.setType("5");
+        newRental.setCustomerId(1);
+        newRental.setStartDate("2024-01-01");
+        newRental.setEndDate("2024-06-01");
+        newRental.setCarId(1);
+        newRental.setStatus("FRESH");
+        newRental.setUserID(1);
+
+        rentalService.createRental(newRental);
+
+        Rental getRental = rentalService.getRentalById(1);
+
+        assertNotNull(getRental);
+        int id = 1;
+
+        int testResult=rentalService.getRentalById(id).getId();
+
+        assertEquals(1,testResult);
+
+    }
+
+
+
 }
