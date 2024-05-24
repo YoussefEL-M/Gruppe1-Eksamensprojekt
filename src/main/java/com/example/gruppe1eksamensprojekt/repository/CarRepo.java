@@ -24,6 +24,7 @@ public class CarRepo {
         jdbcTemplate.update(carId, car.getSerialNumber(), car.getBrand(), car.getModel());
     }
 
+    // Henter bilen med det givne id fra databasen, er lavet med en join da nogle af bilernes oplysninger ligger i carIdentification tabellen
     public Car getCarById(int id) throws EmptyResultDataAccessException {
         String sql = "SELECT * FROM car " +
                 "LEFT JOIN carIdentification " +

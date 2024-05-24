@@ -42,6 +42,7 @@ public class DamageController {
             return "frontpage";
         }
 
+        // Separat liste for DS og ikke DS biler oprettes og biler tilføjes listerne i loopet
         List<Rental> rentals = rentalService.getCurrentRentals();
         List<Car> carList = new ArrayList<>();
         List<Car> carListDS = new ArrayList<>();
@@ -53,10 +54,11 @@ public class DamageController {
             else carListDS.add(car);
         }
 
+        // Liste over de biler der ikke er opdateret i noget til oprettes
+        List<Car> pendingCarList = carService.getNotUpdated();
+
         model.addAttribute("carlist", carList);
         model.addAttribute("carlistDS", carListDS);
-
-        List<Car> pendingCarList = carService.getNotUpdated();
         model.addAttribute("pendingcarlist", pendingCarList);
 
         return "damagehome";
@@ -100,7 +102,9 @@ public class DamageController {
         return "damageform";
     }
 
-    //Bjarke
+    // Bjarke
+    // Når man bruger opret rapport knappen på en bestemt bil tilføjes oplysninger fra dens lejeaftale til en flashAttribute,
+    // og man redirectes til siden for at oprette rapport
     @GetMapping("/create/{id}")
     public String create(@PathVariable("id") int id, RedirectAttributes redirectAttributes){
 
@@ -139,15 +143,18 @@ public class DamageController {
 
 
 
-    //Opdater i klassediagram
+    //Bjarke
     @GetMapping("/updateForm/{reportId}/{rentalId}")
     public String showUpdateReportForm(@PathVariable("reportId") int reportId, @PathVariable("rentalId") int rentalId, HttpSession session, Model model) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";
 
+        //Rapport hentes med givne rapport id
         Report report = reportService.getReportById(reportId);
         reportService.populateDamages(report);
+
+        //Nøgler og værdier fra rapportens skader lægges i vær sit array
         List<Damages> damages = reportService.getDamagesByReportID(reportId);
         String[] damageKeys = {null, null, null, null, null};
         Double[] damageValues = {null, null, null, null, null};
@@ -170,7 +177,7 @@ public class DamageController {
     }
 
 
-    // opdater i klassediagram
+    // Bjarke
     @PostMapping("/updateReport")
     public String updateReport(@RequestParam("rentalId") int rentalId,
                                 @RequestParam("reportId") int reportId,
@@ -194,35 +201,35 @@ public class DamageController {
         if(session.getAttribute("user")==null)
             return "frontpage";
 
+
+        //Rapporten med det givne ID hentes og tildeles nye de nye oplysninger
         Report report = reportService.getReportById(reportId);
-
-        if (report != null) {
-            report.setTitle(title);
-            report.setDate(date);
-            report.setComment(description);
-            report.setTreatment(treatment);
+        report.setTitle(title);
+        report.setDate(date);
+        report.setComment(description);
+        report.setTreatment(treatment);
 
 
-
-            int carid=rentalService.getRentalById(rentalId).getCarId();
-            Car newcar =carService.getCarById(carid);
-            newcar.setStatus(CarStatus.valueOf(status));
-            newcar.setLastUpdated(LocalDate.now());
-            carService.updateCar(newcar);
-
-            Map<String, Double> damages = new HashMap<>();
-            if (!report0damage.isEmpty() && !report0price.isEmpty()) damages.put(report0damage,Double.valueOf(report0price));
-            if (!report1damage.isEmpty() && !report1price.isEmpty()) damages.put(report1damage,Double.valueOf(report1price));
-            if (!report2damage.isEmpty() && !report2price.isEmpty()) damages.put(report2damage,Double.valueOf(report2price));
-            if (!report3damage.isEmpty() && !report3price.isEmpty()) damages.put(report3damage,Double.valueOf(report3price));
-            if (!report4damage.isEmpty() && !report4price.isEmpty()) damages.put(report4damage,Double.valueOf(report4price));
-
-            report.setDamages(damages);
+        //Bilen på rapporten opdateres med status of lastUpdated
+        int carid=rentalService.getRentalById(rentalId).getCarId();
+        Car newcar =carService.getCarById(carid);
+        newcar.setStatus(CarStatus.valueOf(status));
+        newcar.setLastUpdated(LocalDate.now());
+        carService.updateCar(newcar);
 
 
-            reportService.updateReport(report);
+        //For de skades felter der er udfyldt tildeles rapporten skader
+        Map<String, Double> damages = new HashMap<>();
+        if (!report0damage.isEmpty() && !report0price.isEmpty()) damages.put(report0damage,Double.valueOf(report0price));
+        if (!report1damage.isEmpty() && !report1price.isEmpty()) damages.put(report1damage,Double.valueOf(report1price));
+        if (!report2damage.isEmpty() && !report2price.isEmpty()) damages.put(report2damage,Double.valueOf(report2price));
+        if (!report3damage.isEmpty() && !report3price.isEmpty()) damages.put(report3damage,Double.valueOf(report3price));
+        if (!report4damage.isEmpty() && !report4price.isEmpty()) damages.put(report4damage,Double.valueOf(report4price));
 
-        }
+        report.setDamages(damages);
+
+
+        reportService.updateReport(report);
 
 
 
@@ -249,12 +256,14 @@ public class DamageController {
     @GetMapping("/updateStatus/{id}/{status}")
     public String updateStatus(@PathVariable("id") int id, @PathVariable("status") String status){
 
+        //Bils status og lastUpdated dato bliver opdateret
         Car car =carService.getCarById(id);
         car.setStatus(CarStatus.valueOf(status));
         car.setLastUpdated(LocalDate.now());
-
         carService.updateCar(car);
 
+
+        //Lejeaftales status updateres til at den er afsluttet
         Rental rental = rentalService.getCurrentRentalByCarID(id);
         rental.setStatus("FINISHED");
         rentalService.updateRental(rental);
