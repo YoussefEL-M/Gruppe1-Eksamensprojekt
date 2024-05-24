@@ -1,6 +1,9 @@
 package com.example.gruppe1eksamensprojekt.unittest;
 
 import com.example.gruppe1eksamensprojekt.model.Car;
+import com.example.gruppe1eksamensprojekt.model.CarStatus;
+import com.example.gruppe1eksamensprojekt.model.FuelType;
+import com.example.gruppe1eksamensprojekt.repository.CarRepo;
 import com.example.gruppe1eksamensprojekt.service.CarService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,8 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.gruppe1eksamensprojekt.model.CarStatus.AVAILABLE;
 import static com.example.gruppe1eksamensprojekt.model.CarStatus.PENDING;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,6 +30,8 @@ public class CarTest {
 
     @Autowired
     CarService carService;
+    @Autowired
+    CarRepo carRepo;
 
 
 
@@ -37,24 +44,26 @@ public class CarTest {
     @Test
     public void getCarByIdTest(){
 
+        //Arrange
         int carId = 3;
-        //Act
 
+        //Act
         Car car = carService.getCarById(carId);
+        List<Car> aCar = new ArrayList<>();
+        aCar.add(car);
 
         //Assert
-
-        assertNotNull(car, "Test med at finde en bil ud fra id");
+        assertTrue(aCar.contains(car));
+        assertEquals(3, car.getId());
 
     }
 
-    //Spørgsmål til Jarl...
     @Test
     public void getCarByNonExistingIdTest(){
 
         // Act / Assert
 
-        assertThrows(EmptyResultDataAccessException.class, () -> carService.getCarById(20));
+        assertThrows(EmptyResultDataAccessException.class, () -> carRepo.getCarById(300));
     }
 
     @Test
@@ -65,24 +74,6 @@ public class CarTest {
 
         //Assert
         assertFalse(carList.isEmpty());
-    }
-
-    //Virker heller ikke!!!
-    //Spørg Jarl om det!!!!!!!!!!!!!!!!!
-    @Test
-    public void createTest() {
-
-        //Spørgsmål til Jarl: Hvor går grænsen mellem Arrange og Act??
-
-        //Arrange eller Act ????
-
-        Car car = new Car();
-
-        carService.createCar(car);
-
-        //Assert
-        assertNotNull(car, "Test med oprettelse af bil");
-
     }
 
     @Test
@@ -109,35 +100,47 @@ public class CarTest {
     public void deleteTest() {
 
         //Arrange
-
         Car car = carService.getCarById(6);
+        //int result;
 
         //Act
         carService.deleteCar(car.getSerialNumber());
+        List<Car> cars = carService.getAll();
+        //result = cars.size();
+
 
         //Assert
         Car deletedCar = carService.getCarById(car.getId());
-        assertNull(deletedCar);
+        assertFalse(cars.contains(deletedCar));
     }
 
     @Test
     public void getRentedTest() {
 
-        //Arrange / Act
+        //Arrange
+        int result;
+
+        // Act
         List<Car> rentedList = carService.getRented();
 
+        result = rentedList.size();
+
         //Assert
-        assertNotNull(rentedList);
+        assertEquals(2, result, "Test af metode til at finde udlejede biler");
     }
 
     @Test
     public void getAvailableTest() {
 
-        //Arrange / Act
+        //Arrange
+        int result;
+
+        // Act
         List<Car> available = carService.getAvailable();
+        result = available.size();
 
         //Assert
-        assertNotNull(available);
+        assertEquals(4, result, "Test med at få fat i tilgængelige biler");
 
     }
 
@@ -148,11 +151,10 @@ public class CarTest {
         List<Car> damagedCars = carService.getDamagedCars();
 
         //Assert
-        assertNotNull(damagedCars);
+        assertTrue(damagedCars.isEmpty());
     }
 
-    //Spørgsmål til Jarl: Hvorfor er den ikke null, når der ikke er noget i listen??
-    //Den vil ikke acceptere en assertNull
+
     @Test
     public void getNotUpdatedTest() {
 
@@ -160,8 +162,7 @@ public class CarTest {
         List<Car> notUpdated = carService.getNotUpdated();
 
         //Assert
-        //Skal vel være null, idet der ikke på nuværende tidspunkt er biler i listen
-        assertNotNull(notUpdated);
+        assertTrue(notUpdated.isEmpty());
 
 
     }

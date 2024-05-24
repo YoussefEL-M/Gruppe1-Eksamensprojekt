@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class RentalCustomerJoinServiceTest {
@@ -36,7 +37,7 @@ public class RentalCustomerJoinServiceTest {
         List<RentalCustomerJoin> rentalCustomerJoinList = rentalCustomerJoinService.getAll();
 
         //Assert
-        assertNotNull(rentalCustomerJoinList);
+        assertFalse(rentalCustomerJoinList.isEmpty());
     }
 
     @Test
@@ -46,18 +47,22 @@ public class RentalCustomerJoinServiceTest {
         List<RentalCustomerJoin> listOfRentalCustomerJoin = rentalCustomerJoinService.getAllByUserId(3);
 
         //Assert
-        assertNotNull(listOfRentalCustomerJoin);
+        assertFalse(listOfRentalCustomerJoin.isEmpty());
 
     }
 
     @Test
     public void getRentalByCarTest() {
 
-        //Arrange / Act
-        RentalCustomerJoin rental = rentalCustomerJoinService.getRentalByCar(6);
+        //Arrange
+        List<RentalCustomerJoin> list = new ArrayList<>();
+
+        // Act
+        RentalCustomerJoin rental = rentalCustomerJoinService.getRentalByCar(4);
+        list.add(rental);
 
         //Assert
-        assertNotNull(rental);
+        assertTrue(list.contains(rental));
     }
 
 }
