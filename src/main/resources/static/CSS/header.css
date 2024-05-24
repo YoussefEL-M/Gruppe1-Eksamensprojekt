@@ -1,0 +1,109 @@
+h1, h2, p, a, li, tr,th,td {
+    font-family: "Arial", sans-serif;
+}
+
+header {
+    border-bottom:2px solid black;
+
+}
+
+.logo{
+    margin-left: 8% ;
+}
+.container {
+
+    display: flex;
+    align-items: center;
+}
+
+
+.logout-button {
+    margin: 10px 8% 20px 20px;
+    cursor: pointer;
+
+
+}
+
+
+button {
+    background-color:white;
+    color:#1892C3;
+    border: 2px solid #1892C3;
+    border-radius: 4px;
+    font-weight:bold;
+    cursor:pointer;
+    height:30px;
+    width:73px;
+}
+
+.rapportknap {
+    background-color:white;
+    color:#1892C3;
+    border: 1px solid #1892C3;
+    border-radius: 4px;
+    font-weight:bold;
+    cursor:pointer;
+    height:30px;
+    width:100px;
+}
+
+
+
+button:hover, .rapportknap:hover {
+    background-color: #1892C3;
+    color:white;
+}
+
+
+/*dropdown menu med inspiration fra https://jsfiddle.net/8evtxnsL/, Bjarke*/
+.dropdown {
+    margin: 10px 80px 10px auto;
+    display: inline-block;
+    position: relative;
+    outline: none;
+    z-index: 1000
+}
+
+.drop_button {
+    padding: 8px 40px;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: 0s;
+    border-radius:5px;
+
+}
+
+.dropdown .drop_content {
+    position: absolute;
+    top: 50%;
+    background-color: #f8f8f8;
+    box-shadow: 3px 5px 16px lightgray;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.24s ease-out;
+}
+
+.drop_content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+
+}
+.drop_content a:hover {
+    background-color: #ebebeb;
+}
+
+.dropdown:focus .drop_content {
+    transform: translateY(20px);
+    visibility: visible;
+    opacity: 1;
+
+}
+
+.drop_button:hover, .dropdown:focus .drop_button {
+    background-color: #ebebeb;
+}
+
+
