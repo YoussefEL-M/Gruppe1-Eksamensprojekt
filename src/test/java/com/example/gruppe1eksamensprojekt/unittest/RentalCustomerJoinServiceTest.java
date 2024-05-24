@@ -1,5 +1,6 @@
 package com.example.gruppe1eksamensprojekt.unittest;
 
+import com.example.gruppe1eksamensprojekt.model.Rental;
 import com.example.gruppe1eksamensprojekt.model.RentalCustomerJoin;
 import com.example.gruppe1eksamensprojekt.service.RentalCustomerJoinService;
 import org.junit.jupiter.api.AfterEach;
@@ -8,54 +9,60 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//Youssef
 @SpringBootTest
 public class RentalCustomerJoinServiceTest {
 
-    //Arrange
     @Autowired
-    private RentalCustomerJoinService rentalCustomerJoinService;
+    RentalCustomerJoinService rentalCustomerJoinService;
 
     @BeforeEach
-    void setup(){}
+    void setup() {
+
+    }
 
     @AfterEach
-    void teardown(){}
+    void teardown() {
 
-   /* @Test
-    void getAllTest() {
-        //Act
-        List<RentalCustomerJoin> rentalCustomerJoins = rentalCustomerJoinService.getAll();
-
-        //Asset
-        assertNotNull(rentalCustomerJoins);
-        assertFalse(rentalCustomerJoins.isEmpty());
     }
 
     @Test
-    void getAllByUserIdTest() {
-        //Act
-        List<RentalCustomerJoin> rentalCustomerJoins = rentalCustomerJoinService.getAllByUserId(1);
+    public void getAllTest() {
+
+        //Arrange / Act
+        List<RentalCustomerJoin> rentalCustomerJoinList = rentalCustomerJoinService.getAll();
 
         //Assert
-        assertNotNull(rentalCustomerJoins);
-        assertFalse(rentalCustomerJoins.isEmpty());
-        for (RentalCustomerJoin join : rentalCustomerJoins) {
-            assertEquals(0, join.getUserID());
-        }
+        assertFalse(rentalCustomerJoinList.isEmpty());
     }
 
-   /* @Test
-    void getRentalByCarTest() {
-        //Act
-        RentalCustomerJoin join = rentalCustomerJoinService.getRentalByCar(1);
+    @Test
+    public void getAllByUserIdTest() {
+
+        //Arrange / Act
+        List<RentalCustomerJoin> listOfRentalCustomerJoin = rentalCustomerJoinService.getAllByUserId(3);
 
         //Assert
-        assertNotNull(join);
-        assertEquals(0, join.getCarId());
-    }*/
+        assertFalse(listOfRentalCustomerJoin.isEmpty());
+
+    }
+
+    @Test
+    public void getRentalByCarTest() {
+
+        //Arrange
+        List<RentalCustomerJoin> list = new ArrayList<>();
+
+        // Act
+        RentalCustomerJoin rental = rentalCustomerJoinService.getRentalByCar(4);
+        list.add(rental);
+
+        //Assert
+        assertTrue(list.contains(rental));
+    }
+
 }
