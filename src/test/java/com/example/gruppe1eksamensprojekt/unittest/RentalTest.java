@@ -44,11 +44,13 @@ public class RentalTest {
 
     @Test
     void getRentalById(){
-
+        //Arrange
         int id = 1;
 
+        //Act
         int testResult=rentalService.getRentalById(id).getId();
 
+        //Assert
         assertEquals(1,testResult);
 
     }
@@ -56,6 +58,7 @@ public class RentalTest {
 
     @Test
     void createRental(){
+        //Arrange
         Rental newRental = new Rental();
         newRental.setPickUpLocation("KBH");
         newRental.setReturnLocation("Roskilde");
@@ -63,20 +66,25 @@ public class RentalTest {
         newRental.setCustomerId(1);
         newRental.setStartDate("2024-01-01");
         newRental.setEndDate("2024-06-01");
-        newRental.setCarId(1);
+        newRental.setCarId(5);
         newRental.setStatus("FRESH");
         newRental.setUserID(1);
 
+        //Act
         rentalService.createRental(newRental);
-
         Rental getRental = rentalService.getRentalById(1);
 
-        assertNotNull(getRental);
-        int id = 1;
 
-        int testResult=rentalService.getRentalById(id).getId();
 
-        assertEquals(1,testResult);
+        //Assert
+       assert getRental.getCustomerId() == newRental.getCustomerId();
+       assert getRental.getCarId() == newRental.getCarId();
+       assert getRental.getEndDate().equals(newRental.getEndDate());
+       assert getRental.getReturnLocation().equals(newRental.getReturnLocation());
+
+
+       rentalService.deleteRental(1);
+
 
     }
 
