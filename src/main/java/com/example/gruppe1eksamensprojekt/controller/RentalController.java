@@ -117,15 +117,6 @@ public class RentalController { // Severin
         return "redirect:/findRental";
     }
 
-
-    @GetMapping("/findBooking")
-    public String findBooking(HttpSession session, Model model){
-        if(session.getAttribute("user")==null)
-            return "frontpage";
-
-        return "overviewBookings";
-    }
-
     @GetMapping("/createRental")
     public String createRental(HttpSession session, Model model){
 

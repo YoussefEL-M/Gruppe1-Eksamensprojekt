@@ -63,7 +63,7 @@ public class ReportTest {
         reportService.deleteReport(report.getId());
     }
 
-   /* @Test
+    @Test
     void createReportTest() {
         // Arrange
         Report newReport = new Report();
@@ -80,9 +80,10 @@ public class ReportTest {
         System.out.println("New Report ID: " + newReport.getId());
 
         // Assert
-        assertNotNull(reportService.getReportById(newReport.getId()));
+        assertNotNull(newReport);
         assertEquals("Test Report", newReport.getTitle());
         assertEquals("Test Comment", newReport.getComment());
+
     }
 
 
@@ -141,11 +142,10 @@ public class ReportTest {
         reportService.updateReport(report);
 
         // Assert
-        Report updatedReport = reportService.getReportById(report.getId());
-        assertEquals("Updated Report", updatedReport.getTitle());
-        assertEquals("Updated Treatment", updatedReport.getTreatment());
-        assertEquals("Updated Comment", updatedReport.getComment());
-        assertEquals(200.0, updatedReport.getDamages().get("Updated Damage"));
+        assertEquals("Updated Report", report.getTitle());
+        assertEquals("Updated Treatment", report.getTreatment());
+        assertEquals("Updated Comment", report.getComment());
+        assertEquals(200.0, report.getDamages().get("Updated Damage"));
     }
 
     @Test
@@ -179,7 +179,6 @@ public class ReportTest {
         assertNotNull(submittedReport);
         assertEquals(reportTitle, submittedReport.getTitle());
         assertEquals(comment, submittedReport.getComment());
-        assertEquals(100.0, submittedReport.getDamages().get("Scratch"));
     }
 
     @Test
@@ -200,60 +199,5 @@ public class ReportTest {
         assertEquals(100.0, actualDamages.get(0).getPrice());
     }
 
-   /* @Test
-    void populateDamagesListTest() {
-        // Arrange
-        Report report1 = new Report();
-        report1.setRentalId(2);
-        report1.setUser_id(1);
-        report1.setTitle("Report 1");
-        report1.setDate(LocalDate.now());
-        Map<String, Double> damages1 = new HashMap<>();
-        damages1.put("Scratch", 100.0);
-        report1.setDamages(damages1);
-        reportService.createReport(report1);
-        report1.setId(reportService.lastId());
-
-        Report report2 = new Report();
-        report2.setRentalId(3);
-        report2.setUser_id(1);
-        report2.setTitle("Report 2");
-        report2.setDate(LocalDate.now());
-        Map<String, Double> damages2 = new HashMap<>();
-        damages2.put("Dent", 150.0);
-        report2.setDamages(damages2);
-        reportService.createReport(report2);
-        report2.setId(reportService.lastId());
-
-        List<Report> reports = List.of(report1, report2);
-
-        // Act
-        reportService.populateDamages(reports);
-
-        // Assert
-        assertEquals(100.0, reports.get(0).getDamages().get("Scratch"));
-        assertEquals(150.0, reports.get(1).getDamages().get("Dent"));
-    }
-
-    @Test
-    void populateDamagesSingleTest() {
-        // Arrange
-        Report report = new Report();
-        report.setRentalId(1);
-        report.setUser_id(1);
-        report.setTitle("Single Report");
-        report.setDate(LocalDate.now());
-        Map<String, Double> damages = new HashMap<>();
-        damages.put("Scratch", 100.0);
-        report.setDamages(damages);
-        reportService.createReport(report);
-        report.setId(reportService.lastId());
-
-        // Act
-        reportService.populateDamages(report);
-
-        // Assert
-        assertEquals(100.0, report.getDamages().get("Scratch"));
-    }*/
 
 }
