@@ -38,7 +38,7 @@ public class RentalController { // Severin
     RentalCustomerJoinService rentalCustomerJoinService;
 
     @GetMapping("/")
-    public String login(HttpSession session, Model model){
+    public String login(HttpSession session){
 
         if(session.getAttribute("user")==null)
             return "frontpage";
@@ -149,7 +149,7 @@ public class RentalController { // Severin
 
     //Bjarke
     @GetMapping("/createUser")
-    public String register(HttpSession session, Model model){
+    public String register(){
 
         return "register";
     }
@@ -196,7 +196,7 @@ public class RentalController { // Severin
 
     //Bjarke
     @GetMapping("/editRentalStatus")
-    public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page, Model model){
+    public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page){
         Rental rental = rentalService.getRentalById(id);
         rental.setStatus("CURRENT");
         rentalService.updateRental(rental);
