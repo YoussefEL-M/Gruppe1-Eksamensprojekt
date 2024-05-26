@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Youssef -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +7,7 @@
 </head>
 <body>
 
+<!-- Indsæt header fragment -->
 <header th:insert="~{fragments/damageheader.html}"></header>
 
 <!-- <div class="reportform">
@@ -93,9 +93,11 @@
         <div id="rapportKnap">
         <button type="submit">Opret rapport</button>
         </div>
+        </div>
     </form>
 </div>
 
+<!--Severin-->
 <script th:inline="javascript">
     var rentalNotFound = /*[[${rentalNotFound}]]*/ false;
     if (rentalNotFound===true){

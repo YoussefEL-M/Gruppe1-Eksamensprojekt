@@ -117,6 +117,8 @@ public class RentalService { //Severin
         return null;
     }
 
+    //Youssef
+    //Metode der opdatere lejeaftaler i databasen
     public void updateRental(Rental rental){
         rentalRepo.update(rental);
     }

@@ -9,11 +9,15 @@
 </head>
 <body>
 
+<!-- Indsæt header fragment -->
 <header th:insert="~{fragments/businessheader.html}"></header>
 
 <div class="main">
+    <!-- Sektionens overskrift -->
     <h1>Oversigt over alle biler</h1>
+
     <div class="info">
+        <!-- Tabel til visning af bilinformation -->
         <table>
             <thead>
             <tr>
@@ -32,7 +36,9 @@
             </tr>
             </thead>
             <tbody>
+            <!-- Iteration over biler -->
             <tr th:each="car : ${cars}">
+                <!-- Bil data -->
                 <td th:text="${car.id}"></td>
                 <td th:text="${car.brand}"></td>
                 <td th:text="${car.model}"></td>
