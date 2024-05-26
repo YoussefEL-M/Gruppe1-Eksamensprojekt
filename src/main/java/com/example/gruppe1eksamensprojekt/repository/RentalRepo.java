@@ -46,13 +46,6 @@ public class RentalRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
-
-    public Rental getRentalsByUserID(int id) {
-        String sql = "SELECT * FROM rental WHERE user_id = ?";
-        RowMapper<Rental> rowMapper = new BeanPropertyRowMapper<>(Rental.class);
-        return jdbcTemplate.queryForObject(sql, rowMapper, id);
-    }
-
     //Bjarke
     //Henter de rentals fra hvor en bil sidst er tilbageleveret
     public List<Rental> getCurrentRentals() {

@@ -1,3 +1,5 @@
+
+
 .loginForm form {
     width: 26%;
     justify-items: center;
@@ -10,8 +12,23 @@
     display:flex;
     overflow:auto;
 
+}
+
+.registerForm form {
+    width: 26%;
+    justify-items: center;
+    justify-content: space-around;
+    height:72vh;
+    border: 2px solid black;
+    padding:30px;
+    margin:30px auto;
+    flex-direction: column;
+    display:flex;
+    overflow:auto;
+
 
 }
+
 
 .loginForm input[type="text"],
 input[type="password"]{
@@ -51,6 +68,11 @@ input[type="password"]{
     background-color: #0280ad;
     cursor: pointer;
     color:white;
+}
+
+
+.radio{
+    padding-bottom: 20px;
 }
 
 h1 {

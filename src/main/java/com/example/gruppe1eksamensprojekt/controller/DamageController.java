@@ -196,7 +196,7 @@ public class DamageController {
                                @RequestParam("report4damage") String report4damage,
                                @RequestParam("report4price") String report4price,
                                @RequestParam("status") String status,
-                               HttpSession session, Model model) {
+                               HttpSession session) {
 
         if(session.getAttribute("user")==null)
             return "frontpage";

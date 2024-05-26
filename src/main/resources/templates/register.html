@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="loginForm">
+<div class="registerForm">
     <form action="/register" method="post">
 
         <h1>Registrer bruger</h1>
@@ -59,15 +59,13 @@
 
         <span style=" color:red"><p id="password_mismatch"></p></span>
 
-        <div>
-            <div>
-                <input type="radio" id="data" name="type" value="Dataregistrering" th:checked="${type == 'Dataregistrering'}">
-                <label for="data">Dataregistering</label><br>
-                <input type="radio" id="skade" name="type" value="SkadeOgUdbedring" th:checked="${type == 'SkadeOgUdbedring'}">
-                <label for="skade">Skade og udbedring</label><br>
-                <input type="radio" id="forretning" name="type" value="Forretningsudvikler" th:checked="${type == 'Forretningsudvikler'}" required>
-                <label for="forretning">Forretningsudvikler</label><br>
-            </div>
+        <div class="radio">
+            <input type="radio" id="data" name="type" value="Dataregistrering" th:checked="${type == 'Dataregistrering'}">
+            <label for="data">Dataregistering</label><br>
+            <input type="radio" id="skade" name="type" value="SkadeOgUdbedring" th:checked="${type == 'SkadeOgUdbedring'}">
+            <label for="skade">Skade og udbedring</label><br>
+            <input type="radio" id="forretning" name="type" value="Forretningsudvikler" th:checked="${type == 'Forretningsudvikler'}" required>
+            <label for="forretning">Forretningsudvikler</label><br>
         </div>
 
         <div class="loginFields">

@@ -23,10 +23,6 @@ public class CarService { // Severin
         return carRepo.getAll();
     }
 
-    public void createCar(Car car){
-        carRepo.create(car);
-    }
-
 
     public Car getCarById(int id){
 
