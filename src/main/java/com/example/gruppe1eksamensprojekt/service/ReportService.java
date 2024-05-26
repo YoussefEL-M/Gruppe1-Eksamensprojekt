@@ -36,7 +36,7 @@ public class ReportService { // Severin
         populateDamages(reports);
         return reports;
     }
-
+    //Youssef
     public List<Report> getYourReports(int userId) {
         List<Report> reports = reportRepo.getYourReports(userId);
         populateDamages(reports);
@@ -150,11 +150,12 @@ public class ReportService { // Severin
 
         return "redirect:/create";
     }
-
+    //Youssef
     public List<Damages> getDamagesByReportID(int id){
         return reportRepo.getDamagesByReportId(id);
     }
 
+    //Youssef
     public void populateDamages(List<Report> reports) {
         for (Report report : reports) {
             List<Damages> damagesList = reportRepo.getDamagesByReportId(report.getId());

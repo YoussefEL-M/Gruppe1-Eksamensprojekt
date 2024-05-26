@@ -1,5 +1,6 @@
 package com.example.gruppe1eksamensprojekt.model;
 
+//Youssef
 public class Damages {
     private int id;
     private int reportId;

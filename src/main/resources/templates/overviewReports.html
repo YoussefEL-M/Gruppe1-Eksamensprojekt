@@ -1,3 +1,5 @@
+
+<!--Youssef-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +9,21 @@
 </head>
 <body>
 
+<!-- Indsæt header fragment -->
 <header th:insert="~{fragments/damageheader.html}"></header>
 
 <div class="main">
+    <!-- Sektionens overskrift -->
     <div class="overskrift">
         <h1>Rapport oversigt</h1>
     </div>
 
+    <!-- Knap til oprettelse af ny rapport -->
     <div class="overskrift">
         <a href="/create"><button class="opretRapport">Opret ny rapport</button></a>
     </div>
+
+    <!-- Tabel til visning af rapporter -->
     <table>
         <thead>
         <tr>
@@ -31,7 +38,9 @@
         </tr>
         </thead>
         <tbody>
+        <!-- Iteration over rapporter -->
         <tr th:each="report : ${listOfReports}">
+            <!-- Rapport data -->
             <td th:text="${report.id}"></td>
             <td th:text="${report.rentalId}"></td>
             <td th:text="${report.title}"></td>
@@ -39,6 +48,7 @@
             <td th:text="${report.treatment}"></td>
             <td th:text="${report.comment}"></td>
             <td>
+                <!-- Liste over skader -->
                 <ul>
                     <li th:each="entry : ${report.damages}">
                         Beksrivelse:<span th:text="${entry.key}"></span>
@@ -47,11 +57,13 @@
                 </ul>
             </td>
             <td>
+                <!-- Knap til opdatering af rapport -->
                 <div class="edit-button">
                     <a th:href="@{'/updateForm/' + ${report.id}+'/'+ ${report.rentalId}}">
                         <button>Opdater</button>
                     </a>
                 </div>
+                <!-- Knap til sletning af rapport -->
                 <div class="delete-button">
                     <a th:href="@{'/delete/' + ${report.id}}"
                        onclick="return confirm('Er du sikker på du vil slette rapporten?')">

@@ -1,3 +1,6 @@
+
+<!--Youssef-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +10,19 @@
 </head>
 <body>
 
+<!-- Indsæt header fragment -->
 <header th:insert="~{fragments/damageheader.html}"></header>
 
+<!-- Formular til opdatering af rapport -->
 <div class="updateReportForm">
     <form action="/updateReport" method="post">
         <h2>Opdater rapport</h2>
 
+        <!-- Skjulte felter til leje- og rapport-ID -->
         <input name="rentalId" type="hidden" th:value="${rentalId}">
-
         <input name="reportId" type="hidden" th:value="${report.id}">
 
+        <!-- Felt til titel -->
         <div class="reportFields">
             <div>
                 <label for="title">Titel:</label>
@@ -26,6 +32,7 @@
             </div>
         </div>
 
+        <!-- Felt til dato -->
         <div class="reportFields">
             <div>
                 <label for="date">Dato:</label>
@@ -35,6 +42,7 @@
             </div>
         </div>
 
+        <!-- Felt til behandling -->
         <div class="reportFields">
             <div>
                 <label for="treatment">Behandling:</label>
@@ -44,6 +52,7 @@
             </div>
         </div>
 
+        <!-- Felt til kommentar -->
         <div class="reportFields">
             <div>
                 <label for="comment">Beskrivelse:</label>
@@ -53,9 +62,11 @@
             </div>
         </div>
 
+        <!-- Sektion til skader -->
         <div class="reportFields">
             <h3>Skader</h3>
 
+            <!-- Individuelle skadefelter -->
             <div>
                 <input type="text" th:name="report0damage"  placeholder="Skade beskrivelse" th:value="${damageKeys[0]}"/>
                 <input type="number" step="0.01" th:name="report0price" placeholder="Pris"  th:value="${damageValues[0]}" />
@@ -79,6 +90,7 @@
 
         </div>
 
+        <!-- Sektion til statusopdatering -->
         <div class="reportFields">
             <h3>Status</h3>
             <select id="status" name="status">
@@ -87,6 +99,8 @@
                 <option value="AVAILABLE">Klar til udlejning</option>
             </select>
         </div>
+
+        <!-- Opdater rapport knap -->
         <div class="knap">
             <button type="submit" value="Opdater rapport">Opdater rapport</button>
         </div>

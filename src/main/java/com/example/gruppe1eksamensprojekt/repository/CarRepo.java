@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 
-//Youssef
 @Repository
 public class CarRepo {
     @Autowired
@@ -47,6 +46,7 @@ public class CarRepo {
         jdbcTemplate.update(deleteFromCarId, serialNumber);
     }
 
+
     public List<Car> getAll() {
         String sql = "SELECT * FROM car " +
                 "LEFT JOIN carIdentification " +
@@ -55,6 +55,7 @@ public class CarRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
+    //Severin
     public List<Car> getRented(){
         String sql = "SELECT * FROM car " +
                 "LEFT JOIN carIdentification " +
@@ -63,7 +64,7 @@ public class CarRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
-
+    //Severin
     public List<Car> getAvailable(){
         String sql = "SELECT * FROM car " +
                 "LEFT JOIN carIdentification " +
