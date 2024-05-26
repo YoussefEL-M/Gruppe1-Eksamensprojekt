@@ -25,7 +25,7 @@ public class CustomerSevice { // Severin
         customerRepo.create(customer);
     }
 
-    //Opdater i klassediagram
+    //Clara
     public Customer getCustomerById(int id){
         // Er ikke i klassediagrammet, men antager at vi skal bruge den.
         // Todo: tilføj til klassediagram.

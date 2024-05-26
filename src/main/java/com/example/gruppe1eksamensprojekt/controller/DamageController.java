@@ -77,6 +77,7 @@ public class DamageController {
     }
 
 
+    //Clara
     @GetMapping("/yourReports")
     public String retrieveYourReports(HttpSession session, Model model) {
 
@@ -241,6 +242,7 @@ public class DamageController {
 
 
 
+    //Clara
     @GetMapping("/delete/{id}")
     public String deleteReport(@PathVariable("id") int reportId, HttpSession session) {
 

@@ -24,7 +24,43 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
-.edit-button, .delete-button {
+
+#indleverKnap {
+    background-color: white;
+    color:#248d48;
+    /*border:2px solid #333;*/
+    border: 2px solid #248d48;
+}
+
+#indleverKnap:hover {
+    background-color: #248d48;
+    color:white;
+}
+
+.delete-button {
     margin-bottom:5px;
     margin-top:5px;
+    cursor:pointer;
+    border-radius: 4px;
+    border:none;
+    color:white;
+    background-color: crimson;
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}
+
+.edit-button {
+    cursor:pointer;
+    border-radius: 4px;
+    border:none;
+    color:white;
+    background-color: #18ad1f;;
+    margin-bottom:5px;
+    margin-top:5px;
+}
+
+.edit-button:hover {
+    background-color:rgba(19, 122, 2, 0.85);
 }

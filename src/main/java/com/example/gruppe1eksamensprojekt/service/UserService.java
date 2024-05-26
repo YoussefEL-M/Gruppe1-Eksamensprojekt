@@ -67,7 +67,7 @@ public class UserService { // Severin
             return "redirect:/createUser";
     }
 
-    //Opdater i klassediagram
+    //Clara
     public User getUserById(int id){
 
         User user;

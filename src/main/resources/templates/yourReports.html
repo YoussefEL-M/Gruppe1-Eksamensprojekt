@@ -50,14 +50,14 @@
             </ul>
         </td>
         <td>
-            <div class="edit-button">
-                <a th:href="@{'/updateForm/' + ${report.id}+'/'+ ${report.rentalId}}"> <button>Opdater</button></a>
+            <div class="knap">
+                <a th:href="@{'/updateForm/' + ${report.id}+'/'+ ${report.rentalId}}"> <button class="edit-button">Opdater</button></a>
             </div>
 
-            <div class="delete-button">
+            <div class="knap">
                 <a th:href="@{'/delete/' + ${report.getId()}}"
                    onclick="return confirm('Er du sikker på, at du vil slette denne rapport?')">
-                    <button>Slet</button></a>
+                    <button class="delete-button">Slet</button></a>
             </div>
         </td>
     </tr>

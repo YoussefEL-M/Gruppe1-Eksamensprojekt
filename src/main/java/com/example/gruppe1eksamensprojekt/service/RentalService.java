@@ -104,6 +104,7 @@ public class RentalService { //Severin
         return "redirect:/createRental";
     }
 
+    //Clara
     public Rental getRentalById(int id){
 
         Rental rental;
