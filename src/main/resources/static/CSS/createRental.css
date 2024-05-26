@@ -47,12 +47,14 @@ h1, h2, p, a, li, label {
     border:2px solid #1892C3;
     color:#1892C3;
 }
+
 .createButton:hover{
     background-color: #1892C3;;
     cursor: pointer;
     color:white;
 }
 
+/* Clara */
 .rentalField input[list="customers"],
 .rentalField input[type="date"],
 .rentalField input[type="text"],

@@ -51,23 +51,23 @@
                 <!-- Liste over skader -->
                 <ul>
                     <li th:each="entry : ${report.damages}">
-                        Beksrivelse:<span th:text="${entry.key}"></span>
+                        Beskrivelse:<span th:text="${entry.key}"></span>
                         pris: <span th:text="${entry.value}"></span>
                     </li>
                 </ul>
             </td>
             <td>
                 <!-- Knap til opdatering af rapport -->
-                <div class="edit-button">
+                <div class="knap">
                     <a th:href="@{'/updateForm/' + ${report.id}+'/'+ ${report.rentalId}}">
-                        <button>Opdater</button>
+                        <button class="edit-button">Opdater</button>
                     </a>
                 </div>
                 <!-- Knap til sletning af rapport -->
-                <div class="delete-button">
+                <div class="knap">
                     <a th:href="@{'/delete/' + ${report.id}}"
                        onclick="return confirm('Er du sikker på du vil slette rapporten?')">
-                        <button>Slet</button>
+                        <button class="delete-button">Slet</button>
                     </a>
                 </div>
             </td>

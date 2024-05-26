@@ -47,7 +47,8 @@ public class ReportService { // Severin
         reportRepo.create(report);
     }
 
-    //Opdater i klassediagram
+
+    //Clara
     public Report getReportById(int id){
 
         Report report;
