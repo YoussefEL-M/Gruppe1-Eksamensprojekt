@@ -1,3 +1,5 @@
+//Severin
+
 package com.example.gruppe1eksamensprojekt.model;
 
 public class DataUser extends User {

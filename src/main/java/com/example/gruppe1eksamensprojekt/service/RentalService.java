@@ -39,11 +39,13 @@ public class RentalService { //Severin
         rentalRepo.create(rental);
     }
 
+    //Severin
     public String submitRental(String customer, String startDate, String pickuppoint, String car, String type, String dropoffpoint, String unlimitedMonth, int userID, RedirectAttributes redirectAttributes){
-        boolean error = false;
+        boolean error = false; //Error flag; sættes til 'true', hvis der er fejl i brugerinput.
         int customerId = 0;
         int carId = 0;
 
+        //Undersøger om valgt kunde er gyldig.
         try{
             customerId = Integer.parseInt(customer.split("\\.")[0]);
             customerRepo.getCustomerById(customerId);
@@ -51,13 +53,14 @@ public class RentalService { //Severin
             redirectAttributes.addFlashAttribute("customerNotFound", true);
             error = true;
         }
+        //Undersøger om valgt dato er gyldig; ikke i fortiden.
         // Kan der være behov for at registrere en kontrakt efter lejeperioden begynder?
         if(LocalDate.parse(startDate).isBefore(LocalDate.now())) {
             redirectAttributes.addFlashAttribute("timeTravelException", true);
             error = true;
         }
 
-
+        //Undersøger om valgt bil er gyldig.
         try{
             carId = Integer.parseInt(car.split("\\.")[0]);
             if(!carRepo.getCarById(carId).getStatus().equals(CarStatus.AVAILABLE)){
@@ -77,7 +80,7 @@ public class RentalService { //Severin
             error = true;
         }
 
-
+        //Hvis error flag er sat, tilføj indtastet data til redirectAttributes, så brugeren ikke skal taste dem ind igen efter redirect.
         if(error) {
             redirectAttributes.addFlashAttribute("customer", customer);
             redirectAttributes.addFlashAttribute("startDate", startDate);
@@ -86,7 +89,7 @@ public class RentalService { //Severin
             redirectAttributes.addFlashAttribute("type", Integer.parseInt(type));
             redirectAttributes.addFlashAttribute("dropoffpoint", dropoffpoint);
             redirectAttributes.addFlashAttribute("unlimitedMonth", unlimitedMonth);
-        } else{
+        } else{ //Hvis ikke, opret lejeaftalen.
             Car carToUpdate = carRepo.getCarById(carId);
             String endDate = calcEndDate(startDate,type, carToUpdate.isDs());
             carToUpdate.setStatus(CarStatus.RENTED);
@@ -97,6 +100,7 @@ public class RentalService { //Severin
             return "redirect:/rental";
         }
 
+        //Nås kun, hvis error flag er sat. Sender brugeren tilbage til oprettelsessiden.
         return "redirect:/createRental";
     }
 
@@ -122,15 +126,21 @@ public class RentalService { //Severin
         rentalRepo.update(rental);
     }
 
+    //Severin
+    //Validerer og opdaterer lejeaftale.
     public String validateAndUpdate(int id, String startDate, String pickUpLocation, String car, String endDate, String returnLocation, RedirectAttributes redirectAttributes){
-        boolean error = false;
+        boolean error = false; //Error flag; sættes til 'true', hvis der er fejl i brugerens input.
         int carId = 0;
 
+        //Undersøger om valgt dato er gyldig.
+        //Startdato må ikke være efter slutdato.
+        //Ingen undtagelser for tidsrejsende.
         if(LocalDate.parse(startDate).isAfter(LocalDate.parse(endDate))){
             redirectAttributes.addFlashAttribute("timeTravelException", true);
             error = true;
         }
 
+        //Undersøger om valgt bil er gyldig.
         try{
             carId = Integer.parseInt(car.split("\\.")[0]);
             // Hvis bilen ikke er den samme som den i report (er blevet ændret) og ikke er tilgængelig, set error flag.
@@ -143,6 +153,7 @@ public class RentalService { //Severin
             error = true;
         }
 
+        //Hvis error flag er sat, tilføj indtastet data til redirectAttributes, så brugeren ikke skal taste dem ind igen efter redirect.
         if(error){
             redirectAttributes.addFlashAttribute("startDate", startDate);
             redirectAttributes.addFlashAttribute("endDate", endDate);
