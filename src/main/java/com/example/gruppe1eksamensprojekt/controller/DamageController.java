@@ -76,7 +76,7 @@ public class DamageController {
         return "overviewReports";
     }
 
-    //Opdater klassediagram!!
+
     @GetMapping("/yourReports")
     public String retrieveYourReports(HttpSession session, Model model) {
 
@@ -89,7 +89,7 @@ public class DamageController {
         return "yourReports";
     }
 
-    //Husk at opdaterer i klassediagram
+
     @GetMapping("/create")
     public String createReport(HttpSession session, Model model) {
         if(session.getAttribute("user")==null) {
@@ -114,7 +114,7 @@ public class DamageController {
         return "redirect:/create";
     }
 
-    //Husk at opdaterer i klassediagram
+
     @PostMapping("/createReport")
     public String createAReport(@RequestParam("rental") String rental,
                                 @RequestParam("title") String reportTitle,

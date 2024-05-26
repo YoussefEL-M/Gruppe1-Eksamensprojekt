@@ -100,7 +100,6 @@ public class RentalService { //Severin
         return "redirect:/createRental";
     }
 
-    //Opdater i klassediagram
     public Rental getRentalById(int id){
 
         Rental rental;

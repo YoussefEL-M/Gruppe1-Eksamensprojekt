@@ -27,7 +27,7 @@ public class CarService { // Severin
         carRepo.create(car);
     }
 
-    //Noter i klassediagram
+
     public Car getCarById(int id){
 
         Car car;

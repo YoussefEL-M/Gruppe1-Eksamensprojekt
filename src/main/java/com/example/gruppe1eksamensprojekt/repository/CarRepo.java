@@ -17,6 +17,7 @@ public class CarRepo {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    //Clara
     public void create(Car car) {
         String sql = "INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, status, ds, licensePlate, fuelType, kmTraveled, fuelEfficiency, price, manual) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String carId = "INSERT INTO carIdentification (serialnumber, brand, model) VALUES (?,?,?)";
@@ -37,6 +38,8 @@ public class CarRepo {
         String sql = "UPDATE car SET serialNumber=?, color=?, trimLevel=?, steelPrice=?, registrationTax=?, emission=?, status=?, ds=?, licensePlate=?, fuelType = ?, kmTraveled = ?, fuelEfficiency = ?, price = ?, manual  = ?, lastUpdated = ? WHERE id=?";
         jdbcTemplate.update(sql, car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus().name(), car.isDs(), car.getLicensePlate(), car.getFuelType().name(), car.getKmTraveled(), car.getFuelEfficiency(), car.getPrice(), car.isManual(), car.getLastUpdated(), car.getId());
     }
+
+    //Clara
     public void delete(String serialNumber) {
         String sql = "DELETE FROM car WHERE serialNumber = ?";
         String deleteFromCarId = "DELETE FROM carIdentification WHERE serialNumber = ?";

@@ -88,7 +88,6 @@ public class RentalController { // Severin
     }
 
 
-    //Opdater klassediagram
     @PostMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
                                @RequestParam("pickUpLocation") String pickUpLocation,

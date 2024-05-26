@@ -95,18 +95,15 @@ public class CarTest {
     }
 
 
-    //Virker ikke da car ikke er null, hvilket må betyde, at den ikke er slettet og at metoden derfor ikke virker
     @Test
     public void deleteTest() {
 
         //Arrange
         Car car = carService.getCarById(6);
-        //int result;
 
         //Act
         carService.deleteCar(car.getSerialNumber());
         List<Car> cars = carService.getAll();
-        //result = cars.size();
 
 
         //Assert
