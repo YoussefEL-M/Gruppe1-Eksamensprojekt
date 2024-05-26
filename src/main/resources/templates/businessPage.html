@@ -9,11 +9,14 @@
 </head>
 <body>
 
+<!-- Indsæt header fragment -->
 <header th:insert="~{fragments/businessheader.html}"></header>
 
 <div class="main">
+    <!-- Sektionens overskrift -->
     <h1>Oversigt over udlejet biler</h1>
     <div class="info">
+        <!-- Tabel til visning af udlejede biler -->
         <table>
             <thead>
             <tr>
@@ -31,7 +34,9 @@
             </tr>
             </thead>
             <tbody>
+            <!-- Iteration over udlejede biler -->
             <tr th:each="car : ${rentedCars}">
+                <!-- Bil data -->
                 <td th:text="${car.id}"></td>
                 <td th:text="${car.brand}"></td>
                 <td th:text="${car.model}"></td>
@@ -47,6 +52,7 @@
             </tbody>
         </table>
     </div>
+    <!-- Visning af totaler for udlejede biler -->
     <div class="totals">
         <p>Antal udlejede biler: <span th:text="${noOfRentedCars}"></span></p>
         <p>Total pris for udlejede biler: <span th:text="${rentedCarsTotalPrice}"></span> DKK</p>

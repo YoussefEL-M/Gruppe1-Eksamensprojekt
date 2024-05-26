@@ -83,7 +83,7 @@ public class UserRepo {
 
     }
 
-    //opdater i klassediagram
+
     public User getUserById(int id) throws EmptyResultDataAccessException {
         String sql = "SELECT * FROM user WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, mapperSwitch, id);
@@ -104,7 +104,6 @@ public class UserRepo {
         return jdbcTemplate.query(sql, mapperSwitch);
     }
 
-    //Opdater i klassediagram
     public User getUserByUsername(String username) throws EmptyResultDataAccessException {
         String sql = "SELECT * FROM user WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, mapperSwitch, username);

@@ -1,0 +1,130 @@
+/*Youssef og Clara*/
+
+h3 {
+    text-align: center;
+    padding-top: 20px;
+}
+
+h2 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.reportform {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.reportfield {
+    margin-bottom: 15px;
+}
+
+.reportfield label {
+    display: block;
+    font-weight: bold;
+}
+
+.reportfield input[type="text"],
+.reportfield select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.reportfield select {
+    height: 36px;
+}
+
+.reportfield input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.reportfield input[type="submit"]:hover {
+    background-color: #1892C3;
+}
+
+.updateReportForm {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.updateReportForm h2 {
+    margin-top: 0;
+}
+
+.reportFields {
+    margin-bottom: 15px;
+}
+
+.reportFields label {
+    display: block;
+    font-weight: bold;
+}
+
+.reportFields input[type="text"],
+.reportFields input[type="number"],
+.reportFields input[type="date"],
+.reportFields select, textarea,
+.reportFields input[list="rental"],
+.reportFields input[list="cars"]{
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.damagefield {
+    margin-bottom: 3px;
+}
+.damagefieldTop {
+    margin-top:10px;
+    margin-bottom: 3px;
+}
+
+button[type="submit"] {
+    color:#1892C3;
+    background-color:white;
+    padding: 10px 20px;
+    border: 2px solid #1892C3;
+    border-radius: 30px;
+    cursor: pointer;
+    width:300px;
+    height:38px;
+    text-align: center;
+
+}
+
+#rapportKnap {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.knap {
+    text-align: center;
+    margin-top:50px;
+}
+
+button:hover {
+    background-color: #1892C3;
+    color: white;
+}
+
+
+#rentalField{
+    width: 300px;
+}

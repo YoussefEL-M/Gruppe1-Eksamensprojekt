@@ -90,6 +90,7 @@ public class Car {
     public int getSteelPrice() {
         return steelPrice;
     }
+    public void setSteelPrice(int steelPrice) {this.steelPrice = steelPrice;}
     public double getRegistrationTax() {
         return registrationTax;
     }

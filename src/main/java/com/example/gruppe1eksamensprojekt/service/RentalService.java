@@ -100,7 +100,6 @@ public class RentalService { //Severin
         return "redirect:/createRental";
     }
 
-    //Opdater i klassediagram
     public Rental getRentalById(int id){
 
         Rental rental;
@@ -117,6 +116,8 @@ public class RentalService { //Severin
         return null;
     }
 
+    //Youssef
+    //Metode der opdatere lejeaftaler i databasen
     public void updateRental(Rental rental){
         rentalRepo.update(rental);
     }

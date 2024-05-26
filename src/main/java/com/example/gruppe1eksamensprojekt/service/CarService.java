@@ -23,11 +23,7 @@ public class CarService { // Severin
         return carRepo.getAll();
     }
 
-    public void createCar(Car car){
-        carRepo.create(car);
-    }
 
-    //Noter i klassediagram
     public Car getCarById(int id){
 
         Car car;
@@ -49,8 +45,8 @@ public class CarService { // Severin
         carRepo.update(car);
     }
 
-    public void deleteCar(int id){
-        carRepo.delete(id);
+    public void deleteCar(String serialNumber){
+        carRepo.delete(serialNumber);
     }
 
     public List<Car> getAvailable(){

@@ -38,7 +38,7 @@ public class RentalController { // Severin
     RentalCustomerJoinService rentalCustomerJoinService;
 
     @GetMapping("/")
-    public String login(HttpSession session, Model model){
+    public String login(HttpSession session){
 
         if(session.getAttribute("user")==null)
             return "frontpage";
@@ -88,7 +88,6 @@ public class RentalController { // Severin
     }
 
 
-    //Opdater klassediagram
     @PostMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
                                @RequestParam("pickUpLocation") String pickUpLocation,
@@ -115,15 +114,6 @@ public class RentalController { // Severin
         rentalService.deleteRental(id);
         if (page.equals("your")) return "redirect:/yourRentals";
         return "redirect:/findRental";
-    }
-
-
-    @GetMapping("/findBooking")
-    public String findBooking(HttpSession session, Model model){
-        if(session.getAttribute("user")==null)
-            return "frontpage";
-
-        return "overviewBookings";
     }
 
     @GetMapping("/createRental")
@@ -158,7 +148,7 @@ public class RentalController { // Severin
 
     //Bjarke
     @GetMapping("/createUser")
-    public String register(HttpSession session, Model model){
+    public String register(){
 
         return "register";
     }
@@ -205,7 +195,7 @@ public class RentalController { // Severin
 
     //Bjarke
     @GetMapping("/editRentalStatus")
-    public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page, Model model){
+    public String editRentalStatus(@RequestParam("id") int id, @RequestParam("page") String page){
         Rental rental = rentalService.getRentalById(id);
         rental.setStatus("CURRENT");
         rentalService.updateRental(rental);
