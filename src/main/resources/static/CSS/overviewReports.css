@@ -98,6 +98,8 @@ button input[type = "submit"]{
     width:100px;
     height:30px;
 }
+
+/* Clara */
 .opretRapport {
     cursor:pointer;
     border-radius: 4px;
@@ -110,11 +112,13 @@ button input[type = "submit"]{
     border:2px solid #333;
 }
 
+/* Clara */
 .opretRapport:hover {
     background-color: #f5f1f1;
     color:#333;
 }
 
+/* Clara */
 .edit-button {
     height:35px;
     width:90px;
@@ -125,10 +129,12 @@ button input[type = "submit"]{
     color:white;
 
 }
+/* Clara */
 .edit-button:hover {
     background-color: rgba(19, 122, 2, 0.85);
 }
 
+/* Clara */
 .delete-button {
     height:35px;
     width:90px;
@@ -137,6 +143,7 @@ button input[type = "submit"]{
     border:none;
 }
 
+/* Clara */
 .delete-button:hover {
     background-color: darkred;
 }
@@ -161,6 +168,7 @@ button {
     margin:10px;
 }
 
+/* Clara */
 .overskrift {
     text-align: center;
 }
