@@ -45,6 +45,7 @@ public class ReportRepo {
         jdbcTemplate.update(sql, report.getRentalId(), report.getTitle(), report.getDate(), report.getComment(), report.getTreatment(), report.getId());
     }
 
+    //Bjarke og Youssef
     //Metode der sletter rapporter ved deres ID i databasen
     public void delete(int id) {
         String sql = "DELETE FROM damages WHERE report_id = ?";

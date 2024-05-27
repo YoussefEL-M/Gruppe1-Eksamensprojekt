@@ -223,6 +223,7 @@ public class RentalService { //Severin
     //Bjarke
     public List<Rental> getCurrentRentals(){return rentalRepo.getCurrentRentals();}
 
+    //Bjarke
     public Rental getCurrentRentalByCarID(int id){return rentalRepo.getCurrentRentalByCarID(id);}
 
 

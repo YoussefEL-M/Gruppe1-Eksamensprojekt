@@ -3,16 +3,7 @@ body{
     display: flex;
     flex-direction: column;
 }
-/*.container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    max-width: 1000px;*/
-/*    margin: 10px auto;*/
-/*    padding: 10px;*/
-/*    border: 1px solid #ccc;*/
-/*    border-radius: 5px;*/
-/*    background-color: #ffffff;*/
-/*}*/
+
 
 h1, h2 {
     margin-top: 0;
@@ -68,16 +59,6 @@ th {
     font-weight: bold;
 
 }
-
-/*.update, .delete {
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
-    border-radius: 4px;
-}*/
 
 
 button input[type = "submit"]{
@@ -148,18 +129,6 @@ button input[type = "submit"]{
     background-color: darkred;
 }
 
-/*button {
-    background-color:white;
-    color:#1892C3;
-    border: 1px solid #1892C3;
-    font-weight:bold;
-}
-
-button:hover {
-    background-color: #1892C3;
-    color:white;
-}
- */
 
 button {
     font-weight:bold;

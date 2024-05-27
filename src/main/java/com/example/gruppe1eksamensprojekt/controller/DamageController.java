@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// Clara
 
 @Controller
 public class DamageController {
@@ -36,6 +35,7 @@ public class DamageController {
 
 
 
+    //Bjarke
     @GetMapping("/damage")
     public String skadeUdbedringsForside(HttpSession session, Model model) {
         if(session.getAttribute("user")== null) {
@@ -64,6 +64,7 @@ public class DamageController {
         return "damagehome";
     }
 
+    //Youssef
     @GetMapping("/reports")
     public String retrieveAllReports(HttpSession session, Model model) {
 
@@ -94,6 +95,7 @@ public class DamageController {
     }
 
 
+    //Bjarke
     @GetMapping("/create")
     public String createReport(HttpSession session, Model model) {
         if(session.getAttribute("user")==null) {
@@ -118,7 +120,7 @@ public class DamageController {
         return "redirect:/create";
     }
 
-
+    //Bjarke
     @PostMapping("/createReport")
     public String createAReport(@RequestParam("rental") String rental,
                                 @RequestParam("title") String reportTitle,
