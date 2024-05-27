@@ -30,6 +30,8 @@ public class UserRepo {
     final RowMapper<User> damageMapper = new BeanPropertyRowMapper(DamageUser.class);
     final RowMapper<User> businessMapper = new BeanPropertyRowMapper(BusinessUser.class);
 
+    //Severin
+    //RowMapper klasse, som benytter en switch til at mappe brugere til forskellige subklasser.
     RowMapper<User> mapperSwitch = new RowMapper<User>() {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {

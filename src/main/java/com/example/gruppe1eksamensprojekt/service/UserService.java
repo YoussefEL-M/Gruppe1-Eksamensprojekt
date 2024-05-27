@@ -23,10 +23,14 @@ public class UserService { // Severin
         return userRepo.getAll();
     }
 
+    //Severin
+    //Opretter bruger.
     public String createUser(String name, String username, String password, String email, String type, Model model, RedirectAttributes redirectAttributes){
         // Opdateret for at rykke logikken fra Controlleren ned i Service.
         // Simplificeret 16/05/24;
 
+        //Hvis getUserByUsername() smider en exception, findes der ikke allerede en bruger med det valgte brugernavn.
+        //Derfor ligger det meste af metoden i catch blokken.
         try {
             userRepo.getUserByUsername(username);
         } catch (EmptyResultDataAccessException E){
@@ -35,6 +39,7 @@ public class UserService { // Severin
 
             User newUser;
 
+            //Instantierer User alt efter valgt brugertype.
             switch (type){
                 case("Dataregistrering") -> newUser = new DataUser(name, username, password, email, type);
                 case("SkadeOgUdbedring") -> newUser = new DamageUser(name, username, password, email, type);
@@ -46,6 +51,7 @@ public class UserService { // Severin
             }
 
             userRepo.create(newUser);
+            //Tilføj brugernavn og adgangskode til redirectAttributes, så de allerede er tastet ind på loginsiden efter redirect.
             redirectAttributes.addFlashAttribute("username", username);
             redirectAttributes.addFlashAttribute("password", password);
 
@@ -88,6 +94,7 @@ public class UserService { // Severin
         userRepo.delete(id);
     }
 
+    //Loginmetode; returnerer en bruger, hvis login er gyldigt, eller null hvis ikke.
     public User login(String username, String password, RedirectAttributes redirectAttributes){
         // Todo: tilføj getUserByUsername() til repo.
         // Todo: håndter login i frontend med Model attributter.
