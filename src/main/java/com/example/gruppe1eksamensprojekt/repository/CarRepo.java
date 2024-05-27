@@ -74,6 +74,7 @@ public class CarRepo {
     }
 
     //Clara
+    //Returnerer en liste af biler, hvor status på dem er DAMAGED og de ikke er ds biler.
     public List<Car> getDamagedCars() {
         String sql = "SELECT * FROM car WHERE status = 'DAMAGED' AND ds = false";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);

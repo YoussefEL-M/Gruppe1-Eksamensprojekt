@@ -26,6 +26,7 @@ public class ReportRepo {
     }
 
     //Clara
+    //Metode der returnerer en liste af rapporter hvor userid er det samme som brugerens.
     public List<Report> getYourReports(int userId) {
         String sql = "SELECT * FROM report WHERE user_id = ?";
         RowMapper<Report> rowMapper = new BeanPropertyRowMapper<>(Report.class);
