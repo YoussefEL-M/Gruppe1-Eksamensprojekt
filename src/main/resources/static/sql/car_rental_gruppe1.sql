@@ -4,7 +4,8 @@ CREATE DATABASE IF NOT EXISTS car_rental_gruppe1;
 
 USE car_rental_gruppe1;
 
-
+CREATE USER applikationsbruger@'%' IDENTIFIED BY 'app123';
+GRANT SELECT, UPDATE, DELETE, CREATE ON car_rental_gruppe1.* TO applikationsbruger@'%';
 
 CREATE TABLE IF NOT EXISTS customer
 (id 	INT	PRIMARY KEY	NOT NULL	AUTO_INCREMENT,
