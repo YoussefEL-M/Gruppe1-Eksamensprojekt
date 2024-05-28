@@ -51,8 +51,8 @@
                 <!-- Liste over skader -->
                 <ul>
                     <li th:each="entry : ${report.damages}">
-                        Beskrivelse:<span th:text="${entry.key}"></span>
-                        pris: <span th:text="${entry.value}"></span>
+                        Beskrivelse: <span th:text="${entry.key}"></span>
+                        Pris: <span th:text="${entry.value}"></span>
                     </li>
                 </ul>
             </td>
