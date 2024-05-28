@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// Clara
 
 @Controller
 public class DamageController {
@@ -36,6 +35,7 @@ public class DamageController {
 
 
 
+    //Bjarke
     @GetMapping("/damage")
     public String skadeUdbedringsForside(HttpSession session, Model model) {
         if(session.getAttribute("user")== null) {
@@ -64,6 +64,7 @@ public class DamageController {
         return "damagehome";
     }
 
+    //Youssef
     @GetMapping("/reports")
     public String retrieveAllReports(HttpSession session, Model model) {
 
@@ -78,6 +79,9 @@ public class DamageController {
 
 
     //Clara
+    /*GetMapping med metode der leder til siden for "Dine rapporter"
+    Henter en liste af rapporter baseret på user id.
+     */
     @GetMapping("/yourReports")
     public String retrieveYourReports(HttpSession session, Model model) {
 
@@ -91,6 +95,7 @@ public class DamageController {
     }
 
 
+    //Bjarke
     @GetMapping("/create")
     public String createReport(HttpSession session, Model model) {
         if(session.getAttribute("user")==null) {
@@ -115,7 +120,7 @@ public class DamageController {
         return "redirect:/create";
     }
 
-
+    //Bjarke
     @PostMapping("/createReport")
     public String createAReport(@RequestParam("rental") String rental,
                                 @RequestParam("title") String reportTitle,
@@ -243,12 +248,17 @@ public class DamageController {
 
 
     //Clara
+    /*
+    Sletter rapport ud fra rapport id.
+     */
     @GetMapping("/delete/{id}")
     public String deleteReport(@PathVariable("id") int reportId, HttpSession session) {
 
+        // sender brugeren tilbage til loginsiden i tilfælde af at user == null
         if(session.getAttribute("user")==null)
             return "frontpage";
 
+        //Bruger deleteReport metode fra reportService, som sletter rapporten baseret på dens id
         reportService.deleteReport(reportId);
 
         return "redirect:/reports";

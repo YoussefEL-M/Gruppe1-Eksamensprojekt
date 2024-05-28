@@ -1,12 +1,12 @@
 /*Youssef og Clara*/
 
-/* Clara ?? */
+/* Clara */
 h3 {
     text-align: center;
     padding-top: 20px;
 }
 
-/* Clara ??? */
+/* Clara */
 h2 {
     text-align: center;
     padding-bottom: 20px;
@@ -99,7 +99,6 @@ h2 {
     margin-bottom: 3px;
 }
 
-/* Clara ? ?? */
 button[type="submit"] {
     color:#1892C3;
     background-color:white;
@@ -113,13 +112,14 @@ button[type="submit"] {
 
 }
 
+/* Clara */
 #rapportKnap {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-/* Clara ?? */
+/* Clara */
 .knap {
     text-align: center;
     margin-top:50px;

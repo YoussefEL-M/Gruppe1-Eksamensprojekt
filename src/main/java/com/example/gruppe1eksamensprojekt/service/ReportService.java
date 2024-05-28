@@ -30,6 +30,7 @@ public class ReportService { // Severin
     @Autowired
     private CarService carService;
 
+    //Severin og Youssef
     public List<Report> getAll(){
 
         List<Report> reports = reportRepo.getAll();
@@ -65,12 +66,11 @@ public class ReportService { // Severin
         return null;
     }
 
+    //Bjarke og Severin
     public void updateReport(Report report){
         reportRepo.update(report);
         reportRepo.deleteDamagesByReportId(report.getId());
         createDamages(report);
-
-
 
     }
 
@@ -168,6 +168,7 @@ public class ReportService { // Severin
         }
     }
 
+    //Bjarke
     public void populateDamages(Report report) {
 
             List<Damages> damagesList = reportRepo.getDamagesByReportId(report.getId());

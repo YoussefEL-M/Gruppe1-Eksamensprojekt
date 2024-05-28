@@ -33,6 +33,7 @@ public class BusinessController {
    //Youssef
     @GetMapping("/allcars")
     public String allCarsPage(Model model) {
+      //Henter en list over alle biler fra CarService
         List<Car> allCars = carService.getAll();
         model.addAttribute("cars", allCars);
         return "businessOverview";

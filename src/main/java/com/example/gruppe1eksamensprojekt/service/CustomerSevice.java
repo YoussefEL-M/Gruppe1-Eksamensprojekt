@@ -44,8 +44,6 @@ public class CustomerSevice { // Severin
     }
 
     public void updateCustomer(Customer customer){
-        // Skal den ikke have et 'Customer' objekt som parameter?
-        // Indtil videre gør jeg, som der står i klassediagrammet - Severin.
         customerRepo.update(customer);
     }
 

@@ -57,34 +57,9 @@ public class UserRepo {
     public void create(User user) {
         String sql = "INSERT INTO user (name, username, password, email, type) VALUES (?, ?, ?, ?, ?)";
 
-//        if(user.getType().equals("Dataregistrering")) {
-//
-//            String statementForRental = "GRANT SELECT, INSERT, UPDATE, DELETE ON car_rental_gruppe1.rental TO user";
-//            String statementForCustomer = "GRANT SELECT, INSERT, UPDATE, DELETE ON car_rental_gruppe1.customer TO user";
-//            String statementForCar = "GRANT SELECT, INSERT, UPDATE, DELETE ON car_rental_gruppe1.car TO user";
-//            String statementForCarId = "GRANT SELECT, INSERT, UPDATE, DELETE ON car_rental_gruppe1.carIdentification TO user";
-//
-//            RowMapper<User> rowMapper = new BeanPropertyRowMapper<User>(User.class);
-//            jdbcTemplate.queryForObject(statementForRental, rowMapper, user);
-//            jdbcTemplate.queryForObject(statementForCustomer, rowMapper, user);
-//            jdbcTemplate.queryForObject(statementForCar, rowMapper, user);
-//            jdbcTemplate.queryForObject(statementForCarId, rowMapper, user);
-//        }
-//
-//        if(user.getType().equals("SkadeOgUdbedring")) {
-//
-//            String statementForCar = "GRANT SELECT, UPDATE ON car_rental_gruppe1.car TO user";
-//            String statementForReport = "GRANT SELECT, UPDATE, INSERT, DELETE ON car_rental_gruppe1.report TO user";
-//
-//            RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
-//            jdbcTemplate.queryForObject(statementForCar, rowMapper, user);
-//            jdbcTemplate.queryForObject(statementForReport, rowMapper, user);
-//        }
-
         jdbcTemplate.update(sql, user.getName(), user.getUsername(), user.getPassword(), user.getEmail(), user.getType());
 
     }
-
 
     public User getUserById(int id) throws EmptyResultDataAccessException {
         String sql = "SELECT * FROM user WHERE id = ?";
@@ -105,6 +80,7 @@ public class UserRepo {
         String sql = "SELECT * FROM user";
         return jdbcTemplate.query(sql, mapperSwitch);
     }
+
 
     public User getUserByUsername(String username) throws EmptyResultDataAccessException {
         String sql = "SELECT * FROM user WHERE username = ?";

@@ -24,6 +24,7 @@ public class CarRepo {
         jdbcTemplate.update(carId, car.getSerialNumber(), car.getBrand(), car.getModel());
     }
 
+    //Bjarke
     // Henter bilen med det givne id fra databasen, er lavet med en join da nogle af bilernes oplysninger ligger i carIdentification tabellen
     public Car getCarById(int id) throws EmptyResultDataAccessException {
         String sql = "SELECT * FROM car " +
@@ -33,6 +34,7 @@ public class CarRepo {
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
+    //Youssef
     public void update(Car car) {
         String sql = "UPDATE car SET serialNumber=?, color=?, trimLevel=?, steelPrice=?, registrationTax=?, emission=?, status=?, ds=?, licensePlate=?, fuelType = ?, kmTraveled = ?, fuelEfficiency = ?, price = ?, manual  = ?, lastUpdated = ? WHERE id=?";
         jdbcTemplate.update(sql, car.getSerialNumber(), car.getColor(), car.getTrimLevel(), car.getSteelPrice(), car.getRegistrationTax(), car.getEmission(), car.getStatus().name(), car.isDs(), car.getLicensePlate(), car.getFuelType().name(), car.getKmTraveled(), car.getFuelEfficiency(), car.getPrice(), car.isManual(), car.getLastUpdated(), car.getId());
@@ -47,6 +49,7 @@ public class CarRepo {
     }
 
 
+    //Youssef og Bjarke
     public List<Car> getAll() {
         String sql = "SELECT * FROM car " +
                 "LEFT JOIN carIdentification " +
@@ -74,6 +77,7 @@ public class CarRepo {
     }
 
     //Clara
+    //Returnerer en liste af biler, hvor status på dem er DAMAGED og de ikke er ds biler.
     public List<Car> getDamagedCars() {
         String sql = "SELECT * FROM car WHERE status = 'DAMAGED' AND ds = false";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
