@@ -28,14 +28,14 @@ th {
 }
 
 /* Clara */
-#indleverKnap {
+.indleverKnap {
     background-color: white;
     color:#248d48;
     border: 2px solid #248d48;
 }
 
 /* Clara */
-#indleverKnap:hover {
+.indleverKnap:hover {
     background-color: #248d48;
     color:white;
 }

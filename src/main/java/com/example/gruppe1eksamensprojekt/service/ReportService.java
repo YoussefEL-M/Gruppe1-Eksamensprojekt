@@ -50,6 +50,7 @@ public class ReportService { // Severin
 
 
     //Clara
+    //Fejlhåndtering i tilfældet af at rapporten med det givne id ikke findes i databasen
     public Report getReportById(int id){
 
         Report report;

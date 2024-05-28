@@ -99,25 +99,31 @@ h2 {
     margin-bottom: 3px;
 }
 
-button[type="submit"] {
-    color:#1892C3;
-    background-color:white;
+#rapportKnap {
+    text-align: center;
+    color:white;
+    background-color:#1892C3;
     padding: 10px 20px;
-    border: 2px solid #1892C3;
+    border:none;
     border-radius: 30px;
     cursor: pointer;
     width:300px;
-    height:38px;
-    text-align: center;
+    height:35px;
+}
 
+#opretKnap {
+    text-align: center;
 }
 
 /* Clara */
+#rapportKnap:hover {
+    opacity: 0.9;
+}
+
 #rapportKnap {
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
+
 
 /* Clara */
 .knap {
@@ -125,11 +131,11 @@ button[type="submit"] {
     margin-top:50px;
 }
 
-button:hover {
+/*button:hover {
     background-color: #1892C3;
     color: white;
 }
-
+*/
 
 #rentalField{
     width: 300px;

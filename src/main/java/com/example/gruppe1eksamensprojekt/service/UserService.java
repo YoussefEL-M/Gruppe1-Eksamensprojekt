@@ -68,6 +68,7 @@ public class UserService { // Severin
     }
 
     //Clara
+    //Fejlhåndtering til hvis brugeren med det givne id ikke findes i databasen
     public User getUserById(int id){
 
         User user;

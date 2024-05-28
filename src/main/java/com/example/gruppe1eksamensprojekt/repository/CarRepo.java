@@ -17,6 +17,8 @@ public class CarRepo {
     private JdbcTemplate jdbcTemplate;
 
     //Clara
+    //Metode til at oprette en biler i database.
+    //Der er insert statements til både car tabellen og carIdenfication tabellen.
     public void create(Car car) {
         String sql = "INSERT INTO car (id, serialNumber, color, trimLevel, steelPrice, registrationTax, emission, status, ds, licensePlate, fuelType, kmTraveled, fuelEfficiency, price, manual) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String carId = "INSERT INTO carIdentification (serialnumber, brand, model) VALUES (?,?,?)";
@@ -41,6 +43,8 @@ public class CarRepo {
     }
 
     //Clara
+    //Sletter biler hvor stelnummer matcher metoden parameter.
+    //Samtidig vil den slette tilsvarende information fra carIdentification.
     public void delete(String serialNumber) {
         String sql = "DELETE FROM car WHERE serialNumber = ?";
         String deleteFromCarId = "DELETE FROM carIdentification WHERE serialNumber = ?";

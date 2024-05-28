@@ -72,7 +72,16 @@ th {
     height:30px;
     width:120px;
 
+    /* Clara */
+    background-color: #1892C3;
+    color:white;
 }
+
+/* Clara */
+#reportButton:hover {
+    opacity: 0.9;
+}
+
 .reportButtonDiv{
     text-align: center;
 }

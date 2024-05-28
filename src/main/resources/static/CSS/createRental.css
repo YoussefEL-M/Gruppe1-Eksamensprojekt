@@ -45,18 +45,18 @@ h1, h2, p, a, li, label {
     text-align: center;
     padding: 10px 5px 10px 5px;
     border-radius: 30px;
-    background-color: white;
-    border:2px solid #1892C3;
-    color:#1892C3;
+    background-color: #1892C3;
+    border:none;
+    color:white;
+    cursor:pointer;
 }
 
 .createButton:hover{
-    background-color: #1892C3;;
-    cursor: pointer;
-    color:white;
+    opacity: 0.9;
 }
 
 /* Clara */
+/* Styling af felterne til oprettelse af lejeaftale.*/
 .rentalField input[list="customers"],
 .rentalField input[type="date"],
 .rentalField input[type="text"],

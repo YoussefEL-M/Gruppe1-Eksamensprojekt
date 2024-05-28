@@ -105,6 +105,7 @@ public class RentalService { //Severin
     }
 
     //Clara
+    //Fejlhåndtering i tilfældet af at lejeaftalen med det givne id ikke finde i databasen
     public Rental getRentalById(int id){
 
         Rental rental;

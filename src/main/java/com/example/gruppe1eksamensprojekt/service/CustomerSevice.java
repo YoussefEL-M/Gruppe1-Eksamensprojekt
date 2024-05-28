@@ -26,9 +26,8 @@ public class CustomerSevice { // Severin
     }
 
     //Clara
+    //Fejlhåndtering i tilfælde af at den give kunde ikke findes i databasen
     public Customer getCustomerById(int id){
-        // Er ikke i klassediagrammet, men antager at vi skal bruge den.
-        // Todo: tilføj til klassediagram.
 
         Customer customer;
         try {

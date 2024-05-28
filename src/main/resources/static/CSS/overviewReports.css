@@ -88,15 +88,15 @@ button input[type = "submit"]{
     height:45px;
     margin-bottom: 20px;
     align-content: center;
-    background-color: lightgray;
-    color:#333;
-    border:2px solid #333;
+    background-color: #1892C3;
+    color:white;
+    border:none;
 }
 
 /* Clara */
+/* Når man holder musen hen over opret rapport knappen vil den blive en smule lysere */
 .opretRapport:hover {
-    background-color: #f5f1f1;
-    color:#333;
+    opacity: 0.9;
 }
 
 /* Clara */
@@ -111,11 +111,13 @@ button input[type = "submit"]{
 
 }
 /* Clara */
+/* Baggrundsfarven bliver mørkere, når man holder musen hen over knappen */
 .edit-button:hover {
     background-color: rgba(19, 122, 2, 0.85);
 }
 
 /* Clara */
+/* Styling af slet knap */
 .delete-button {
     height:35px;
     width:90px;
@@ -125,9 +127,28 @@ button input[type = "submit"]{
 }
 
 /* Clara */
+/* Når man holder musen hen over knappen vil den få en mørkere farve */
 .delete-button:hover {
     background-color: darkred;
 }
+
+/* Clara */
+/* Styling af indlever knap
+Gør kanterne og teksten i knappen grøn. Afrunder hjørner. Giver en hvis baggrund*/
+.indleverKnap {
+    border:2px solid #248d48;
+    color:#248d48;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* Clara */
+/* Giver indleveringsknappen en grøn baggrund og hvid tekst, når man holder musen over den */
+.indleverKnap:hover {
+    background-color: #248d48;
+    color:white;
+}
+
 
 
 button {

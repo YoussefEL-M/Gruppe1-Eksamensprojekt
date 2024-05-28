@@ -24,6 +24,7 @@ public class CarService { // Severin
     }
 
     //Clara
+    //Fejlhåndtering i tilfælde af at bilen ikke findes i databasen
     public Car getCarById(int id){
 
         Car car;

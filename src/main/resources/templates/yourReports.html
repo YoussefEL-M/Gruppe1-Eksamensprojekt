@@ -15,6 +15,7 @@
 
 <h1>Dine rapporter</h1>
 
+<!-- Knap til at oprette en ny rapport -->
 <div class="overskrift">
     <a href="/create"><button class="opretRapport">Opret ny rapport</button></a>
 </div>
@@ -55,10 +56,13 @@
             </ul>
         </td>
         <td>
+            <!-- Knap til at opdatere en rapport -->
             <div class="knap">
                 <a th:href="@{'/updateForm/' + ${report.id}+'/'+ ${report.rentalId}}"> <button class="edit-button">Opdater</button></a>
             </div>
 
+
+            <!-- Knap til at slette en rapport med -->
             <div class="knap">
                 <a th:href="@{'/delete/' + ${report.getId()}}"
                    onclick="return confirm('Er du sikker på, at du vil slette denne rapport?')">
