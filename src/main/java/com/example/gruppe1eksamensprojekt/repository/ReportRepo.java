@@ -26,6 +26,7 @@ public class ReportRepo {
     }
 
     //Clara
+    //Metode der returnerer en liste af rapporter hvor userid er det samme som brugerens.
     public List<Report> getYourReports(int userId) {
         String sql = "SELECT * FROM report WHERE user_id = ?";
         RowMapper<Report> rowMapper = new BeanPropertyRowMapper<>(Report.class);
@@ -44,6 +45,7 @@ public class ReportRepo {
         jdbcTemplate.update(sql, report.getRentalId(), report.getTitle(), report.getDate(), report.getComment(), report.getTreatment(), report.getId());
     }
 
+    //Bjarke og Youssef
     //Metode der sletter rapporter ved deres ID i databasen
     public void delete(int id) {
         String sql = "DELETE FROM damages WHERE report_id = ?";

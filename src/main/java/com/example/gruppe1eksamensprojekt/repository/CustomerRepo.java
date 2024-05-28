@@ -41,7 +41,7 @@ public class CustomerRepo {
         jdbcTemplate.update(sql, id);
     }
 
-    //Metode der henter alle kudner i databasen
+    //Metode der henter alle kunder i databasen
     public List<Customer> getAll() {
         String sql = "SELECT * FROM customer";
         RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);

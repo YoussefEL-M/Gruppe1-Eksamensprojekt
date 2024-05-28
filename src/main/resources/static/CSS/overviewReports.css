@@ -3,16 +3,7 @@ body{
     display: flex;
     flex-direction: column;
 }
-/*.container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    max-width: 1000px;*/
-/*    margin: 10px auto;*/
-/*    padding: 10px;*/
-/*    border: 1px solid #ccc;*/
-/*    border-radius: 5px;*/
-/*    background-color: #ffffff;*/
-/*}*/
+
 
 h1, h2 {
     margin-top: 0;
@@ -69,16 +60,6 @@ th {
 
 }
 
-/*.update, .delete {
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
-    border-radius: 4px;
-}*/
-
 
 button input[type = "submit"]{
     padding: 5px 10px;
@@ -98,6 +79,8 @@ button input[type = "submit"]{
     width:100px;
     height:30px;
 }
+
+/* Clara */
 .opretRapport {
     cursor:pointer;
     border-radius: 4px;
@@ -110,11 +93,13 @@ button input[type = "submit"]{
     border:2px solid #333;
 }
 
+/* Clara */
 .opretRapport:hover {
     background-color: #f5f1f1;
     color:#333;
 }
 
+/* Clara */
 .edit-button {
     height:35px;
     width:90px;
@@ -125,10 +110,12 @@ button input[type = "submit"]{
     color:white;
 
 }
+/* Clara */
 .edit-button:hover {
     background-color: rgba(19, 122, 2, 0.85);
 }
 
+/* Clara */
 .delete-button {
     height:35px;
     width:90px;
@@ -137,22 +124,11 @@ button input[type = "submit"]{
     border:none;
 }
 
+/* Clara */
 .delete-button:hover {
     background-color: darkred;
 }
 
-/*button {
-    background-color:white;
-    color:#1892C3;
-    border: 1px solid #1892C3;
-    font-weight:bold;
-}
-
-button:hover {
-    background-color: #1892C3;
-    color:white;
-}
- */
 
 button {
     font-weight:bold;
@@ -161,6 +137,7 @@ button {
     margin:10px;
 }
 
+/* Clara */
 .overskrift {
     text-align: center;
 }

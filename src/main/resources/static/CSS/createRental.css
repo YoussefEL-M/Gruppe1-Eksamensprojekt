@@ -1,3 +1,5 @@
+/* Bjarke */
+
 h1, h2, p, a, li, label {
     font-family: "Arial", sans-serif;
 }
@@ -64,7 +66,5 @@ h1, h2, p, a, li, label {
     padding:8px;
     border:1px solid #cccccc;
     border-radius:4px;
-
-
 
 }

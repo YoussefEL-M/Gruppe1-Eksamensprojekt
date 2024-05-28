@@ -40,8 +40,6 @@ public class CarService { // Severin
     }
 
     public void updateCar(Car car){
-        // Skal den ikke have et Car objekt som parameter?
-        // Indtil videre gør jeg, som der står i klassediagrammet - Severin.
         carRepo.update(car);
     }
 
@@ -71,8 +69,8 @@ public class CarService { // Severin
     public List<Car> getNotUpdated() {
         String date = LocalDate.now().minusDays(4).toString();
 
-
-        return carRepo.getNotUpdated(date);}
+        return carRepo.getNotUpdated(date);
+    }
 
 
 }

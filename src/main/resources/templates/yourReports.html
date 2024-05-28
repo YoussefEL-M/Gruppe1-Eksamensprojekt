@@ -34,6 +34,10 @@
     </tr>
     </thead>
     <tbody>
+
+    <!-- Tabel der viser oversigt over brugerens rapporter.
+    Den tager yourReportslist fra retrieveYourReports metode fra DamageController
+    Den går igennem report attributterne til hver rapport-->
     <tr th:each="report : ${yourReportslist}">
         <td th:text="${report.getId()}"></td>
         <td th:text="${report.getUser_id()}"></td>
@@ -44,6 +48,7 @@
         <td th:text="${report.getComment()}"></td>
         <td>
             <ul>
+                <!-- Går igennem skaderne med beskrivelse og pris -->
                 <li th:each="damage : ${report.damages}">
                     <span th:text="${damage.key}"></span> : <span th:text="${damage.value}"></span>
                 </li>

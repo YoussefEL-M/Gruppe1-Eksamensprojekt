@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDate;
 
 @Controller
-public class RentalController { // Severin
+public class RentalController {
     // Todo: gennemgå metodernes Models og sørg for at deres attributter er navngivet korrekt.
 
     //@Value("${adminPass}") //Todo: sæt op til Azure Key Vault.
@@ -37,6 +37,7 @@ public class RentalController { // Severin
     @Autowired
     RentalCustomerJoinService rentalCustomerJoinService;
 
+    //Severin
     @GetMapping("/")
     public String login(HttpSession session){
 
@@ -46,6 +47,7 @@ public class RentalController { // Severin
         return "redirect:" + user.getFrontPage();
     }
 
+    //Bjarke og Severin
     @PostMapping("/loggingIn")
     public String loggingIn(HttpSession session, RedirectAttributes redirectAttributes, @RequestParam("username") String username, @RequestParam("password") String password){
         User user = userService.login(username, password, redirectAttributes);
@@ -57,6 +59,7 @@ public class RentalController { // Severin
         else return "redirect:/";
     }
 
+    //Bjarke og Severin
     @GetMapping("/rental")
     public String rental(HttpSession session, Model model){
 
@@ -67,6 +70,7 @@ public class RentalController { // Severin
         return "dataregistration";
     }
 
+    //Severin
     @GetMapping("/findRental")
     public String findRental(HttpSession session, Model model){
         if(session.getAttribute("user")==null)
@@ -75,6 +79,7 @@ public class RentalController { // Severin
         return "overviewRentals";
     }
 
+    //Severin
     @GetMapping("/editRental")
     public String editRental(@RequestParam("id") int id, HttpSession session, Model model){
         if(session.getAttribute("user")==null)
@@ -87,7 +92,7 @@ public class RentalController { // Severin
         return "rentalUpdateForm";
     }
 
-
+    //Bjarke og Severin
     @PostMapping("/updateRental")
     public String updateRental(@RequestParam("id") int id, @RequestParam("endDate") String endDate,
                                @RequestParam("pickUpLocation") String pickUpLocation,
@@ -103,6 +108,7 @@ public class RentalController { // Severin
         return rentalService.validateAndUpdate(id, startDate, pickUpLocation, car, endDate, returnLocation, redirectAttributes);
     }
 
+    //Severin
     @GetMapping("/deleteRental")
     public String deleteRental(@RequestParam("id") int id, @RequestParam("page") String page, HttpSession session){
         if(session.getAttribute("user")==null)
@@ -116,6 +122,7 @@ public class RentalController { // Severin
         return "redirect:/findRental";
     }
 
+    //Bjarke og Severin
     @GetMapping("/createRental")
     public String createRental(HttpSession session, Model model){
 
@@ -127,6 +134,7 @@ public class RentalController { // Severin
         return "createRental";
     }
 
+    //Bjarke og Severin
     @PostMapping("/submitRental")
     public String submitRental(HttpSession session, RedirectAttributes redirectAttributes,
                                @RequestParam("customer") String customer,
@@ -153,6 +161,7 @@ public class RentalController { // Severin
         return "register";
     }
 
+    //Severin
     @PostMapping("/register")
     public String createAnAccount(@RequestParam("name")String name,
                                   @RequestParam("email") String email,
