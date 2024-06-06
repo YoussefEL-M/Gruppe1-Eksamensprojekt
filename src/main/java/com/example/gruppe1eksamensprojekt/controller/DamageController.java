@@ -120,7 +120,7 @@ public class DamageController {
         return "redirect:/create";
     }
 
-    //Bjarke
+    //Bjarke p
     @PostMapping("/createReport")
     public String createAReport(@RequestParam("rental") String rental,
                                 @RequestParam("title") String reportTitle,
